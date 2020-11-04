@@ -1,12 +1,1 @@
-var ROUTES_INDEX = {
-  "name": "<root>",
-  "kind": "module",
-  "className": "AppModule",
-  "children": [{
-    "name": "routes",
-    "filename": "src/app/app-routing.module.ts",
-    "module": "AppRoutingModule",
-    "children": [{"path": "", "component": "FieldComponent"}],
-    "kind": "module"
-  }]
-};
+var ROUTES_INDEX = {"name":"<root>","kind":"module","className":"AppModule","children":[{"name":"routes","filename":"src/app/app-routing.module.ts","module":"AppRoutingModule","children":[{"path":"","component":"FieldComponent"}],"kind":"module"}]}

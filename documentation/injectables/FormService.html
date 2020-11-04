@@ -1,180 +1,203 @@
 <!doctype html>
 <html class="no-js" lang="">
-<head>
-  <meta charset="utf-8">
-  <meta content="ie=edge" http-equiv="x-ua-compatible">
-  <title>angular-formbuilder documentation</title>
-  <meta content="" name="description">
-  <meta content="width=device-width, initial-scale=1" name="viewport">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>formbuilder documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="../images/favicon.ico" rel="icon" type="image/x-icon">
-  <link href="../styles/style.css" rel="stylesheet">
-</head>
-<body>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
 
-<div class="navbar navbar-default navbar-fixed-top visible-xs">
-  <a class="navbar-brand" href="../">angular-formbuilder documentation</a>
-  <button class="btn btn-default btn-menu ion-ios-menu" id="btn-menu" type="button"></button>
-</div>
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">formbuilder documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
 
-<div class="xs-menu menu" id="mobile-menu">
-  <div id="book-search-input" role="search"><input placeholder="Type to search" type="text"></div>
-  <compodoc-menu></compodoc-menu>
-</div>
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
 
-<div class="container-fluid main">
-  <div class="row main">
-    <div class="hidden-xs menu">
-      <compodoc-menu mode="normal"></compodoc-menu>
-    </div>
-    <!-- START CONTENT -->
-    <div class="content injectable">
-      <div class="content-data">
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
 
 
-        <ol class="breadcrumb">
-          <li>Injectables</li>
-          <li>FormService</li>
-        </ol>
 
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="active">
-            <a data-link="info" data-toggle="tab" href="#info" id="info-tab" role="tab">Info</a>
-          </li>
-          <li>
-            <a data-link="source" data-toggle="tab" href="#source" id="source-tab" role="tab">Source</a>
-          </li>
-        </ul>
 
-        <div class="tab-content">
-          <div class="tab-pane fade active in" id="c-info">
-            <p class="comment">
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>FormService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
             <h3>File</h3>
-            </p>
-            <p class="comment">
-              <code>src/app/services/form.service.ts</code>
-            </p>
+        </p>
+        <p class="comment">
+            <code>projects/formbuilder/src/lib/services/form.service.ts</code>
+        </p>
+
+
 
 
             <section>
-              <h3 id="index">Index</h3>
-              <table class="table table-sm table-bordered index-table">
-                <tbody>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
                 <tr>
-                  <td class="col-md-4">
-                    <h6><b>Properties</b></h6>
-                  </td>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
                 </tr>
                 <tr>
-                  <td class="col-md-4">
-                    <ul class="index-list">
-                      <li>
-                        <a href="#configs">configs</a>
-                      </li>
-                      <li>
-                        <a href="#forms">forms</a>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="col-md-4">
-                    <h6><b>Methods</b></h6>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <ul class="index-list">
-                      <li>
-                        <a href="#addConfig">addConfig</a>
-                      </li>
-                      <li>
-                        <a href="#addForm">addForm</a>
-                      </li>
-                      <li>
-                        <a href="#getConfigByName">getConfigByName</a>
-                      </li>
-                      <li>
-                        <a href="#getConfigs">getConfigs</a>
-                      </li>
-                      <li>
-                        <a href="#getFormControl">getFormControl</a>
-                      </li>
-                      <li>
-                        <a href="#getForms">getForms</a>
-                      </li>
-                      <li>
-                        <a href="#updateConfig">updateConfig</a>
-                      </li>
-                    </ul>
-                  </td>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#configs">configs</a>
+                            </li>
+                            <li>
+                                <a href="#emptyObj">emptyObj</a>
+                            </li>
+                            <li>
+                                <a href="#forms">forms</a>
+                            </li>
+                        </ul>
+                    </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addConfig">addConfig</a>
+                            </li>
+                            <li>
+                                <a href="#addForm">addForm</a>
+                            </li>
+                            <li>
+                                <a href="#buildValidators">buildValidators</a>
+                            </li>
+                            <li>
+                                <a href="#getConfigByName">getConfigByName</a>
+                            </li>
+                            <li>
+                                <a href="#getConfigs">getConfigs</a>
+                            </li>
+                            <li>
+                                <a href="#getForm">getForm</a>
+                            </li>
+                            <li>
+                                <a href="#getFormControl">getFormControl</a>
+                            </li>
+                            <li>
+                                <a href="#getForms">getForms</a>
+                            </li>
+                            <li>
+                                <a href="#getPage">getPage</a>
+                            </li>
+                            <li>
+                                <a href="#setUp">setUp</a>
+                            </li>
+                            <li>
+                                <a href="#updateConfig">updateConfig</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
-                </tbody>
-              </table>
-            </section>
+
+
+
+
+        </tbody>
+    </table>
+</section>
 
             <section>
-              <h3 id="constructor">Constructor</h3>
-              <table class="table table-sm table-bordered">
-                <tbody>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
                 <tr>
-                  <td class="col-md-4">
-                    <code>constructor(fb: <a href="../classes/Form.html">FormBuilder</a>)</code>
-                  </td>
+                    <td class="col-md-4">
+<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
                 </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="11" href="">src/app/services/form.service.ts:11</a>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td class="col-md-4">
-                    <div>
-                      <b>Parameters :</b>
-                      <table class="params">
-                        <thead>
                         <tr>
-                          <td>Name</td>
-                          <td>Type</td>
-                          <td>Optional</td>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:19</a></div>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td>fb</td>
 
-                          <td>
-                            <code><a href="../classes/Form.html" target="_self">FormBuilder</a></code>
-                          </td>
-
-                          <td>
-                            No
-                          </td>
-
-                        </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </td>
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
                 </tr>
-                </tbody>
-              </table>
-            </section>
+            </tbody>
+        </table>
+</section>
 
             <section>
-
-              <h3 id="methods">
-                Methods
-              </h3>
-              <table class="table table-sm table-bordered">
-                <tbody>
-                <tr>
-                  <td class="col-md-4">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="addConfig"></a>
                     <span class="name">
                         <b>
@@ -182,86 +205,74 @@
                         </b>
                         <a href="#addConfig"><span class="icon ion-ios-link"></span></a>
                     </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <code>addConfig(config: <a href="../interfaces/IField.html">IField[]</a>, name: <a
-                      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                      target="_blank">string</a>)</code>
-                  </td>
-                </tr>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addConfig(config: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="25"
-                                                       href="">src/app/services/form.service.ts:25</a></div>
-                  </td>
-                </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:58</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                      <b>Parameters :</b>
-                      <table class="params">
-                        <thead>
-                        <tr>
-                          <td>Name</td>
-                          <td>Type</td>
-                          <td>Optional</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td>config</td>
-                          <td>
-                            <code><a href="../interfaces/IField.html" target="_self">IField[]</a></code>
-                          </td>
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>config</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
 
-                          <td>
-                            No
-                          </td>
-
-
-                        </tr>
-                        <tr>
-                          <td>name</td>
-                          <td>
-                            <code><a
-                              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                              target="_blank">string</a></code>
-                          </td>
-
-                          <td>
-                            No
-                          </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                        </tr>
-                        </tbody>
-                      </table>
+                                    <td>
+                                        <p>: { [ <PageName>: { <FormName>: { <FieldName>: IField } } ] }</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
-                                                 target="_blank">void</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
-
+                        
                     </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-              <table class="table table-sm table-bordered">
-                <tbody>
-                <tr>
-                  <td class="col-md-4">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="addForm"></a>
                     <span class="name">
                         <b>
@@ -269,70 +280,164 @@
                         </b>
                         <a href="#addForm"><span class="icon ion-ios-link"></span></a>
                     </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <code>addForm(form: <a href="../classes/Form.html">FormGroup</a>)</code>
-                  </td>
-                </tr>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addForm(form: <a href="https://angular.io/api/forms/FormGroup" target="_blank">FormGroup</a>, pageName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="16"
-                                                       href="">src/app/services/form.service.ts:16</a></div>
-                  </td>
-                </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:29</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                      <b>Parameters :</b>
-                      <table class="params">
-                        <thead>
-                        <tr>
-                          <td>Name</td>
-                          <td>Type</td>
-                          <td>Optional</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td>form</td>
-                          <td>
-                            <code><a href="../classes/Form.html" target="_self">FormGroup</a></code>
-                          </td>
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                                    </td>
 
-                          <td>
-                            No
-                          </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                        </tr>
-                        </tbody>
-                      </table>
+                                    <td>
+                                        <p>: FormGroup</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pageName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
-                                                 target="_blank">void</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buildValidators"></a>
+                    <span class="name">
+                        <b>
+                            buildValidators
+                        </b>
+                        <a href="#buildValidators"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>buildValidators(config: <a href="../interfaces/IValidator.html">IValidator</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>config</td>
+                                    <td>
+                                                <code><a href="../interfaces/IValidator.html" target="_self" >IValidator</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: IValidator</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
 
                     </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-              <table class="table table-sm table-bordered">
-                <tbody>
-                <tr>
-                  <td class="col-md-4">
+                    <div class="io-description">
+                        <p>Array with ValidatorFunctions</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getConfigByName"></a>
                     <span class="name">
                         <b>
@@ -340,106 +445,75 @@
                         </b>
                         <a href="#getConfigByName"><span class="icon ion-ios-link"></span></a>
                     </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <code>getConfigByName(name: <a
-                      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                      target="_blank">string</a>, configName?: <a
-                      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                      target="_blank">string</a>, formName?: <a
-                      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                      target="_blank">string</a>)</code>
-                  </td>
-                </tr>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getConfigByName(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="46"
-                                                       href="">src/app/services/form.service.ts:46</a></div>
-                  </td>
-                </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:106</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                      <b>Parameters :</b>
-                      <table class="params">
-                        <thead>
-                        <tr>
-                          <td>Name</td>
-                          <td>Type</td>
-                          <td>Optional</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td>name</td>
-                          <td>
-                            <code><a
-                              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                              target="_blank">string</a></code>
-                          </td>
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
 
-                          <td>
-                            No
-                          </td>
-
-
-                        </tr>
-                        <tr>
-                          <td>configName</td>
-                          <td>
-                            <code><a
-                              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                              target="_blank">string</a></code>
-                          </td>
-
-                          <td>
-                            Yes
-                          </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                        </tr>
-                        <tr>
-                          <td>formName</td>
-                          <td>
-                            <code><a
-                              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                              target="_blank">string</a></code>
-                          </td>
+                                    <td>
+                                        <p>: Page_Form_Field</p>
 
-                          <td>
-                            Yes
-                          </td>
-
-
-                        </tr>
-                        </tbody>
-                      </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
-                                                 target="_blank">any</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
+                        <p>FieldConfig: IField</p>
 
                     </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-              <table class="table table-sm table-bordered">
-                <tbody>
-                <tr>
-                  <td class="col-md-4">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getConfigs"></a>
                     <span class="name">
                         <b>
@@ -447,38 +521,114 @@
                         </b>
                         <a href="#getConfigs"><span class="icon ion-ios-link"></span></a>
                     </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <code>getConfigs()</code>
-                  </td>
-                </tr>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getConfigs()</code>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="73"
-                                                       href="">src/app/services/form.service.ts:73</a></div>
-                  </td>
-                </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:176</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                      <b>Returns : </b> <code>{}</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-              <table class="table table-sm table-bordered">
-                <tbody>
-                <tr>
-                  <td class="col-md-4">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getForm"></a>
+                    <span class="name">
+                        <b>
+                            getForm
+                        </b>
+                        <a href="#getForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getForm(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:142</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: Page_Form_Field</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Parent Form of key</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getFormControl"></a>
                     <span class="name">
                         <b>
@@ -486,77 +636,75 @@
                         </b>
                         <a href="#getFormControl"><span class="icon ion-ios-link"></span></a>
                     </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <code>getFormControl(name: <a
-                      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                      target="_blank">string</a>)</code>
-                  </td>
-                </tr>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFormControl(field: <a href="../interfaces/IField.html">IField</a>)</code>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="61"
-                                                       href="">src/app/services/form.service.ts:61</a></div>
-                  </td>
-                </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:118</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                      <b>Parameters :</b>
-                      <table class="params">
-                        <thead>
-                        <tr>
-                          <td>Name</td>
-                          <td>Type</td>
-                          <td>Optional</td>
-                          <td>Default value</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td>name</td>
-                          <td>
-                            <code><a
-                              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
-                              target="_blank">string</a></code>
-                          </td>
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>field</td>
+                                    <td>
+                                                <code><a href="../interfaces/IField.html" target="_self" >IField</a></code>
+                                    </td>
 
-                          <td>
-                            No
-                          </td>
+                                    <td>
+                                        No
+                                    </td>
 
-                          <td>
-                            <code>&#x27;new&#x27;</code>
-                          </td>
 
-                        </tr>
-                        </tbody>
-                      </table>
+                                    <td>
+                                        <p>: IField</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                      <b>Returns : </b> <code><a href="../classes/Form.html" target="_self">FormControl</a></code>
+                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
 
                     </div>
                     <div class="io-description">
+                        <p>FormControl</p>
 
                     </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-              <table class="table table-sm table-bordered">
-                <tbody>
-                <tr>
-                  <td class="col-md-4">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getForms"></a>
                     <span class="name">
                         <b>
@@ -564,39 +712,189 @@
                         </b>
                         <a href="#getForms"><span class="icon ion-ios-link"></span></a>
                     </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <code>getForms()</code>
-                  </td>
-                </tr>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getForms()</code>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="69"
-                                                       href="">src/app/services/form.service.ts:69</a></div>
-                  </td>
-                </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:171</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
-                                                 target="_blank">any</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-              <table class="table table-sm table-bordered">
-                <tbody>
-                <tr>
-                  <td class="col-md-4">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPage"></a>
+                    <span class="name">
+                        <b>
+                            getPage
+                        </b>
+                        <a href="#getPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getPage(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: Name of Page</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Formgroup with forms of Page</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setUp"></a>
+                    <span class="name">
+                        <b>
+                            setUp
+                        </b>
+                        <a href="#setUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setUp(config: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:217</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>config</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>: { [ <PageName>: { <FormName>: { <FieldName>: IField } } ] }</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateConfig"></a>
                     <span class="name">
                         <b>
@@ -604,265 +902,475 @@
                         </b>
                         <a href="#updateConfig"><span class="icon ion-ios-link"></span></a>
                     </span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <code>updateConfig(config: <a href="../interfaces/IField.html">IField</a>)</code>
-                  </td>
-                </tr>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateConfig(config: <a href="../interfaces/IField.html">IField</a>)</code>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="35"
-                                                       href="">src/app/services/form.service.ts:35</a></div>
-                  </td>
-                </tr>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:85</a></div>
+                </td>
+            </tr>
 
 
-                <tr>
-                  <td class="col-md-4">
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                      <b>Parameters :</b>
-                      <table class="params">
-                        <thead>
-                        <tr>
-                          <td>Name</td>
-                          <td>Type</td>
-                          <td>Optional</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td>config</td>
-                          <td>
-                            <code><a href="../interfaces/IField.html" target="_self">IField</a></code>
-                          </td>
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>config</td>
+                                    <td>
+                                                <code><a href="../interfaces/IField.html" target="_self" >IField</a></code>
+                                    </td>
 
-                          <td>
-                            No
-                          </td>
+                                    <td>
+                                        No
+                                    </td>
 
 
-                        </tr>
-                        </tbody>
-                      </table>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                      <b>Returns : </b> <code><a
-                      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean"
-                      target="_blank">boolean</a></code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </div>
                     <div class="io-description">
-
+                        
                     </div>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
-            </section>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
             <section>
-
-              <h3 id="inputs">
-                Properties
-              </h3>
-              <table class="table table-sm table-bordered">
-                <tbody>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
                 <tr>
-                  <td class="col-md-4">
-                    <a name="configs"></a>
-                    <span class="name">
+                    <td class="col-md-4">
+                        <a name="configs"></a>
+                        <span class="name">
                             <b>
                             configs</b>
                             <a href="#configs"><span class="icon ion-ios-link"></span></a>
                         </span>
-                  </td>
+                    </td>
                 </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <i>Type : </i> <code><a href="../interfaces/IField.html" target="_self">IField[]</a></code>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
-                  </td>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="emptyObj"></a>
+                        <span class="name">
+                            <b>
+                            emptyObj</b>
+                            <a href="#emptyObj"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
                 </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="11" href="">src/app/services/form.service.ts:11</a>
-                    </div>
-                  </td>
-                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/IField.html" target="_self" >IField</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    name: &#x27;home_control_new&#x27;,
+    placeholder: &#x27;Test&#x27;
+  }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:16</a></div>
+                            </td>
+                        </tr>
 
 
-                </tbody>
-              </table>
-              <table class="table table-sm table-bordered">
-                <tbody>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
                 <tr>
-                  <td class="col-md-4">
-                    <a name="forms"></a>
-                    <span class="name">
+                    <td class="col-md-4">
+                        <a name="forms"></a>
+                        <span class="name">
                             <b>
                             forms</b>
                             <a href="#forms"><span class="icon ion-ios-link"></span></a>
                         </span>
-                  </td>
+                    </td>
                 </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <i>Type : </i> <code><a href="../classes/Form.html" target="_self">FormGroup</a></code>
-
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col-md-4">
-                    <div class="io-line">Defined in <a class="link-to-prism" data-line="10" href="">src/app/services/form.service.ts:10</a>
-                    </div>
-                  </td>
-                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new FormGroup({})</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/formbuilder/src/lib/services/form.service.ts:13</a></div>
+                            </td>
+                        </tr>
 
 
-                </tbody>
-              </table>
-            </section>
+            </tbody>
+        </table>
+</section>
 
-          </div>
+    </div>
 
 
-          <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { FormBuilder, FormControl, FormGroup } from &#x27;@angular/forms&#x27;;
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
 import { IField } from &#x27;../interfaces/ifield&#x27;;
+import { DataFlattnerService } from &#x27;./data-flattner.service&#x27;;
+import { IValidator } from &#x27;../interfaces/ivalidator&#x27;;
+import { merge } from &#x27;rxjs&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;
 })
 export class FormService {
 
-  forms: FormGroup;
-  configs: IField[];
+  forms &#x3D; new FormGroup({});
+  configs: any;
+
+  emptyObj: IField &#x3D; {
+    name: &#x27;home_control_new&#x27;,
+    placeholder: &#x27;Test&#x27;
+  };
 
   constructor(private fb: FormBuilder) {
   }
 
-  addForm(form: FormGroup) {
+  /**
+   * @param form : FormGroup
+   * @param name : FormName
+   * @description adds form to Service of creates one
+   */
+  addForm(form: FormGroup, pageName: string) {
+
+    // console.log(pageName);
+    // console.log(form);
+
     if (this.forms !&#x3D;&#x3D; undefined &amp;&amp; this.forms !&#x3D;&#x3D; null) {
-      Object.assign(this.forms, form);
+      if (this.forms.get(pageName)) {
+        let tmpForm &#x3D; (this.forms.get(pageName) as FormGroup);
+        Object.assign(tmpForm, form);
+        // console.log(tmpForm);
+        this.forms.removeControl(pageName);
+        this.forms.addControl(pageName, tmpForm);
+        // ((this.forms.get(pageName) as FormGroup).get(formName) as FormGroup).addControl(formName, form)
+        // console.log(&#x27;test&#x27;);
+        // console.log(this.forms);
+      } else {
+        this.forms.addControl(pageName, form);
+      }
     } else {
-      this.forms &#x3D; form;
+      this.forms &#x3D; this.fb.group({ [pageName]: form });
     }
-    console.log(&#x27;formService&#x27;, this.forms);
+    console.log(this.forms);
+    
   }
 
-  addConfig(config: IField[], name: string) {
+  /**
+   * @param config : { [ &lt;PageName&gt;: { &lt;FormName&gt;: { &lt;FieldName&gt;: IField } } ] }
+   * @description adds Config to Service
+   */
+  addConfig(config: any) {
+    console.log(config);
+
     if (this.configs !&#x3D;&#x3D; undefined &amp;&amp; this.configs !&#x3D;&#x3D; null) {
-      Object.assign(this.configs, config);
+      let found &#x3D; false;
+      Object.keys(this.configs).map((key) &#x3D;&gt; {
+        Object.keys(config).map((page) &#x3D;&gt; {
+          if (page &#x3D;&#x3D;&#x3D; key) {
+            found &#x3D; true;
+            this.configs[key] &#x3D; Object.assign({}, this.configs[key], config[key]);
+          }
+        })
+      });
+      if (!found) {
+        this.configs &#x3D; Object.assign({}, this.configs, config);
+      }
     } else {
       this.configs &#x3D; config;
     }
-    console.log(&#x27;formConfig&#x27;, this.configs);
+    console.log(config);
 
+    this.setUp(config);
+    // console.log(&#x27;formConfig&#x27;, this.configs);
   }
 
+
+  /* TODO: has to be integrated */
   updateConfig(config: IField) {
-    for (let item of this.configs) {
-      if (item.name &#x3D;&#x3D;&#x3D; config.name) {
-        item &#x3D; config;
-        console.log(item);
-        return true;
-      }
-    }
+    // console.log(config);
+    // console.log(this.configs);
+
+    Object.entries(this.configs).forEach((con) &#x3D;&gt; {
+
+    });
+    // for (let item of this.configs.children) {
+    //   if (item.name &#x3D;&#x3D;&#x3D; config.name) {
+    //     item &#x3D; config;
+    //     // console.log(item);
+    //     return true;
+    //   }
+    // }
     return false;
   }
 
-  getConfigByName(name: string, configName?: string, formName?: string) {
-    if (this.configs) {
-      if (configName &amp;&amp; formName) {
-        const index &#x3D; formName + &#x27;.&#x27; + configName;
-        return this.configs[index] as IField;
-      } else {
-        for (let i &#x3D; 0; i &lt; this.configs.length; i++) {
-          if (this.configs[i].name &#x3D;&#x3D;&#x3D; name) {
-            return this.configs[i] as IField;
-          }
-        }
-      }
-    }
+  /**
+   * @param name : Page_Form_Field
+   * @returns FieldConfig: IField
+   */
+  getConfigByName(name: string) {
+    const keys &#x3D; name.split(&#x27;_&#x27;);
+    const page &#x3D; keys[0];
+    const form &#x3D; keys[1];
+    const key &#x3D; keys[2];
+    return this.configs[page][form][key] ? this.configs[page][form][key] as IField : this.emptyObj;
   }
 
-  getFormControl(name: string &#x3D; &#x27;new&#x27;): FormControl {
-    if (this.forms &amp;&amp; this.forms.controls[name]) {
-      return this.forms.controls[name] as FormControl;
+  /**
+   * @param field : IField
+   * @returns FormControl
+   */
+  getFormControl(field: IField): FormControl {
+    const keys &#x3D; field.name.split(&#x27;_&#x27;);
+    const page &#x3D; keys[0];
+    const form &#x3D; keys[1];
+    const key &#x3D; keys[2];
+    // console.log(&#x27;asdadad&#x27;, ((this.forms.get(page) as FormGroup).get(form) as FormGroup));
+
+    // console.log(this.forms.get(page));
+    // console.log((this.forms.get(page) as FormGroup).get(form));
+    // console.log(((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(field.name) as FormControl);
+    // console.log(this.forms);
+
+
+    if (((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(field.name)) {
+      return ((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(field.name) as FormControl;
     } else {
-      return new FormControl(&#x27;&#x27;);
+      return new FormControl(&#x27;&#x27;, this.buildValidators(field.validators));
     }
   }
 
+  /**
+   * @param name : Page_Form_Field
+   * @returns Parent Form of key
+   */
+  getForm(name: string) {
+    const keys &#x3D; name.split(&#x27;_&#x27;);
+    const page &#x3D; keys[0];
+    const form &#x3D; keys[1];
+    // console.log(this.forms);
+    if (this.forms.get([page, form])) {
+      // console.log(this.forms.get([page, form]));
+      // console.log(((this.forms.get(page) as FormGroup).get(form) as FormGroup));
+
+
+      return ((this.forms.get(page) as FormGroup).get(form) as FormGroup);
+    } else {
+      return new FormGroup({});
+    }
+  }
+
+  /**
+   * @param name : Name of Page
+   * @returns Formgroup with forms of Page
+   */
+  getPage(name: string) {
+    if (this.forms.get(name) as FormGroup) {
+      return this.forms.get(name) as FormGroup;
+    } else {
+      return null;
+    }
+  }
+
+  /* TODO: has to be checked */
   getForms() {
     return this.forms.getRawValue();
   }
 
+  /* TODO: has to be checked */
   getConfigs() {
     return this.configs;
   }
+
+  /**
+   * @param config : IValidator
+   * @returns Array with ValidatorFunctions
+   */
+  buildValidators(config: IValidator) {
+    // console.log(&#x27;buildVali&#x27;, this);
+    const validators: ValidatorFn[] &#x3D; [];
+    if (config) {
+      if (config.email) {
+        validators.push(Validators.email);
+      }
+      if (config.max) {
+        validators.push(Validators.max(config.max));
+      }
+      if (config.required) {
+        validators.push(Validators.required);
+      }
+      if (config.min) {
+        validators.push(Validators.min(config.min));
+      }
+      if (config.maxLength) {
+        validators.push(Validators.maxLength(config.maxLength));
+      }
+      if (config.minLength) {
+        validators.push(Validators.minLength(config.minLength));
+      }
+      if (config.pattern) {
+        validators.push(Validators.pattern(config.pattern));
+      }
+    }
+    return validators;
+  }
+
+  /**
+   * @param config : { [ &lt;PageName&gt;: { &lt;FormName&gt;: { &lt;FieldName&gt;: IField } } ] }
+   * @description : FormGroup will be initalized and added by config [triggert in addConfig()]
+   */
+  setUp(config: any) {
+    console.log(&#x27;config&#x27;, config);
+    Object.keys(config).forEach((page) &#x3D;&gt; {
+      const newForm &#x3D; {};
+      console.log(page); // home
+      const formObj &#x3D; config[page];
+      if (formObj) {
+        Object.keys(formObj).forEach((form) &#x3D;&gt; {
+          console.log(form); // control || ui
+          const formArray &#x3D; {};
+          const forM: any &#x3D; formObj[form];
+          // console.log(forM);
+          // console.log(form);
+          Object.keys(forM).forEach((key) &#x3D;&gt; {
+            const field: IField &#x3D; forM[key];
+            const validatorS &#x3D; this.buildValidators(field.validators);
+            const controL &#x3D; [];
+            controL.push(field.value ? field.value : &#x27;&#x27;);
+            controL.push(validatorS);
+            // console.log(controL);
+            formArray[field.name] &#x3D; controL;
+          });
+          newForm[form] &#x3D; this.fb.group(formArray);
+          console.log(&#x27;array&#x27;, newForm);
+          this.addForm(this.fb.group(newForm), page);
+        });
+        // console.log(this.fb.group(newForm));
+      }
+    });
+  }
 }
 </code></pre>
-          </div>
-
-        </div>
-
-
-      </div>
-      <div class="search-results">
-        <div class="has-results">
-          <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span
-            class='search-query'></span>"</h1>
-          <ul class="search-results-list"></ul>
-        </div>
-        <div class="no-results">
-          <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-        </div>
-      </div>
     </div>
-    <!-- END CONTENT -->
-  </div>
+
 </div>
 
-<script>
-    var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-    var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-    var COMPODOC_CURRENT_PAGE_URL = 'FormService.html';
-</script>
-
-<script src="../js/libs/custom-elements.min.js"></script>
-<script src="../js/libs/lit-html.js"></script>
-<!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-<script charset="utf-8" defer src="../js/libs/custom-elements-es5-adapter.js"></script>
-<script defer src="../js/menu-wc.js"></script>
-
-<script src="../js/libs/bootstrap-native.js"></script>
-
-<script src="../js/libs/es6-shim.min.js"></script>
-<script src="../js/libs/EventDispatcher.js"></script>
-<script src="../js/libs/promise.min.js"></script>
-<script src="../js/libs/zepto.min.js"></script>
-
-<script src="../js/compodoc.js"></script>
-
-<script src="../js/tabs.js"></script>
-<script src="../js/menu.js"></script>
-<script src="../js/libs/clipboard.min.js"></script>
-<script src="../js/libs/prism.js"></script>
-<script src="../js/sourceCode.js"></script>
-<script src="../js/search/search.js"></script>
-<script src="../js/search/lunr.min.js"></script>
-<script src="../js/search/search-lunr.js"></script>
-<script src="../js/search/search_index.js"></script>
-<script src="../js/lazy-load-graphs.js"></script>
 
 
-</body>
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'FormService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
 </html>

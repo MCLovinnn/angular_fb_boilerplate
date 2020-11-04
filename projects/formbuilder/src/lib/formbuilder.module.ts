@@ -83,7 +83,6 @@ registerLocaleData(localeDe, 'de');
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'de' },
-    TranslationService,
     ConfigService,
     DataFlattnerService
   ],

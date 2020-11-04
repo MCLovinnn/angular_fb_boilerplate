@@ -74,8 +74,7 @@ registerLocaleData(localeDe, 'de');
   ],
   bootstrap: [AppComponent],
   exports: [
-    AppComponent,
-    ControlpanelComponent
+    AppComponent
   ]
 })
 export class AppModule {

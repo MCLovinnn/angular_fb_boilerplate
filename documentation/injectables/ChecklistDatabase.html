@@ -1,0 +1,861 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>formbuilder documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">formbuilder documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>ChecklistDatabase</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/tree/tree.component.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Checklist database, it can build a tree structured Json object.
+Each node in Json object represents a to-do item or a category.
+If a node is a category, it has children items and new items can be added under the category.</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dataChange">dataChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#buildFileTree">buildFileTree</a>
+                            </li>
+                            <li>
+                                <a href="#initialize">initialize</a>
+                            </li>
+                            <li>
+                                <a href="#insertItem">insertItem</a>
+                            </li>
+                            <li>
+                                <a href="#updateItem">updateItem</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#data">data</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/tree/tree.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buildFileTree"></a>
+                    <span class="name">
+                        <b>
+                            buildFileTree
+                        </b>
+                        <a href="#buildFileTree"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>buildFileTree(obj: literal type, level: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/tree/tree.component.ts:74</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Build the file structure tree. The <code>value</code> is the Json object, or a sub-tree of a Json object.
+The return value is the list of <code>TodoItemNode</code>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>obj</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>level</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/TodoItemNode.html" target="_self" >TodoItemNode[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initialize"></a>
+                    <span class="name">
+                        <b>
+                            initialize
+                        </b>
+                        <a href="#initialize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initialize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/app/tree/tree.component.ts:61</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="insertItem"></a>
+                    <span class="name">
+                        <b>
+                            insertItem
+                        </b>
+                        <a href="#insertItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>insertItem(parent: <a href="../classes/TodoItemNode.html">TodoItemNode</a>, name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/app/tree/tree.component.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Add an item to to-do list </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>parent</td>
+                                    <td>
+                                                <code><a href="../classes/TodoItemNode.html" target="_self" >TodoItemNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateItem"></a>
+                    <span class="name">
+                        <b>
+                            updateItem
+                        </b>
+                        <a href="#updateItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateItem(node: <a href="../classes/TodoItemNode.html">TodoItemNode</a>, name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/tree/tree.component.ts:100</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../classes/TodoItemNode.html" target="_self" >TodoItemNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dataChange"></a>
+                        <span class="name">
+                            <b>
+                            dataChange</b>
+                            <a href="#dataChange"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new BehaviorSubject&lt;TodoItemNode[]&gt;([])</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/tree/tree.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="data"></a>
+                        <span class="name"><b>data</b><a href="#data"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>data()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/tree/tree.component.ts:55</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, Injectable } from &#x27;@angular/core&#x27;;
+import { FlatTreeControl } from &#x27;@angular/cdk/tree&#x27;;
+import { MatTreeFlatDataSource, MatTreeFlattener } from &#x27;@angular/material/tree&#x27;;
+import { ConnectorService } from &#x27;../services/connector.service&#x27;;
+import { controlPanelConfig } from &#x27;../config/controlPanel&#x27;;
+import { FormService } from &#x27;../../../projects/formbuilder/src/public-api&#x27;;
+import { homeTreeConfig } from &#x27;../config/homeTree&#x27;;
+import { SelectionModel } from &#x27;@angular/cdk/collections&#x27;;
+import { BehaviorSubject } from &#x27;rxjs&#x27;;
+/**
+ * Node for to-do item
+ */
+export class TodoItemNode {
+  children: TodoItemNode[];
+  item: string;
+}
+
+/** Flat to-do item node with expandable and level information */
+export class TodoItemFlatNode {
+  item: string;
+  level: number;
+  expandable: boolean;
+}
+
+/**
+ * The Json object for to-do list data.
+ */
+const TREE_DATA &#x3D; {
+  Groceries: {
+    &#x27;Almond Meal flour&#x27;: null,
+    &#x27;Organic eggs&#x27;: null,
+    &#x27;Protein Powder&#x27;: null,
+    Fruits: {
+      Apple: null,
+      Berries: [&#x27;Blueberry&#x27;, &#x27;Raspberry&#x27;],
+      Orange: null
+    }
+  },
+  Reminders: [
+    &#x27;Cook dinner&#x27;,
+    &#x27;Read the Material Design spec&#x27;,
+    &#x27;Upgrade Application to Angular&#x27;
+  ]
+};
+
+/**
+ * Checklist database, it can build a tree structured Json object.
+ * Each node in Json object represents a to-do item or a category.
+ * If a node is a category, it has children items and new items can be added under the category.
+ */
+@Injectable()
+export class ChecklistDatabase {
+  dataChange &#x3D; new BehaviorSubject&lt;TodoItemNode[]&gt;([]);
+
+  get data(): TodoItemNode[] { return this.dataChange.value; }
+
+  constructor() {
+    this.initialize();
+  }
+
+  initialize() {
+    // Build the tree nodes from Json object. The result is a list of &#x60;TodoItemNode&#x60; with nested
+    //     file node as children.
+    const data &#x3D; this.buildFileTree(TREE_DATA, 0);
+
+    // Notify the change.
+    this.dataChange.next(data);
+  }
+
+  /**
+   * Build the file structure tree. The &#x60;value&#x60; is the Json object, or a sub-tree of a Json object.
+   * The return value is the list of &#x60;TodoItemNode&#x60;.
+   */
+  buildFileTree(obj: { [key: string]: any }, level: number): TodoItemNode[] {
+    return Object.keys(obj).reduce&lt;TodoItemNode[]&gt;((accumulator, key) &#x3D;&gt; {
+      const value &#x3D; obj[key];
+      const node &#x3D; new TodoItemNode();
+      node.item &#x3D; key;
+
+      if (value !&#x3D; null) {
+        if (typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+          node.children &#x3D; this.buildFileTree(value, level + 1);
+        } else {
+          node.item &#x3D; value;
+        }
+      }
+
+      return accumulator.concat(node);
+    }, []);
+  }
+
+  /** Add an item to to-do list */
+  insertItem(parent: TodoItemNode, name: string) {
+    if (parent.children) {
+      parent.children.push({ item: name } as TodoItemNode);
+      this.dataChange.next(this.data);
+    }
+  }
+
+  updateItem(node: TodoItemNode, name: string) {
+    node.item &#x3D; name;
+    this.dataChange.next(this.data);
+  }
+}
+
+/**
+ * @title Tree with checkboxes
+ */
+@Component({
+  selector: &#x27;app-tree&#x27;,
+  templateUrl: &#x27;tree.component.html&#x27;,
+  styleUrls: [&#x27;tree.component.scss&#x27;],
+  providers: [ChecklistDatabase]
+})
+export class TreeComponent {
+  @Input() data: any;
+  /** Map from flat node to nested node. This helps us finding the nested node to be modified */
+  flatNodeMap &#x3D; new Map&lt;TodoItemFlatNode, TodoItemNode&gt;();
+
+  /** Map from nested node to flattened node. This helps us to keep the same object for selection */
+  nestedNodeMap &#x3D; new Map&lt;TodoItemNode, TodoItemFlatNode&gt;();
+
+  /** A selected parent node to be inserted */
+  selectedParent: TodoItemFlatNode | null &#x3D; null;
+
+  /** The new item&#x27;s name */
+  newItemName &#x3D; &#x27;&#x27;;
+
+  treeControl: FlatTreeControl&lt;TodoItemFlatNode&gt;;
+
+  treeFlattener: MatTreeFlattener&lt;TodoItemNode, TodoItemFlatNode&gt;;
+
+  dataSource: MatTreeFlatDataSource&lt;TodoItemNode, TodoItemFlatNode&gt;;
+
+  /** The selection for checklist */
+  checklistSelection &#x3D; new SelectionModel&lt;TodoItemFlatNode&gt;(true /* multiple */);
+
+  constructor(private _database: ChecklistDatabase,
+              private cs: ConnectorService,
+              public fs: FormService) {
+                // fs.addConfig({home: {tree: homeTreeConfig}});
+    this.treeFlattener &#x3D; new MatTreeFlattener(this.transformer, this.getLevel,
+      this.isExpandable, this.getChildren);
+    this.treeControl &#x3D; new FlatTreeControl&lt;TodoItemFlatNode&gt;(this.getLevel, this.isExpandable);
+    this.dataSource &#x3D; new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+    _database.dataChange.subscribe(data &#x3D;&gt; {
+      this.dataSource.data &#x3D; data;
+    });
+    console.log(fs.getForms());
+  }
+
+  getLevel &#x3D; (node: TodoItemFlatNode) &#x3D;&gt; node.level;
+
+  isExpandable &#x3D; (node: TodoItemFlatNode) &#x3D;&gt; node.expandable;
+
+  getChildren &#x3D; (node: TodoItemNode): TodoItemNode[] &#x3D;&gt; node.children;
+
+  hasChild &#x3D; (_: number, _nodeData: TodoItemFlatNode) &#x3D;&gt; _nodeData.expandable;
+
+  hasNoContent &#x3D; (_: number, _nodeData: TodoItemFlatNode) &#x3D;&gt; _nodeData.item &#x3D;&#x3D;&#x3D; &#x27;&#x27;;
+
+  /**
+   * Transformer to convert nested node to flat node. Record the nodes in maps for later use.
+   */
+  transformer &#x3D; (node: TodoItemNode, level: number) &#x3D;&gt; {
+    const existingNode &#x3D; this.nestedNodeMap.get(node);
+    const flatNode &#x3D; existingNode &amp;&amp; existingNode.item &#x3D;&#x3D;&#x3D; node.item
+      ? existingNode
+      : new TodoItemFlatNode();
+    flatNode.item &#x3D; node.item;
+    flatNode.level &#x3D; level;
+    flatNode.expandable &#x3D; !!(node.children &amp;&amp; node.children.length);
+    this.flatNodeMap.set(flatNode, node);
+    this.nestedNodeMap.set(node, flatNode);
+    return flatNode;
+  }
+
+  /** Whether all the descendants of the node are selected. */
+  descendantsAllSelected(node: TodoItemFlatNode): boolean {
+    const descendants &#x3D; this.treeControl.getDescendants(node);
+    const descAllSelected &#x3D; descendants.length &gt; 0 &amp;&amp; descendants.every(child &#x3D;&gt; {
+      return this.checklistSelection.isSelected(child);
+    });
+    return descAllSelected;
+  }
+
+  /** Whether part of the descendants are selected */
+  descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
+    const descendants &#x3D; this.treeControl.getDescendants(node);
+    const result &#x3D; descendants.some(child &#x3D;&gt; this.checklistSelection.isSelected(child));
+    return result &amp;&amp; !this.descendantsAllSelected(node);
+  }
+
+  /** Toggle the to-do item selection. Select/deselect all the descendants node */
+  todoItemSelectionToggle(node: TodoItemFlatNode): void {
+    this.checklistSelection.toggle(node);
+    const descendants &#x3D; this.treeControl.getDescendants(node);
+    this.checklistSelection.isSelected(node)
+      ? this.checklistSelection.select(...descendants)
+      : this.checklistSelection.deselect(...descendants);
+
+    // Force update for the parent
+    descendants.forEach(child &#x3D;&gt; this.checklistSelection.isSelected(child));
+    this.checkAllParentsSelection(node);
+  }
+
+  /** Toggle a leaf to-do item selection. Check all the parents to see if they changed */
+  todoLeafItemSelectionToggle(node: TodoItemFlatNode): void {
+    this.checklistSelection.toggle(node);
+    this.checkAllParentsSelection(node);
+  }
+
+  /* Checks all the parents when a leaf node is selected/unselected */
+  checkAllParentsSelection(node: TodoItemFlatNode): void {
+    let parent: TodoItemFlatNode | null &#x3D; this.getParentNode(node);
+    while (parent) {
+      this.checkRootNodeSelection(parent);
+      parent &#x3D; this.getParentNode(parent);
+    }
+  }
+
+  /** Check root node checked state and change it accordingly */
+  checkRootNodeSelection(node: TodoItemFlatNode): void {
+    const nodeSelected &#x3D; this.checklistSelection.isSelected(node);
+    const descendants &#x3D; this.treeControl.getDescendants(node);
+    const descAllSelected &#x3D; descendants.length &gt; 0 &amp;&amp; descendants.every(child &#x3D;&gt; {
+      return this.checklistSelection.isSelected(child);
+    });
+    if (nodeSelected &amp;&amp; !descAllSelected) {
+      this.checklistSelection.deselect(node);
+    } else if (!nodeSelected &amp;&amp; descAllSelected) {
+      this.checklistSelection.select(node);
+    }
+  }
+
+  /* Get the parent node of a node */
+  getParentNode(node: TodoItemFlatNode): TodoItemFlatNode | null {
+    const currentLevel &#x3D; this.getLevel(node);
+
+    if (currentLevel &lt; 1) {
+      return null;
+    }
+
+    const startIndex &#x3D; this.treeControl.dataNodes.indexOf(node) - 1;
+
+    for (let i &#x3D; startIndex; i &gt;&#x3D; 0; i--) {
+      const currentNode &#x3D; this.treeControl.dataNodes[i];
+
+      if (this.getLevel(currentNode) &lt; currentLevel) {
+        return currentNode;
+      }
+    }
+    return null;
+  }
+
+  /** Select the category so we can insert the new item. */
+  addNewItem(node: TodoItemFlatNode) {
+    const parentNode &#x3D; this.flatNodeMap.get(node);
+    this._database.insertItem(parentNode!, &#x27;&#x27;);
+    this.treeControl.expand(node);
+  }
+
+  /** Save the node to database */
+  saveNode(node: TodoItemFlatNode, itemValue: string) {
+    const nestedNode &#x3D; this.flatNodeMap.get(node);
+    this._database.updateItem(nestedNode!, itemValue);
+  }
+
+  toggleLang() {
+    this.cs.toggleLang();
+  }
+
+  generateTextFile() {
+    this.cs.generateTextFile(&#x27;home_control&#x27;, controlPanelConfig);
+  }
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ChecklistDatabase.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
