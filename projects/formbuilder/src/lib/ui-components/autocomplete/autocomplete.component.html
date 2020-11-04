@@ -1,0 +1,38 @@
+<ng-container *ngIf="form" [formGroup]="form" autocomplete="doNotAutoComplete">
+  <mat-form-field [hintLabel]="hintlabel | translate">
+    <input matInput 
+            [placeholder]="name | translate"
+            [formControlName]="name"
+            autocomplete="doNotAutoComplete"
+            type="search"
+           [minlength]="validators.minLength"
+           [maxlength]="validators.maxLength"
+           [required]="validators.required"
+           [matTooltip]="tooltip"
+            matTooltipDisabled="false"
+            matTooltipHideDelay="200"
+            matTooltipPosition="above"
+            matTooltipShowDelay="100"
+           [value]="value"
+           (change)="change.emit({type: name, value: $event.target.value})"
+           [matAutocomplete]="auto">
+    <mat-autocomplete  #auto="matAutocomplete">
+      <ng-container *ngIf="config.groupBy">
+        <mat-optgroup *ngFor="let group of filteredStates | async" [label]="group.name">
+            <mat-option *ngFor="let element of group.children" [value]="element">
+              {{element}}
+            </mat-option>
+        </mat-optgroup>
+      </ng-container>
+      <ng-container *ngIf="!config.groupBy">
+        <mat-option *ngFor="let state of filteredStates | async" [value]="state">
+            <span>{{state}}</span>
+        </mat-option>
+      </ng-container>
+    </mat-autocomplete>
+   <mat-hint *ngIf="hint" align="end">{{hint}}</mat-hint>
+   <mat-error>
+     {{ getErrorMeesage() }}
+   </mat-error>
+  </mat-form-field>
+</ng-container>

@@ -1,0 +1,31 @@
+<ng-container *ngIf="form" [formGroup]="form">
+  <mat-form-field [hintLabel]="hintlabel | translate">
+    <input matInput
+           [matTooltip]="tooltip"
+           [formControlName]="name"
+           [minlength]="validators.minLength"
+           [maxlength]="validators.maxLength"
+           [max]="validators.max"
+           [min]="validators.min"
+           [placeholder]="name | translate"
+           [required]="required"
+           matTooltipDisabled="false"
+           matTooltipHideDelay="200"
+           matTooltipPosition="above"
+           matTooltipShowDelay="100"
+           [type]="htmlType"
+           (change)="change.emit({type: name, value: $event.target.value})"
+           [value]="value"
+           [autocomplete]="autocomplete">
+    <button (click)="value=''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>
+      <mat-icon>{{iconBtn}}</mat-icon>
+    </button>
+    <!-- <button (click)="value=''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>
+      <mat-icon>{{iconBtn}}</mat-icon>
+    </button> -->
+    <mat-hint *ngIf="hint">{{hint}}</mat-hint>
+    <mat-error>
+      {{ getErrorMeesage() }}
+    </mat-error>
+  </mat-form-field>
+</ng-container>

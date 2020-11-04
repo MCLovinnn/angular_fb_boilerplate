@@ -1,0 +1,1884 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta content="ie=edge" http-equiv="x-ua-compatible">
+  <title>angular-formbuilder documentation</title>
+  <meta content="" name="description">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+
+  <link href="../images/favicon.ico" rel="icon" type="image/x-icon">
+  <link href="../styles/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top visible-xs">
+  <a class="navbar-brand" href="../">angular-formbuilder documentation</a>
+  <button class="btn btn-default btn-menu ion-ios-menu" id="btn-menu" type="button"></button>
+</div>
+
+<div class="xs-menu menu" id="mobile-menu">
+  <div id="book-search-input" role="search"><input placeholder="Type to search" type="text"></div>
+  <compodoc-menu></compodoc-menu>
+</div>
+
+<div class="container-fluid main">
+  <div class="row main">
+    <div class="hidden-xs menu">
+      <compodoc-menu mode="normal"></compodoc-menu>
+    </div>
+    <!-- START CONTENT -->
+    <div class="content component">
+      <div class="content-data">
+
+
+        <ol class="breadcrumb">
+          <li>Components</li>
+          <li>TextInputComponent</li>
+        </ol>
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active">
+            <a data-link="info" data-toggle="tab" href="#info" id="info-tab" role="tab">Info</a>
+          </li>
+          <li>
+            <a data-link="source" data-toggle="tab" href="#source" id="source-tab" role="tab">Source</a>
+          </li>
+          <li>
+            <a data-link="template" data-toggle="tab" href="#templateData" id="templateData-tab" role="tab">Template</a>
+          </li>
+          <li>
+            <a data-link="style" data-toggle="tab" href="#styleData" id="styleData-tab" role="tab">Styles</a>
+          </li>
+          <li>
+            <a data-link="dom-tree" data-toggle="tab" href="#tree" id="tree-tab" role="tab">DOM Tree</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane fade active in" id="c-info"><p class="comment">
+            <h3>File</h3>
+            </p>
+            <p class="comment">
+              <code>src/app/ui-components/text-input/text-input.component.ts</code>
+            </p>
+
+
+            <p class="comment">
+            <h3>Extends</h3>
+            </p>
+            <p class="comment">
+              <code><a href="../classes/Field.html" target="_self">Field</a></code>
+            </p>
+
+            <p class="comment">
+            <h3>Implements</h3>
+            </p>
+            <p class="comment">
+              <code><a href="https://angular.io/api/core/OnInit" target="_blank">OnInit</a></code>
+            </p>
+
+
+            <section>
+              <h3>Metadata</h3>
+              <table class="table table-sm table-hover">
+                <tbody>
+
+
+                <tr>
+                  <td class="col-md-3">selector</td>
+                  <td class="col-md-9"><code>app-text-input</code></td>
+                </tr>
+
+                <tr>
+                  <td class="col-md-3">styleUrls</td>
+                  <td class="col-md-9"><code>./text-input.component.scss</code></td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-3">templateUrl</td>
+                  <td class="col-md-9"><code>./text-input.component.html</code></td>
+                </tr>
+
+
+                </tbody>
+              </table>
+            </section>
+
+            <section>
+              <h3 id="index">Index</h3>
+              <table class="table table-sm table-bordered index-table">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <h6><b>Properties</b></h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <ul class="index-list">
+                      <li>
+                        <span class="modifier">Public</span>
+                        <a href="#fb">fb</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Public</span>
+                        <a href="#fs">fs</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_customValidation">_customValidation</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_description">_description</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_hint">_hint</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_htmlAttribute">_htmlAttribute</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_htmlType">_htmlType</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_tooltipdelay">_tooltipdelay</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_tooltipposition">_tooltipposition</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_validators">_validators</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <a href="#_value">_value</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Public</span>
+                        <a href="#fb">fb</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Public</span>
+                        <a href="#fs">fs</a>
+                      </li>
+                      <li>
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Static</span>
+                        <span class="modifier">Readonly</span>
+                        <a href="#MSGerrors">MSGerrors</a>
+                      </li>
+                      <li>
+                        <a href="#types">types</a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="col-md-4">
+                    <h6><b>Methods</b></h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <ul class="index-list">
+                      <li>
+                        <a href="#ngOnInit">ngOnInit</a>
+                      </li>
+                      <li>
+                        <a href="#buildValidators">buildValidators</a>
+                      </li>
+                      <li>
+                        <a href="#getErrorMeesage">getErrorMeesage</a>
+                      </li>
+                      <li>
+                        <a href="#getMeesage">getMeesage</a>
+                      </li>
+                      <li>
+                        <a href="#ngOnInit">ngOnInit</a>
+                      </li>
+                      <li>
+                        <a href="#setUpConfig">setUpConfig</a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="col-md-4">
+                    <h6><b>Inputs</b></h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <ul class="index-list">
+                      <li>
+                        <a href="#change">change</a>
+                      </li>
+                      <li>
+                        <a href="#control">control</a>
+                      </li>
+                      <li>
+                        <a href="#disabled">disabled</a>
+                      </li>
+                      <li>
+                        <a href="#fieldType">fieldType</a>
+                      </li>
+                      <li>
+                        <a href="#form">form</a>
+                      </li>
+                      <li>
+                        <a href="#hintlabel">hintlabel</a>
+                      </li>
+                      <li>
+                        <a href="#max">max</a>
+                      </li>
+                      <li>
+                        <a href="#maxLength">maxLength</a>
+                      </li>
+                      <li>
+                        <a href="#min">min</a>
+                      </li>
+                      <li>
+                        <a href="#minLength">minLength</a>
+                      </li>
+                      <li>
+                        <a href="#name">name</a>
+                      </li>
+                      <li>
+                        <a href="#placeholder">placeholder</a>
+                      </li>
+                      <li>
+                        <a href="#required">required</a>
+                      </li>
+                      <li>
+                        <a href="#tooltip">tooltip</a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+            </section>
+
+            <section>
+              <h3 id="constructor">Constructor</h3>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <code>constructor(fb: <a href="../classes/Form.html">FormBuilder</a>, fs: <a
+                      href="../injectables/FormService.html">FormService</a>)</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <a class="link-to-prism" data-line="11" href="">src/app/ui-components/text-input/text-input.component.ts:11</a>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="col-md-4">
+                    <div>
+                      <b>Parameters :</b>
+                      <table class="params">
+                        <thead>
+                        <tr>
+                          <td>Name</td>
+                          <td>Type</td>
+                          <td>Optional</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>fb</td>
+
+                          <td>
+                            <code><a href="../classes/Form.html" target="_self">FormBuilder</a></code>
+                          </td>
+
+                          <td>
+                            No
+                          </td>
+
+                        </tr>
+                        <tr>
+                          <td>fs</td>
+
+                          <td>
+                            <code><a href="../injectables/FormService.html" target="_self">FormService</a></code>
+                          </td>
+
+                          <td>
+                            No
+                          </td>
+
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <section>
+              <h3 id="inputs">Inputs</h3>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="change"></a>
+                    <b>change</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code>EventEmitter&lt;any&gt;</code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>new EventEmitter()</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:134</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="control"></a>
+                    <b>control</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../classes/Form.html" target="_self">FormControl</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:34</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="disabled"></a>
+                    <b>disabled</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>false</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:27</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="fieldType"></a>
+                    <b>fieldType</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>&#x27;text&#x27;</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:38</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="form"></a>
+                    <b>form</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../classes/Form.html" target="_self">FormGroup</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:33</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="hintlabel"></a>
+                    <b>hintlabel</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>&#x27;test&#x27;</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:36</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="max"></a>
+                    <b>max</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number"
+                    target="_blank">number</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:31</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="maxLength"></a>
+                    <b>maxLength</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number"
+                    target="_blank">number</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:29</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="min"></a>
+                    <b>min</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number"
+                    target="_blank">number</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:30</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="minLength"></a>
+                    <b>minLength</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>3</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:28</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="name"></a>
+                    <b>name</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>&#x27;test&#x27;</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:35</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="placeholder"></a>
+                    <b>placeholder</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>&#x27;test&#x27;</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:26</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="required"></a>
+                    <b>required</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean"
+                    target="_blank">boolean</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:32</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="tooltip"></a>
+                    <b>tooltip</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>&#x27;test&#x27;</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4" colspan="2">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-2" colspan="2">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:37</a></code>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </section>
+
+
+            <section>
+
+              <h3 id="methods">
+                Methods
+              </h3>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <code>ngOnInit()</code>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <a class="link-to-prism" data-line="18"
+                                                       href="">src/app/ui-components/text-input/text-input.component.ts:18</a>
+                    </div>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+
+                    <div class="io-description">
+                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
+                                                 target="_blank">void</a></code>
+
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="buildValidators"></a>
+                    <span class="name">
+                        <b>
+                            buildValidators
+                        </b>
+                        <a href="#buildValidators"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <code>buildValidators()</code>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:166</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+
+                    <div class="io-description">
+                      <b>Returns : </b> <code>{}</code>
+
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="getErrorMeesage"></a>
+                    <span class="name">
+                        <b>
+                            getErrorMeesage
+                        </b>
+                        <a href="#getErrorMeesage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <code>getErrorMeesage()</code>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:195</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+
+                    <div class="io-description">
+                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
+                                                 target="_blank">any</a></code>
+
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="getMeesage"></a>
+                    <span class="name">
+                        <b>
+                            getMeesage
+                        </b>
+                        <a href="#getMeesage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <code>getMeesage(type: <a
+                      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
+                      target="_blank">string</a>, param: <a
+                      href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
+                      target="_blank">any</a>)</code>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:207</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+
+                    <div class="io-description">
+                      <b>Parameters :</b>
+                      <table class="params">
+                        <thead>
+                        <tr>
+                          <td>Name</td>
+                          <td>Type</td>
+                          <td>Optional</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>type</td>
+                          <td>
+                            <code><a
+                              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
+                              target="_blank">string</a></code>
+                          </td>
+
+                          <td>
+                            No
+                          </td>
+
+
+                        </tr>
+                        <tr>
+                          <td>param</td>
+                          <td>
+                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
+                                     target="_blank">any</a></code>
+                          </td>
+
+                          <td>
+                            No
+                          </td>
+
+
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
+                                                 target="_blank">any</a></code>
+
+                    </div>
+                    <div class="io-description">
+
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <code>ngOnInit()</code>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:213</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+
+                    <div class="io-description">
+                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
+                                                 target="_blank">void</a></code>
+
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="setUpConfig"></a>
+                    <span class="name">
+                        <b>
+                            setUpConfig
+                        </b>
+                        <a href="#setUpConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <code>setUpConfig(config: <a href="../interfaces/IField.html">IField</a>)</code>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:238</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                <tr>
+                  <td class="col-md-4">
+
+                    <div class="io-description">
+                      <b>Parameters :</b>
+                      <table class="params">
+                        <thead>
+                        <tr>
+                          <td>Name</td>
+                          <td>Type</td>
+                          <td>Optional</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>config</td>
+                          <td>
+                            <code><a href="../interfaces/IField.html" target="_self">IField</a></code>
+                          </td>
+
+                          <td>
+                            No
+                          </td>
+
+
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                      <b>Returns : </b> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
+                                                 target="_blank">void</a></code>
+
+                    </div>
+                    <div class="io-description">
+
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </section>
+            <section>
+
+              <h3 id="inputs">
+                Properties
+              </h3>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            fb</b>
+                            <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../classes/Form.html" target="_self">FormBuilder</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <a class="link-to-prism" data-line="13" href="">src/app/ui-components/text-input/text-input.component.ts:13</a>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            fs</b>
+                            <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../injectables/FormService.html" target="_self">FormService</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <a class="link-to-prism" data-line="14" href="">src/app/ui-components/text-input/text-input.component.ts:14</a>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_customValidation"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _customValidation</b>
+                            <a href="#_customValidation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../interfaces/ICustomValidation.html" target="_self">ICustomValidation[]</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:137</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_description"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _description</b>
+                            <a href="#_description"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
+                    target="_blank">string</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:138</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_hint"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _hint</b>
+                            <a href="#_hint"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
+                    target="_blank">string</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:139</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_htmlAttribute"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _htmlAttribute</b>
+                            <a href="#_htmlAttribute"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../interfaces/IHTMLAttributes.html" target="_self">IHTMLAttributes</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:123</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_htmlType"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _htmlType</b>
+                            <a href="#_htmlType"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
+                    target="_blank">string</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:141</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_tooltipdelay"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _tooltipdelay</b>
+                            <a href="#_tooltipdelay"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number"
+                    target="_blank">number</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:142</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_tooltipposition"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _tooltipposition</b>
+                            <a href="#_tooltipposition"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string"
+                    target="_blank">string</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:143</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_validators"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _validators</b>
+                            <a href="#_validators"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../interfaces/IValidator.html" target="_self">IValidator</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>{}</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:133</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="_value"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _value</b>
+                            <a href="#_value"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html"
+                                            target="_blank">any</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source" target="_self">Field:160</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="fb"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            fb</b>
+                            <a href="#fb"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../classes/Form.html" target="_self">FormBuilder</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:41</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="fs"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            fs</b>
+                            <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a href="../injectables/FormService.html" target="_self">FormService</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:42</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="MSGerrors"></a>
+                    <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Static</span>
+                                <span class="modifier">Readonly</span>
+                            MSGerrors</b>
+                            <a href="#MSGerrors"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object"
+                    target="_blank">object</a></code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>{
+                    &#x27;required&#x27;: () &#x3D;&gt; &#x27;Das ist ein Mussfeld!&#x27;,
+                    &#x27;maxlength&#x27;: (param) &#x3D;&gt; &#x60;Maximale Länge ${param.requiredLength}!&#x60;,
+                    &#x27;minlength&#x27;: (param) &#x3D;&gt; &#x60;Mindestens ${param.requiredLength} Zeichen eingeben!&#x60;,
+                    &#x27;max&#x27;: (param) &#x3D;&gt; &#x60;Maximum beträgt ${param.min}!&#x60;,
+                    &#x27;min&#x27;: (param) &#x3D;&gt; &#x60;Minimum beträgt ${param.max}!&#x60;,
+                    &#x27;pattern&#x27;: (param) &#x3D;&gt; &#x60;Das Pattern: &lt;b&gt;${param.pattern}&lt;/b&gt; wurde
+                    nicht eingehalten!&#x60;,
+                    &#x27;email&#x27;: () &#x3D;&gt; &#x27;Keine valide Emailadresse&#x27;
+                    }</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:10</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+              <table class="table table-sm table-bordered">
+                <tbody>
+                <tr>
+                  <td class="col-md-4">
+                    <a name="types"></a>
+                    <span class="name">
+                            <b>
+                            types</b>
+                            <a href="#types"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Type : </i> <code>any[]</code>
+
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <i>Default value : </i><code>[
+                    {value: &#x27;select&#x27;, viewValue: &#x27;Select&#x27;},
+                    {value: &#x27;text&#x27;, viewValue: &#x27;Text&#x27;},
+                    {value: &#x27;checkbox&#x27;, viewValue: &#x27;Checkbox&#x27;},
+                    {value: &#x27;date&#x27;, viewValue: &#x27;Datum&#x27;}
+                    ]</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Inherited from <code><a href="../classes/Field.html"
+                                                                 target="_self">Field</a></code>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="col-md-4">
+                    <div class="io-line">Defined in <code><a href="../classes/Field.html#source"
+                                                             target="_self">Field:20</a></code>
+                    </div>
+                  </td>
+                </tr>
+
+
+                </tbody>
+              </table>
+            </section>
+
+          </div>
+
+
+          <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Field } from &#x27;../../classes/field&#x27;;
+import { FormBuilder } from &#x27;@angular/forms&#x27;;
+import { FormService } from &#x27;../../services/form.service&#x27;;
+
+@Component({
+  selector: &#x27;app-text-input&#x27;,
+  templateUrl: &#x27;./text-input.component.html&#x27;,
+  styleUrls: [&#x27;./text-input.component.scss&#x27;]
+})
+export class TextInputComponent extends Field implements OnInit {
+
+  constructor(public fb: FormBuilder,
+              public fs: FormService) {
+    super(fb, fs);
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+  }
+
+}
+</code></pre>
+          </div>
+
+          <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ng-container *ngIf&#x3D;&quot;form&quot; [formGroup]&#x3D;&quot;form&quot;&gt;
+  &lt;mat-form-field [hintLabel]&#x3D;&quot;hintlabel&quot;&gt;
+    &lt;input matInput
+           [matTooltip]&#x3D;&quot;tooltip&quot;
+           [formControlName]&#x3D;&quot;name&quot;
+           [minlength]&#x3D;&quot;validators.minLength&quot;
+           [maxlength]&#x3D;&quot;validators.maxLength&quot;
+           [max]&#x3D;&quot;validators.max&quot;
+           [min]&#x3D;&quot;validators.min&quot;
+           [placeholder]&#x3D;&quot;placeholder !&#x3D;&#x3D; &#x27;test&#x27;? placeholder : name&quot;
+           [required]&#x3D;&quot;required&quot;
+           matTooltipDisabled&#x3D;&quot;false&quot;
+           matTooltipHideDelay&#x3D;&quot;200&quot;
+           matTooltipPosition&#x3D;&quot;above&quot;
+           matTooltipShowDelay&#x3D;&quot;100&quot;
+           [type]&#x3D;&quot;htmlType&quot;
+           (change)&#x3D;&quot;change.emit({type: name, value: $event.target.value})&quot;
+           [value]&#x3D;&quot;value&quot;&gt;
+    &lt;button (click)&#x3D;&quot;value&#x3D;&#x27;&#x27;&quot; *ngIf&#x3D;&quot;value&quot; aria-label&#x3D;&quot;Clear&quot; mat-button mat-icon-button matSuffix&gt;
+      &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+    &lt;/button&gt;
+    &lt;mat-hint *ngIf&#x3D;&quot;hint&quot; align&#x3D;&quot;end&quot;&gt;{{hint}}&lt;/mat-hint&gt;
+    &lt;mat-error&gt;
+      {{ getErrorMeesage() }}
+    &lt;/mat-error&gt;
+  &lt;/mat-form-field&gt;
+&lt;/ng-container&gt;
+</code></pre>
+          </div>
+
+          <div class="tab-pane fade " id="c-styleData">
+            <p class="comment">
+              <code>./text-input.component.scss</code>
+            </p>
+            <pre class="line-numbers"><code class="language-scss"></code></pre>
+          </div>
+
+          <div class="tab-pane fade " id="c-tree">
+            <div id="tree-container"></div>
+            <div class="tree-legend">
+              <div class="title">
+                <b>Legend</b>
+              </div>
+              <div>
+                <div class="color htmlelement"></div>
+                <span>Html element</span>
+              </div>
+              <div>
+                <div class="color component"></div>
+                <span>Component</span>
+              </div>
+              <div>
+                <div class="color directive"></div>
+                <span>Html element with directive</span>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <script src="../js/libs/vis.min.js"></script>
+        <script src="../js/libs/htmlparser.js"></script>
+        <script src="../js/libs/deep-iterator.js"></script>
+        <script>
+            var COMPONENT_TEMPLATE = '<div><ng-container *ngIf="form" [formGroup]="form">  <mat-form-field [hintLabel]="hintlabel">    <input matInput           [matTooltip]="tooltip"           [formControlName]="name"           [minlength]="validators.minLength"           [maxlength]="validators.maxLength"           [max]="validators.max"           [min]="validators.min"           [placeholder]="placeholder !== \'test\'? placeholder : name"           [required]="required"           matTooltipDisabled="false"           matTooltipHideDelay="200"           matTooltipPosition="above"           matTooltipShowDelay="100"           [type]="htmlType"           (change)="change.emit({type: name, value: $event.target.value})"           [value]="value">    <button (click)="value=\'\'" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>      <mat-icon>close</mat-icon>    </button>    <mat-hint *ngIf="hint" align="end">{{hint}}</mat-hint>    <mat-error>      {{ getErrorMeesage() }}    </mat-error>  </mat-form-field></ng-container></div>';
+            var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'}, {
+                'name': 'AutocompleteComponent',
+                'selector': 'app-autocomplete'
+            }, {'name': 'CheckboxComponent', 'selector': 'app-checkbox'}, {
+                'name': 'ControlpanelComponent',
+                'selector': 'app-controlpanel'
+            }, {'name': 'DateInputComponent', 'selector': 'app-date-input'}, {
+                'name': 'DialogsComponent',
+                'selector': 'app-dialogs'
+            }, {'name': 'FieldComponent', 'selector': 'app-field'}, {
+                'name': 'FileInputComponent',
+                'selector': 'app-file-input'
+            }, {'name': 'RadiobuttonComponent', 'selector': 'app-radiobutton'}, {
+                'name': 'SelectComponent',
+                'selector': 'app-select'
+            }, {'name': 'SliderComponent', 'selector': 'app-slider'}, {
+                'name': 'TabsComponent',
+                'selector': 'app-tabs'
+            }, {'name': 'TextInputComponent', 'selector': 'app-text-input'}, {
+                'name': 'ToolbarComponent',
+                'selector': 'app-toolbar'
+            }];
+            var DIRECTIVES = [];
+            var ACTUAL_COMPONENT = {'name': 'TextInputComponent'};
+        </script>
+        <script src="../js/tree.js"></script>
+
+
+      </div>
+      <div class="search-results">
+        <div class="has-results">
+          <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span
+            class='search-query'></span>"</h1>
+          <ul class="search-results-list"></ul>
+        </div>
+        <div class="no-results">
+          <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+        </div>
+      </div>
+    </div>
+    <!-- END CONTENT -->
+  </div>
+</div>
+
+<script>
+    var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+    var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+    var COMPODOC_CURRENT_PAGE_URL = 'TextInputComponent.html';
+</script>
+
+<script src="../js/libs/custom-elements.min.js"></script>
+<script src="../js/libs/lit-html.js"></script>
+<!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+<script charset="utf-8" defer src="../js/libs/custom-elements-es5-adapter.js"></script>
+<script defer src="../js/menu-wc.js"></script>
+
+<script src="../js/libs/bootstrap-native.js"></script>
+
+<script src="../js/libs/es6-shim.min.js"></script>
+<script src="../js/libs/EventDispatcher.js"></script>
+<script src="../js/libs/promise.min.js"></script>
+<script src="../js/libs/zepto.min.js"></script>
+
+<script src="../js/compodoc.js"></script>
+
+<script src="../js/tabs.js"></script>
+<script src="../js/menu.js"></script>
+<script src="../js/libs/clipboard.min.js"></script>
+<script src="../js/libs/prism.js"></script>
+<script src="../js/sourceCode.js"></script>
+<script src="../js/search/search.js"></script>
+<script src="../js/search/lunr.min.js"></script>
+<script src="../js/search/search-lunr.js"></script>
+<script src="../js/search/search_index.js"></script>
+<script src="../js/lazy-load-graphs.js"></script>
+
+
+</body>
+</html>

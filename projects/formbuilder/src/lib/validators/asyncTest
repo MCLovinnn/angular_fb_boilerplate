@@ -1,0 +1,14 @@
+import { FormControl } from '@angular/forms';
+import { map } from 'rxjs/operators';
+import { timer } from 'rxjs';
+
+export const loginAsyncValidator =
+  (time: number = 500) => {
+    return (input: FormControl) => {
+      return timer(time).pipe(
+        map(res => {
+          return {error: true};
+        })
+      );
+    };
+  };

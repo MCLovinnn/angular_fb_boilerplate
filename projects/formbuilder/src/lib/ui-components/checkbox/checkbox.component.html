@@ -1,0 +1,12 @@
+<mat-checkbox
+  [value]="value"
+  [labelPosition]="position"
+  (change)="change.emit({type: name, value: $event.checked})"
+  [disabled]="disabled"
+  [matTooltip]="tooltip"
+  matTooltipDisabled="false"
+  matTooltipHideDelay="200"
+  matTooltipPosition="above"
+  matTooltipShowDelay="100">
+  {{name | translate}}
+</mat-checkbox>

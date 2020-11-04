@@ -1,0 +1,19 @@
+<ng-container *ngIf="form" [formGroup]="form">
+  <mat-form-field [hintLabel]="hintlabel">
+      <mat-slider
+        [disabled]="disabled"
+        [invert]="config.invert"
+        [max]="max"
+        [min]="min"
+        [step]="config.step"
+        [thumbLabel]="config.showThumb"
+        [tickInterval]="'auto'"
+        [(ngModel)]="value"
+        [vertical]="config.vertical">
+      </mat-slider>
+      <mat-hint *ngIf="hint" align="end">{{hint}}</mat-hint>
+      <mat-error>
+        {{ getErrorMeesage() }}
+      </mat-error>
+  </mat-form-field>
+</ng-container>

@@ -1,0 +1,7 @@
+<ng-container *ngIf="form" [formGroup]="form">
+  <button type="button" mat-raised-button (click)="fileInput.click()">
+    Choose File
+  </button>
+  <input class="mat-input" (change)="onFileSelected()" #fileInput type="file" id="file"
+    [formControlName]="name">
+</ng-container>

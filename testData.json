@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "name": "tour.startDate",
+      "description": "Date when the tour starts",
+      "htmlType": "date",
+      "disabled": "false",
+      "validators": {
+        "required": "true",
+        "maxLength": "15",
+        "minLength": "8",
+        "max": "",
+        "min": "",
+        "pattern": "",
+        "email": "false"
+      },
+      "value": "14.06.2019",
+      "htmlAttribute": {
+        "placeholder": "Datum",
+        "src": "",
+        "step": ""
+      },
+      "hint": "Wähle das Datum wann du zum Festival aufbrechen willst.",
+      "hintlabel": "string",
+      "tooltip": "Wähle das Datum wann du zum Festival aufbrechen willst.",
+      "tooltipposition": "above",
+      "tooltipdelay": "0"
+    }
+  ]
+}

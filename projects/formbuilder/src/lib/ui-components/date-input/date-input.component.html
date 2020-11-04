@@ -1,0 +1,23 @@
+<ng-container *ngIf="form" [formGroup]="form">
+  <mat-form-field [hintLabel]="hintlabel | translate">
+    <input matInput
+           [placeholder]="name | translate"
+           [formControlName]="name"
+           [minlength]="validators.minLength"
+           [maxlength]="validators.maxLength"
+           [matTooltip]="tooltip"
+           [required]="required"
+           matTooltipDisabled="false"
+           matTooltipHideDelay="200"
+           matTooltipPosition="above"
+           matTooltipShowDelay="100"
+           [value]="value"
+           [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-hint *ngIf="hint">{{hint}}</mat-hint>
+    <mat-error>
+      {{ getErrorMeesage() }}
+    </mat-error>
+  </mat-form-field>
+</ng-container>
