@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
@@ -31,7 +32,12 @@ import { registerLocaleData, CommonModule } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { ControlpanelComponent } from './controlpanel/controlpanel.component';
 import { TreeComponent } from './tree/tree.component';
-import { FormbuilderModule, TranslationService } from '../../projects/formbuilder/src/public-api';
+import {
+  FormbuilderModule,
+  TranslationService
+} from '../../projects/formbuilder/src/public-api';
+import { FormComponent } from './form/form.component';
+import { TranslationComponent } from './translation/translation.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -40,7 +46,9 @@ registerLocaleData(localeDe, 'de');
     AppComponent,
     ControlpanelComponent,
     TreeComponent,
-    FieldComponent
+    FieldComponent,
+    FormComponent,
+    TranslationComponent
   ],
   imports: [
     BrowserModule,
@@ -67,21 +75,18 @@ registerLocaleData(localeDe, 'de');
     MatButtonModule,
     MatSidenavModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatToolbarModule
   ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'de' },
-  ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de' }],
   bootstrap: [AppComponent],
-  exports: [
-    AppComponent
-  ]
+  exports: [AppComponent]
 })
 export class AppModule {
   constructor(public ts: TranslationService) {
     ts.setPath('assets/locale/');
     ts.use('de').then(res => {
-      console.log(res);
+      // console.log(res);
     });
     // console.log(ts.data);
   }

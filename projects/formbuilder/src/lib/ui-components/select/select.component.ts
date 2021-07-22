@@ -13,7 +13,7 @@ import { ICodeEntry } from '../../interfaces/ifield';
   styleUrls: ['./select.component.scss']
 })
 export class SelectComponent extends BaseFieldComponent implements OnInit {
-  @Input() options: ICodeEntry[];
+  @Input() options?: ICodeEntry[];
 
   constructor(public fb: FormBuilder,
               public fs: FormService) {

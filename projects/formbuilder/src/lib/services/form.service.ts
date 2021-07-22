@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@a
 import { IField } from '../interfaces/ifield';
 import { DataFlattnerService } from './data-flattner.service';
 import { IValidator } from '../interfaces/ivalidator';
-import { merge } from 'rxjs';
+import { merge, BehaviorSubject } from 'rxjs';
+import { BaseFieldComponent } from '../classes/field';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,35 @@ export class FormService {
   forms = new FormGroup({});
   configs: any;
 
+  fieldchange: BehaviorSubject<any[]> = new BehaviorSubject([]);
+  fields = [];
+
   emptyObj: IField = {
-    name: 'home_control_new',
-    placeholder: 'Test'
+    name: 'home_ui_new'
   };
 
   constructor(private fb: FormBuilder) {
+
+    this.fieldchange.subscribe(val => {
+      this.fields.push(val);
+    });
   }
 
+  getFields() {
+    return this.fields;
+  }
+
+  getFieldByName(name:string): BaseFieldComponent{
+    // console.log(name);
+    // console.log(this.fields);
+
+
+    return this.fields.find(field => field.name === name);
+  }
+
+  addField(val: any) {
+    this.fieldchange.next(val);
+  }
   /**
    * @param form : FormGroup
    * @param name : FormName
@@ -47,8 +69,8 @@ export class FormService {
     } else {
       this.forms = this.fb.group({ [pageName]: form });
     }
-    console.log(this.forms);
-    
+    // console.log(this.forms);
+
   }
 
   /**
@@ -56,7 +78,7 @@ export class FormService {
    * @description adds Config to Service
    */
   addConfig(config: any) {
-    console.log(config);
+    // console.log(config);
 
     if (this.configs !== undefined && this.configs !== null) {
       let found = false;
@@ -74,7 +96,7 @@ export class FormService {
     } else {
       this.configs = config;
     }
-    console.log(config);
+    // console.log(config);
 
     this.setUp(config);
     // console.log('formConfig', this.configs);
@@ -120,13 +142,6 @@ export class FormService {
     const page = keys[0];
     const form = keys[1];
     const key = keys[2];
-    // console.log('asdadad', ((this.forms.get(page) as FormGroup).get(form) as FormGroup));
-
-    // console.log(this.forms.get(page));
-    // console.log((this.forms.get(page) as FormGroup).get(form));
-    // console.log(((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(field.name) as FormControl);
-    // console.log(this.forms);
-
 
     if (((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(field.name)) {
       return ((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(field.name) as FormControl;
@@ -151,7 +166,11 @@ export class FormService {
 
       return ((this.forms.get(page) as FormGroup).get(form) as FormGroup);
     } else {
-      return new FormGroup({});
+      if (this.forms.get(page)){
+        return (this.forms.get(page)) as FormGroup;
+      } else {
+        return new FormGroup({});
+      }
     }
   }
 
@@ -215,14 +234,14 @@ export class FormService {
    * @description : FormGroup will be initalized and added by config [triggert in addConfig()]
    */
   setUp(config: any) {
-    console.log('config', config);
+    // console.log('config', config);
     Object.keys(config).forEach((page) => {
       const newForm = {};
-      console.log(page); // home
+      // console.log(page); // home
       const formObj = config[page];
       if (formObj) {
         Object.keys(formObj).forEach((form) => {
-          console.log(form); // control || ui
+          // console.log(form); // control || ui
           const formArray = {};
           const forM: any = formObj[form];
           // console.log(forM);
@@ -237,7 +256,7 @@ export class FormService {
             formArray[field.name] = controL;
           });
           newForm[form] = this.fb.group(formArray);
-          console.log('array', newForm);
+          // console.log('array', newForm);
           this.addForm(this.fb.group(newForm), page);
         });
         // console.log(this.fb.group(newForm));

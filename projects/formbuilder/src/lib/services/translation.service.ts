@@ -5,8 +5,9 @@ import { Injectable, Input, Output, EventEmitter } from '@angular/core';
   providedIn: 'root'
 })
 export class TranslationService {
-  // @ts-ignore
   @Output() onLangChange: EventEmitter<string> = new EventEmitter();
+  @Output() onDataChange: EventEmitter<string> = new EventEmitter();
+
 
   data: any = {};
   lang: string;
@@ -34,6 +35,7 @@ export class TranslationService {
           // console.log(translation);
           this.data = Object.assign({}, translation || {});
           this.lang = lang;
+          this.onDataChange.emit(this.data);
           resolve(this.data);
         },
         error => {

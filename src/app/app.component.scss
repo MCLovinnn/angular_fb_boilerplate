@@ -9,6 +9,17 @@
   border-left: 1px solid darkgray;
   border-right: 1px solid darkgray;
 }
+
 app-controlpanel {
   width: 100%;
+}
+
+mat-toolbar {
+  height: 7vh;
+}
+
+.example-spacer {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-around;
 }

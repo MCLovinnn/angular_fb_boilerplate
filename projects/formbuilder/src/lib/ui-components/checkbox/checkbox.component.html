@@ -3,10 +3,10 @@
   [labelPosition]="position"
   (change)="change.emit({type: name, value: $event.checked})"
   [disabled]="disabled"
-  [matTooltip]="tooltip"
+  [matTooltip]="name+'#tooltip' | translate"
   matTooltipDisabled="false"
   matTooltipHideDelay="200"
   matTooltipPosition="above"
   matTooltipShowDelay="100">
-  {{name | translate}}
+  {{name+'#label' | translate}}
 </mat-checkbox>

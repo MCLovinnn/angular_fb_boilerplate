@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+mat-form-field {
+  width: 100%;
+}
+app-controlpanel {
+  width: 100%;
+}
+app-tree {
+  height: 86%;
+  overflow-y: scroll;
+  margin:10px;
+}
+
+app-tree::-webkit-scrollbar {
+  display: none;
+}

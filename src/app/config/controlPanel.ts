@@ -1,91 +1,116 @@
-import { IField, ICodeEntry } from '../../../projects/formbuilder/src/lib/interfaces/ifield';
+import {
+  IField,
+  ICodeEntry
+} from '../../../projects/formbuilder/src/lib/interfaces/ifield';
 
 export interface IPageConfig {
   [key: string]: {
     [key: string]: {
-      [key: string]: IField
-    }
-  }
+      [key: string]: IField;
+    };
+  };
 }
-
 
 export let fieldConfig = {
-  test: {
-    name: 'home_ui_test',
+  new: {
+    name: 'home_ui_new',
+    htmlType: 'text'
   }
-}
+};
+export let fieldTypes: ICodeEntry[] = [
+  {
+    value: 'select',
+    key: 'home_control_type_Opt_select',
+    description: 'home_control_type_Opt_select#desc'
+  },
+  {
+    value: 'text',
+    key: 'home_control_type_Opt_text',
+    description: 'home_control_type_Opt_text#desc'
+  },
+  {
+    value: 'checkbox',
+    key: 'home_control_type_Opt_checkbox',
+    description: 'home_control_type_Opt_checkbox#desc'
+  },
+  {
+    value: 'date',
+    key: 'home_control_type_Opt_date',
+    description: 'home_control_type_Opt_date#desc'
+  }
+];
 
 export let functionType: ICodeEntry[] = [
   {
     value: 'change',
-    key: 'Änderung(Change)',
-    description: 'Funktion die ausgeführt wird, wenn sich der Wert des Feldse ändert.'
+    key: 'home_control_event_Opt_change',
+    description: 'home_control_event_Opt_change#desc'
   },
   {
     value: 'blur',
-    key: 'Änderung(Blur)',
-    description: 'Funktion die ausgeführt wird, wenn sich der Wert des Feldse ändert.'
+    key: 'home_control_event_Opt_blur',
+    description: 'home_control_event_Opt_blur#desc'
   },
   {
     value: 'fokusIn',
-    key: 'Fokus-Rein',
-    description: 'Funktion die ausgeführt wird, wenn der User in das Feld klickt.'
+    key: 'home_control_event_Opt_focusin',
+    description: 'home_control_event_Opt_focusin#desc'
   },
   {
     value: 'fokusOut',
-    key: 'Fokus-Raus',
-    description: 'Funktion die ausgeführt wird, wenn der User aus dem Feld klickt.'
+    key: 'home_control_event_Opt_focusout',
+    description: 'home_control_event_Opt_focusout#desc'
   }
 ];
 
 export let operatorType: ICodeEntry[] = [
   {
     value: '<',
-    key: 'Kleiner',
-    description: 'Funktion die ausgeführt wird, wenn sich der Wert des Feldse ändert.'
+    key: 'home_control_operator_Opt_smaller',
+    description: 'home_control_operator_Opt_smaller#desc'
   },
   {
     value: '<=',
-    key: 'Kleiner, gleich',
-    description: 'Funktion die ausgeführt wird, wenn sich der Wert des Feldse ändert.'
+    key: 'home_control_operator_Opt_smallerEven',
+    description: 'home_control_operator_Opt_smallerEven#desc'
   },
   {
     value: '>',
-    key: 'Größer',
-    description: 'Funktion die ausgeführt wird, wenn sich der Wert des Feldse ändert.'
+    key: 'home_control_operator_Opt_bigger',
+    description: 'home_control_operator_Opt_bigger#desc'
   },
   {
     value: '>=',
-    key: 'Größer, gleich',
-    description: 'Funktion die ausgeführt wird, wenn sich der Wert des Feldse ändert.'
+    key: 'home_control_operator_Opt_biggerEven',
+    description: 'home_control_operator_Opt_biggerEven#desc'
   },
   {
     value: '===',
-    key: 'Gleich',
-    description: 'Funktion die ausgeführt wird, wenn der User aus dem Feld klickt.'
+    key: 'home_control_operator_Opt_even',
+    description: 'home_control_operator_Opt_even#desc'
   },
   {
     value: '!==',
-    key: 'Ungleich',
-    description: 'Funktion die ausgeführt wird, wenn der User in das Feld klickt.'
+    key: 'home_control_operator_Opt_noteven',
+    description: 'home_control_operator_Opt_noteven#desc'
   }
 ];
 
 export let actionType: ICodeEntry[] = [
   {
     value: 'reset',
-    key: 'Aktuelles Feld zurücksetzten',
-    description: 'Funktion die ausgeführt wird, wenn sich der Wert des Feldse ändert.'
+    key: 'home_control_action_Opt_reset',
+    description: 'home_control_action_Opt_reset#desc'
   },
   {
     value: 'update',
-    key: 'Zu prüfendes Feld updaten',
-    description: 'Funktion die ausgeführt wird, wenn sich der Wert des Feldse ändert.'
+    key: 'home_control_action_Opt_update',
+    description: 'home_control_action_Opt_update#desc'
   },
   {
     value: 'dialog',
-    key: 'Einen Dialog anzeigen',
-    description: 'Funktion die ausgeführt wird, wenn der User in das Feld klickt.'
+    key: 'home_control_action_Opt_dialog',
+    description: 'home_control_action_Opt_dialog#desc'
   }
 ];
 
@@ -96,7 +121,7 @@ export let allergene: IField = {
   validators: {
     required: true
   }
-}
+};
 
 export let controlPanelConfig = {
   type: {
@@ -105,9 +130,9 @@ export let controlPanelConfig = {
     validators: {
       required: true
     },
-    options: functionType
+    options: fieldTypes
   },
-  Hintlabel: {
+  hintlabel: {
     name: 'home_control_hintlabel',
     htmlType: 'text',
     validators: {
@@ -115,8 +140,7 @@ export let controlPanelConfig = {
       maxLength: 15
     }
   },
-  placeholder:
-  {
+  placeholder: {
     name: 'home_control_placeholder',
     htmlType: 'text',
     validators: {
@@ -124,40 +148,35 @@ export let controlPanelConfig = {
       minLength: 5
     }
   },
-  required:
-  {
+  required: {
     name: 'home_control_required',
     htmlType: 'checkbox',
     validators: {
       required: false
     }
   },
-  disabled:
-  {
+  disabled: {
     name: 'home_control_disabled',
     htmlType: 'checkbox',
     validators: {
       required: false
     }
   },
-  tooltip:
-  {
+  tooltip: {
     name: 'home_control_tooltip',
     htmlType: 'text',
     validators: {
       required: false
     }
   },
-  value:
-  {
+  value: {
     name: 'home_control_value',
     htmlType: 'text',
     validators: {
       required: false
     }
   },
-  name:
-  {
+  name: {
     name: 'home_control_name',
     htmlType: 'text',
     validators: {
@@ -165,51 +184,56 @@ export let controlPanelConfig = {
       minLength: 2
     }
   },
-  event:
-  {
+  event: {
     name: 'home_control_event',
+    htmlType: 'select',
+    validators: {
+      required: true
+    },
+    options: functionType
+  },
+  min: {
+    name: 'home_control_min',
+    htmlType: 'text'
+  },
+  max: {
+    name: 'home_control_max',
+    htmlType: 'text'
+  },
+  minLength: {
+    name: 'home_control_minLength',
+    htmlType: 'text'
+  },
+  maxLength: {
+    name: 'home_control_maxLength',
+    htmlType: 'text'
+  },
+  filedToRef: {
+    name: 'home_control_filedToRef',
+    htmlType: 'text'
+  },
+  pattern: {
+    name: 'home_control_pattern',
+    htmlType: 'text'
+  },
+  operator: {
+    name: 'home_control_operator',
     htmlType: 'select',
     validators: {
       required: true
     },
     options: operatorType
   },
-  min :
-  {
-    name: 'home_control_min',
-    htmlType: 'number',
-  },
-  max :
-  {
-    name: 'home_control_max',
-    htmlType: 'number',
-  },
-  minLength: {
-    name: 'home_control_minLength',
-    htmlType: 'number'
-  },
-  maxLength: {
-    name: 'home_control_maxLength',
-    htmlType: 'number'
-  },
-  filedToRef: {
-    name: 'home_control_filedToRef',
-    htmlType: 'number'
-  },
-  pattern: {
-    name: 'home_control_pattern',
-    htmlType: 'number'
-  },
-  operator: {
-    name: 'home_control_operator',
-    htmlType: 'number'
-  },
   action: {
     name: 'home_control_action',
-    htmlType: 'number'
+    htmlType: 'select',
+    validators: {
+      required: true
+    },
+    options: actionType
   },
   reset: {
     name: 'home_control_reset',
-    htmlType: 'number'
+    htmlType: 'text'
   }
 };

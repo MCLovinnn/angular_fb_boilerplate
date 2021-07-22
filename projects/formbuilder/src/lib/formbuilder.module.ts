@@ -96,7 +96,8 @@ registerLocaleData(localeDe, 'de');
     AutocompleteComponent,
     CheckboxComponent,
     RadiobuttonComponent,
-    SliderComponent
+    SliderComponent,
+    TranslatePipe
   ]
 })
 

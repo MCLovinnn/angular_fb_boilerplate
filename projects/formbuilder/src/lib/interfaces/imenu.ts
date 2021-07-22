@@ -3,7 +3,7 @@ export interface MenuNode {
   children?: MenuNode[];
 }
 
-export interface AutoSearch {
+export class AutoSearch {
   name: string;
   children?: AutoSearch[] | string[];
 }

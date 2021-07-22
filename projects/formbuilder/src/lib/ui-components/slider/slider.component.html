@@ -1,5 +1,5 @@
 <ng-container *ngIf="form" [formGroup]="form">
-  <mat-form-field [hintLabel]="hintlabel">
+  <mat-form-field [hintLabel]="name+'#hintlabel' | translate">
       <mat-slider
         [disabled]="disabled"
         [invert]="config.invert"

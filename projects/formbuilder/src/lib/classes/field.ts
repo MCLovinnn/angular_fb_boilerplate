@@ -1,7 +1,7 @@
 import { IField, IHTMLAttributes } from '../interfaces/ifield';
 import { ICustomValidation } from '../interfaces/icustom-validation';
 import { IValidator } from '../interfaces/ivalidator';
-import { EventEmitter, Input, OnInit, Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { EventEmitter, Input, OnInit, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormService } from '../services/form.service';
 
@@ -21,18 +21,10 @@ export class BaseFieldComponent implements IField, OnInit {
     email: () => 'Keine valide Emailadresse'
   };
 
-  types: any[] = [
-    { value: 'select', viewValue: 'Select' },
-    { value: 'text', viewValue: 'Text' },
-    { value: 'checkbox', viewValue: 'Checkbox' },
-    { value: 'date', viewValue: 'Datum' }
-  ];
-
-
-  @Input() name = 'home_ui_test';
+  @Input() name = 'home_ui_new';
 
   @Input() value = '';
-  @Input() placeholder = 'test';
+  @Input() placeholder = 'new field';
   @Input() disabled = false;
   @Input() minLength: number;
   @Input() maxLength: number;
@@ -94,29 +86,37 @@ export class BaseFieldComponent implements IField, OnInit {
     this.form = this.fs.getForm(this.name);
     // console.log(this.form);
     this.control = this.fs.getFormControl(field);
-    // console.log(this.control);
 
+    this.fs.addField(this);
+    // console.log(this.control);
+    this.init = false;
   }
 
-  setUpConfig(config: IField) {
-    // console.log(config);
-    this.placeholder = config.placeholder;
+  public setUpConfig(config: IField) {
     this.hint = config.hint;
     this.hintlabel = config.hintlabel;
+
     if(!this.hintlabel) {
       this.hintlabel = this.name+'#hintlabel';
     }
+
+    let tmpReq = false;
+    let tmpDis = false;
+
+    if (this.init){
+      tmpReq = this.required ? this.required : null;
+      tmpDis = this.disabled ? this.disabled : null;
+    }
+
     this.validators = config.validators;
-    this.disabled = this.disabled ? this.disabled : config.disabled;
-    this.required = this.required ? this.required : config.validators ? config.validators.required : null;
-    this.max = this.max ? this.max : config.validators ? config.validators.max : null;
-    this.min = this.min ? this.min : config.validators ? config.validators.min : null;
-    this.maxLength = this.maxLength ? this.maxLength : config.validators ? config.validators.maxLength : null;
-    this.minLength = this.minLength ? this.minLength : config.validators ? config.validators.minLength : null;
+    this.disabled = config.disabled ? config.disabled : tmpDis;
+    this.required = config.validators ? config.validators.required : tmpReq;
+    this.max = config.validators ? config.validators.max : this.max ? this.max :  null;
+    this.min = config.validators ? config.validators.min : this.min ? this.min :  null;
+    this.maxLength = config.validators ? config.validators.maxLength : this.maxLength ? this.maxLength :  null;
+    this.minLength = config.validators ? config.validators.minLength : this.minLength ? this.minLength :  null;
     this.value = config.value || '';
     this.htmlType = config.htmlType ? config.htmlType : this.htmlType;
-    this.placeholder = this.placeholder !== 'test' && this.placeholder !== '' ?
-      this.placeholder : this.name;
 
     if (config.htmlAttribute && config.htmlAttribute.autocomplete) {
       this.autocomplete = config.htmlAttribute.autocomplete;

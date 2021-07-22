@@ -14,6 +14,7 @@ export { optionsConfig } from './lib/interfaces/iautocompleteoption';
 export { MenuNode } from './lib/interfaces/imenu';
 export { IField } from './lib/interfaces/ifield';
 export { IForm } from './lib/interfaces/iform';
+export { TranslatePipe } from './lib/services/translation.pipe';
 export * from './lib/ui-components/autocomplete/autocomplete.component';
 export * from './lib/ui-components/checkbox/checkbox.component';
 export * from './lib/ui-components/date-input/date-input.component';

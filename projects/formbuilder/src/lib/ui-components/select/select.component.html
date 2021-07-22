@@ -1,10 +1,10 @@
 <ng-container *ngIf="form" [formGroup]="form">
-  <mat-form-field [hintLabel]="hintlabel | translate">
-    <mat-select [placeholder]="name | translate"
+  <mat-form-field [hintLabel]="name+'#hintlabel' | translate">
+    <mat-select [placeholder]="name+'#label' | translate"
                 [formControlName]="name"
                 [minlength]="validators.minLength"
                 [maxlength]="validators.maxLength"
-                [matTooltip]="tooltip"
+                [matTooltip]="name+'#tooltip' | translate"
                 [required]="required"
                 matTooltipDisabled="false"
                 matTooltipHideDelay="200"
@@ -13,18 +13,18 @@
                 [value]="value"
                 (selectionChange)="change.emit({type: name, value: $event.value})"
     >
-    <div *ngIf="!options[0].key">
+    <div *ngIf="options && !options[0].key">
       <mat-option *ngIf="!required" matTooltip="Zurücksetzten" value="0">Bitte Wählen...</mat-option>
       <mat-option *ngFor="let item of options" [matTooltip]="item" [value]="item">
-        {{item}}
+        {{item | translate}}
       </mat-option>
     </div>
-    <div *ngIf="options[0].key">
+    <div *ngIf="options && options[0].key">
       <mat-option *ngIf="!required" matTooltip="Zurücksetzten" value="0">Bitte Wählen...</mat-option>
-      <mat-option *ngFor="let item of options" [matTooltip]="item.description" [value]="item.value">
-        {{item.key}}
+      <mat-option *ngFor="let item of options" [matTooltip]="item.description | translate" [value]="item.value">
+        {{item.key | translate}}
       </mat-option>
-    </div>  
+    </div>
     </mat-select>
     <mat-hint *ngIf="hint" align="end">{{hint}}</mat-hint>
     <mat-error>

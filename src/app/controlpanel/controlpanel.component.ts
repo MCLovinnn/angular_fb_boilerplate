@@ -1,14 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-
 import {
-  functionType,
-  operatorType,
-  actionType,
-  controlPanelConfig
-} from '..//config/controlPanel';
-import { optionsConfig, FormService, ConfigService } from '../../../projects/formbuilder/src/public-api';
-
+  optionsConfig,
+  FormService,
+  ConfigService
+} from '../../../projects/formbuilder/src/public-api';
+import { FieldService } from '../services/field.service';
 
 @Component({
   selector: 'app-controlpanel',
@@ -16,7 +13,6 @@ import { optionsConfig, FormService, ConfigService } from '../../../projects/for
   styleUrls: ['./controlpanel.component.scss']
 })
 export class ControlpanelComponent implements OnInit {
-
   @Output() fieldchange: EventEmitter<any> = new EventEmitter();
   @Input() form: FormGroup;
   @Input() control: FormControl;
@@ -38,52 +34,42 @@ export class ControlpanelComponent implements OnInit {
   };
   internalType = 'text';
 
-  types: any[] = [
-    { value: 'select', key: 'Select' },
-    { value: 'text', key: 'Text' },
-    { value: 'checkbox', key: 'Checkbox' },
-    { value: 'date', key: 'Datum' }
-  ];
-  functionType = functionType;
-  operatorType = operatorType;
-  actionType = actionType;
   allControlls: any;
   isLinear = true;
   form2: FormGroup;
 
-  constructor(public fb: FormBuilder,
+  constructor(
+    public fb: FormBuilder,
     public fs: FormService,
-    private configS: ConfigService) {
+    private configS: ConfigService,
+    private fieldS: FieldService
+  ) {
     // this.form = new Form(this.controlPanelConfig);
-    this.allControlls = configS.getControlls();
     // fs.addConfig({ home: { control: controlPanelConfig } });
-
-    this.form = this.fs.getForm('home_control');
+    this.form = fs.getForm('home_control');
     // console.log(fs.forms);
     // console.log(fs.configs);
-
-    fs.updateConfig({
-      name: 'home_control_tooltip',
-      placeholder: 'Update',
-      htmlType: 'text',
-      hintlabel: 'updateed?',
-      validators: {
-        required: false
-      }
-    });
     // console.log(this.allControlls);
   }
 
+  reset() {
+    this.fs.getForm('home_control').reset();
+  }
+
   ngOnInit() {
-    // console.log(this.control);
-    // console.log(this.form);
-    // console.log('actiontypes', actionType);
+    this.configS.dataChange.subscribe(data => {
+      // console.log(data);
+      for (const [key, value] of Object.entries(data)) {
+        // console.log(value);
+        this.allControlls = value.children;
+      }
+      // this.allControlls = data;
+    });
 
+    // this.allControlls = this.fs.getConfigs();
+    // console.log(this.allControlls);
 
-    // this.allControlls = Object.keys(this.fs.getForms());
-    this.allControlls = Object.values(this.configS.getControlls());
-    // console.log('controlls', this.allControlls);
-    this.fieldchange.subscribe((value) => {
+    this.fieldchange.subscribe(value => {
       // console.log(value);
       switch (value.type) {
         case 'home_control_name':
@@ -102,7 +88,9 @@ export class ControlpanelComponent implements OnInit {
           this.validatorsEmitter.emit(value.value);
           break;
         case 'home_control_value':
-          this.fs.getFormControl(this.fs.getConfigByName('home_control_test')).patchValue(value.value);
+          this.fs
+            .getFormControl(this.fs.getConfigByName('home_ui_new'))
+            .patchValue(value.value);
           break;
         case 'home_control_hintlabel':
           this.hintlabelEmitter.emit(value.value);

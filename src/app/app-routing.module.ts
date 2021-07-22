@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FieldComponent } from './field/field.component';
+import { FormComponent } from './form/form.component';
+import { TranslationComponent } from './translation/translation.component';
 
 const routes: Routes = [
-  {path: '', component: FieldComponent}
+  {path: '', component: FormComponent},
+  {path: 'translation', component: TranslationComponent}
 ];
 
 @NgModule({

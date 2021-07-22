@@ -1,7 +1,10 @@
 <mat-horizontal-stepper #stepper>
   <mat-step>
     <ng-template matStepLabel>Feldname</ng-template>
-    <app-text-input [change]="fieldchange" name="home_control_name"></app-text-input>
+    <app-text-input
+      [change]="fieldchange"
+      name="home_control_name"
+    ></app-text-input>
     <div>
       <button mat-button matStepperNext>Next</button>
     </div>
@@ -10,16 +13,28 @@
     <ng-template matStepLabel>Feld Type</ng-template>
     <mat-grid-list cols="12" rowHeight="65px">
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-select [change]="fieldchange" [options]="types" name="home_control_type"></app-select>
+        <app-select
+          [change]="fieldchange"
+          name="home_control_type"
+        ></app-select>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="fieldchange"  name="home_control_value"></app-text-input>
+        <app-text-input
+          [change]="fieldchange"
+          name="home_control_value"
+        ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="fieldchange"  name="home_control_hintlabel"></app-text-input>
+        <app-text-input
+          [change]="fieldchange"
+          name="home_control_hintlabel"
+        ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="fieldchange"  name="home_control_tooltip"></app-text-input>
+        <app-text-input
+          [change]="fieldchange"
+          name="home_control_tooltip"
+        ></app-text-input>
       </mat-grid-tile>
     </mat-grid-list>
     <div>
@@ -31,25 +46,47 @@
     <ng-template matStepLabel>Validation</ng-template>
     <mat-grid-list cols="12" rowHeight="65px">
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-checkbox [change]="fieldchange"  name="home_control_required"></app-checkbox>
+        <app-checkbox
+          [change]="fieldchange"
+          name="home_control_required"
+        ></app-checkbox>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-checkbox [change]="fieldchange"  name="home_control_disabled"></app-checkbox>
+        <app-checkbox
+          [change]="fieldchange"
+          name="home_control_disabled"
+        ></app-checkbox>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="fieldchange"  name="home_control_min"></app-text-input>
+        <app-text-input
+          [change]="fieldchange"
+          name="home_control_min"
+        ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="fieldchange"  name="home_control_max"></app-text-input>
+        <app-text-input
+          [change]="fieldchange"
+          name="home_control_max"
+        ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="fieldchange" [htmlType]="'number'"  name="home_control_minLength"></app-text-input>
+        <app-text-input
+          [change]="fieldchange"
+          [htmlType]="'number'"
+          name="home_control_minLength"
+        ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="fieldchange"  name="home_control_maxLength"></app-text-input>
+        <app-text-input
+          [change]="fieldchange"
+          name="home_control_maxLength"
+        ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="fieldchange"  name="home_control_pattern"></app-text-input>
+        <app-text-input
+          [change]="fieldchange"
+          name="home_control_pattern"
+        ></app-text-input>
       </mat-grid-tile>
     </mat-grid-list>
     <div>
@@ -60,28 +97,28 @@
     <ng-template matStepLabel>Funktionen</ng-template>
     <mat-grid-list cols="12" rowHeight="65px">
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-select  [options]="functionType"
-                    name="home_control_event"></app-select>
+        <app-select name="home_control_event"></app-select>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-autocomplete [control]="" [config]="autoCompleteConfig"  [options]="allControlls"
-                          name="home_control_filedToRef" [placeholder]="'blubb'" ></app-autocomplete>
+        <app-autocomplete
+          [config]="autoCompleteConfig"
+          [options]="allControlls"
+          name="home_control_filedToRef"
+        ></app-autocomplete>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-select [change]=""  [options]="operatorType"
-                    name="home_control_operator"></app-select>
+        <app-select [change]="" name="home_control_operator"></app-select>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-select [change]=""  [options]="actionType"
-                    name="home_control_action"></app-select>
+        <app-select [change]="" name="home_control_action"></app-select>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]=""  name="home_control_reset"></app-text-input>
+        <app-text-input [change]="" name="home_control_reset"></app-text-input>
       </mat-grid-tile>
     </mat-grid-list>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button (click)="stepper.reset()" mat-button>Reset</button>
+      <button (click)="reset(); stepper.reset()" mat-button>Reset</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

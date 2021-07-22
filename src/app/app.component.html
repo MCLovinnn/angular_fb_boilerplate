@@ -1,25 +1,18 @@
-<mat-grid-list cols="4" rowHeight="400px">
-  <mat-grid-tile style="background-color: lightblue" [colspan]="1" [rowspan]="2">
-    <mat-grid-tile-header>
-      <h3> Menü </h3>
-    </mat-grid-tile-header>
-    <app-tree [data]="dataSource"></app-tree>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]=".5">
-    <mat-grid-tile-header>
-      <h3>Vorschau</h3>
-    </mat-grid-tile-header>
-    <app-field [disabled]="dis" [hintlabel]="label" [tooltip]="tlp" [form]="form" [maxLength]="maxLE" [max]="max"
-      [minLength]="minLE" [min]="min" [placeholder]="placeholder" [required]="required" [type]="type" name="home_ui_test">
-    </app-field>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="1">
-    <mat-grid-tile-header>
-      <h3>Feldkonfiguration</h3>
-    </mat-grid-tile-header>
-    <app-controlpanel [type]="type" [form]="form" [hintlabelEmitter]="hintlabel" [disabledEmitter]="disabled"
-      [tooltipEmitter]="tooltip" [maxEmitter]="maxE" [maxLEmitter]="maxLE" [minEmitter]="minE" [minLEmitter]="minLE"
-      [nameEmitter]="placeholderE" [requiredEmitter]="reqE">
-    </app-controlpanel>
-  </mat-grid-tile>
-</mat-grid-list>
+<mat-toolbar>
+  <button mat-icon-button class="example-icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Formbuilder</span>
+  <span class="example-spacer">
+    <button routerLink="" routerLinkActive="active" mat-button>Forms</button>
+    <button routerLink="/translation" routerLinkActive="active" mat-button>Translation</button>
+  </span>
+  <button mat-icon-button class="example-icon favorite-icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

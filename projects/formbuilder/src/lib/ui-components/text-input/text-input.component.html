@@ -1,13 +1,13 @@
 <ng-container *ngIf="form" [formGroup]="form">
-  <mat-form-field [hintLabel]="hintlabel | translate">
+  <mat-form-field [hintLabel]="name+'#hintlabel' | translate">
     <input matInput
-           [matTooltip]="tooltip"
+           [matTooltip]="name+'#tooltip' | translate"
            [formControlName]="name"
            [minlength]="validators.minLength"
            [maxlength]="validators.maxLength"
            [max]="validators.max"
            [min]="validators.min"
-           [placeholder]="name | translate"
+           [placeholder]="name+'#label' | translate"
            [required]="required"
            matTooltipDisabled="false"
            matTooltipHideDelay="200"

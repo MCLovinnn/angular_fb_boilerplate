@@ -13,7 +13,6 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
 
   internalType = 'text';
   internalTooltip = '';
-  options = ['Test', 'Hallo', 'Test2'];
 
   constructor(
     public fb: FormBuilder,
@@ -27,7 +26,7 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
     // console.log(this.type);
     // console.log(this.internalType);
     this.type.subscribe((value) => {
-      // console.log('value');
+      // console.log(value);
       this.internalType = value;
       this.internalTooltip = this.tooltip;
     });

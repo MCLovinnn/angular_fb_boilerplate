@@ -13,19 +13,31 @@ app.get('/', (req, res) => {
 })
 
 app.post('/generate:lang',function(req, res, next) {
-  generate.generateTxtFile(req.params.lang, req.body, res);
+  generate.generateTxtFile(req.body, res);
   // console.log(req.body);
+})
+
+app.post('/update:lang',function(req, res, next) {
+  generate.updateTxtFile(req.params.lang, req.body, res);
+  // console.log(req.body);
+})
+
+app.post('/config:lang', function(req, res, next) {
+  generate.generateConfigFile(req.params.lang, req.body, res);
+})
+app.get('/config', function(req, res, next) {
+  generate.getConfigFile(res);
 })
 
 app.get('/lang:name', function(req, res, next) {
   // console.log(req.params.name);
-  
+
   translate.getTxtFile(req.params.name, res);
 })
 
 app.post('/lang:name', function(req, res, next) {
   // console.log(req.params.name);
-  
+
   translate.saveTxtFile(req.params.name, req.body, res);
 })
 
