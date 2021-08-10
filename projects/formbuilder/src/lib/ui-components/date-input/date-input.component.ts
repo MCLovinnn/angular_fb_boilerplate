@@ -15,8 +15,8 @@ export class DateInputComponent extends BaseFieldComponent implements OnInit {
   constructor(public fb: FormBuilder,
     public fs: FormService,
     private dateAdapter: DateAdapter<any>,
-    private ts: TranslationService) {
-    super(fb, fs);
+    public ts: TranslationService) {
+    super(fb, fs, ts);
     dateAdapter.setLocale(ts.lang);
 
     ts.onLangChange.subscribe(lang => dateAdapter.setLocale(lang));

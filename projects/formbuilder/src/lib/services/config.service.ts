@@ -3,6 +3,7 @@ import { DataFlattnerService } from "./data-flattner.service";
 import { IField } from "../interfaces/ifield";
 import { MenuNode, AutoSearch } from "../interfaces/imenu";
 import { BehaviorSubject } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
@@ -10,8 +11,9 @@ import { BehaviorSubject } from "rxjs";
 export class ConfigService {
   flatControlls: any[];
   dataChange = new BehaviorSubject<AutoSearch[]>([]);
+  configs: any;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.flatControlls = [];
     // console.log(this.flatControlls);
   }
@@ -47,7 +49,6 @@ export class ConfigService {
     // console.log("newtree", this.flatControlls);
   }
 
-
   get data(): AutoSearch[] {
     return this.dataChange.value;
   }
@@ -63,7 +64,7 @@ export class ConfigService {
       const node = new AutoSearch();
       node.name = key;
       if (value != null) {
-        if (typeof value === 'object' && level < 2) {
+        if (typeof value === "object" && level < 2) {
           node.children = this.buildFileTree(value, level + 1);
         } else {
           if (level === 2) {

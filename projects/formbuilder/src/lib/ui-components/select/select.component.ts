@@ -3,6 +3,7 @@ import { BaseFieldComponent } from '../../classes/field';
 import { FormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { ICodeEntry } from '../../interfaces/ifield';
+import { TranslationService } from '../../services/translation.service';
 
 
 
@@ -16,8 +17,9 @@ export class SelectComponent extends BaseFieldComponent implements OnInit {
   @Input() options?: ICodeEntry[];
 
   constructor(public fb: FormBuilder,
-              public fs: FormService) {
-    super(fb, fs);
+              public fs: FormService,
+              public ts: TranslationService) {
+    super(fb, fs, ts);
   }
 
   ngOnInit() {

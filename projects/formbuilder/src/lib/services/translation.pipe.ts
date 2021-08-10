@@ -7,8 +7,12 @@ import { TranslationService } from './translation.service';
   pure: false
 })
 export class TranslatePipe implements PipeTransform {
-  constructor(private translate?: TranslationService) { }
+  constructor(private translate: TranslationService) { }
   transform(key: any): any {
-    return this.translate.data[key] || '';
+    // console.log(key);
+    if(key !== 'undefined') {
+
+      return this.translate.data[key] || '';
+    }
   }
 }

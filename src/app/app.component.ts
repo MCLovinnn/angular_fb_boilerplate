@@ -29,16 +29,16 @@ export class AppComponent implements OnInit {
     public ts: TranslationService,
     private fieldS: FieldService) {
 
-    cs.get('config').subscribe(val => console.log(val));
+    // cs.get('config').subscribe(val => console.log(val));
 
-    fs.addConfig(
-      {
-        home: {
-          control: controlPanelConfig,
-          ui: fieldConfig,
-          tree: homeTreeConfig
-        }
-      });
+    // fs.addConfig(
+    //   {
+    //     home: {
+    //       control: controlPanelConfig,
+    //       ui: fieldConfig,
+    //       tree: homeTreeConfig
+    //     }
+    //   });
 
       fieldS.set('home_ui_new');
   }

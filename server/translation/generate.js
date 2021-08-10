@@ -2,7 +2,7 @@ var fs = require("fs");
 const mkdirp = require("mkdirp");
 
 exports.generateTxtFile = function(data, res) {
-  // console.log(data);
+  console.log(data);
   var language;
   var entries = {};
   for (lang in data) {
@@ -22,19 +22,32 @@ exports.generateTxtFile = function(data, res) {
           // var nameS = keys[2];
           // var form = keys[1];
           // var pageName = keys[0];
-
+          if (!entries[page]) {
+            entries[page] = {};
+          }
+          if (!entries[page][form]) {
+            entries[page][form] = {};
+          }
           // console.log(data[page][item]);
-          entries[keys + "#label"] = "";
-          // entries[keys + "#value"] = "";
-          entries[keys + "#hintlabel"] = "";
-          // entries[keys + "#placeholder"] = "";
-          entries[keys + "#tooltip"] = "";
+          entries[page][form][item] = {
+            label: '',
+            hintlabel: '',
+            tooltip: '',
+          }
+          // entries[keys + "#label"] = "";
+          // // entries[keys + "#value"] = "";
+          // entries[keys + "#hintlabel"] = "";
+          // // entries[keys + "#placeholder"] = "";
+          // entries[keys + "#tooltip"] = "";
 
           if (obj["options"]) {
+            entries[page][form][item]['options']= {};
             for (opt in obj["options"]) {
               var option = obj["options"][opt];
-              entries[option["key"]] = "";
-              entries[option["key"] + "#desc"] = "";
+              entries[page][form][item]['options'][option["key"]] = "";
+              entries[page][form][item]['options'][option["key"] + "#desc"] = "";
+              // entries[option["key"]] = "";
+              // entries[option["key"] + "#desc"] = "";
             }
           }
 
@@ -44,7 +57,7 @@ exports.generateTxtFile = function(data, res) {
     }
   }
 
-  // console.log(entries);
+  console.log(JSON.stringify(entries));
 
   var path = __dirname + "/../../src/assets/locale/";
   mkdirp(path, function(err) {
@@ -54,13 +67,23 @@ exports.generateTxtFile = function(data, res) {
     var texts = {};
     fs.readFile(path + language + ".json", "utf8", (err, data) => {
       if (err) {
-        console.error(err);
-        res.send({ error: err });
+        fs.writeFile(
+        path + language + ".json",
+        JSON.stringify(entries),
+        {},
+        function(error) {
+          if (error) {
+            console.log(error);
+            res.send({ error: error });
+          }
+          res.send({ done: true });
+        }
+      );
       }
 
       // console.log(data);
       if (data != "undefined") {
-        texts = JSON.parse(data);
+        // texts = JSON.parse(data);
         // console.log(texts);
       }
 
@@ -86,7 +109,7 @@ exports.generateTxtFile = function(data, res) {
 
 exports.generateConfigFile = function(lang, config, res) {
   // console.log(config);
-  var path = __dirname + "/../../src/app/config/";
+  var path = __dirname + "/../../src/assets/config/";
   mkdirp(path, function(err) {
     if (err) {
       throw err;
@@ -135,7 +158,7 @@ exports.generateConfigFile = function(lang, config, res) {
 };
 
 exports.getConfigFile = function(res) {
-  var path = __dirname + "/../../src/app/config/config.json";
+  var path = __dirname + "/../../src/assets/config/config.json";
   fs.readFile(path, "utf8", (err, data) => {
     if (err) {
       // console.error(err);

@@ -34,10 +34,14 @@ import { ControlpanelComponent } from './controlpanel/controlpanel.component';
 import { TreeComponent } from './tree/tree.component';
 import {
   FormbuilderModule,
-  TranslationService
+  TranslationService,
+  FormService
 } from '../../projects/formbuilder/src/public-api';
 import { FormComponent } from './form/form.component';
 import { TranslationComponent } from './translation/translation.component';
+import { ConnectorService } from './services/connector.service';
+// @ts-ignore
+import CONFIG from '../assets/config/config.json';
 
 registerLocaleData(localeDe, 'de');
 
@@ -83,7 +87,9 @@ registerLocaleData(localeDe, 'de');
   exports: [AppComponent]
 })
 export class AppModule {
-  constructor(public ts: TranslationService) {
+  constructor(public ts: TranslationService, private cs: ConnectorService, private fs: FormService) {
+    fs.addConfig(CONFIG);
+
     ts.setPath('assets/locale/');
     ts.use('de').then(res => {
       // console.log(res);

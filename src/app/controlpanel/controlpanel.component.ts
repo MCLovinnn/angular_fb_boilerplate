@@ -3,9 +3,11 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
   optionsConfig,
   FormService,
-  ConfigService
+  ConfigService,
+  TranslationService
 } from '../../../projects/formbuilder/src/public-api';
 import { FieldService } from '../services/field.service';
+import { FieldComponent } from '../field/field.component';
 
 @Component({
   selector: 'app-controlpanel',
@@ -16,17 +18,7 @@ export class ControlpanelComponent implements OnInit {
   @Output() fieldchange: EventEmitter<any> = new EventEmitter();
   @Input() form: FormGroup;
   @Input() control: FormControl;
-  @Input() nameEmitter: EventEmitter<string> = new EventEmitter();
-  @Input() type: EventEmitter<string> = new EventEmitter();
   @Input() disabledEmitter: EventEmitter<boolean> = new EventEmitter();
-  @Input() validatorsEmitter: EventEmitter<any> = new EventEmitter();
-  @Input() hintlabelEmitter: EventEmitter<string> = new EventEmitter();
-  @Input() tooltipEmitter: EventEmitter<string> = new EventEmitter();
-  @Input() placeholderE: EventEmitter<string> = new EventEmitter();
-  @Input() minLEmitter: EventEmitter<string> = new EventEmitter();
-  @Input() maxLEmitter: EventEmitter<string> = new EventEmitter();
-  @Input() minEmitter: EventEmitter<string> = new EventEmitter();
-  @Input() maxEmitter: EventEmitter<string> = new EventEmitter();
   @Input() requiredEmitter: EventEmitter<string> = new EventEmitter();
 
   autoCompleteConfig: optionsConfig = {
@@ -42,18 +34,56 @@ export class ControlpanelComponent implements OnInit {
     public fb: FormBuilder,
     public fs: FormService,
     private configS: ConfigService,
-    private fieldS: FieldService
+    private fieldS: FieldService,
+    public ts: TranslationService
   ) {
-    // this.form = new Form(this.controlPanelConfig);
-    // fs.addConfig({ home: { control: controlPanelConfig } });
     this.form = fs.getForm('home_control');
-    // console.log(fs.forms);
-    // console.log(fs.configs);
-    // console.log(this.allControlls);
+
+    fs.getFormControl({name: 'home_control_tooltip'}).valueChanges.subscribe(val => {
+      // console.log(val);
+
+      ts.updateData({[fieldS.get()+ '#tooltip']: val});
+    });
+
+    fs.getFormControl({name: 'home_control_hintlabel'}).valueChanges.subscribe(val => {
+      // console.log(val);
+
+      ts.updateData({[fieldS.get()+ '#hintlabel']: val});
+    });
+
+    fs.getFormControl({name: 'home_control_type'}).valueChanges.subscribe(val => {
+      if(val) {
+        let field = fs.getFieldByName(fieldS.get()) as FieldComponent;
+        field.internalType = val;
+      }
+    });
+
+    fs.getFormControl({name: 'home_control_name'}).valueChanges.subscribe(val => {
+      // console.log(val);
+
+      if(val) {
+        ts.updateData({[fieldS.get()+ '#label']: val});
+      }
+    });
+
+    fs.getFormControl({name: 'home_control_value'}).valueChanges.subscribe(val => {
+      // console.log(val);
+
+      if(val) {
+        fs.getFormControl({name: fieldS.get()}).patchValue(val);
+      }
+    });
   }
 
   reset() {
     this.fs.getForm('home_control').reset();
+
+    let field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
+    field.placeholder = 'home_ui_new';
+    field.internalType = 'text';
+
+    field.ngOnInit();
+    this.fieldS.set('home_ui_new');
   }
 
   ngOnInit() {
@@ -63,49 +93,16 @@ export class ControlpanelComponent implements OnInit {
         // console.log(value);
         this.allControlls = value.children;
       }
-      // this.allControlls = data;
     });
-
-    // this.allControlls = this.fs.getConfigs();
-    // console.log(this.allControlls);
 
     this.fieldchange.subscribe(value => {
       // console.log(value);
       switch (value.type) {
-        case 'home_control_name':
-          // console.log(this.control);
-          // console.log('hi');
-          this.nameEmitter.emit(value.value);
-          break;
-        case 'home_control_type':
-          this.type.emit(value.value);
-          this.internalType = value.value;
-          break;
         case 'home_control_disabled':
           this.disabledEmitter.emit(value.value);
           break;
-        case 'home_control_validators':
-          this.validatorsEmitter.emit(value.value);
-          break;
-        case 'home_control_value':
-          this.fs
-            .getFormControl(this.fs.getConfigByName('home_ui_new'))
-            .patchValue(value.value);
-          break;
-        case 'home_control_hintlabel':
-          this.hintlabelEmitter.emit(value.value);
-          break;
-        case 'home_control_tooltip':
-          this.tooltipEmitter.emit(value.value);
-          break;
         case 'home_control_required':
           this.requiredEmitter.emit(value.value);
-          break;
-        case 'home_control_min':
-          this.minEmitter.emit(value.value);
-          break;
-        case 'home_control_max':
-          this.maxLEmitter.emit(value.value);
           break;
       }
     });

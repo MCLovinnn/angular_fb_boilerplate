@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 import { IField } from '../interfaces/ifield';
-import { DataFlattnerService } from './data-flattner.service';
 import { IValidator } from '../interfaces/ivalidator';
-import { merge, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { BaseFieldComponent } from '../classes/field';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormService {
-
   forms = new FormGroup({});
   configs: any;
+  configChange: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
   fieldchange: BehaviorSubject<any[]> = new BehaviorSubject([]);
   fields = [];
@@ -22,7 +27,6 @@ export class FormService {
   };
 
   constructor(private fb: FormBuilder) {
-
     this.fieldchange.subscribe(val => {
       this.fields.push(val);
     });
@@ -32,10 +36,9 @@ export class FormService {
     return this.fields;
   }
 
-  getFieldByName(name:string): BaseFieldComponent{
+  getFieldByName(name: string): BaseFieldComponent {
     // console.log(name);
     // console.log(this.fields);
-
 
     return this.fields.find(field => field.name === name);
   }
@@ -49,13 +52,12 @@ export class FormService {
    * @description adds form to Service of creates one
    */
   addForm(form: FormGroup, pageName: string) {
-
     // console.log(pageName);
     // console.log(form);
 
     if (this.forms !== undefined && this.forms !== null) {
       if (this.forms.get(pageName)) {
-        let tmpForm = (this.forms.get(pageName) as FormGroup);
+        let tmpForm = this.forms.get(pageName) as FormGroup;
         Object.assign(tmpForm, form);
         // console.log(tmpForm);
         this.forms.removeControl(pageName);
@@ -70,7 +72,6 @@ export class FormService {
       this.forms = this.fb.group({ [pageName]: form });
     }
     // console.log(this.forms);
-
   }
 
   /**
@@ -79,38 +80,36 @@ export class FormService {
    */
   addConfig(config: any) {
     // console.log(config);
-
     if (this.configs !== undefined && this.configs !== null) {
-      let found = false;
-      Object.keys(this.configs).map((key) => {
-        Object.keys(config).map((page) => {
-          if (page === key) {
-            found = true;
-            this.configs[key] = Object.assign({}, this.configs[key], config[key]);
+      for (const [pageName, page] of Object.entries(config)) {
+        for (const [formName, form] of Object.entries(page)) {
+          let controls = {};
+          for (const [fieldName, field] of Object.entries(form)) {
+            controls[fieldName] = field;
           }
-        })
-      });
-      if (!found) {
-        this.configs = Object.assign({}, this.configs, config);
+          // console.log(controls);
+          if (this.configs[pageName][formName]) {
+            Object.assign(this.configs[pageName][formName], controls);
+          } else {
+            this.configs[pageName][formName] = controls;
+          }
+        }
       }
     } else {
       this.configs = config;
     }
     // console.log(config);
-
-    this.setUp(config);
+    this.configChange.next(this.configs);
+    this.setUp(this.configs);
     // console.log('formConfig', this.configs);
   }
-
 
   /* TODO: has to be integrated */
   updateConfig(config: IField) {
     // console.log(config);
     // console.log(this.configs);
 
-    Object.entries(this.configs).forEach((con) => {
-
-    });
+    Object.entries(this.configs).forEach(con => {});
     // for (let item of this.configs.children) {
     //   if (item.name === config.name) {
     //     item = config;
@@ -130,7 +129,14 @@ export class FormService {
     const page = keys[0];
     const form = keys[1];
     const key = keys[2];
-    return this.configs[page][form][key] ? this.configs[page][form][key] as IField : this.emptyObj;
+
+    if (this.configs[page] && this.configs[page][form]) {
+      return this.configs[page][form][key]
+        ? (this.configs[page][form][key] as IField)
+        : this.emptyObj;
+    } else {
+      return this.emptyObj;
+    }
   }
 
   /**
@@ -143,8 +149,14 @@ export class FormService {
     const form = keys[1];
     const key = keys[2];
 
-    if (((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(field.name)) {
-      return ((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(field.name) as FormControl;
+    if (
+      ((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(
+        field.name
+      )
+    ) {
+      return ((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(
+        field.name
+      ) as FormControl;
     } else {
       return new FormControl('', this.buildValidators(field.validators));
     }
@@ -163,11 +175,10 @@ export class FormService {
       // console.log(this.forms.get([page, form]));
       // console.log(((this.forms.get(page) as FormGroup).get(form) as FormGroup));
 
-
-      return ((this.forms.get(page) as FormGroup).get(form) as FormGroup);
+      return (this.forms.get(page) as FormGroup).get(form) as FormGroup;
     } else {
-      if (this.forms.get(page)){
-        return (this.forms.get(page)) as FormGroup;
+      if (this.forms.get(page)) {
+        return this.forms.get(page) as FormGroup;
       } else {
         return new FormGroup({});
       }
@@ -235,25 +246,54 @@ export class FormService {
    */
   setUp(config: any) {
     // console.log('config', config);
-    Object.keys(config).forEach((page) => {
+    Object.keys(config).forEach(page => {
       const newForm = {};
       // console.log(page); // home
       const formObj = config[page];
       if (formObj) {
-        Object.keys(formObj).forEach((form) => {
+        Object.keys(formObj).forEach(form => {
           // console.log(form); // control || ui
           const formArray = {};
           const forM: any = formObj[form];
           // console.log(forM);
           // console.log(form);
-          Object.keys(forM).forEach((key) => {
+          Object.keys(forM).forEach(key => {
             const field: IField = forM[key];
             const validatorS = this.buildValidators(field.validators);
             const controL = [];
             controL.push(field.value ? field.value : '');
-            controL.push(validatorS);
-            // console.log(controL);
+
+            const options = {
+              validators: [],
+              updateOn: ''
+            };
+
+            // for (let i in validatorS) {
+              if (validatorS) {
+                options.validators = validatorS;
+              }
+            // }
+
+            if(field.updateOn) {
+              options.updateOn = field.updateOn;
+              // if (controL.length < 2) {
+              //   controL.push('');
+              //   controL.push('');
+              // }
+              // if (controL.length < 3) {
+              //   controL.push('');
+              // }
+              // // console.log('hep');
+              // // console.log(field);
+
+              // controL.push({updateOn : field.updateOn});
+              // controL['updateOn'] = field.updateOn;
+              controL.push(options);
+              // console.log(controL);
+            }
             formArray[field.name] = controL;
+            // console.log(formArray);
+
           });
           newForm[form] = this.fb.group(formArray);
           // console.log('array', newForm);
@@ -262,5 +302,9 @@ export class FormService {
         // console.log(this.fb.group(newForm));
       }
     });
+  }
+
+  onConfigChange() {
+    return this.configChange;
   }
 }

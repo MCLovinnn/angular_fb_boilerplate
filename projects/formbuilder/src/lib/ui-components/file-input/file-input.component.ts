@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { BaseFieldComponent } from '../../classes/field';
 import { FormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-file-input',
@@ -12,8 +13,9 @@ export class FileInputComponent extends BaseFieldComponent implements OnInit {
 
   @Input() srcResult: any;
   constructor(public fb: FormBuilder,
-    public fs: FormService) {
-    super(fb, fs);
+    public fs: FormService,
+    public ts: TranslationService) {
+    super(fb, fs, ts);
   }
 
   ngOnInit() {
@@ -30,13 +32,13 @@ export class FileInputComponent extends BaseFieldComponent implements OnInit {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         // console.log(e);
-        
+
         this.srcResult = e.target.result;
       };
 
       reader.readAsArrayBuffer(inputNode.files[0]);
       // console.log(reader);
-      
+
     }
   }
 }

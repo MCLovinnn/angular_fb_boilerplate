@@ -30,6 +30,7 @@ export interface IField {
   icon?: string;
   iconAction?: string;
   change?: EventEmitter<any>;
+  updateOn?: 'change' | 'blur' | 'submit';
   options?: ICodeEntry[];
 }
 

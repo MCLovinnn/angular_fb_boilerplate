@@ -1,4 +1,4 @@
-import { Component, Input, Injectable } from '@angular/core';
+import { Component, Input, Injectable, OnInit } from '@angular/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   MatTreeFlatDataSource,
@@ -108,7 +108,7 @@ export class ChecklistDatabase {
   styleUrls: ['tree.component.scss'],
   providers: [ChecklistDatabase]
 })
-export class TreeComponent {
+export class TreeComponent implements OnInit {
   @Input() data: any;
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
@@ -157,21 +157,25 @@ export class TreeComponent {
       this.treeFlattener
     );
 
-    const configs = fs.getConfigs();
     // this.db = new ChecklistDatabase(configs);
     _database.dataChange.subscribe(data => {
       this.dataSource.data = data;
     });
 
-
-    let newData = this.configS.buildFileTree(configs,0) as TodoItemNode[];
-
-    this.dataSource.data = newData;
     // console.log(fs.getForms());
-    const langField = fs.getFormControl(fs.getConfigByName('home_tree_lang'));
-    langField.setValue(ts.lang || 'de');
+  }
+
+  ngOnInit(){
+    this.fs.onConfigChange().subscribe(config => {
+      let newData = this.configS.buildFileTree(config, 0) as TodoItemNode[];
+    // this.dataSource.data = newData;
+    this._database.dataChange.next(newData);
+
+    const langField = this.fs.getFormControl(this.fs.getConfigByName('home_tree_lang'));
+    langField.setValue(this.ts.lang || 'de');
     langField.valueChanges.subscribe(val => {
-      ts.setLang(val);
+      this.ts.setLang(val);
+    });
     });
   }
 
@@ -289,15 +293,44 @@ export class TreeComponent {
 
   /** Select the category so we can insert the new item. */
   addNewItem(node: TodoItemFlatNode) {
+    // console.log(node);
+
     const parentNode = this.flatNodeMap.get(node);
+    // console.log(parentNode);
+
     this._database.insertItem(parentNode!, '');
     this.treeControl.expand(node);
   }
 
+  /**
+   * TODO: update tree or config triggers confile file update / generation
+   */
   /** Save the node to database */
   saveNode(node: TodoItemFlatNode, itemValue: string) {
+
     const nestedNode = this.flatNodeMap.get(node);
-    this._database.updateItem(nestedNode!, itemValue);
+    const parent = this.getParentNode(this.nestedNodeMap.get(nestedNode));
+    const parentparent = this.getParentNode(parent);
+
+    let key = parentparent.name + '_' + parent.name + '_' + itemValue.toLowerCase();
+
+    let tmpConf = {
+      [parentparent.name]: {
+        [parent.name] : {
+          [itemValue.toLowerCase()] : {
+            name: key,
+            htmlType: 'text'
+          }
+        }
+      }
+    };
+
+    this.fs.addConfig(tmpConf);
+
+    this.ts.onDataChange.emit({[key+'#label']: itemValue});
+
+    this._database.updateItem(nestedNode!, key+'#label');
+    this.ngOnInit();
   }
 
   toggleLang() {
@@ -317,12 +350,14 @@ export class TreeComponent {
   }
 
   open(node) {
-    const data = this.fs.getConfigByName(node.name);
-    const field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
-    field.name = data.name;
+    let data = this.fs.getConfigByName(node.name);
 
-    field.ngOnInit();
-    field.type.emit(data.htmlType);
+    let field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
+    field.placeholder = data.name;
+    // data.name = 'home_ui_new';
+    field.internalType = data.htmlType;
+
+    // field.ngOnInit();
     this.fieldS.set(data.name);
   }
 

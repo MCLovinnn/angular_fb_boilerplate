@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
   disabled: EventEmitter<boolean> = new EventEmitter();
   dis = false;
   placeholderE: EventEmitter<boolean> = new EventEmitter();
-  placeholder = 'test';
+  placeholder = '';
   hintlabel: EventEmitter<string> = new EventEmitter();
   label = '';
   tooltip: EventEmitter<string> = new EventEmitter();

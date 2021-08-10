@@ -1,23 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, Input, Output, EventEmitter } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Injectable, Input, Output, EventEmitter } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class TranslationService {
   @Output() onLangChange: EventEmitter<string> = new EventEmitter();
-  @Output() onDataChange: EventEmitter<string> = new EventEmitter();
-
+  @Output() onDataChange: EventEmitter<any> = new EventEmitter();
 
   data: any = {};
   lang: string;
 
   private _path: string;
   constructor(private http: HttpClient) {
+    this.onDataChange.subscribe(val => {
+      this.updateData(val);
+    });
+    this.onLangChange.subscribe(val => {
+      this.lang = val;
+    });
   }
 
-  setPath (path: string) {
-    this._path = path;;
+  setPath(path: string) {
+    this._path = path;
   }
 
   setLang(lang: string) {
@@ -26,9 +31,14 @@ export class TranslationService {
     this.onLangChange.emit(this.lang);
   }
 
+  updateData(data: any) {
+    Object.assign(this.data, data);
+    // this.onDataChange.emit(this.data);
+  }
+
   use(lang: string): Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
-      const langPath = `${this._path}${lang || 'de'}.json`;
+      const langPath = `${this._path}${lang || "de"}.json`;
       // console.log(langPath);
       this.http.get<{}>(langPath).subscribe(
         translation => {

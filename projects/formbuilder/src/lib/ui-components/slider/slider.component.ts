@@ -3,6 +3,7 @@ import { ISliderConfig } from '../../interfaces/isliderconfig';
 import { FormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { BaseFieldComponent } from '../../classes/field';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-slider',
@@ -13,8 +14,9 @@ export class SliderComponent extends BaseFieldComponent implements OnInit {
   @Input() config: ISliderConfig;
 
   constructor(public fb: FormBuilder,
-    public fs: FormService) {
-    super(fb, fs);
+    public fs: FormService,
+    public ts: TranslationService) {
+    super(fb, fs, ts);
   }
 
   ngOnInit() {

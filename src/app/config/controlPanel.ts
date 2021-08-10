@@ -138,7 +138,8 @@ export let controlPanelConfig = {
     validators: {
       required: false,
       maxLength: 15
-    }
+    },
+    updateOn: 'blur'
   },
   placeholder: {
     name: 'home_control_placeholder',
@@ -167,14 +168,16 @@ export let controlPanelConfig = {
     htmlType: 'text',
     validators: {
       required: false
-    }
+    },
+    updateOn: 'blur'
   },
   value: {
     name: 'home_control_value',
     htmlType: 'text',
     validators: {
       required: false
-    }
+    },
+    updateOn: 'blur'
   },
   name: {
     name: 'home_control_name',

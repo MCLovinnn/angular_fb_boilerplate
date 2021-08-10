@@ -52,4 +52,19 @@ export class ConnectorService {
   get(entity) {
     return this.http.get('/api/' + entity);
   }
+
+  load(path: string) {
+    return new Promise<{}>((resolve, reject) => {
+      const langPath = `${path}.json`;
+      // console.log(langPath);
+      this.http.get<{}>(langPath).subscribe(
+        config => {
+          resolve(config);
+        },
+        error => {
+          resolve({error});
+        }
+      );
+    });
+  }
 }

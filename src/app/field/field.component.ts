@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { BaseFieldComponent, FormService } from '../../../projects/formbuilder/src/public-api';
+import { BaseFieldComponent, FormService, TranslationService } from '../../../projects/formbuilder/src/public-api';
 
 @Component({
   selector: 'app-field',
@@ -9,27 +9,29 @@ import { BaseFieldComponent, FormService } from '../../../projects/formbuilder/s
 })
 export class FieldComponent extends BaseFieldComponent implements OnInit {
 
-  @Input() type: EventEmitter<string> = new EventEmitter();
+  @Input() type: EventEmitter<string>;
 
   internalType = 'text';
   internalTooltip = '';
 
   constructor(
     public fb: FormBuilder,
-    public fs: FormService
+    public fs: FormService,
+    public ts: TranslationService,
   ) {
-    super(fb, fs);
+    super(fb, fs, ts);
+
+    if(this.type){
+      this.type.subscribe((value) => {
+        // console.log('hi');
+        this.internalType = value;
+        // this.internalTooltip = this.tooltip;
+      });
+    }
   }
 
   ngOnInit(): void {
     super.ngOnInit();
-    // console.log(this.type);
-    // console.log(this.internalType);
-    this.type.subscribe((value) => {
-      // console.log(value);
-      this.internalType = value;
-      this.internalTooltip = this.tooltip;
-    });
   }
 
 }

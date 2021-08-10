@@ -1,53 +1,49 @@
 <mat-card>
   <app-text-input
     *ngIf="internalType == 'text'"
-    [name]="name"
+    [name]="getName()"
     [hintlabel]="hintlabel"
     [maxLength]="maxLength"
     [max]="max"
     [minLength]="minLength"
     [min]="min"
-    [placeholder]="placeholder"
     [required]="required"
     [tooltip]="tooltip"
     [disabled]="disabled">
   </app-text-input>
   <app-date-input
     *ngIf="internalType == 'date'"
-    [name]="name"
+    [name]="getName()"
     [hintlabel]="hintlabel"
     [maxLength]="maxLength"
     [max]="max"
     [minLength]="minLength"
     [min]="min"
-    [placeholder]="placeholder"
     [required]="required"
     [tooltip]="tooltip"
     [disabled]="disabled">
   </app-date-input>
   <app-select
     *ngIf="internalType == 'select'"
-    [name]="name"
+    [name]="getName()"
     [hintlabel]="hintlabel"
     [maxLength]="maxLength"
     [max]="max"
     [options]="options"
     [minLength]="minLength"
     [min]="min"
-    [placeholder]="placeholder"
     [required]="required"
     [tooltip]="tooltip"
     [disabled]="disabled">
   </app-select>
   <app-checkbox
     *ngIf="internalType == 'checkbox'"
-    [name]="name"
+    [name]="getName()"
     [hintlabel]="hintlabel"
     [maxLength]="maxLength"
     [max]="max"
     [minLength]="minLength"
     [min]="min"
-    [placeholder]="placeholder"
     [required]="required"
     [tooltip]="tooltip"
     [disabled]="disabled">

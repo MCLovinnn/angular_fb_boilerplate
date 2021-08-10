@@ -5,18 +5,29 @@ import { FormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { AutoSearch } from '../../interfaces/imenu';
 import { optionsConfig } from '../../interfaces/iautocompleteoption';
+import { TranslationService } from '../../services/translation.service';
 
-export const _filter = (opt: any[], value: string): string[] => {
+export const _filter = (opt: any[], value: string, ts:TranslationService): string[] => {
   const filterValue = value.toLowerCase();
 
   if (typeof opt[0] === 'string') {
-    return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+    return opt.filter(item => checkKey(ts, item, filterValue));
   } else {
     return opt.filter(
-      item => item.name.toLowerCase().indexOf(filterValue) === 0
+      item => checkKey(ts, item.name, filterValue)
     );
   }
 };
+
+export function checkKey(ts: TranslationService, item: string, value: string) {
+  if(item.toLocaleLowerCase().indexOf(value) >= 0) {
+    return true;
+  }
+  if(ts.data[item+'#label'] && ts.data[item+'#label'].toLocaleLowerCase().indexOf(value) >= 0) {
+    return true;
+  }
+  return false;
+}
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -30,8 +41,8 @@ export class AutocompleteComponent extends BaseFieldComponent
   @Input() options: any[];
   @Input() config: optionsConfig;
 
-  constructor(public fb: FormBuilder, public fs: FormService) {
-    super(fb, fs);
+  constructor(public fb: FormBuilder, public fs: FormService, public ts: TranslationService) {
+    super(fb, fs, ts);
   }
 
   ngOnInit() {
@@ -67,7 +78,7 @@ export class AutocompleteComponent extends BaseFieldComponent
       return this.options
         .map((group: AutoSearch) => ({
           name: group.name,
-          children: _filter(group.children as string[], value)
+          children: _filter(group.children as string[], value, this.ts)
         }))
         .filter((group: AutoSearch) => group.name.length > 0);
     }

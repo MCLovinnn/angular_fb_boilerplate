@@ -2,7 +2,6 @@
   <mat-step>
     <ng-template matStepLabel>Feldname</ng-template>
     <app-text-input
-      [change]="fieldchange"
       name="home_control_name"
     ></app-text-input>
     <div>
@@ -11,28 +10,24 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Feld Type</ng-template>
-    <mat-grid-list cols="12" rowHeight="65px">
+    <mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-select
-          [change]="fieldchange"
           name="home_control_type"
         ></app-select>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input
-          [change]="fieldchange"
           name="home_control_value"
         ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input
-          [change]="fieldchange"
           name="home_control_hintlabel"
         ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input
-          [change]="fieldchange"
           name="home_control_tooltip"
         ></app-text-input>
       </mat-grid-tile>
@@ -44,7 +39,7 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Validation</ng-template>
-    <mat-grid-list cols="12" rowHeight="65px">
+    <mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-checkbox
           [change]="fieldchange"
@@ -59,32 +54,27 @@
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input
-          [change]="fieldchange"
           name="home_control_min"
         ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input
-          [change]="fieldchange"
           name="home_control_max"
         ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input
-          [change]="fieldchange"
           [htmlType]="'number'"
           name="home_control_minLength"
         ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input
-          [change]="fieldchange"
           name="home_control_maxLength"
         ></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input
-          [change]="fieldchange"
           name="home_control_pattern"
         ></app-text-input>
       </mat-grid-tile>
@@ -95,7 +85,7 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Funktionen</ng-template>
-    <mat-grid-list cols="12" rowHeight="65px">
+    <mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-select name="home_control_event"></app-select>
       </mat-grid-tile>
@@ -107,13 +97,13 @@
         ></app-autocomplete>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-select [change]="" name="home_control_operator"></app-select>
+        <app-select name="home_control_operator"></app-select>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-select [change]="" name="home_control_action"></app-select>
+        <app-select name="home_control_action"></app-select>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-text-input [change]="" name="home_control_reset"></app-text-input>
+        <app-text-input name="home_control_reset"></app-text-input>
       </mat-grid-tile>
     </mat-grid-list>
     <div>

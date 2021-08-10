@@ -7,10 +7,10 @@
   </mat-radio-button>
 </mat-radio-group>
 <ng-container *ngIf="form" [formGroup]="form">
-  <mat-form-field [hintLabel]="name+'#hintlabel' | translate">
-    <mat-radio-group [placeholder]="name+'#label' | translate"
+  <mat-form-field [hintLabel]="getName()+'#hintlabel' | translate">
+    <mat-radio-group [placeholder]="getName()+'#label' | translate"
                 [formControlName]="name"
-                [matTooltip]="name+'#tooltip' | translate"
+                [matTooltip]="getName()+'#tooltip' | translate"
                 [required]="required"
                 matTooltipDisabled="false"
                 matTooltipHideDelay="200"
