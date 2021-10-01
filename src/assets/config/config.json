@@ -5,6 +5,20 @@
         "name": "home_control_type",
         "htmlType": "select",
         "validators": { "required": true },
+        "value": "text",
+        "customValidation": [
+          {
+            "event": "change",
+            "operator": "!=",
+            "dialog": {
+              "dialog": "warn",
+              "msg": "changeType",
+              "okAction": "changeTypeOK",
+              "noAction": "changeTypeNO",
+              "reset": true
+            }
+          }
+        ],
         "options": [
           {
             "value": "select",
@@ -70,6 +84,7 @@
         "name": "home_control_event",
         "htmlType": "select",
         "validators": { "required": true },
+        "value": "change",
         "options": [
           {
             "value": "change",
@@ -175,6 +190,7 @@
         "name": "home_tree_lang",
         "htmlType": "select",
         "validators": { "required": true },
+        "value": "de",
         "options": [
           { "value": "de", "key": "home_tree_lang_Opt_de" },
           { "value": "en", "key": "home_tree_lang_Opt_en" }

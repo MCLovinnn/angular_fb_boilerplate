@@ -39,6 +39,10 @@ import { TranslatePipe } from './services/translation.pipe';
 import { TranslationService } from './services/translation.service';
 import { ConfigService } from './services/config.service';
 import { DataFlattnerService } from './services/data-flattner.service';
+import { ConfirmDialogComponent } from './ui-components/dialogs/confirm-dialog/confirm-dialog.component';
+import { ErrorDialogSimpleComponent } from './ui-components/dialogs/error-dialog-simple/error-dialog-simple.component';
+import { InfoDialogSimpleComponent } from './ui-components/dialogs/info-dialog-simple/info-dialog-simple.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 registerLocaleData(localeDe, 'de');
 
@@ -54,7 +58,10 @@ registerLocaleData(localeDe, 'de');
     CheckboxComponent,
     RadiobuttonComponent,
     SliderComponent,
-    TranslatePipe
+    TranslatePipe,
+    ConfirmDialogComponent,
+    ErrorDialogSimpleComponent,
+    InfoDialogSimpleComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +86,8 @@ registerLocaleData(localeDe, 'de');
     MatButtonModule,
     MatSidenavModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDialogModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'de' },
@@ -97,7 +105,10 @@ registerLocaleData(localeDe, 'de');
     CheckboxComponent,
     RadiobuttonComponent,
     SliderComponent,
-    TranslatePipe
+    TranslatePipe,
+    ConfirmDialogComponent,
+    ErrorDialogSimpleComponent,
+    InfoDialogSimpleComponent
   ]
 })
 

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BaseFieldComponent, FormService, TranslationService } from '../../../projects/formbuilder/src/public-api';
+import { IValidator } from '../../../projects/formbuilder/src/lib/interfaces/ivalidator';
+import { FieldService } from '../services/field.service';
 
 @Component({
   selector: 'app-field',
@@ -17,7 +19,8 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     public fs: FormService,
-    public ts: TranslationService,
+    private fieldS: FieldService,
+    public ts: TranslationService
   ) {
     super(fb, fs, ts);
 
@@ -34,4 +37,14 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
     super.ngOnInit();
   }
 
+  changeValidators(validators: IValidator) {
+    let tmpfield = this.getFieldConfig();
+    tmpfield.validators = validators;
+    // console.log(validators);
+
+    this.fs.updateConfig(tmpfield);
+    let control = this.fs.getFormControl({name: this.fieldS.get()});
+    control.setValidators(this.fs.buildValidators(tmpfield.validators));
+    control.updateValueAndValidity();
+  }
 }

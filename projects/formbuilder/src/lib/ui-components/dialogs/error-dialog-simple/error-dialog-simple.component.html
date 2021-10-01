@@ -1,0 +1,20 @@
+<div id="error-dialog_title">
+  <mat-icon class="md-48 hipps-error-icon">{{icon}}</mat-icon>
+  <h2 *ngIf="errorMsg.length < 2">Es ist ein Fehler aufgetreten!</h2>
+  <h2 *ngIf="errorMsg.length > 1">Es sind Fehler aufgetreten!</h2>
+</div>
+
+<mat-dialog-content id="error-dialog_content">
+
+  <mat-list id="error-dialog_error-list">
+    <mat-list-item class="error-dialog_message" *ngFor="let msg of errorMsg" [innerHTML]="msg"></mat-list-item>
+  </mat-list>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="flex-center">
+  <button id="error-dialog_button-ok" class="button-big" mat-raised-button cdkFocusInitial [mat-dialog-close]="true"
+          color="primary">
+    OK
+  </button>
+</mat-dialog-actions>

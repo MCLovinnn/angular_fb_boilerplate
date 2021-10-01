@@ -10,6 +10,23 @@ import { IField } from '../interfaces/ifield';
 import { IValidator } from '../interfaces/ivalidator';
 import { BehaviorSubject } from 'rxjs';
 import { BaseFieldComponent } from '../classes/field';
+import { transform, isEqual, isObject } from 'lodash';
+import { isArray } from 'util';
+import { ICustomValidation } from '../interfaces/icustom-validation';
+import { DialogService } from './dialog.service';
+
+export function difference(newObj, origObj) {
+  let arrayIndexCounter = 0;
+  return transform(newObj, (result, value, key) => {
+    if (!isEqual(value, origObj[key])) {
+      let resultKey = isArray(origObj) ? arrayIndexCounter++ : key;
+      result[resultKey] =
+        isObject(value) && isObject(origObj[key])
+          ? difference(value, origObj[key])
+          : value;
+    }
+  });
+}
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +34,7 @@ import { BaseFieldComponent } from '../classes/field';
 export class FormService {
   forms = new FormGroup({});
   configs: any;
+  changes: any;
   configChange: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
   fieldchange: BehaviorSubject<any[]> = new BehaviorSubject([]);
@@ -26,7 +44,7 @@ export class FormService {
     name: 'home_ui_new'
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private ds: DialogService) {
     this.fieldchange.subscribe(val => {
       this.fields.push(val);
     });
@@ -37,9 +55,6 @@ export class FormService {
   }
 
   getFieldByName(name: string): BaseFieldComponent {
-    // console.log(name);
-    // console.log(this.fields);
-
     return this.fields.find(field => field.name === name);
   }
 
@@ -52,26 +67,18 @@ export class FormService {
    * @description adds form to Service of creates one
    */
   addForm(form: FormGroup, pageName: string) {
-    // console.log(pageName);
-    // console.log(form);
-
     if (this.forms !== undefined && this.forms !== null) {
       if (this.forms.get(pageName)) {
         let tmpForm = this.forms.get(pageName) as FormGroup;
         Object.assign(tmpForm, form);
-        // console.log(tmpForm);
         this.forms.removeControl(pageName);
         this.forms.addControl(pageName, tmpForm);
-        // ((this.forms.get(pageName) as FormGroup).get(formName) as FormGroup).addControl(formName, form)
-        // console.log('test');
-        // console.log(this.forms);
       } else {
         this.forms.addControl(pageName, form);
       }
     } else {
       this.forms = this.fb.group({ [pageName]: form });
     }
-    // console.log(this.forms);
   }
 
   /**
@@ -79,7 +86,6 @@ export class FormService {
    * @description adds Config to Service
    */
   addConfig(config: any) {
-    // console.log(config);
     if (this.configs !== undefined && this.configs !== null) {
       for (const [pageName, page] of Object.entries(config)) {
         for (const [formName, form] of Object.entries(page)) {
@@ -87,7 +93,6 @@ export class FormService {
           for (const [fieldName, field] of Object.entries(form)) {
             controls[fieldName] = field;
           }
-          // console.log(controls);
           if (this.configs[pageName][formName]) {
             Object.assign(this.configs[pageName][formName], controls);
           } else {
@@ -98,26 +103,20 @@ export class FormService {
     } else {
       this.configs = config;
     }
-    // console.log(config);
     this.configChange.next(this.configs);
     this.setUp(this.configs);
-    // console.log('formConfig', this.configs);
   }
 
   /* TODO: has to be integrated */
   updateConfig(config: IField) {
-    // console.log(config);
-    // console.log(this.configs);
+    const keys = config.name.split('_');
+    const page = keys[0];
+    const form = keys[1];
+    const key = keys[2];
 
-    Object.entries(this.configs).forEach(con => {});
-    // for (let item of this.configs.children) {
-    //   if (item.name === config.name) {
-    //     item = config;
-    //     // console.log(item);
-    //     return true;
-    //   }
-    // }
-    return false;
+    if (this.configs[page] && this.configs[page][form]) {
+      this.configs[page][form][key] = config;
+    }
   }
 
   /**
@@ -170,11 +169,7 @@ export class FormService {
     const keys = name.split('_');
     const page = keys[0];
     const form = keys[1];
-    // console.log(this.forms);
     if (this.forms.get([page, form])) {
-      // console.log(this.forms.get([page, form]));
-      // console.log(((this.forms.get(page) as FormGroup).get(form) as FormGroup));
-
       return (this.forms.get(page) as FormGroup).get(form) as FormGroup;
     } else {
       if (this.forms.get(page)) {
@@ -212,7 +207,6 @@ export class FormService {
    * @returns Array with ValidatorFunctions
    */
   buildValidators(config: IValidator) {
-    // console.log('buildVali', this);
     const validators: ValidatorFn[] = [];
     if (config) {
       if (config.email) {
@@ -245,18 +239,13 @@ export class FormService {
    * @description : FormGroup will be initalized and added by config [triggert in addConfig()]
    */
   setUp(config: any) {
-    // console.log('config', config);
     Object.keys(config).forEach(page => {
       const newForm = {};
-      // console.log(page); // home
       const formObj = config[page];
       if (formObj) {
         Object.keys(formObj).forEach(form => {
-          // console.log(form); // control || ui
           const formArray = {};
           const forM: any = formObj[form];
-          // console.log(forM);
-          // console.log(form);
           Object.keys(forM).forEach(key => {
             const field: IField = forM[key];
             const validatorS = this.buildValidators(field.validators);
@@ -268,43 +257,119 @@ export class FormService {
               updateOn: ''
             };
 
-            // for (let i in validatorS) {
-              if (validatorS) {
-                options.validators = validatorS;
-              }
-            // }
+            if (validatorS) {
+              options.validators = validatorS;
+            }
 
-            if(field.updateOn) {
+            if (field.updateOn) {
               options.updateOn = field.updateOn;
-              // if (controL.length < 2) {
-              //   controL.push('');
-              //   controL.push('');
-              // }
-              // if (controL.length < 3) {
-              //   controL.push('');
-              // }
-              // // console.log('hep');
-              // // console.log(field);
 
-              // controL.push({updateOn : field.updateOn});
-              // controL['updateOn'] = field.updateOn;
               controL.push(options);
-              // console.log(controL);
             }
             formArray[field.name] = controL;
-            // console.log(formArray);
-
           });
           newForm[form] = this.fb.group(formArray);
-          // console.log('array', newForm);
           this.addForm(this.fb.group(newForm), page);
         });
-        // console.log(this.fb.group(newForm));
+        this.buildCustomValidation(config);
+      }
+    });
+    this.changes = this.forms.getRawValue();
+  }
+
+  buildCustomValidation(config: any) {
+    Object.keys(config).forEach(page => {
+      const formObj = config[page];
+      if (formObj) {
+        Object.keys(formObj).forEach(form => {
+          const formArray = {};
+          const forM: any = formObj[form];
+          Object.keys(forM).forEach(key => {
+            const field: IField = forM[key];
+            if (field.customValidation) {
+              Object.keys(field.customValidation).forEach(validation => {
+                console.log(field.customValidation[validation]);
+                let fieldToCheck: FormControl | null = null;
+                const validationObj: ICustomValidation = field.customValidation[validation];
+                const fieldD = this.getFormControl(field);
+                fieldD.valueChanges.subscribe((val) => {
+                  let getChange = false;
+                  if(validationObj.fieldToCheck) {
+                    fieldToCheck = this.getFormControl({name: validationObj.fieldToCheck});
+                  } else {
+                    fieldToCheck = fieldD;
+                    getChange = true;
+                  }
+                  switch(validationObj.operator) {
+                    case '<':
+                      break;
+                    case '>':
+                      break;
+                    case '=':
+                      break;
+                    case '!=':
+                    if (getChange) {
+                      if(this.getControlChange(field.name) !== val) {
+                        this.ds.confirm('Der name ändert auch den Key. Sind Sie Sicher?',() => {
+                          this.applieChanges();
+                        }, () => {
+                          this.resetControl(field.name);
+                        });
+                      }
+                    } else {
+                      if(fieldToCheck && fieldToCheck.value !== val) {
+                        this.ds.confirm('Der name ändert auch den Key. Sind Sie Sicher?',() => {}, () => {
+                          this.resetControl(field.name);
+                        });
+                      }
+                      // } else {
+
+                      }
+                      break;
+                  }
+                });
+              });
+            }
+          });
+        });
       }
     });
   }
-
   onConfigChange() {
     return this.configChange;
+  }
+
+  hasChanges() {
+    return difference(this.forms.getRawValue(), this.changes);
+  }
+
+  resetForm() {
+    if (this.forms) {
+      this.forms.patchValue(this.changes);
+    }
+  }
+
+  resetControl(name: string) {
+    const keys = name.split('_');
+    const page = keys[0];
+    const form = keys[1];
+    const control = keys[2];
+
+    if (this.changes[page][form][name]) {
+      this.resetForm();
+      this.getFormControl({name}).markAsUntouched();
+      // this.getFormControl({name}).patchValue(this.changes[page][form][control]);
+    }
+  }
+  getControlChange(name: string) {
+    const keys = name.split('_');
+    const page = keys[0];
+    const form = keys[1];
+    const control = keys[2];
+
+    return this.changes[page][form][name];
+  }
+  applieChanges() {
+    this.changes = this.forms.getRawValue();
   }
 }

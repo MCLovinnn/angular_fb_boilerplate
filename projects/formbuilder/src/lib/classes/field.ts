@@ -15,8 +15,8 @@ export class BaseFieldComponent implements IField, OnInit {
     required: () => 'Das ist ein Pflichtfeld!',
     maxlength: param => `Maximale Länge ${param.requiredLength}!`,
     minlength: param => `Mindestens ${param.requiredLength} Zeichen eingeben!`,
-    max: param => `Maximum beträgt ${param.min}!`,
-    min: param => `Minimum beträgt ${param.max}!`,
+    max: param => `Maximum beträgt ${param.max}!`,
+    min: param => `Minimum beträgt ${param.min}!`,
     pattern: param =>
       `Das Pattern: <b>${param.pattern}</b> wurde nicht eingehalten!`,
     email: () => 'Keine valide Emailadresse'
@@ -59,14 +59,12 @@ export class BaseFieldComponent implements IField, OnInit {
   }
 
   getErrorMeesage() {
-    // console.log('geterror', this.control);
     if (this.control) {
       for (const error in this.control.errors) {
         if (
           (this.control.errors.hasOwnProperty(error) && this.control.touched) ||
           this.control.dirty
         ) {
-          // console.log(error);
           return this.getMeesage(error, this.control.errors[error]);
         }
       }
@@ -74,8 +72,6 @@ export class BaseFieldComponent implements IField, OnInit {
   }
 
   getMeesage(type: string, param: any) {
-    // console.log(param);
-    // console.log('msgs', Field.MSGerrors[type](param));
     return this.MSGerrors[type](param);
   }
 
@@ -173,6 +169,10 @@ export class BaseFieldComponent implements IField, OnInit {
       newValidators.email = this.validators.email;
     }
     this.validators = newValidators;
+  }
+
+  getValidators() {
+    return this.validators;
   }
 
   getFieldConfig() {

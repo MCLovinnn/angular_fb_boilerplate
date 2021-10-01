@@ -168,11 +168,9 @@ export class TreeComponent implements OnInit {
   ngOnInit(){
     this.fs.onConfigChange().subscribe(config => {
       let newData = this.configS.buildFileTree(config, 0) as TodoItemNode[];
-    // this.dataSource.data = newData;
     this._database.dataChange.next(newData);
 
     const langField = this.fs.getFormControl(this.fs.getConfigByName('home_tree_lang'));
-    langField.setValue(this.ts.lang || 'de');
     langField.valueChanges.subscribe(val => {
       this.ts.setLang(val);
     });

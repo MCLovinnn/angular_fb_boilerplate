@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TranslationService, ConfigService, FormService, DataConnectorService, IField, MenuNode } from '../../../projects/formbuilder/src/public-api';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { FieldService } from '../services/field.service';
 
 @Component({
   selector: 'app-form',
@@ -42,6 +43,7 @@ export class FormComponent implements OnInit {
   constructor(private ds: DataConnectorService,
     public fb: FormBuilder,
     public fs: FormService,
+    private fieldS: FieldService,
     private configS: ConfigService,
     public ts: TranslationService) {
 
@@ -62,14 +64,14 @@ export class FormComponent implements OnInit {
       this.dis = value;
       // console.log('dis', this.dis);
       if (value) {
-        this.fs.getFormControl(this.fs.getConfigByName('home_ui_new')).disable();
+        this.fs.getFormControl(this.fs.getConfigByName(this.fieldS.get())).disable();
       } else {
-        this.fs.getFormControl(this.fs.getConfigByName('home_ui_new')).enable();
+        this.fs.getFormControl(this.fs.getConfigByName(this.fieldS.get())).enable();
       }
+      this.fs.getFormControl(this.fs.getConfigByName(this.fieldS.get())).updateValueAndValidity();
     });
     this.hintlabel.subscribe((value) => {
       // console.log(value);
-      // console.log('ngOnInit hintlabel');
 
       this.label = value;
     });

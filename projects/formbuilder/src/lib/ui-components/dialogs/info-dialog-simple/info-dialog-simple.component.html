@@ -1,0 +1,20 @@
+<div id="info-dialog_title">
+  <mat-icon class="md-48 hipps-warning-icon">{{icon}}</mat-icon>
+  <h2>Information</h2>
+</div>
+
+<mat-dialog-content id="info-dialog_content">
+
+  <mat-list id="info-dialog_info-list">
+    <mat-list-item *ngFor="let msg of infoMsg"
+                   class="info-dialog_message"
+                   [innerHTML]="msg">
+    </mat-list-item>
+  </mat-list>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="flex-center">
+  <button id="info-dialog_button-ok" class="button-big" mat-raised-button cdkFocusInitial [mat-dialog-close]="true"
+          color="primary">OK</button>
+</mat-dialog-actions>
