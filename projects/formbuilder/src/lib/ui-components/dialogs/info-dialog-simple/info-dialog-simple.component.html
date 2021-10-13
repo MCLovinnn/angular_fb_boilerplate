@@ -7,8 +7,8 @@
 
   <mat-list id="info-dialog_info-list">
     <mat-list-item *ngFor="let msg of infoMsg"
-                   class="info-dialog_message"
-                   [innerHTML]="msg">
+                   class="info-dialog_message">
+                   {{infoMsg | translate}}
     </mat-list-item>
   </mat-list>
 

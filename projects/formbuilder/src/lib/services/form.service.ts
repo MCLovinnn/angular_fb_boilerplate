@@ -14,6 +14,7 @@ import { transform, isEqual, isObject } from 'lodash';
 import { isArray } from 'util';
 import { ICustomValidation } from '../interfaces/icustom-validation';
 import { DialogService } from './dialog.service';
+import { TranslatePipe } from './translation.pipe';
 
 export function difference(newObj, origObj) {
   let arrayIndexCounter = 0;
@@ -44,7 +45,9 @@ export class FormService {
     name: 'home_ui_new'
   };
 
-  constructor(private fb: FormBuilder, private ds: DialogService) {
+  constructor(private fb: FormBuilder,
+    private ds: DialogService,
+    private tp: TranslatePipe) {
     this.fieldchange.subscribe(val => {
       this.fields.push(val);
     });
@@ -292,7 +295,11 @@ export class FormService {
                 let fieldToCheck: FormControl | null = null;
                 const validationObj: ICustomValidation = field.customValidation[validation];
                 const fieldD = this.getFormControl(field);
+                console.log(validationObj.dialog.msg);
+
                 fieldD.valueChanges.subscribe((val) => {
+                  console.log(this.tp.transform(validationObj.dialog.msg));
+
                   let getChange = false;
                   if(validationObj.fieldToCheck) {
                     fieldToCheck = this.getFormControl({name: validationObj.fieldToCheck});
@@ -310,15 +317,21 @@ export class FormService {
                     case '!=':
                     if (getChange) {
                       if(this.getControlChange(field.name) !== val) {
-                        this.ds.confirm('Der name ändert auch den Key. Sind Sie Sicher?',() => {
+                        console.log('controlchange');
+
+                        this.ds.confirm(validationObj.dialog.msg,() => {
                           this.applieChanges();
                         }, () => {
+                          console.log('reset '+ field.name);
+
                           this.resetControl(field.name);
                         });
                       }
                     } else {
                       if(fieldToCheck && fieldToCheck.value !== val) {
-                        this.ds.confirm('Der name ändert auch den Key. Sind Sie Sicher?',() => {}, () => {
+                        console.log('valuechange');
+
+                        this.ds.confirm(validationObj.dialog.msg,() => {}, () => {
                           this.resetControl(field.name);
                         });
                       }
@@ -343,7 +356,7 @@ export class FormService {
     return difference(this.forms.getRawValue(), this.changes);
   }
 
-  resetForm() {
+  resetForms() {
     if (this.forms) {
       this.forms.patchValue(this.changes);
     }
@@ -353,19 +366,21 @@ export class FormService {
     const keys = name.split('_');
     const page = keys[0];
     const form = keys[1];
-    const control = keys[2];
 
-    if (this.changes[page][form][name]) {
-      this.resetForm();
+    if (this.changes[page][form][name] ||
+      typeof this.changes[page][form][name] === 'string')
+      {
+        this.forms.get(page).get(form).get(name).patchValue(this.changes[page][form][name]);
+      // this.resetForm();
       this.getFormControl({name}).markAsUntouched();
       // this.getFormControl({name}).patchValue(this.changes[page][form][control]);
     }
   }
+
   getControlChange(name: string) {
     const keys = name.split('_');
     const page = keys[0];
     const form = keys[1];
-    const control = keys[2];
 
     return this.changes[page][form][name];
   }

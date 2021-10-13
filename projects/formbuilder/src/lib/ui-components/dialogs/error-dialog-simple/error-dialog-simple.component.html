@@ -7,7 +7,7 @@
 <mat-dialog-content id="error-dialog_content">
 
   <mat-list id="error-dialog_error-list">
-    <mat-list-item class="error-dialog_message" *ngFor="let msg of errorMsg" [innerHTML]="msg"></mat-list-item>
+    <mat-list-item class="error-dialog_message" *ngFor="let msg of errorMsg">{{errorMsg | translate}}</mat-list-item>
   </mat-list>
 
 </mat-dialog-content>

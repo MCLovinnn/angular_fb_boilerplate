@@ -77,6 +77,8 @@ export class DialogService {
    * @param {Function} negativeCallback
    */
   public confirm(messageString: string, positiveCallback: Function, negativeCallback?: Function): void {
+    console.log(messageString);
+
     const dialogData = {
       message: messageString
     };

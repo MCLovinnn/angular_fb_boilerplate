@@ -19,7 +19,8 @@ export class BaseFieldComponent implements IField, OnInit {
     min: param => `Minimum beträgt ${param.min}!`,
     pattern: param =>
       `Das Pattern: <b>${param.pattern}</b> wurde nicht eingehalten!`,
-    email: () => 'Keine valide Emailadresse'
+    email: () => 'Keine valide Emailadresse',
+    matDatepickerParse: () => 'Falsches Datumsformat'
   };
 
   @Input() name = 'home_ui_new';
@@ -72,7 +73,11 @@ export class BaseFieldComponent implements IField, OnInit {
   }
 
   getMeesage(type: string, param: any) {
-    return this.MSGerrors[type](param);
+    console.log(type);
+
+    if(this.MSGerrors[type](param)) {
+      return this.MSGerrors[type](param);
+    }
   }
 
   ngOnInit(): void {

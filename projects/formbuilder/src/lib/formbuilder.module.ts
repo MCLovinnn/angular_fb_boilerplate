@@ -43,6 +43,10 @@ import { ConfirmDialogComponent } from './ui-components/dialogs/confirm-dialog/c
 import { ErrorDialogSimpleComponent } from './ui-components/dialogs/error-dialog-simple/error-dialog-simple.component';
 import { InfoDialogSimpleComponent } from './ui-components/dialogs/info-dialog-simple/info-dialog-simple.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TableComponent } from './ui-components/table/table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 registerLocaleData(localeDe, 'de');
 
@@ -61,7 +65,8 @@ registerLocaleData(localeDe, 'de');
     TranslatePipe,
     ConfirmDialogComponent,
     ErrorDialogSimpleComponent,
-    InfoDialogSimpleComponent
+    InfoDialogSimpleComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -87,12 +92,16 @@ registerLocaleData(localeDe, 'de');
     MatSidenavModule,
     MatExpansionModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'de' },
     ConfigService,
-    DataFlattnerService
+    DataFlattnerService,
+    TranslatePipe
   ],
   bootstrap: [FormbuilderComponent],
   exports: [
@@ -108,7 +117,8 @@ registerLocaleData(localeDe, 'de');
     TranslatePipe,
     ConfirmDialogComponent,
     ErrorDialogSimpleComponent,
-    InfoDialogSimpleComponent
+    InfoDialogSimpleComponent,
+    TableComponent
   ]
 })
 

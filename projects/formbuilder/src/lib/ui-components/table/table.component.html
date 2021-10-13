@@ -1,0 +1,83 @@
+<ng-container *ngIf="viewOptions.searchable">
+  <mat-form-field [ngClass]="{'short-filter': viewOptions.showCSVExport, 'long-filter': !viewOptions.showCSVExport}">
+    <input matInput [formControl]="filterControl" (keyup)="applyFilter($event.target.value)"
+           placeholder="Filter"
+           maxlength="250">
+  </mat-form-field>
+</ng-container>
+<button *ngIf="viewOptions.showCSVExport" mat-icon-button (click)="csvExport()" id="table-export">
+  <mat-icon>vertical_align_bottom</mat-icon>
+</button>
+<mat-paginator *ngIf="viewOptions.showPaginator" [pageSizeOptions]="[25, 50, 75]" [length]="resultsLength"
+               [pageSize]="25"
+
+               showFirstLastButtons></mat-paginator>
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <ng-container *ngFor="let collumn of displayedColumns">
+    <ng-container *ngIf="collumn.collumnName!=='select' && collumn.collumnName!=='actions' && displayedColumns"
+                  [matColumnDef]="collumn.collumnName" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngStyle]="{'width.%': collumn.widthInPercentage ? collumn.widthInPercentage : 'auto'}">
+          {{collumn.collumnName}}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element[collumn.collumnName] }}</td>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="viewOptions.showCheckbox" matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container *ngIf="viewOptions.showActions" matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+      <button mat-icon-button (click)="onDeleteRecord(row)" style="float: right;">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+      <button *ngIf="viewOptions.type !== 'FILE'" mat-icon-button (click)="onEdit(row)" style="float: right;">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button *ngIf="viewOptions.type === 'FILE'" mat-icon-button (click)="onDownload(row)" style="float: right;">
+        <mat-icon>get_app</mat-icon>
+      </button>
+
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="collumnsToBeDisplayed; sticky: true"></tr>
+  <tr mat-row *matRowDef="let row; columns: collumnsToBeDisplayed;"
+      (click)="selection.toggle(row)"></tr>
+</table>
+<div class="flex flex-end table-action" *ngIf="viewOptions.showCheckbox">
+  <button
+    style="width: 165px; margin-right: 20px; white-space: normal; line-height: normal;"
+    *ngIf="viewOptions.type === 'FILE'"
+    mat-raised-button
+    color="primary">
+    File Upload
+  </button>
+
+  <!--Delete All Selected-->
+  <button
+    *ngIf="viewOptions.showCheckbox && viewOptions.showDeleteAllButton"
+    style="width: 165px;"
+    mat-raised-button
+    color="primary"
+    [disabled]="selection.isEmpty()"
+    (click)="onDeleteSelectedRecords()">
+    Löschen
+  </button>
+</div>

@@ -350,12 +350,14 @@ export class TreeComponent implements OnInit {
   open(node) {
     let data = this.fs.getConfigByName(node.name);
 
+    console.log(data);
+
     let field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
     // data.name = 'home_ui_new';
     field.internalType = data.htmlType;
 
-    // field.ngOnInit();
+    field.ngOnInit();
     this.fieldS.set(data.name);
   }
 

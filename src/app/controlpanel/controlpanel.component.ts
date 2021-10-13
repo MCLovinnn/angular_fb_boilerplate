@@ -161,7 +161,7 @@ export class ControlpanelComponent implements OnInit {
 
   reset() {
     // this.fs.getForm('home_control').reset();
-    this.fs.resetForm();
+    this.fs.resetForms();
 
     let field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
     field.placeholder = 'home_ui_new';

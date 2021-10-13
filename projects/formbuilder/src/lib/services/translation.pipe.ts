@@ -11,6 +11,7 @@ export class TranslatePipe implements PipeTransform {
   transform(key: any): any {
     // console.log(key);
     if(key !== 'undefined') {
+// console.log(this.translate.data);
 
       return this.translate.data[key] || '';
     }

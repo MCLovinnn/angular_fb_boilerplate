@@ -1,4 +1,6 @@
 {
+  "changeType": "Der Type verändert auch die bisherige Konfiguration",
+  "changeName": "Der Name änder den Key",
   "home_control_type#label": "Feldtyp",
   "home_control_type#hintlabel": "Was für ein Input?",
   "home_control_type#tooltip": "",

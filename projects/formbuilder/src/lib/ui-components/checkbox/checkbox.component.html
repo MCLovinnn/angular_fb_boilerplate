@@ -1,12 +1,43 @@
-<mat-checkbox
-  [value]="value"
-  [labelPosition]="position"
-  (change)="change.emit({type: name, value: $event.checked})"
-  [disabled]="disabled"
-  [matTooltip]="getName()+'#tooltip' | translate"
-  matTooltipDisabled="false"
-  matTooltipHideDelay="200"
-  matTooltipPosition="above"
-  matTooltipShowDelay="100">
-  {{getName()+'#label' | translate}}
-</mat-checkbox>
+<div>
+  <mat-checkbox
+    [value]="value"
+    [labelPosition]="position"
+    (change)="change.emit({ type: name, value: $event.checked })"
+    [disabled]="disabled"
+    [matTooltip]="getName() + '#tooltip' | translate"
+    matTooltipDisabled="false"
+    matTooltipHideDelay="200"
+    matTooltipPosition="above"
+    matTooltipShowDelay="100">
+    {{ getName() + "#label" | translate }}
+  </mat-checkbox>
+</div>
+
+<!--div *ngIf="task.options">
+  <mat-checkbox
+    [checked]="allComplete"
+    [color]="task.color"
+    [indeterminate]="someComplete()"
+    (change)="setAll($event.checked)"
+    [labelPosition]="position"
+    (change)="change.emit({ type: name, value: $event.checked })"
+    [disabled]="disabled"
+    [matTooltip]="getName() + '#tooltip' | translate"
+    matTooltipDisabled="false"
+    matTooltipHideDelay="200"
+    matTooltipPosition="above"
+    matTooltipShowDelay="100">
+    {{ getName() + "#label" | translate }}
+  </mat-checkbox>
+  <ul>
+    <li *ngFor="let subtask of task.options">
+      <mat-checkbox
+        [(ngModel)]="subtask.completed"
+        [color]="subtask.color"
+        (ngModelChange)="updateAllComplete()"
+      >
+        {{ subtask.name }}
+      </mat-checkbox>
+    </li>
+  </ul>
+</div-->

@@ -19,7 +19,6 @@ export class ConfirmDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (!this.data) {
       return;
     }
@@ -35,6 +34,7 @@ export class ConfirmDialogComponent implements OnInit {
     } else {
       this.message = 'Sind Sie sicher?';
     }
+    console.log(this.message);
 
   }
 

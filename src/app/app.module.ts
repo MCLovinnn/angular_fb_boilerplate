@@ -42,6 +42,7 @@ import { TranslationComponent } from './translation/translation.component';
 import { ConnectorService } from './services/connector.service';
 // @ts-ignore
 import CONFIG from '../assets/config/config.json';
+import { ListComponent } from './list/list.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -52,7 +53,8 @@ registerLocaleData(localeDe, 'de');
     TreeComponent,
     FieldComponent,
     FormComponent,
-    TranslationComponent
+    TranslationComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

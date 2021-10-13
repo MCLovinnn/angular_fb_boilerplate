@@ -78,7 +78,20 @@
         "name": "home_control_name",
         "htmlType": "text",
         "validators": { "required": false, "minLength": 2 },
-        "updateOn": "blur"
+        "updateOn": "blur",
+        "customValidation": [
+          {
+            "event": "change",
+            "operator": "!=",
+            "dialog": {
+              "dialog": "warn",
+              "msg": "changeName",
+              "okAction": "changeTypeOK",
+              "noAction": "changeTypeNO",
+              "reset": true
+            }
+          }
+        ]
       },
       "event": {
         "name": "home_control_event",
