@@ -78,26 +78,26 @@ export class FormComponent implements OnInit {
     this.tooltip.subscribe((value) => {
       this.tlp = value;
     });
-    this.maxE.subscribe((value) => {
+    this.maxE.subscribe((value: number) => {
       this.max = value;
     });
-    this.placeholderE.subscribe((value) => {
+    this.placeholderE.subscribe((value: string) => {
       // this.fs.getFormControl('test');
       if (this.fs.getFormControl(this.fs.getConfigByName('home_control_name')).valid && value !== '') {
         this.placeholder = value;
         // console.log(this.placeholder);
       }
     });
-    this.minE.subscribe((value) => {
+    this.minE.subscribe((value: number) => {
       this.min = value;
     });
-    this.minLE.subscribe((value) => {
+    this.minLE.subscribe((value: number) => {
       this.minLength = value;
     });
-    this.maxLE.subscribe((value) => {
+    this.maxLE.subscribe((value: number) => {
       this.maxLength = value;
     });
-    this.reqE.subscribe((value) => {
+    this.reqE.subscribe((value: boolean) => {
       if (value) {
         // this.form.controls['test'].;
         this.required = value;
