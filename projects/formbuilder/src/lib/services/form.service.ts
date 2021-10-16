@@ -11,7 +11,6 @@ import { IValidator } from '../interfaces/ivalidator';
 import { BehaviorSubject } from 'rxjs';
 import { BaseFieldComponent } from '../classes/field';
 import { transform, isEqual, isObject } from 'lodash';
-import { isArray } from 'util';
 import { ICustomValidation } from '../interfaces/icustom-validation';
 import { DialogService } from './dialog.service';
 import { TranslatePipe } from './translation.pipe';
@@ -20,7 +19,7 @@ export function difference(newObj, origObj) {
   let arrayIndexCounter = 0;
   return transform(newObj, (result, value, key) => {
     if (!isEqual(value, origObj[key])) {
-      let resultKey = isArray(origObj) ? arrayIndexCounter++ : key;
+      let resultKey = typeof (origObj === 'array')  ? arrayIndexCounter++ : key;
       result[resultKey] =
         isObject(value) && isObject(origObj[key])
           ? difference(value, origObj[key])

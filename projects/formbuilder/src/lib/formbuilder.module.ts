@@ -47,6 +47,9 @@ import { TableComponent } from './ui-components/table/table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { SlideToggleComponent } from './ui-components/slideToggle/slideToggle.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -66,7 +69,8 @@ registerLocaleData(localeDe, 'de');
     ConfirmDialogComponent,
     ErrorDialogSimpleComponent,
     InfoDialogSimpleComponent,
-    TableComponent
+    TableComponent,
+    SlideToggleComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +99,9 @@ registerLocaleData(localeDe, 'de');
     MatDialogModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSliderModule,
+    MatSlideToggleModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'de' },
@@ -118,7 +124,8 @@ registerLocaleData(localeDe, 'de');
     ConfirmDialogComponent,
     ErrorDialogSimpleComponent,
     InfoDialogSimpleComponent,
-    TableComponent
+    TableComponent,
+    SlideToggleComponent
   ]
 })
 

@@ -105,5 +105,11 @@
   "home_tree_lang_Opt_de": "Deutsch",
   "home_tree_lang_Opt_de#desc": "",
   "home_tree_lang_Opt_en": "Englisch",
-  "home_tree_lang_Opt_en#desc": ""
+  "home_tree_lang_Opt_en#desc": "",
+  "home_select_selectName#label": "Option",
+  "home_select_selectValue#label": "Wert",
+  "home_select_selectCode#label": "Kürzel",
+  "config_table_name": "Schlüssel",
+  "config_table_htmlType": "HTML-Typ",
+  "config_table_form": "Formular"
 }

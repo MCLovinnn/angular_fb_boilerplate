@@ -17,3 +17,7 @@ app-tree {
 app-tree::-webkit-scrollbar {
   display: none;
 }
+.scrollable > .mat-grid-tile-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

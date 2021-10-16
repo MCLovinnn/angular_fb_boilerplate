@@ -117,7 +117,6 @@ export let actionType: ICodeEntry[] = [
 export let allergene: IField = {
   name: 'settings_list_allergene',
   placeholder: 'Allergen',
-  iconAction: '',
   validators: {
     required: true
   }

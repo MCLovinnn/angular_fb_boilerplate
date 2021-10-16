@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BaseFieldComponent } from '../../classes/field';
 import { FormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
@@ -10,6 +10,7 @@ import { TranslationService } from '../../services/translation.service';
   styleUrls: ['./text-input.component.scss']
 })
 export class TextInputComponent extends BaseFieldComponent implements OnInit {
+  @Input() rows = 3;
 
   constructor(public fb: FormBuilder,
               public fs: FormService,

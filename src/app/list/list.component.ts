@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {
   ITableViewOptions,
   TableType,
-  ITableHeader
+  ITableHeader,
+  FormService
 } from '../../../projects/formbuilder/src/public-api';
 
 @Component({
@@ -11,7 +12,6 @@ import {
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   viewOptions: ITableViewOptions = {
     type: TableType.GENERIC,
     searchable: true,
@@ -24,13 +24,22 @@ export class ListComponent implements OnInit {
 
   displayedColumns: ITableHeader[] = [
     {
-      collumnName: 'Test'
+      collumnName: 'name',
+      collumnKey: 'config_table_name'
     },
     {
-      collumnName: 'Test2'
+      collumnName: 'form',
+      collumnKey: 'config_table_form'
     },
     {
-      collumnName: 'Test3'
+      collumnName: 'htmlType',
+      collumnKey: 'config_table_htmlType'
+    },
+    {
+      collumnName: 'value'
+    },
+    {
+      collumnName: 'validators'
     }
   ];
 
@@ -56,7 +65,30 @@ export class ListComponent implements OnInit {
       Test3: 'poi'
     }
   ];
-  constructor() {}
+  constructor(private fs: FormService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let config = this.fs.getConfigs().home;
+    let tmpData = [];
+    console.log(config);
+    for (const formN in config) {
+      if (config[formN]) {
+        for (const elemN in config[formN]) {
+          if (config[formN][elemN]) {
+            const keys = config[formN][elemN].name.split('_');
+            config[formN][elemN].validators = JSON.stringify(config[formN][elemN].validators);
+            config[formN][elemN].form = keys[1];
+
+
+            config[formN][elemN].brand = config[formN][elemN].brand_id
+            tmpData.push(config[formN][elemN])
+            // console.log(config[formN][elemN]);
+          }
+        }
+      }
+    }
+    console.log(tmpData);
+
+    this.data = tmpData;
+  }
 }

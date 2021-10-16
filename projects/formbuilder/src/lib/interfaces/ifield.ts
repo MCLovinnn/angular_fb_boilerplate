@@ -28,7 +28,7 @@ export interface IField {
   tooltipposition?: string;
   tooltipdelay?: number; // in ms
   icon?: string;
-  iconAction?: string;
+  iconAction?: EventEmitter<any>;
   change?: EventEmitter<any>;
   updateOn?: 'change' | 'blur' | 'submit';
   options?: ICodeEntry[];

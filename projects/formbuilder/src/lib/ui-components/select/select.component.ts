@@ -28,5 +28,4 @@ export class SelectComponent extends BaseFieldComponent implements OnInit {
     // console.log(this.options);
     // console.log(this.form);
   }
-
 }

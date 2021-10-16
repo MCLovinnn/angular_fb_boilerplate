@@ -1,14 +1,7 @@
-<label id="group-label">Pick your favorite season</label>
-<mat-radio-group
-  aria-labelledby="group-label"
-  [selected]="value">
-  <mat-radio-button class="example-radio-button" *ngFor="let season of options" [value]="season">
-    {{season}}
-  </mat-radio-button>
-</mat-radio-group>
 <ng-container *ngIf="form" [formGroup]="form">
   <mat-form-field [hintLabel]="getName()+'#hintlabel' | translate">
-    <mat-radio-group [placeholder]="getName()+'#label' | translate"
+  <label>{{ getName()+'#label' | translate }}</label>
+    <mat-radio-group
                 [formControlName]="name"
                 [matTooltip]="getName()+'#tooltip' | translate"
                 [required]="required"
@@ -19,7 +12,7 @@
                 [value]="value"
                 (selectionChange)="change.emit({type: name, value: $event.value})"
     >
-    <div *ngIf="options[0].key">
+    <div *ngIf="options && options[0].key">
       <mat-radio-button *ngFor="let item of options" [matTooltip]="item" [value]="item.value">
         {{item.key}}
       </mat-radio-button>

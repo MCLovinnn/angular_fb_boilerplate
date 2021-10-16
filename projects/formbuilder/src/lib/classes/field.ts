@@ -1,7 +1,7 @@
 import { IField, IHTMLAttributes } from '../interfaces/ifield';
 import { ICustomValidation } from '../interfaces/icustom-validation';
 import { IValidator } from '../interfaces/ivalidator';
-import { EventEmitter, Input, OnInit, Component } from '@angular/core';
+import { EventEmitter, Input, OnInit, Component, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormService } from '../services/form.service';
 import { TranslationService } from '../services/translation.service';
@@ -40,7 +40,7 @@ export class BaseFieldComponent implements IField, OnInit {
   @Input() tooltip = '';
   @Input() htmlType = 'text';
   @Input() iconBtn: string;
-  @Input() iconAction: '';
+  @Input() iconAction: EventEmitter<any> = new EventEmitter();
   @Input() validators: IValidator;
   @Input() customValidation: ICustomValidation[];
   @Input() htmlAttribute: IHTMLAttributes;
@@ -135,6 +135,7 @@ export class BaseFieldComponent implements IField, OnInit {
       : null;
     this.value = config.value || '';
     this.htmlType = config.htmlType ? config.htmlType : this.htmlType;
+    this.iconBtn = config.icon? config.icon: this.iconBtn;
 
     if (config.htmlAttribute && config.htmlAttribute.autocomplete) {
       this.autocomplete = config.htmlAttribute.autocomplete;
@@ -186,5 +187,14 @@ export class BaseFieldComponent implements IField, OnInit {
       htmlType: this.htmlType,
       validators: this.validators
     } as IField;
+  }
+  iconAct() {
+    this.iconAction.emit(
+      {
+        name: this.getName(),
+        value: this.getValue(),
+        btn: this.iconBtn
+      }
+    );
   }
 }

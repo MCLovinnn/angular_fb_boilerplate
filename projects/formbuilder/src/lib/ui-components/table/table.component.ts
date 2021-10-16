@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { AngularCsv } from '../../classes/angular-csv';
+import { TranslatePipe } from '../../services/translation.pipe';
 
 export enum TableType {
   USER = 'USER',
@@ -31,6 +33,8 @@ export interface ITableViewOptions {
 export interface ITableHeader {
   collumnName: string;
 
+  collumnKey?: string;
+
   widthInPercentage?: number;
 }
 
@@ -49,7 +53,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   selection = new SelectionModel<any>(true, []);
   collumnsToBeDisplayed: string[] = [];
   initialColumns: string[] = [];
-  dataSource = new MatTableDataSource<any>();
+  @Output() dataSource = new MatTableDataSource<any>();
   resultsLength = 0;
   filterControl = new FormControl('');
   @Input() displayedColumns: ITableHeader[] = [];
@@ -62,7 +66,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteBulk: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog,
+    private ts: TranslatePipe) {
   }
 
   applyFilter(filterValue: string) {
@@ -85,7 +91,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
     this.dataSource.data = this.data || [];
 
     if (this.viewOptions.showDeleteAllButton !== false) {
@@ -105,6 +110,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -143,10 +149,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   customFilterBasedOnDisplayColumns(data: any, filter: string) {
     for (const columnName of this.initialColumns) {
-      console.log(data);
-      console.log(columnName);
+      // console.log(data);
+      // console.log(columnName);
 
-      if (data[columnName] && data[columnName].toString().trim().toLowerCase().indexOf(filter) >= 0) {
+      if (data[columnName] && data[columnName].toString().trim().toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
         return true;
       }
     }
@@ -156,10 +162,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   getDisplayData(colums) {
     const result = [];
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.data.length; i++) {
       const row = {};
+      // tslint:disable-next-line: prefer-for-of
       for (let y = 0; y < colums.length; y++) {
-        row[colums[y].displayedText] = this.data[i][colums[y].collumnName];
+        row[colums[y].collumnName] = this.data[i][colums[y].collumnName] ? this.data[i][colums[y].collumnName] : '';
       }
       // console.log('row', row);
       result.push(row);
@@ -170,10 +178,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   getFilteredDisplayData(colums) {
     const result = [];
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.dataSource.filteredData.length; i++) {
       const row = {};
+      // tslint:disable-next-line: prefer-for-of
       for (let y = 0; y < colums.length; y++) {
-        row[colums[y].displayedText] = this.dataSource.filteredData[i][colums[y].collumnName];
+        row[colums[y].collumnName] = this.dataSource.filteredData[i][colums[y].collumnName];
       }
       // console.log('row', row);
       result.push(row);
@@ -182,4 +192,43 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     return result;
   }
 
+  refresh() {
+    this.dataSource.data = this.data;
+  }
+
+  csvExport() {
+
+    let columns = Object.assign([], this.displayedColumns);
+    let columnNames = Object.assign([], this.displayedColumns.map(header => header.collumnKey ?
+      this.ts.transform(header.collumnKey) : header.collumnName));
+    columns = columns.filter((el) => {
+      return el.collumnName !== '' && el.collumnName !== 'select' && el.collumnName !== 'actions';
+    });
+    columnNames = columnNames.filter((el) => {
+      return el !== '' && el !== 'select' && el !== 'actions';
+    });
+    // columns.
+    // console.log(columns);
+
+    const tmpData = this.getDisplayData(columns);
+    // console.log(tmpData);
+
+    // const data = this.getFilteredDisplayData(columns);
+
+    const options = {
+      fieldSeparator: ';',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true,
+      showTitle: false,
+      title: 'Formbuilder',
+      useBom: true,
+      noDownload: false,
+      headers: columnNames
+    };
+
+    // console.log(columns);
+    const file = new AngularCsv(tmpData, 'Formbuilder', options);
+    // console.log('csv', file);
+  }
 }

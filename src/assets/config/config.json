@@ -72,6 +72,8 @@
       "value": {
         "name": "home_control_value",
         "htmlType": "text",
+        "value": "Test",
+        "icon": "clear",
         "updateOn": "blur"
       },
       "name": {
@@ -187,6 +189,22 @@
         ]
       },
       "reset": { "name": "home_control_reset", "htmlType": "text" }
+    },
+    "select": {
+      "selectName": {
+        "name": "home_select_selectName",
+        "htmlType": "text",
+        "validators": { "required": true }
+      },
+      "selectValue": {
+        "name": "home_select_selectValue",
+        "htmlType": "text",
+        "validators": { "required": true }
+      },
+      "selectCode": {
+        "name": "home_select_selectCode",
+        "htmlType": "text"
+      }
     },
     "ui": { "new": { "name": "home_ui_new", "htmlType": "text" } },
     "tree": {

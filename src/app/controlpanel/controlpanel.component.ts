@@ -1,13 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
   optionsConfig,
   FormService,
   ConfigService,
-  TranslationService
+  TranslationService,
+  ITableHeader,
+  ITableViewOptions,
+  TableType,
+  TableComponent,
+  SelectComponent
 } from '../../../projects/formbuilder/src/public-api';
 import { FieldService } from '../services/field.service';
 import { FieldComponent } from '../field/field.component';
+import { ICodeEntry } from 'projects/formbuilder/src/lib/interfaces/ifield';
 
 @Component({
   selector: 'app-controlpanel',
@@ -20,7 +26,10 @@ export class ControlpanelComponent implements OnInit {
   @Input() control: FormControl;
   @Input() disabledEmitter: EventEmitter<boolean> = new EventEmitter();
   @Input() requiredEmitter: EventEmitter<string> = new EventEmitter();
-
+  @Input() clearValue: EventEmitter<any> = new EventEmitter();
+  @ViewChild('selectOpt') selectTabletable: TableComponent;
+  options = '';
+  selectOptions: ICodeEntry[] = [];
   autoCompleteConfig: optionsConfig = {
     groupBy: true
   };
@@ -29,6 +38,26 @@ export class ControlpanelComponent implements OnInit {
   allControlls: any;
   isLinear = true;
   form2: FormGroup;
+  displayedColumns: ITableHeader[] = [
+    {
+      collumnName: 'key'
+    },
+    {
+      collumnName: 'value'
+    },
+    {
+      collumnName: 'description'
+    }
+  ];
+  viewOptions: ITableViewOptions = {
+    type: TableType.GENERIC,
+    searchable: false,
+    showPaginator: false,
+    showActions: true,
+    showCSVExport: false,
+    showCheckbox: true,
+    showDeleteAllButton: true
+  };
 
   constructor(
     public fb: FormBuilder,
@@ -58,8 +87,9 @@ export class ControlpanelComponent implements OnInit {
     fs.getFormControl({ name: 'home_control_type' }).valueChanges.subscribe(
       val => {
         if (val) {
-          let field = fs.getFieldByName(fieldS.get()) as FieldComponent;
+          const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
           field.internalType = val;
+          this.options = val;
         }
       }
     );
@@ -83,8 +113,8 @@ export class ControlpanelComponent implements OnInit {
 
     fs.getFormControl({ name: 'home_control_required' }).valueChanges.subscribe(
       val => {
-        let field = fs.getFieldByName(fieldS.get()) as FieldComponent;
-        let tmpVali = field.getValidators();
+        const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
+        const tmpVali = field.getValidators();
         // console.log(val);
 
         if (val) {
@@ -99,8 +129,8 @@ export class ControlpanelComponent implements OnInit {
     );
     fs.getFormControl({ name: 'home_control_min' }).valueChanges.subscribe(
       val => {
-        let field = fs.getFieldByName(fieldS.get()) as FieldComponent;
-        let tmpVali = field.getValidators();
+        const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
+        const tmpVali = field.getValidators();
 
         if (val > 0) {
           // field.min = val;
@@ -114,8 +144,8 @@ export class ControlpanelComponent implements OnInit {
     );
     fs.getFormControl({ name: 'home_control_max' }).valueChanges.subscribe(
       val => {
-        let field = fs.getFieldByName(fieldS.get()) as FieldComponent;
-        let tmpVali = field.getValidators();
+        const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
+        const tmpVali = field.getValidators();
 
         if (val > 0) {
           // field.min = val;
@@ -130,8 +160,8 @@ export class ControlpanelComponent implements OnInit {
     fs.getFormControl({
       name: 'home_control_minLength'
     }).valueChanges.subscribe(val => {
-      let field = fs.getFieldByName(fieldS.get()) as FieldComponent;
-      let tmpVali = field.getValidators();
+      const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
+      const tmpVali = field.getValidators();
 
       if (val > 0) {
         // field.min = val;
@@ -145,8 +175,8 @@ export class ControlpanelComponent implements OnInit {
     fs.getFormControl({
       name: 'home_control_maxLength'
     }).valueChanges.subscribe(val => {
-      let field = fs.getFieldByName(fieldS.get()) as FieldComponent;
-      let tmpVali = field.getValidators();
+      const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
+      const tmpVali = field.getValidators();
 
       if (val > 0) {
         // field.min = val;
@@ -163,7 +193,7 @@ export class ControlpanelComponent implements OnInit {
     // this.fs.getForm('home_control').reset();
     this.fs.resetForms();
 
-    let field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
+    const field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
     field.placeholder = 'home_ui_new';
     field.internalType = 'text';
 
@@ -178,6 +208,10 @@ export class ControlpanelComponent implements OnInit {
         // console.log(value);
         this.allControlls = value.children;
       }
+      this.clearValue.subscribe(value => {
+        // console.log(value);
+        this.fs.getFormControl({ name: value.name }).reset();
+      });
     });
 
     this.fieldchange.subscribe(value => {
@@ -187,8 +221,8 @@ export class ControlpanelComponent implements OnInit {
           this.disabledEmitter.emit(value.value);
           break;
         case 'home_control_required':
-          let field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
-          let tmpVali = field.getValidators();
+          const field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
+          const tmpVali = field.getValidators();
 
           if (value.value) {
             field.required = value.value;
@@ -202,5 +236,37 @@ export class ControlpanelComponent implements OnInit {
           break;
       }
     });
+  }
+
+  addSelectOption(){
+    const form = this.fs.getForm('home_select_selectName');
+    const raw = form.getRawValue();
+    const actualField = this.fieldS.get();
+    const name = actualField + '_Opt_' + raw.home_select_selectName.toLowerCase();
+    const tmpObj: ICodeEntry = {
+      key: name,
+      value: raw.home_select_selectValue,
+      description: name + '#desc',
+    };
+    // console.log(tmpObj);
+
+    this.selectOptions.push(tmpObj);
+
+    let lngObj = {
+      [tmpObj.key]: raw.home_select_selectName,
+      [tmpObj.description]: raw.home_select_selectCode
+    };
+    this.ts.updateData(lngObj);
+    // console.log(this.ts.data);
+
+    // this.fs. this.fieldS.get()
+    const selectF = this.fs.getFieldByName(actualField) as FieldComponent;
+    selectF.updateOptions(this.selectOptions);
+
+    // this.selectTabletable.refresh();
+
+    // this.selectTabletable.ngOnInit();
+    // console.log(this.selectTabletable.dataSource.data);
+    form.reset();
   }
 }

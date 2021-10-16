@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { BaseFieldComponent, FormService, TranslationService } from '../../../projects/formbuilder/src/public-api';
 import { IValidator } from '../../../projects/formbuilder/src/lib/interfaces/ivalidator';
 import { FieldService } from '../services/field.service';
+import { ICodeEntry } from 'dist/formbuilder/lib/interfaces/ifield';
 
 @Component({
   selector: 'app-field',
@@ -12,6 +13,7 @@ import { FieldService } from '../services/field.service';
 export class FieldComponent extends BaseFieldComponent implements OnInit {
 
   @Input() type: EventEmitter<string>;
+  options: ICodeEntry[];
 
   internalType = 'text';
   internalTooltip = '';
@@ -46,5 +48,8 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
     let control = this.fs.getFormControl({name: this.fieldS.get()});
     control.setValidators(this.fs.buildValidators(tmpfield.validators));
     control.updateValueAndValidity();
+  }
+  updateOptions(newOptions: ICodeEntry[]){
+    this.options = newOptions;
   }
 }

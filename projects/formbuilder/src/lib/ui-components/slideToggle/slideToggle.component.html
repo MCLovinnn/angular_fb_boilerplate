@@ -1,0 +1,15 @@
+<ng-container *ngIf="form" [formGroup]="form">
+  <mat-form-field [hintLabel]="name+'#hintlabel' | translate">
+    <mat-slide-toggle
+          class="example-margin"
+          [color]="color"
+          [checked]="value"
+          [disabled]="disabled">
+        Slide me!
+      </mat-slide-toggle>
+      <mat-hint *ngIf="hint" align="end">{{hint}}</mat-hint>
+      <mat-error>
+        {{ getErrorMeesage() }}
+      </mat-error>
+  </mat-form-field>
+</ng-container>
