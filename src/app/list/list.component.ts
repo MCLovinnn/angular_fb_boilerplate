@@ -70,7 +70,7 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     let config = this.fs.getConfigs().home;
     let tmpData = [];
-    console.log(config);
+    // console.log(config);
     for (const formN in config) {
       if (config[formN]) {
         for (const elemN in config[formN]) {
@@ -87,7 +87,7 @@ export class ListComponent implements OnInit {
         }
       }
     }
-    console.log(tmpData);
+    // console.log(tmpData);
 
     this.data = tmpData;
   }
