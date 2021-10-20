@@ -86,7 +86,7 @@ export class ControlpanelComponent implements OnInit {
     fs.getFormControl({ name: 'home_control_type' }).valueChanges.subscribe(
       val => {
         if (val) {
-          const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
+          const field = fs.getFieldByName('home_ui_new') as FieldComponent;
           field.internalType = val;
           this.internalType = val;
         }
@@ -187,11 +187,25 @@ export class ControlpanelComponent implements OnInit {
 
   ngOnInit() {
     this.fieldS.change().subscribe((val) => {
+      console.log(val);
+
       const conf = this.fs.getConfigByName(val);
       this.internalType = conf.htmlType;
-      if(conf.options) {
-        this.selectOptions = conf.options;
-      }
+      this.selectOptions = conf.options;
+      let field = (this.fs.getFieldByName('home_ui_new') as FieldComponent);
+      field.updateOptions(this.selectOptions);
+      field.internalType = conf.htmlType;
+      field.control.patchValue(conf.value);
+      console.log(conf.htmlType);
+      console.log(conf.value);
+
+      this.fs.getFormControl({name: 'home_control_value'}).patchValue(conf.value);
+      // this.fs.getFormControl({name: 'home_ui_new'}).patchValue(conf.value);
+      // if(conf.htmlType !== 'text') {
+      this.fs.getFormControl({name: 'home_control_type'}).patchValue(conf.htmlType, {emitEvent: false});
+      // } else {
+        // this.fs.getFormControl({name: 'home_control_type'}).reset({emitEvent: false});
+      // }
     });
     this.configS.dataChange.subscribe(data => {
       // console.log(data);
