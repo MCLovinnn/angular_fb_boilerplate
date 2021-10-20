@@ -27,7 +27,7 @@ export class ControlpanelComponent implements OnInit {
   @Input() requiredEmitter: EventEmitter<string> = new EventEmitter();
   @Input() clearValue: EventEmitter<any> = new EventEmitter();
   @ViewChild('selectOpt') selectTabletable: TableComponent;
-  options = '';
+  options = [];
   selectOptions: ICodeEntry[] = [];
   autoCompleteConfig: optionsConfig = {
     groupBy: true
@@ -88,7 +88,7 @@ export class ControlpanelComponent implements OnInit {
         if (val) {
           const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
           field.internalType = val;
-          this.options = val;
+          this.internalType = val;
         }
       }
     );
@@ -186,6 +186,13 @@ export class ControlpanelComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fieldS.change().subscribe((val) => {
+      const conf = this.fs.getConfigByName(val);
+      this.internalType = conf.htmlType;
+      if(conf.options) {
+        this.selectOptions = conf.options;
+      }
+    });
     this.configS.dataChange.subscribe(data => {
       // console.log(data);
       for (const [key, value] of Object.entries(data)) {

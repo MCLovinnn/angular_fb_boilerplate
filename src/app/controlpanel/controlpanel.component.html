@@ -67,7 +67,7 @@
     </mat-grid-list>
     <div></div>
   </mat-step>
-  <mat-step *ngIf="options === 'select' || options === 'checkbox' || options === 'radiobutton'">
+  <mat-step *ngIf="internalType === 'select' || internalType === 'checkbox' || internalType === 'radiobutton'">
     <ng-template matStepLabel>Optionen</ng-template>
     <mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">
       <mat-grid-tile colspan="4" rowspan="1">
