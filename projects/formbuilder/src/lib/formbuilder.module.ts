@@ -121,9 +121,6 @@ registerLocaleData(localeDe, 'de');
     RadiobuttonComponent,
     SliderComponent,
     TranslatePipe,
-    ConfirmDialogComponent,
-    ErrorDialogSimpleComponent,
-    InfoDialogSimpleComponent,
     TableComponent,
     SlideToggleComponent
   ]

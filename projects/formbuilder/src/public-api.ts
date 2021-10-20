@@ -27,5 +27,6 @@ export * from './lib/ui-components/select/select.component';
 export * from './lib/ui-components/radiobutton/radiobutton.component';
 export * from './lib/ui-components/slider/slider.component';
 export * from './lib/ui-components/text-input/text-input.component';
+export * from './lib/ui-components/slideToggle/slideToggle.component';
 
 
