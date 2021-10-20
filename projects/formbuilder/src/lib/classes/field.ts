@@ -48,6 +48,7 @@ export class BaseFieldComponent implements IField, OnInit {
 
   @Input() change: EventEmitter<any> = new EventEmitter();
   init = true;
+  field: IField;
 
   constructor(
     public fb: FormBuilder,
@@ -81,14 +82,13 @@ export class BaseFieldComponent implements IField, OnInit {
   }
 
   ngOnInit(): void {
-    const field = this.fs.getConfigByName(
+    this.field = this.fs.getConfigByName(
       this.placeholder ? this.placeholder : this.name
     );
 
-    this.setUpConfig(field);
-    this.form = this.fs.getForm(field.name);
-    this.control = this.fs.getFormControl(field);
-
+    this.setUpConfig(this.field);
+    this.form = this.fs.getForm(this.field.name);
+    this.control = this.fs.getFormControl(this.field);
     this.fs.addField(this);
     this.init = false;
     this.control.valueChanges.subscribe(val => (this.value = val));
@@ -113,6 +113,8 @@ export class BaseFieldComponent implements IField, OnInit {
     this.validators = config.validators;
     this.disabled = config.disabled ? config.disabled : tmpDis;
     this.required = config.validators ? config.validators.required : tmpReq;
+    // console.log(this.required);
+
     this.max = config.validators
       ? config.validators.max
       : this.max
@@ -139,6 +141,9 @@ export class BaseFieldComponent implements IField, OnInit {
 
     if (config.htmlAttribute && config.htmlAttribute.autocomplete) {
       this.autocomplete = config.htmlAttribute.autocomplete;
+    }
+    if(this.field.disabled) {
+      this.control.disable();
     }
     this.synchronizeValidator();
   }
@@ -182,11 +187,7 @@ export class BaseFieldComponent implements IField, OnInit {
   }
 
   getFieldConfig() {
-    return {
-      name: this.name,
-      htmlType: this.htmlType,
-      validators: this.validators
-    } as IField;
+    return this as IField;
   }
   iconAct() {
     this.iconAction.emit(

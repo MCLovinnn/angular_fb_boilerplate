@@ -5,6 +5,7 @@ import {
   ITableHeader,
   FormService
 } from '../../../projects/formbuilder/src/public-api';
+import { ConnectorService } from '../services/connector.service';
 
 @Component({
   selector: 'app-list',
@@ -43,34 +44,14 @@ export class ListComponent implements OnInit {
     }
   ];
 
-  data = [
-    {
-      Test: 'Test',
-      Test2: 'Hii',
-      Test3: 'Buuu'
-    },
-    {
-      Test: 'Allo',
-      Test2: 'Hix',
-      Test3: 'Bosom'
-    },
-    {
-      Test: 'XYZ',
-      Test2: 'AAA01',
-      Test3: 'broo'
-    },
-    {
-      Test: 'test2',
-      Test2: 'drei',
-      Test3: 'poi'
-    }
-  ];
-  constructor(private fs: FormService) {}
+  data =[];
+
+  constructor(private fs: FormService,
+    private cs: ConnectorService) {}
 
   ngOnInit(): void {
     let config = this.fs.getConfigs().home;
     let tmpData = [];
-    // console.log(config);
     for (const formN in config) {
       if (config[formN]) {
         for (const elemN in config[formN]) {
@@ -79,16 +60,18 @@ export class ListComponent implements OnInit {
             config[formN][elemN].validators = JSON.stringify(config[formN][elemN].validators);
             config[formN][elemN].form = keys[1];
 
-
             config[formN][elemN].brand = config[formN][elemN].brand_id
             tmpData.push(config[formN][elemN])
-            // console.log(config[formN][elemN]);
           }
         }
       }
     }
-    // console.log(tmpData);
-
     this.data = tmpData;
+  }
+
+  delete(row) {
+    this.cs.delete('config/', row.name).subscribe((val) => {
+      console.log(val);
+    });
   }
 }

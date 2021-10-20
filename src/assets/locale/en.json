@@ -92,12 +92,7 @@
   "home_ui_new#label": "new field",
   "home_ui_new#hintlabel": "intial new field",
   "home_ui_new#tooltip": "",
-  "home_tree_mode#label": "",
-  "home_tree_mode#hintlabel": "",
-  "home_tree_mode#tooltip": "",
-  "home_tree_mode_Opt_config": "configuration",
   "home_tree_mode_Opt_config#desc": "add and edit Forms and validation",
-  "home_tree_mode_Opt_translate": "translation",
   "home_tree_mode_Opt_translate#desc": "add and edit texts and translations",
   "home_tree_lang#label": "Language",
   "home_tree_lang#hintlabel": "Language to show / edit",
@@ -105,5 +100,8 @@
   "home_tree_lang_Opt_de": "German",
   "home_tree_lang_Opt_de#desc": "",
   "home_tree_lang_Opt_en": "English",
-  "home_tree_lang_Opt_en#desc": ""
+  "home_tree_lang_Opt_en#desc": "",
+  "home_ui_bigfake#label": "BigFake",
+  "home_ui_bigfake#hintlabel": "",
+  "home_ui_bigfake#tooltip": ""
 }

@@ -15,22 +15,22 @@ export class ConnectorService {
 
   generateTextFile(lang: string, data: any) {
     return this.http.post(
-      '/api/generate' + lang,
-      { [lang]: data },
+      '/api/generate/' + lang,
+      data,
       { headers: { 'Content-Type': 'application/json' } }
     );
   }
 
   updateTxtFile(lang: string, data: any) {
     return this.http.post(
-      '/api/update' + lang,
+      '/api/update/' + lang,
       data ,
       { headers: { 'Content-Type': 'application/json' } }
     );
   }
 
   getTxtKeys(name) {
-    return this.http.get('/api/lang' + name);
+    return this.http.get('/api/lang/' + name);
   }
 
   doPost(url: string, lang: string, data: any) {
@@ -51,6 +51,13 @@ export class ConnectorService {
 
   get(entity) {
     return this.http.get('/api/' + entity);
+  }
+
+  delete(url: string, name: string) {
+    return this.http.delete(
+      '/api/' + url + name,
+      { headers: { 'Content-Type': 'application/json' } }
+    );
   }
 
   load(path: string) {

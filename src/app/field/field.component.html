@@ -48,4 +48,53 @@
     [tooltip]="tooltip"
     [disabled]="disabled">
   </app-checkbox>
+  <app-autocomplete
+    *ngIf="internalType == 'autocomplete'"
+    [name]="getName()"
+    [hintlabel]="hintlabel"
+    [maxLength]="maxLength"
+    [max]="max"
+    [minLength]="minLength"
+    [min]="min"
+    [required]="required"
+    [tooltip]="tooltip"
+    [disabled]="disabled"
+    [options]="options">
+  </app-autocomplete>
+  <app-radiobutton
+    *ngIf="internalType == 'radiobutton'"
+    [name]="getName()"
+    [hintlabel]="hintlabel"
+    [maxLength]="maxLength"
+    [max]="max"
+    [minLength]="minLength"
+    [min]="min"
+    [required]="required"
+    [tooltip]="tooltip"
+    [disabled]="disabled">
+  </app-radiobutton>
+  <app-slider
+    *ngIf="internalType == 'slider'"
+    [name]="getName()"
+    [hintlabel]="hintlabel"
+    [maxLength]="maxLength"
+    [max]="max"
+    [minLength]="minLength"
+    [min]="min"
+    [required]="required"
+    [tooltip]="tooltip"
+    [disabled]="disabled">
+  </app-slider>
+  <app-slidetoggle
+    *ngIf="internalType == 'slideToggle'"
+    [name]="getName()"
+    [hintlabel]="hintlabel"
+    [maxLength]="maxLength"
+    [max]="max"
+    [minLength]="minLength"
+    [min]="min"
+    [required]="required"
+    [tooltip]="tooltip"
+    [disabled]="disabled">
+  </app-slidetoggle>
 </mat-card>

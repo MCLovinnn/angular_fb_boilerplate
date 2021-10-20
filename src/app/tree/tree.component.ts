@@ -14,6 +14,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
 import { FieldService } from '../services/field.service';
 import { FieldComponent } from '../field/field.component';
+import { ICodeEntry } from 'projects/formbuilder/src/lib/interfaces/ifield';
 /**
  * Node for to-do item
  */
@@ -316,14 +317,32 @@ export class TreeComponent implements OnInit {
       [parentparent.name]: {
         [parent.name] : {
           [itemValue.toLowerCase()] : {
-            name: key,
+            name: key.toLocaleLowerCase(),
             htmlType: 'text'
           }
         }
       }
     };
-
+    const tmpObj: any = {
+      label: key + '#label',
+      hint: key + '#hintlabel',
+      tooltip: key + '#tooltip',
+    };
     this.fs.addConfig(tmpConf);
+    this.cs.doPost('config/', 'de', this.fs.getConfigs()).subscribe( val => {
+      let lngObj = {
+        [tmpObj.label]: itemValue,
+        [tmpObj.hint]: '',
+        [tmpObj.tooltip]: ''
+      };
+
+      this.ts.updateData(lngObj);
+      this.cs.doPost('/updateKey/', '', lngObj).subscribe((res) => {
+        console.log(res);
+
+      })
+      // this.updateTxtFile();
+    });
 
     this.ts.onDataChange.emit({[key+'#label']: itemValue});
 
@@ -362,6 +381,36 @@ export class TreeComponent implements OnInit {
   }
 
   generateConfig() {
-    this.cs.doPost('config', 'de', this.fs.getConfigs()).subscribe( val => console.log(val));
+    this.cs.doPost('config/', 'de', this.fs.getConfigs()).subscribe( val => console.log(val));
+  }
+
+  generateLang() {
+    // @TODO: integrate transformation
+    const form = this.fs.getForm('home_lang_lang');
+    const raw = form.getRawValue();
+    const actualField = 'home_tree_lang';
+    const name =  'home_tree_lang_Opt_' + raw.home_lang_key.toLowerCase();
+    const tmpObj: ICodeEntry = {
+      key: name,
+      value: raw.home_lang_key.toLowerCase(),
+      description: name + '#desc',
+    };
+    let tmpConf = this.fs.getConfigByName(actualField);
+    tmpConf.options.push(tmpObj);
+
+    this.cs.doPost('config/', raw.home_lang_key.toLowerCase(), this.fs.getConfigs()).subscribe( val => {
+      console.log(val);
+      let lngObj = {
+        [tmpObj.key]: raw.home_lang_lang,
+        [tmpObj.description]: raw.home_lang_code
+      };
+
+      this.ts.updateData(lngObj);
+      this.updateTxtFile();
+      const selectF = this.fs.getFieldByName(actualField) as FieldComponent;
+      selectF.options.push(tmpObj);
+      form.reset();
+
+    });
   }
 }

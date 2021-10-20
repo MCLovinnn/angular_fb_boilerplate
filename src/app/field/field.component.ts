@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { BaseFieldComponent, FormService, TranslationService } from '../../../projects/formbuilder/src/public-api';
 import { IValidator } from '../../../projects/formbuilder/src/lib/interfaces/ivalidator';
 import { FieldService } from '../services/field.service';
-import { ICodeEntry } from 'dist/formbuilder/lib/interfaces/ifield';
+import { ICodeEntry } from '../../../projects/formbuilder/src/lib/interfaces/ifield';
 
 @Component({
   selector: 'app-field',
@@ -49,7 +49,11 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
     control.setValidators(this.fs.buildValidators(tmpfield.validators));
     control.updateValueAndValidity();
   }
+
   updateOptions(newOptions: ICodeEntry[]){
+    let tmpConf = this.fs.getConfigByName(this.name);
+    tmpConf.options = newOptions;
+    this.fs.updateConfig(tmpConf);
     this.options = newOptions;
   }
 }

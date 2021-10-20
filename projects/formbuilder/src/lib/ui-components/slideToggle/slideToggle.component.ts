@@ -6,7 +6,7 @@ import { BaseFieldComponent } from '../../classes/field';
 import { TranslationService } from '../../services/translation.service';
 
 @Component({
-  selector: 'app-slider',
+  selector: 'app-slidetoggle',
   templateUrl: './slideToggle.component.html',
   styleUrls: ['./slideToggle.component.scss']
 })

@@ -39,6 +39,31 @@
             "value": "date",
             "key": "home_control_type_Opt_date",
             "description": "home_control_type_Opt_date#desc"
+          },
+          {
+            "value": "textarea",
+            "key": "home_control_type_Opt_textarea",
+            "description": "home_control_type_Opt_textarea#desc"
+          },
+          {
+            "value": "radiobutton",
+            "key": "home_control_type_Opt_radiobutton",
+            "description": "home_control_type_Opt_radiobutton#desc"
+          },
+          {
+            "value": "autocomplete",
+            "key": "home_control_type_Opt_autocomplete",
+            "description": "home_control_type_Opt_autocomplete#desc"
+          },
+          {
+            "value": "slider",
+            "key": "home_control_type_Opt_slider",
+            "description": "home_control_type_Opt_slider#desc"
+          },
+          {
+            "value": "slideToggle",
+            "key": "home_control_type_Opt_slideToggle",
+            "description": "home_control_type_Opt_slideToggle#desc"
           }
         ]
       },
@@ -201,12 +226,12 @@
         "htmlType": "text",
         "validators": { "required": true }
       },
-      "selectCode": {
-        "name": "home_select_selectCode",
-        "htmlType": "text"
-      }
+      "selectCode": { "name": "home_select_selectCode", "htmlType": "text" }
     },
-    "ui": { "new": { "name": "home_ui_new", "htmlType": "text" } },
+    "ui": {
+      "new": { "name": "home_ui_new", "htmlType": "text", "value": "Test" },
+      "bigfake": { "name": "home_ui_bigfake", "htmlType": "text" }
+    },
     "tree": {
       "mode": {
         "name": "home_tree_mode",
@@ -227,6 +252,19 @@
           { "value": "en", "key": "home_tree_lang_Opt_en" }
         ]
       }
+    },
+    "lang": {
+      "lang": {
+        "name": "home_lang_lang",
+        "htmlType": "text",
+        "validators": { "required": true }
+      },
+      "key": {
+        "name": "home_lang_key",
+        "htmlType": "text",
+        "validators": { "required": true }
+      },
+      "code": { "name": "home_lang_code", "htmlType": "text" }
     }
   }
 }

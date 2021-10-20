@@ -8,8 +8,7 @@ import {
   ITableHeader,
   ITableViewOptions,
   TableType,
-  TableComponent,
-  SelectComponent
+  TableComponent
 } from '../../../projects/formbuilder/src/public-api';
 import { FieldService } from '../services/field.service';
 import { FieldComponent } from '../field/field.component';
@@ -107,23 +106,8 @@ export class ControlpanelComponent implements OnInit {
       val => {
         if (val) {
           fs.getFormControl({ name: fieldS.get() }).patchValue(val);
-        }
-      }
-    );
-
-    fs.getFormControl({ name: 'home_control_required' }).valueChanges.subscribe(
-      val => {
-        const field = fs.getFieldByName(fieldS.get()) as FieldComponent;
-        const tmpVali = field.getValidators();
-        // console.log(val);
-
-        if (val) {
-          // field.min = val;
-          tmpVali.required = true;
-          field.changeValidators(tmpVali);
         } else {
-          tmpVali.required = null;
-          field.changeValidators(tmpVali);
+          fs.getFormControl({ name: fieldS.get() }).patchValue('');
         }
       }
     );
@@ -208,31 +192,46 @@ export class ControlpanelComponent implements OnInit {
         // console.log(value);
         this.allControlls = value.children;
       }
-      this.clearValue.subscribe(value => {
-        // console.log(value);
-        this.fs.getFormControl({ name: value.name }).reset();
-      });
+    });
+
+    this.clearValue.subscribe(value => {
+      if(value.value === 'Test') {
+        this.fs.getFormControl({name: value.name}).reset();
+      } else {
+        this.fs.resetControl(value.name);
+      }
     });
 
     this.fieldchange.subscribe(value => {
-      // console.log(value);
+      const actualField = this.fieldS.get();
+      // console.log(actualField);
+
+      const field = this.fs.getFieldByName(actualField) as FieldComponent;
+      // console.log(field);
+      const tmpConf = this.fs.getConfigByName(actualField);
+      // const control = this.fs.getFormControl(tmpConf);
       switch (value.type) {
         case 'home_control_disabled':
-          this.disabledEmitter.emit(value.value);
+          tmpConf.disabled = value.value ? value.value : false;
+          field.disabled = value.value ? value.value : false;
+          this.fs.updateConfig(tmpConf);
+          // console.log(value);
+          // console.log(field.disabled);
+
+          if(value.value === true) {
+            field.control.disable();
+          } else {
+            // console.log('hi');
+            field.control.enable();
+          }
           break;
         case 'home_control_required':
-          const field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
           const tmpVali = field.getValidators();
-
-          if (value.value) {
-            field.required = value.value;
-            tmpVali.required = value.value;
+            tmpVali.required = value.value ? value.value : null;
+            tmpConf.validators = tmpVali;
+            field.required = value.value ? value.value : null;
             field.changeValidators(tmpVali);
-          } else {
-            field.required = value.value;
-            tmpVali.required = value.value;
-            field.changeValidators(tmpVali);
-          }
+            this.fs.updateConfig(tmpConf);
           break;
       }
     });
@@ -248,7 +247,6 @@ export class ControlpanelComponent implements OnInit {
       value: raw.home_select_selectValue,
       description: name + '#desc',
     };
-    // console.log(tmpObj);
 
     this.selectOptions.push(tmpObj);
 
@@ -256,17 +254,16 @@ export class ControlpanelComponent implements OnInit {
       [tmpObj.key]: raw.home_select_selectName,
       [tmpObj.description]: raw.home_select_selectCode
     };
-    this.ts.updateData(lngObj);
-    // console.log(this.ts.data);
 
-    // this.fs. this.fieldS.get()
+    this.ts.updateData(lngObj);
+
+
+    let tmpConf = this.fs.getConfigByName(actualField);
+    tmpConf.options = this.selectOptions;
+    // this.fs.updateConfig(tmpConf);
+
     const selectF = this.fs.getFieldByName(actualField) as FieldComponent;
     selectF.updateOptions(this.selectOptions);
-
-    // this.selectTabletable.refresh();
-
-    // this.selectTabletable.ngOnInit();
-    // console.log(this.selectTabletable.dataSource.data);
     form.reset();
   }
 }

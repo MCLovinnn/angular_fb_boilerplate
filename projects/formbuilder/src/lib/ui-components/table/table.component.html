@@ -13,20 +13,22 @@
     />
   </mat-form-field>
 </ng-container>
-<button
-  *ngIf="viewOptions.showCSVExport"
-  mat-icon-button
-  (click)="csvExport()"
-  id="table-export">
-  <mat-icon>vertical_align_bottom</mat-icon>
-</button>
-<mat-paginator
-  *ngIf="viewOptions.showPaginator"
-  [pageSizeOptions]="[5, 25, 50]"
-  [length]="resultsLength"
-  [pageSize]="5"
-  showFirstLastButtons>
-</mat-paginator>
+<div class="row">
+  <button
+    *ngIf="viewOptions.showCSVExport"
+    mat-icon-button
+    (click)="csvExport()"
+    id="table-export">
+    <mat-icon>vertical_align_bottom</mat-icon>
+  </button>
+  <mat-paginator
+    *ngIf="viewOptions.showPaginator"
+    [pageSizeOptions]="[5, 25, 50]"
+    [length]="resultsLength"
+    [pageSize]="5"
+    showFirstLastButtons>
+  </mat-paginator>
+</div>
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <ng-container *ngFor="let collumn of displayedColumns">
     <ng-container

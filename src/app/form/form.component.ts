@@ -60,52 +60,6 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.disabled.subscribe((value) => {
-      this.dis = value;
-      // console.log('dis', this.dis);
-      if (value) {
-        this.fs.getFormControl(this.fs.getConfigByName(this.fieldS.get())).disable();
-      } else {
-        this.fs.getFormControl(this.fs.getConfigByName(this.fieldS.get())).enable();
-      }
-      this.fs.getFormControl(this.fs.getConfigByName(this.fieldS.get())).updateValueAndValidity();
-    });
-    this.hintlabel.subscribe((value) => {
-      // console.log(value);
-
-      this.label = value;
-    });
-    this.tooltip.subscribe((value) => {
-      this.tlp = value;
-    });
-    this.maxE.subscribe((value: number) => {
-      this.max = value;
-    });
-    this.placeholderE.subscribe((value: string) => {
-      // this.fs.getFormControl('test');
-      if (this.fs.getFormControl(this.fs.getConfigByName('home_control_name')).valid && value !== '') {
-        this.placeholder = value;
-        // console.log(this.placeholder);
-      }
-    });
-    this.minE.subscribe((value: number) => {
-      this.min = value;
-    });
-    this.minLE.subscribe((value: number) => {
-      this.minLength = value;
-    });
-    this.maxLE.subscribe((value: number) => {
-      this.maxLength = value;
-    });
-    this.reqE.subscribe((value: boolean) => {
-      if (value) {
-        // this.form.controls['test'].;
-        this.required = value;
-        // console.log('hi', value);
-      } else {
-        this.required = value;
-      }
-    });
   }
 
 }

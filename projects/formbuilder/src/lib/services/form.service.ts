@@ -50,6 +50,9 @@ export class FormService {
     this.fieldchange.subscribe(val => {
       this.fields.push(val);
     });
+    this.configChange.subscribe((newVal)=> {
+      this.setUp(newVal);
+    });
   }
 
   getFields() {
@@ -118,6 +121,7 @@ export class FormService {
 
     if (this.configs[page] && this.configs[page][form]) {
       this.configs[page][form][key] = config;
+      this.configChange.next(this.configs);
     }
   }
 
@@ -290,14 +294,14 @@ export class FormService {
             const field: IField = forM[key];
             if (field.customValidation) {
               Object.keys(field.customValidation).forEach(validation => {
-                console.log(field.customValidation[validation]);
+                // console.log(field.customValidation[validation]);
                 let fieldToCheck: FormControl | null = null;
                 const validationObj: ICustomValidation = field.customValidation[validation];
                 const fieldD = this.getFormControl(field);
-                console.log(validationObj.dialog.msg);
+                // console.log(validationObj.dialog.msg);
 
                 fieldD.valueChanges.subscribe((val) => {
-                  console.log(this.tp.transform(validationObj.dialog.msg));
+                  // console.log(this.tp.transform(validationObj.dialog.msg));
 
                   let getChange = false;
                   if(validationObj.fieldToCheck) {
@@ -316,19 +320,19 @@ export class FormService {
                     case '!=':
                     if (getChange) {
                       if(this.getControlChange(field.name) !== val) {
-                        console.log('controlchange');
+                        // console.log('controlchange');
 
                         this.ds.confirm(validationObj.dialog.msg,() => {
                           this.applieChanges();
                         }, () => {
-                          console.log('reset '+ field.name);
+                          // console.log('reset '+ field.name);
 
                           this.resetControl(field.name);
                         });
                       }
                     } else {
                       if(fieldToCheck && fieldToCheck.value !== val) {
-                        console.log('valuechange');
+                        // console.log('valuechange');
 
                         this.ds.confirm(validationObj.dialog.msg,() => {}, () => {
                           this.resetControl(field.name);
@@ -383,7 +387,11 @@ export class FormService {
 
     return this.changes[page][form][name];
   }
+
   applieChanges() {
     this.changes = this.forms.getRawValue();
+  }
+  update() {
+    this.forms.updateValueAndValidity();
   }
 }
