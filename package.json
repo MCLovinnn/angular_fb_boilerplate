@@ -1,5 +1,5 @@
 {
-  "name": "formbuilder",
+  "name": "formbuilderapp",
   "version": "0.0.0",
   "type": "module",
   "resolutions": {
@@ -7,8 +7,9 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config ./proxy.conf.json",
-    "server": "DEBUG=express:* node ./server/app.js",
+    "start": "ng serve",
+    "startFB": "ng serve formbuilderui --proxy-config ./projects/formbuilderui/proxy.conf.json",
+    "server": "DEBUG=express:* node ./projects/server/app.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -45,7 +46,7 @@
     "@angular/cli": "^12.2.9",
     "@angular/compiler-cli": "~12.2.9",
     "@angular/language-service": "~12.2.9",
-    "@compodoc/compodoc": "^1.1.11",
+    "@compodoc/compodoc": "^1.1.15",
     "@types/hammerjs": "^2.0.40",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",

@@ -1,17 +1,20 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable, Input, Output, EventEmitter } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { Injectable, Input, Output, EventEmitter } from '@angular/core';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class TranslationService {
+// tslint:disable-next-line: no-output-on-prefix
   @Output() onLangChange: EventEmitter<string> = new EventEmitter();
+// tslint:disable-next-line: no-output-on-prefix
   @Output() onDataChange: EventEmitter<any> = new EventEmitter();
 
   data: any = {};
-  lang: string;
+  lang = 'de';
+  userData = {};
 
-  private _path: string;
+  private _path = '';
   constructor(private http: HttpClient) {
     this.onDataChange.subscribe(val => {
       this.updateData(val);
@@ -23,6 +26,36 @@ export class TranslationService {
 
   setPath(path: string) {
     this._path = path;
+  }
+
+  addTxtFile(path: string) {
+    return new Promise<{}>((resolve, reject) => {
+      const langPath = `${path}${this.lang || 'de'}.json`;
+      // console.log(langPath);
+      this.http.get<{}>(langPath).subscribe(
+        translation => {
+          // console.log(translation);
+          this.updateData(translation);
+          this.onDataChange.emit(this.data);
+          resolve(this.data);
+        },
+        error => {
+          resolve(this.data);
+        }
+      );
+    });
+  }
+
+  getUserData() {
+    let txtFile = {};
+    for(const key in this.userData) {
+      if(this.userData) {
+        Object.assign(txtFile, {
+          [key]: this.data[key]
+        });
+      }
+    }
+    return txtFile;
   }
 
   setLang(lang: string) {
@@ -38,7 +71,7 @@ export class TranslationService {
 
   use(lang: string): Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
-      const langPath = `${this._path}${lang || "de"}.json`;
+      const langPath = `${this._path}${lang || 'de'}.json`;
       // console.log(langPath);
       this.http.get<{}>(langPath).subscribe(
         translation => {

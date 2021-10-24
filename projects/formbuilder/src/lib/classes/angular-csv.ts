@@ -105,9 +105,9 @@ export class AngularCsv {
       this.getBody();
     }
 
-    if (this.csv == '') {
+    if (this.csv === '') {
       console.log('Invalid data');
-      return;
+      return '';
     }
 
     if (this._options.noDownload) {
@@ -133,6 +133,7 @@ export class AngularCsv {
       link.click();
       document.body.removeChild(link);
     }
+    return '';
   }
 
   /**

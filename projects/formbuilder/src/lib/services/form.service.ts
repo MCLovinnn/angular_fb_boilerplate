@@ -15,7 +15,7 @@ import { ICustomValidation } from '../interfaces/icustom-validation';
 import { DialogService } from './dialog.service';
 import { TranslatePipe } from './translation.pipe';
 
-export function difference(newObj, origObj) {
+export function difference(newObj: any, origObj: any) {
   let arrayIndexCounter = 0;
   return transform(newObj, (result, value, key) => {
     if (!isEqual(value, origObj[key])) {

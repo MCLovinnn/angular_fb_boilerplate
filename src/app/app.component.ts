@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { fieldConfig, controlPanelConfig } from './config/controlPanel';
 import { FormService, TranslationService, DataConnectorService } from '../../projects/formbuilder/src/public-api';
-import { homeTreeConfig } from './config/homeTree';
 import { FieldService } from './services/field.service';
 import { ConnectorService } from './services/connector.service';
 

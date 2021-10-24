@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FieldComponent } from './field/field.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,31 +29,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { registerLocaleData, CommonModule } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
-import { ControlpanelComponent } from './controlpanel/controlpanel.component';
-import { TreeComponent } from './tree/tree.component';
 import {
   FormbuilderModule,
   TranslationService,
   FormService
 } from '../../projects/formbuilder/src/public-api';
-import { FormComponent } from './form/form.component';
-import { TranslationComponent } from './translation/translation.component';
-import { ConnectorService } from './services/connector.service';
 // @ts-ignore
 import CONFIG from '../assets/config/config.json';
-import { ListComponent } from './list/list.component';
+import { TestComponent } from './test/test.component';
 
 registerLocaleData(localeDe, 'de');
 
 @NgModule({
   declarations: [
     AppComponent,
-    ControlpanelComponent,
-    TreeComponent,
-    FieldComponent,
-    FormComponent,
-    TranslationComponent,
-    ListComponent
+    TestComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +78,7 @@ registerLocaleData(localeDe, 'de');
   exports: [AppComponent]
 })
 export class AppModule {
-  constructor(public ts: TranslationService, private cs: ConnectorService, private fs: FormService) {
+  constructor(public ts: TranslationService, private fs: FormService) {
     fs.addConfig(CONFIG);
 
     ts.setPath('assets/locale/');

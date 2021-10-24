@@ -9,6 +9,7 @@ import { TranslationService } from '../../services/translation.service';
 
 export const _filter = (opt: any[], value: string, ts:TranslationService): string[] => {
   const filterValue = value.toLowerCase();
+  console.log(opt);
 
   if (typeof opt[0] === 'string') {
     return opt.filter(item => checkKey(ts, item, filterValue));

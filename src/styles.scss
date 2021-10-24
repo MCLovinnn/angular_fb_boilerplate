@@ -4,18 +4,8 @@ app-select, app-text-input, app-autocomplete {
   // padding: 5px 10px;
 }
 
-app-controlpanel, mat-form-field {
+mat-form-field {
   width: 100%;
-}
-
-app-tree {
-  height: 86%;
-  overflow-y: scroll;
-  margin:10px;
-}
-
-app-tree::-webkit-scrollbar {
-  display: none;
 }
 .scrollable > .mat-grid-tile-content {
   overflow-y: scroll;

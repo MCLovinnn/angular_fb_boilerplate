@@ -12,7 +12,7 @@ export { DataConnectorService } from './lib/services/data-connector.service';
 export { BaseFieldComponent } from './lib/classes/field';
 export { optionsConfig } from './lib/interfaces/iautocompleteoption';
 export { MenuNode } from './lib/interfaces/imenu';
-export { IField } from './lib/interfaces/ifield';
+export { IField, ICodeEntry, IHTMLAttributes } from './lib/interfaces/ifield';
 export { IForm } from './lib/interfaces/iform';
 export { TranslatePipe } from './lib/services/translation.pipe';
 export { AuthenticationService } from './lib/services/authentication.service';

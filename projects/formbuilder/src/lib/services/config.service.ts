@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
-import { DataFlattnerService } from "./data-flattner.service";
-import { IField } from "../interfaces/ifield";
-import { MenuNode, AutoSearch } from "../interfaces/imenu";
-import { BehaviorSubject } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { DataFlattnerService } from './data-flattner.service';
+import { IField } from '../interfaces/ifield';
+import { MenuNode, AutoSearch } from '../interfaces/imenu';
+import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ConfigService {
   flatControlls: any[];
@@ -64,7 +64,7 @@ export class ConfigService {
       const node = new AutoSearch();
       node.name = key;
       if (value != null) {
-        if (typeof value === "object" && level < 2) {
+        if (typeof value === 'object' && level < 2) {
           node.children = this.buildFileTree(value, level + 1);
         } else {
           if (level === 2) {

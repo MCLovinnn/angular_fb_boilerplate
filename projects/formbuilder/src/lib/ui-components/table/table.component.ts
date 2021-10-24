@@ -15,7 +15,6 @@ export enum TableType {
 }
 
 export interface ITableViewOptions {
-  type: TableType;
 
   searchable: boolean;
 
@@ -99,7 +98,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.viewOptions.showCheckbox) {
       this.displayedColumns.unshift({collumnName: 'select'});
     }
-    if (this.viewOptions.showCheckbox) {
+    if (this.viewOptions.showActions) {
       this.displayedColumns.push({collumnName: 'actions'});
     }
     this.collumnsToBeDisplayed = this.displayedColumns.map(header => header.collumnName);
@@ -209,7 +208,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     });
     // columns.
     // console.log(columns);
-
     const tmpData = this.getDisplayData(columns);
     // console.log(tmpData);
 
