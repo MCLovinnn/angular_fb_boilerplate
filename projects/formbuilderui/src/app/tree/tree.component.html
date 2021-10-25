@@ -1,0 +1,72 @@
+<app-select name="home_tree_lang"></app-select>
+<mat-tree
+  style="margin-top:15px;"
+  [dataSource]="dataSource"
+  [treeControl]="treeControl">
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    matTreeNodeToggle
+    matTreeNodePadding>
+    <button mat-icon-button disabled></button>
+    <mat-checkbox
+      class="checklist-leaf-node"
+      [checked]="checklistSelection.isSelected(node)"
+      (change)="todoLeafItemSelectionToggle(node)">
+      {{ node.name + "#label" | translate }}
+    </mat-checkbox>
+    <button mat-icon-button (click)="open(node)">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+  </mat-tree-node>
+
+  <mat-tree-node
+    *matTreeNodeDef="let node; when: hasNoContent"
+    matTreeNodePadding>
+    <button mat-icon-button disabled></button>
+    <mat-form-field>
+      <mat-label>{{ "home_ui_new#label" | translate }}</mat-label>
+      <input matInput #itemValue />
+    </mat-form-field>
+    <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
+  </mat-tree-node>
+
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <button
+      mat-icon-button
+      matTreeNodeToggle
+      [attr.aria-label]="'Toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
+      </mat-icon>
+    </button>
+    <mat-checkbox
+      [checked]="descendantsAllSelected(node)"
+      [indeterminate]="descendantsPartiallySelected(node)"
+      (change)="todoItemSelectionToggle(node)">
+      {{ node.name }}
+    </mat-checkbox>
+    <button mat-icon-button (click)="addNewItem(node)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-tree-node>
+</mat-tree>
+
+<button mat-button class="btn" type="button" (click)="toggleLang()">
+  Sprache
+</button>
+<button mat-button class="btn" type="button" (click)="generateTextFile()">
+  Txtdatei generieren
+</button>
+<button mat-button class="btn" type="button" (click)="updateTxtFile()">
+  Txtdatei updaten
+</button>
+<button mat-button class="btn" type="button" (click)="generateConfig()">
+  Config generieren
+</button>
+<app-text-input name="home_lang_lang"></app-text-input>
+<app-text-input name="home_lang_key"></app-text-input>
+<app-text-input name="home_lang_code"></app-text-input>
+
+<button mat-button class="btn" [disabled]="" type="button" (click)="generateLang()">
+  Sprache Erstellen
+</button>
