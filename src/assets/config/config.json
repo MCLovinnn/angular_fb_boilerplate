@@ -24,6 +24,9 @@
         "htmlType": "text"
       },
       "autocomplete": { "name": "home_test_autocomplete", "htmlType": "autocomplete",
+        "htmlAttribute": {
+          "autocomplete": "off"
+        },
         "options": [
           {
             "value": "change",

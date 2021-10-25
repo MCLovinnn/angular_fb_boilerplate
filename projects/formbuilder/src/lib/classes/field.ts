@@ -44,7 +44,7 @@ export class BaseFieldComponent implements IField, OnInit {
   @Input() validators: IValidator;
   @Input() customValidation: ICustomValidation[];
   @Input() htmlAttribute: IHTMLAttributes;
-  @Input() autocomplete = 'on';
+  @Input() autocomplete = 'off';
 
   @Input() change: EventEmitter<any> = new EventEmitter();
   init = true;

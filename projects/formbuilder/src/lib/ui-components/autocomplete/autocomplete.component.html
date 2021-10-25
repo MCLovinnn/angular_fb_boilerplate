@@ -1,10 +1,9 @@
-<ng-container *ngIf="form" [formGroup]="form" autocomplete="doNotAutoComplete">
+<ng-container *ngIf="form" [formGroup]="form">
   <mat-form-field [hintLabel]="getName() + '#hintlabel' | translate">
     <input
       matInput
       [placeholder]="getName() + '#label' | translate"
       [formControlName]="name"
-      autocomplete="doNotAutoComplete"
       type="search"
       [minlength]="validators.minLength"
       [maxlength]="validators.maxLength"
@@ -16,7 +15,8 @@
       matTooltipShowDelay="100"
       [value]="getValue()"
       (change)="change.emit({ type: name, value: $event.target.value })"
-      [matAutocomplete]="auto"/>
+      [matAutocomplete]="auto"
+      [autocomplete]="autocomplete"/>
     <mat-autocomplete #auto="matAutocomplete">
       <ng-container *ngIf="config.groupBy">
         <mat-optgroup

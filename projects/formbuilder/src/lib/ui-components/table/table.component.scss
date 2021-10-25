@@ -6,3 +6,28 @@ table {
   flex-direction: row-reverse;
   margin-bottom: 5px;
 }
+
+
+.long-filter {
+  float: left;
+  width: calc(100% - 520px) !important;
+}
+
+.short-filter {
+  float: left;
+  width: calc(100% - 560px) !important;
+}
+
+#table-export {
+  float: right;
+  margin-top: 8px;
+}
+
+.mat-column-actions {
+  width: 104px !important;
+  white-space: unset !important;
+}
+
+.mat-column-select {
+  width: 50px !important;
+}

@@ -1,14 +1,12 @@
 <ng-container *ngIf="viewOptions.searchable">
   <mat-form-field
-    [ngClass]="{
-      'short-filter': viewOptions.showCSVExport,
-      'long-filter': !viewOptions.showCSVExport
-    }">
+    [ngClass]="viewOptions.showCSVExport ? 'short-filter' : 'long-filter'">
     <input
       matInput
       [formControl]="filterControl"
       (keyup)="applyFilter($event.target.value)"
       placeholder="Filter"
+      autocomplete="off"
       maxlength="250"
     />
   </mat-form-field>

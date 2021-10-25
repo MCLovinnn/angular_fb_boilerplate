@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,9 +32,16 @@ import {
   TranslationService,
   FormService
 } from '../../projects/formbuilder/src/public-api';
+
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { TestComponent } from './test/test.component';
+import { ConnectorService } from './services/connector.service';
+
+
 // @ts-ignore
 import CONFIG from '../assets/config/config.json';
-import { TestComponent } from './test/test.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -78,7 +83,7 @@ registerLocaleData(localeDe, 'de');
   exports: [AppComponent]
 })
 export class AppModule {
-  constructor(public ts: TranslationService, private fs: FormService) {
+  constructor(public ts: TranslationService, private fs: FormService, private cs: ConnectorService) {
     fs.addConfig(CONFIG);
 
     ts.setPath('assets/locale/');

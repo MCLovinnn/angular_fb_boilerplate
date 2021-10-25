@@ -9,30 +9,6 @@ export class ConnectorService {
   url = '/api';
   constructor(public ts: TranslationService, private http: HttpClient) {}
 
-  toggleLang() {
-    const newLang = this.ts.setLang(this.ts.lang === 'de' ? 'en' : 'de');
-  }
-
-  generateTextFile(lang: string, data: any) {
-    return this.http.post(
-      '/api/generate/' + lang,
-      data,
-      { headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  updateTxtFile(lang: string, data: any) {
-    return this.http.post(
-      '/api/update/' + lang,
-      data ,
-      { headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  getTxtKeys(name) {
-    return this.http.get('/api/lang/' + name);
-  }
-
   doPost(url: string, lang: string, data: any) {
     return this.http.post(
       '/api/' + url + lang,
