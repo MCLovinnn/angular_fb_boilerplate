@@ -54,13 +54,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/FormbuilderModule.html" data-type="entity-link" >FormbuilderModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' : 'data-target="#xs-components-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' }>
+                                            'data-target="#components-links-module-FormbuilderModule-6f7180fbed0e5457c5d91f8d9658b326"' : 'data-target="#xs-components-links-module-FormbuilderModule-6f7180fbed0e5457c5d91f8d9658b326"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' :
-                                            'id="xs-components-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FormbuilderModule-6f7180fbed0e5457c5d91f8d9658b326"' :
+                                            'id="xs-components-links-module-FormbuilderModule-6f7180fbed0e5457c5d91f8d9658b326"' }>
                                             <li class="link">
                                                 <a href="components/AutocompleteComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AutocompleteComponent</a>
                                             </li>
@@ -110,13 +110,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#pipes-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' : 'data-target="#xs-pipes-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' }>
+                                            'data-target="#pipes-links-module-FormbuilderModule-6f7180fbed0e5457c5d91f8d9658b326"' : 'data-target="#xs-pipes-links-module-FormbuilderModule-6f7180fbed0e5457c5d91f8d9658b326"' }>
                                             <span class="icon ion-md-add"></span>
                                             <span>Pipes</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' :
-                                            'id="xs-pipes-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-FormbuilderModule-6f7180fbed0e5457c5d91f8d9658b326"' :
+                                            'id="xs-pipes-links-module-FormbuilderModule-6f7180fbed0e5457c5d91f8d9658b326"' }>
                                             <li class="link">
                                                 <a href="pipes/TranslatePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TranslatePipe</a>
                                             </li>

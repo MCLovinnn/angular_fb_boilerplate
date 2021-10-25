@@ -104,7 +104,8 @@ registerLocaleData(localeDe, 'de');
     MatSlideToggleModule
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'de' }
+    { provide: MAT_DATE_LOCALE, useValue: 'de' },
+    TranslatePipe
   ],
   bootstrap: [FormbuilderComponent],
   exports: [
