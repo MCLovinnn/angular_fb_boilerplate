@@ -94,6 +94,7 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>(opt: any[], value: string, ts:TranslationService): string[] &#x3D;&gt; {
   const filterValue &#x3D; value.toLowerCase();
+  console.log(opt);
 
   if (typeof opt[0] &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
     return opt.filter(item &#x3D;&gt; checkKey(ts, item, filterValue));

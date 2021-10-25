@@ -54,13 +54,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/FormbuilderModule.html" data-type="entity-link" >FormbuilderModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' : 'data-target="#xs-components-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' }>
+                                            'data-target="#components-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' : 'data-target="#xs-components-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' :
-                                            'id="xs-components-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' :
+                                            'id="xs-components-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' }>
                                             <li class="link">
                                                 <a href="components/AutocompleteComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AutocompleteComponent</a>
                                             </li>
@@ -108,32 +108,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             </li>
                                         </ul>
                                     </li>
-                                <li class="chapter inner">
-                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' : 'data-target="#xs-injectables-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' }>
-                                        <span class="icon ion-md-arrow-round-down"></span>
-                                        <span>Injectables</span>
-                                        <span class="icon ion-ios-arrow-down"></span>
-                                    </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' :
-                                        'id="xs-injectables-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' }>
-                                        <li class="link">
-                                            <a href="injectables/ConfigService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ConfigService</a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="injectables/DataFlattnerService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DataFlattnerService</a>
-                                        </li>
-                                    </ul>
-                                </li>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#pipes-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' : 'data-target="#xs-pipes-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' }>
+                                            'data-target="#pipes-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' : 'data-target="#xs-pipes-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' }>
                                             <span class="icon ion-md-add"></span>
                                             <span>Pipes</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' :
-                                            'id="xs-pipes-links-module-FormbuilderModule-6136b99ec87f7446a21a3bbed1f966d1"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' :
+                                            'id="xs-pipes-links-module-FormbuilderModule-f269f72dd43e37a5463797a6bc86afc6"' }>
                                             <li class="link">
                                                 <a href="pipes/TranslatePipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TranslatePipe</a>
                                             </li>
@@ -173,7 +156,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/AuthenticationService.html" data-type="entity-link" >AuthenticationService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/ConfigService.html" data-type="entity-link" >ConfigService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/DataConnectorService.html" data-type="entity-link" >DataConnectorService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/DataFlattnerService.html" data-type="entity-link" >DataFlattnerService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/DataStoreService.html" data-type="entity-link" >DataStoreService</a>

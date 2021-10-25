@@ -104,10 +104,7 @@ registerLocaleData(localeDe, 'de');
     MatSlideToggleModule
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'de' },
-    ConfigService,
-    DataFlattnerService,
-    TranslatePipe
+    { provide: MAT_DATE_LOCALE, useValue: 'de' }
   ],
   bootstrap: [FormbuilderComponent],
   exports: [
@@ -120,7 +117,6 @@ registerLocaleData(localeDe, 'de');
     CheckboxComponent,
     RadiobuttonComponent,
     SliderComponent,
-    TranslatePipe,
     TableComponent,
     SlideToggleComponent
   ]

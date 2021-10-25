@@ -8,6 +8,7 @@ export * from './lib/formbuilder.module';
 export { FormService } from './lib/services/form.service';
 export { TranslationService } from './lib/services/translation.service';
 export { ConfigService} from './lib/services/config.service';
+export { DataFlattnerService } from './lib/services/data-flattner.service';
 export { DataConnectorService } from './lib/services/data-connector.service';
 export { BaseFieldComponent } from './lib/classes/field';
 export { optionsConfig } from './lib/interfaces/iautocompleteoption';

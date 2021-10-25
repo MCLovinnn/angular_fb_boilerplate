@@ -532,15 +532,15 @@ The return value is the list of <code>AutoSearch</code>.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
-import { DataFlattnerService } from &quot;./data-flattner.service&quot;;
-import { IField } from &quot;../interfaces/ifield&quot;;
-import { MenuNode, AutoSearch } from &quot;../interfaces/imenu&quot;;
-import { BehaviorSubject } from &quot;rxjs&quot;;
-import { HttpClient } from &quot;@angular/common/http&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { DataFlattnerService } from &#x27;./data-flattner.service&#x27;;
+import { IField } from &#x27;../interfaces/ifield&#x27;;
+import { MenuNode, AutoSearch } from &#x27;../interfaces/imenu&#x27;;
+import { BehaviorSubject } from &#x27;rxjs&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
 
 @Injectable({
-  providedIn: &quot;root&quot;
+  providedIn: &#x27;root&#x27;
 })
 export class ConfigService {
   flatControlls: any[];
@@ -598,7 +598,7 @@ export class ConfigService {
       const node &#x3D; new AutoSearch();
       node.name &#x3D; key;
       if (value !&#x3D; null) {
-        if (typeof value &#x3D;&#x3D;&#x3D; &quot;object&quot; &amp;&amp; level &lt; 2) {
+        if (typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; level &lt; 2) {
           node.children &#x3D; this.buildFileTree(value, level + 1);
         } else {
           if (level &#x3D;&#x3D;&#x3D; 2) {
