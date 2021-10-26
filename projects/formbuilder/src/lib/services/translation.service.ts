@@ -88,4 +88,21 @@ export class TranslationService {
       );
     });
   }
+
+  deleteKeys(data: any) {
+    // this.data.
+    let newdata = {};
+    for (let [key, value] of Object.entries(this.data)) {
+      console.log(key + ':' + value);
+      let found = false;
+      for (let [key2, value2] of Object.entries(data)) {
+        if(key !== key2) { found = true; }
+        // console.log(key + ':' + value);
+      }
+      if(!found) {
+        Object.assign(newdata, {[key]: value});
+      }
+    }
+    this.data = newdata;
+  }
 }

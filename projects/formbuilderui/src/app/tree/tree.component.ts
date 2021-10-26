@@ -1,4 +1,4 @@
-import { Component, Input, Injectable, OnInit } from '@angular/core';
+import { Component, Input, Injectable, OnInit, EventEmitter } from '@angular/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   MatTreeFlatDataSource,
@@ -110,6 +110,7 @@ export class ChecklistDatabase {
   providers: [ChecklistDatabase]
 })
 export class TreeComponent implements OnInit {
+  langEmitter: EventEmitter<any> = new EventEmitter();
   @Input() data: any;
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */
   flatNodeMap = new Map<TodoItemFlatNode, TodoItemNode>();
@@ -170,23 +171,22 @@ export class TreeComponent implements OnInit {
     // let newData = this.configS.buildFileTree(this.configS.configs, 0) as TodoItemNode[];
     //   this._database.dataChange.next(newData);
     this.cs.getTxtKeys(this.ts.lang).subscribe(val => {
-      console.log(val);
+      // console.log(val);
       this.ts.userData = val;
       this.ts.updateData(val);
     });
     this.cs.get('config').subscribe(data => {
-      console.log(data);
+      // console.log(data);
 
       this.configS.configs = data;
       let newData = this.configS.buildFileTree(data, 0) as TodoItemNode[];
       this._database.dataChange.next(newData);
     })
-    this.fs.onConfigChange().subscribe(config => {
 
-    });
-    const langField = this.fs.getFormControl(this.fs.getConfigByName('home_tree_lang'));
-    langField.valueChanges.subscribe(val => {
-      this.ts.setLang(val);
+    this.langEmitter.subscribe(val => {
+      // console.log(val);
+      this.fs.getConfigByName('home_tree_lang').value = val.value;
+      this.ts.setLang(val.value);
     });
   }
 
@@ -351,7 +351,7 @@ export class TreeComponent implements OnInit {
 
       this.ts.updateData(lngObj);
       this.cs.doPost('/updateKey/', '', lngObj).subscribe((res) => {
-        console.log(res);
+        // console.log(res);
 
       })
       // this.updateTxtFile();
@@ -381,9 +381,11 @@ export class TreeComponent implements OnInit {
   }
 
   open(node: any) {
-    let data = this.fs.getConfigByName(node.name);
+    // console.log(node);
 
-    console.log(data);
+    let data = this.configS.getConfigByName(node.name);
+    // console.log(data);
+
 
     let field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
@@ -395,7 +397,7 @@ export class TreeComponent implements OnInit {
   }
 
   generateConfig() {
-    this.cs.doPost('config/', 'de', this.configS.configs).subscribe( val => console.log(val));
+    this.cs.doPost('config/', this.ts.lang, this.configS.configs).subscribe( val => console.log(val));
   }
 
   generateLang() {
@@ -416,12 +418,11 @@ export class TreeComponent implements OnInit {
     tmpConf.options.push(tmpObj);
 
     this.cs.doPost('config/', raw.home_lang_key.toLowerCase(), this.configS.configs).subscribe( val => {
-      console.log(val);
       let lngObj = {
         [tmpObj.key]: raw.home_lang_lang,
       };
       if (tmpObj.description) {
-        lngObj.push({
+        Object.assign(lngObj, {
           [tmpObj.description]: raw.home_lang_code
         });
       }

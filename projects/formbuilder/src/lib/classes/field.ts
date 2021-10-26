@@ -74,8 +74,7 @@ export class BaseFieldComponent implements IField, OnInit {
   }
 
   getMeesage(type: string, param: any) {
-    console.log(type);
-
+    // console.log(type);
     if(this.MSGerrors[type](param)) {
       return this.MSGerrors[type](param);
     }
@@ -88,8 +87,12 @@ export class BaseFieldComponent implements IField, OnInit {
 
     this.setUpConfig(this.field);
     this.form = this.fs.getForm(this.field.name);
+    console.log(this.field);
+
     this.control = this.fs.getFormControl(this.field);
-    this.fs.addField(this);
+    if(this.init) {
+      this.fs.addField(this);
+    }
     this.init = false;
     this.control.valueChanges.subscribe(val => (this.value = val));
   }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
   ITableViewOptions,
-  TableType,
   ITableHeader,
   FormService,
   ConfigService
@@ -46,23 +45,31 @@ export class ListComponent implements OnInit {
 
   data: any[] = [];
 
-  constructor(private fs: FormService,
+  constructor(
+    private fs: FormService,
     private cs: ConnectorService,
-    private configS: ConfigService) {}
+    private configS: ConfigService
+  ) {}
 
   ngOnInit(): void {
-    let config = (this.configS.configs).home;
+    let config = this.configS.configs;
     let tmpData = [];
-    for (const formN in config) {
-      if (config[formN]) {
-        for (const elemN in config[formN]) {
-          if (config[formN][elemN]) {
-            const keys = config[formN][elemN].name.split('_');
-            config[formN][elemN].validators = JSON.stringify(config[formN][elemN].validators);
-            config[formN][elemN].form = keys[1];
+    for (const page in config) {
+      if (config[page]) {
+        for (const formN in config[page]) {
+          if (config[page][formN]) {
+            for (const elemN in config[page][formN]) {
+              if (config[page][formN][elemN]) {
+                const keys = config[page][formN][elemN].name.split('_');
+                config[page][formN][elemN].validators = JSON.stringify(
+                  config[page][formN][elemN].validators
+                );
+                config[page][formN][elemN].form = keys[1];
 
-            config[formN][elemN].brand = config[formN][elemN].brand_id
-            tmpData.push(config[formN][elemN])
+                config[page][formN][elemN].brand = config[page][formN][elemN].brand_id;
+                tmpData.push(config[page][formN][elemN]);
+              }
+            }
           }
         }
       }
@@ -70,10 +77,24 @@ export class ListComponent implements OnInit {
     this.data = tmpData;
   }
 
-  delete(row: any) {
-    this.cs.delete('config/', row.name).subscribe((val) => {
+  delete(row: any, end = false) {
+    this.cs.delete('config/', row.name).subscribe(val => {
+      if (end) {
       window.location.reload();
-      console.log(val);
+      }
+      // console.log(val);
+    });
+  }
+
+  deleteAll(data) {
+    data.forEach((element, index, array) => {
+    // console.log(element);
+    // console.log(index);
+    // console.log(array);
+      if(index === (array.length - 1)) {
+      this.delete(element, true);
+      }
+      this.delete(element);
     });
   }
 }

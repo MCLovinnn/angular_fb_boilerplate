@@ -119,7 +119,8 @@ registerLocaleData(localeDe, 'de');
     RadiobuttonComponent,
     SliderComponent,
     TableComponent,
-    SlideToggleComponent
+    SlideToggleComponent,
+    TranslatePipe
   ]
 })
 
@@ -131,7 +132,8 @@ export class FormbuilderModule {
       providers: [
         TranslationService,
         ConfigService,
-        DataFlattnerService
+        DataFlattnerService,
+        TranslatePipe
       ]
     }
   }

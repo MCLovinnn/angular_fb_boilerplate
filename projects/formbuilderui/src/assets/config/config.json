@@ -249,12 +249,7 @@
         "value": "de",
         "options": [
           { "value": "de", "key": "home_tree_lang_Opt_de" },
-          { "value": "en", "key": "home_tree_lang_Opt_en" },
-          {
-            "key": "home_tree_lang_Opt_cz",
-            "value": "cz",
-            "description": "home_tree_lang_Opt_cz#desc"
-          }
+          { "value": "en", "key": "home_tree_lang_Opt_en" }
         ]
       }
     },

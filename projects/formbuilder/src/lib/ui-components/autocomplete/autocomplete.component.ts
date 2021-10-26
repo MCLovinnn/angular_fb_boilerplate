@@ -39,7 +39,9 @@ export class AutocompleteComponent extends BaseFieldComponent
   implements OnInit {
   filteredStates: any;
   @Input() options: any[];
-  @Input() config: optionsConfig;
+  @Input() config: optionsConfig = {
+    groupBy: true
+  };
 
   constructor(public fb: FormBuilder, public fs: FormService, public ts: TranslationService) {
     super(fb, fs, ts);

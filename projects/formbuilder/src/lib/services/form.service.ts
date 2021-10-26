@@ -51,7 +51,7 @@ export class FormService {
       this.fields.push(val);
     });
     this.configChange.subscribe((newVal)=> {
-      this.setUp(newVal);
+      // this.setUp(newVal);
     });
   }
 
@@ -121,7 +121,29 @@ export class FormService {
 
     if (this.configs[page] && this.configs[page][form]) {
       this.configs[page][form][key] = config;
-      this.configChange.next(this.configs);
+      // this.configChange.next(this.configs);
+      this.updateControl(config);
+    }
+  }
+
+  updateControl(field: IField) {
+    const validatorS = this.buildValidators(field.validators);
+    const controL = [];
+    controL.push(field.value ? field.value : '');
+
+    const options = {
+      validators: [],
+      updateOn: ''
+    };
+
+    if (validatorS) {
+      options.validators = validatorS;
+    }
+
+    if (field.updateOn) {
+      options.updateOn = field.updateOn;
+
+      controL.push(options);
     }
   }
 

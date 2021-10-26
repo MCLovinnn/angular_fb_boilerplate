@@ -1,4 +1,5 @@
-<app-select name="home_tree_lang"></app-select>
+<app-select name="home_tree_lang"
+  [change]="langEmitter"></app-select>
 <mat-tree
   style="margin-top:15px;"
   [dataSource]="dataSource"
@@ -27,7 +28,7 @@
       <mat-label>{{ "home_ui_new#label" | translate }}</mat-label>
       <input matInput #itemValue />
     </mat-form-field>
-    <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
+    <button mat-button (click)="saveNode(node, itemValue.value)">{{ 'save' | translate }}</button>
   </mat-tree-node>
 
   <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
@@ -51,22 +52,19 @@
   </mat-tree-node>
 </mat-tree>
 
-<button mat-button class="btn" type="button" (click)="toggleLang()">
-  Sprache
-</button>
 <button mat-button class="btn" type="button" (click)="generateTextFile()">
-  Txtdatei generieren
+  {{ 'genText' | translate }}
 </button>
 <button mat-button class="btn" type="button" (click)="updateTxtFile()">
-  Txtdatei updaten
+  {{ 'updateText' | translate }}
 </button>
 <button mat-button class="btn" type="button" (click)="generateConfig()">
-  Config generieren
+  {{ 'genConfig' | translate }}
 </button>
 <app-text-input name="home_lang_lang"></app-text-input>
 <app-text-input name="home_lang_key"></app-text-input>
 <app-text-input name="home_lang_code"></app-text-input>
 
 <button mat-button class="btn" [disabled]="" type="button" (click)="generateLang()">
-  Sprache Erstellen
+  {{ 'newLang' | translate }}
 </button>

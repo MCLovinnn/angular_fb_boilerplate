@@ -10,7 +10,9 @@
     <ng-template matStepLabel>Feld Type</ng-template>
     <mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">
       <mat-grid-tile colspan="4" rowpsan="1">
-        <app-select name="home_control_type"></app-select>
+        <app-select name="home_control_type"
+          [change]="typeChange">
+        </app-select>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="1">
         <app-text-input name="home_control_value" [iconAction]="clearValue"></app-text-input>
@@ -62,7 +64,13 @@
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowpsan="3">
         <button mat-button matStepperPrevious>Back</button>
-        <button (click)="reset(); stepper.reset()" mat-button>Reset</button>
+        <div *ngIf="internalType !== 'select' && internalType !== 'checkbox' && internalType !== 'radiobutton'">
+            <button (click)="reset(); stepper.reset()" mat-button>Reset</button>
+            <button (click)="generateConfig()" mat-button>{{'save' | translate}}</button>
+        </div>
+        <div *ngIf="internalType === 'select' || internalType === 'checkbox' || internalType === 'radiobutton'">
+            <button mat-button matStepperNext>Next</button>
+        </div>
       </mat-grid-tile>
     </mat-grid-list>
     <div></div>
@@ -87,11 +95,12 @@
             [data]="selectOptions"
           ></app-table-->
           <mat-selection-list #SelectOpt>
-            <mat-list-option *ngFor="let opt of selectOptions">
-              {{(opt.key | translate) + ', '+ opt.value + ', '+ (opt.description | translate) }}
+            <mat-list-option *ngFor="let opt of selectOptions" [matTooltip]="opt.description | translate" [value]="opt.value">
+              {{ (opt.key | translate) + ', '+ opt.value }}
             </mat-list-option>
           </mat-selection-list>
-          <button *ngIf="SelectOpt.selectedOptions.selected.length > 0 " mat-mini-fab color="primary">
+          <button *ngIf="SelectOpt.selectedOptions.selected.length > 0 " mat-mini-fab color="primary"
+            (click)="deleteSelectOption(SelectOpt.selectedOptions.selected)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -103,6 +112,11 @@
         <button mat-button (click)="addSelectOption()">Hinzufügen</button>
       </mat-grid-tile>
     </mat-grid-list>
+    <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button (click)="reset(); stepper.reset()" mat-button>Reset</button>
+        <button (click)="generateConfig()" mat-button>{{'save' | translate}}</button>
+      </div>
   </mat-step>
   <!--mat-step>
     <ng-template matStepLabel>Funktionen</ng-template>

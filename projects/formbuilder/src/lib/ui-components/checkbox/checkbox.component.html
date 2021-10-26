@@ -1,17 +1,20 @@
-<div>
-  <mat-checkbox
-    [value]="value"
-    [labelPosition]="position"
-    (change)="change.emit({ type: name, value: $event.checked })"
-    [disabled]="disabled"
-    [matTooltip]="getName() + '#tooltip' | translate"
-    matTooltipDisabled="false"
-    matTooltipHideDelay="200"
-    matTooltipPosition="above"
-    matTooltipShowDelay="100">
-    {{ getName() + "#label" | translate }}
-  </mat-checkbox>
-</div>
+<ng-container *ngIf="form" [formGroup]="form">
+    <div>
+      <mat-checkbox
+        [value]="value"
+        [labelPosition]="position"
+        [formControlName]="name"
+        (change)="change.emit({ type: name, value: $event.checked })"
+        [disabled]="disabled"
+        [matTooltip]="getName() + '#tooltip' | translate"
+        matTooltipDisabled="false"
+        matTooltipHideDelay="200"
+        matTooltipPosition="above"
+        matTooltipShowDelay="100">
+        {{ getName() + "#label" | translate }}
+      </mat-checkbox>
+    </div>
+</ng-container>
 
 <!--div *ngIf="task.options">
   <mat-checkbox

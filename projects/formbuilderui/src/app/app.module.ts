@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { merge } from 'lodash';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -92,6 +93,10 @@ registerLocaleData(localeDe, 'de');
 })
 export class AppModule {
   constructor(public ts: TranslationService, private cs: ConfigService, private fs: FormService) {
+    // console.log('fb', FBCONFIG);
+    // console.log('app', CONFIG);
+    console.log(Object.assign(FBCONFIG.home, CONFIG.home));
+    merge(FBCONFIG, CONFIG);
     fs.addConfig(FBCONFIG);
     cs.configs = CONFIG;
     ts.setPath('assets/locale/');

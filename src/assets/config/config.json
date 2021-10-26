@@ -4,7 +4,7 @@
       "select": {
         "name": "home_test_select",
         "htmlType": "select",
-        "validators": { "required": false },
+        "validators": { "required": true },
         "value": "change",
         "options": [
           {
@@ -22,6 +22,10 @@
       "text": {
         "name": "home_test_text",
         "htmlType": "text"
+      },
+      "date": {
+        "name": "home_test_date",
+        "htmlType": "date"
       },
       "autocomplete": { "name": "home_test_autocomplete", "htmlType": "autocomplete",
         "htmlAttribute": {

@@ -44,7 +44,7 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
     tmpfield.validators = validators;
     // console.log(validators);
 
-    this.fs.updateConfig(tmpfield);
+    // this.fs.updateConfig(tmpfield);
     let control = this.fs.getFormControl({name: this.fieldS.get()});
     control.setValidators(this.fs.buildValidators(tmpfield.validators));
     control.updateValueAndValidity();

@@ -12,6 +12,10 @@ export class ConfigService {
   flatControlls: any[];
   dataChange = new BehaviorSubject<AutoSearch[]>([]);
   configs: any;
+  emptyObj: IField = {
+    name: 'home_ui_new'
+  };
+
 
   constructor(private http: HttpClient) {
     this.flatControlls = [];
@@ -86,5 +90,20 @@ export class ConfigService {
 
   getFlatControlls() {
     return DataFlattnerService.flatten(this.flatControlls);
+  }
+
+  getConfigByName(name: string) {
+    const keys = name.split('_');
+    const page = keys[0];
+    const form = keys[1];
+    const key = keys[2];
+
+    if (this.configs[page] && this.configs[page][form]) {
+      return this.configs[page][form][key]
+        ? (this.configs[page][form][key] as IField)
+        : this.emptyObj;
+    } else {
+      return this.emptyObj;
+    }
   }
 }

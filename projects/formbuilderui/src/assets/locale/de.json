@@ -126,8 +126,6 @@
   "home_tree_lang_Opt_de#desc": "",
   "home_tree_lang_Opt_en": "Englisch",
   "home_tree_lang_Opt_en#desc": "",
-  "home_tree_lang_Opt_cz": "Tschechisch",
-  "home_tree_lang_Opt_cz#desc": "",
   "home_lang_lang#label": "Sprache",
   "home_lang_lang#hintlabel": "Z.B. Deutsch",
   "home_lang_lang#tooltip": "",
@@ -143,5 +141,10 @@
   "config_table_htmlType": "HTML-Typ",
   "config_table_form": "Formular",
   "home_tree_lang_Opt_it": "Italienisch",
-  "home_tree_lang_Opt_it#desc": ""
+  "home_tree_lang_Opt_it#desc": "",
+  "newLang": "Sprache erstellen",
+  "genConfig": "Config Datei updaten",
+  "updateText": "Textdatei Updaten",
+  "genText": "Textdatei anhand von config ertellen",
+  "save": "Speichern"
 }
