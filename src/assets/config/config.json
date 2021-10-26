@@ -4,7 +4,7 @@
       "select": {
         "name": "home_test_select",
         "htmlType": "select",
-        "validators": { "required": true },
+        "validators": { "required": false },
         "value": "change",
         "options": [
           {

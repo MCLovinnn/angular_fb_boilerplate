@@ -4,7 +4,8 @@ import {
   Input,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
+  ChangeDetectorRef
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
@@ -39,6 +40,7 @@ export class ControlpanelComponent implements OnInit {
   autoCompleteConfig: optionsConfig = {
     groupBy: true
   };
+  optionForm: FormGroup;
   internalType = 'text';
 
   allControlls: any;
@@ -69,9 +71,12 @@ export class ControlpanelComponent implements OnInit {
     private configS: ConfigService,
     private fieldS: FieldService,
     public ts: TranslationService,
-    private cs: ConnectorService
+    private cs: ConnectorService,
+    private cd: ChangeDetectorRef
   ) {
     this.form = fs.getForm('home_control');
+    this.optionForm = fs.getForm('home_select');
+    console.log(this.optionForm);
   }
 
   reset() {
@@ -101,11 +106,17 @@ export class ControlpanelComponent implements OnInit {
 
       this.fs
         .getFormControl({ name: 'home_control_value' })
-        .patchValue(conf.value);
+        .patchValue(conf.value ? conf.value : '');
 
       this.fs
         .getFormControl({ name: 'home_control_type' })
         .patchValue(conf.htmlType, { emitEvent: false });
+
+      this.fs
+        .getFormControl({ name: 'home_control_name' })
+        .patchValue(conf.name.split('_')[2], {
+          emitEvent: false
+        });
 
       this.fs
         .getFormControl({ name: 'home_control_hintlabel' })
@@ -134,7 +145,7 @@ export class ControlpanelComponent implements OnInit {
           emitEvent: false
         });
       }
-
+      this.cd.detectChanges();
     });
 
     this.clearValue.subscribe(value => {
@@ -360,9 +371,14 @@ export class ControlpanelComponent implements OnInit {
       selectF.options = this.selectOptions;
     });
   }
+
   generateConfig() {
     this.cs
       .doPost('config/', this.ts.lang, this.configS.configs)
       .subscribe(val => console.log(val));
+  }
+
+  isValid() {
+    return this.optionForm.valid;
   }
 }

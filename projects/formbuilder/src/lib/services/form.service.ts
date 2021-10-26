@@ -278,7 +278,11 @@ export class FormService {
             const field: IField = forM[key];
             const validatorS = this.buildValidators(field.validators);
             const controL = [];
-            controL.push(field.value ? field.value : '');
+
+            controL.push({
+              value: field.value ? field.value : '',
+              disabled: field.disabled? field.disabled: false
+            });
 
             const options = {
               validators: [],

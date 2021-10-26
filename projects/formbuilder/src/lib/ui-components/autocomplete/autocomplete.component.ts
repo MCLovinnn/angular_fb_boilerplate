@@ -9,13 +9,16 @@ import { TranslationService } from '../../services/translation.service';
 
 export const _filter = (opt: any[], value: string, ts:TranslationService): string[] => {
   const filterValue = value.toLowerCase();
-
-  if (typeof opt[0] === 'string') {
-    return opt.filter(item => checkKey(ts, item, filterValue));
+  if (opt) {
+    if (typeof opt[0] === 'string') {
+      return opt.filter(item => checkKey(ts, item, filterValue));
+    } else {
+      return opt.filter(
+        item => checkKey(ts, item.name, filterValue)
+      );
+    }
   } else {
-    return opt.filter(
-      item => checkKey(ts, item.name, filterValue)
-    );
+    return [];
   }
 };
 
@@ -76,7 +79,9 @@ export class AutocompleteComponent extends BaseFieldComponent
 
   private _filterGroup(value: string): any[] {
     // console.log(this.filteredStates);
-    if (value) {
+    // console.log(this.options);
+
+    if (value && this.options[0].name) {
       return this.options
         .map((group: AutoSearch) => ({
           name: group.name,

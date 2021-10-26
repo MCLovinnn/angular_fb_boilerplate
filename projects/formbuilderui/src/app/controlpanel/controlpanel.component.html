@@ -109,7 +109,7 @@
         <app-text-input name="home_select_selectCode"></app-text-input>
       </mat-grid-tile>
       <mat-grid-tile colspan="4" rowspan="1">
-        <button mat-button (click)="addSelectOption()">Hinzufügen</button>
+        <button mat-button (click)="addSelectOption()" [disabled]="!optionForm.valid">Hinzufügen</button>
       </mat-grid-tile>
     </mat-grid-list>
     <div>

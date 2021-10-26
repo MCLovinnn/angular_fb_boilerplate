@@ -87,9 +87,11 @@ export class BaseFieldComponent implements IField, OnInit {
 
     this.setUpConfig(this.field);
     this.form = this.fs.getForm(this.field.name);
-    console.log(this.field);
+    // console.log(this.field);
 
     this.control = this.fs.getFormControl(this.field);
+    // console.log(this.control);
+
     if(this.init) {
       this.fs.addField(this);
     }
@@ -145,7 +147,7 @@ export class BaseFieldComponent implements IField, OnInit {
     if (config.htmlAttribute && config.htmlAttribute.autocomplete) {
       this.autocomplete = config.htmlAttribute.autocomplete;
     }
-    if(this.field.disabled) {
+    if(this.field.disabled && this.control) {
       this.control.disable();
     }
     this.synchronizeValidator();
