@@ -5,7 +5,7 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
@@ -76,11 +76,9 @@ export class ControlpanelComponent implements OnInit {
   ) {
     this.form = fs.getForm('home_control');
     this.optionForm = fs.getForm('home_select');
-    console.log(this.optionForm);
   }
 
   reset() {
-    // this.fs.getForm('home_control').reset();
     this.fs.resetForms();
 
     const field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
@@ -93,8 +91,6 @@ export class ControlpanelComponent implements OnInit {
 
   ngOnInit() {
     this.fieldS.change().subscribe(val => {
-      // console.log(val);
-
       const conf = this.fs.getConfigByName(val);
       const type = conf.htmlType ? conf.htmlType : 'text';
       this.internalType = type;
@@ -103,6 +99,7 @@ export class ControlpanelComponent implements OnInit {
       field.options = this.selectOptions;
       field.internalType = type;
       field.control.patchValue(conf.value);
+      field.changeValidators(conf.validators);
 
       this.fs
         .getFormControl({ name: 'home_control_value' })
@@ -130,26 +127,55 @@ export class ControlpanelComponent implements OnInit {
           emitEvent: false
         });
 
-      if (conf.validators && conf.validators.required) {
-        this.fs
-        .getFormControl({ name: 'home_control_required' })
-        .patchValue(conf.validators.required, {
-          emitEvent: false
-        });
+      if (conf.validators) {
+        if (conf.validators.required) {
+          this.fs
+            .getFormControl({ name: 'home_control_required' })
+            .patchValue(conf.validators.required, {
+              emitEvent: false
+            });
+        }
+        if (conf.validators.min) {
+          this.fs
+            .getFormControl({ name: 'home_control_min' })
+            .patchValue(conf.validators.min, {
+              emitEvent: false
+            });
+        }
+        if (conf.validators.max) {
+          this.fs
+          .getFormControl({ name: 'home_control_max' })
+          .patchValue(conf.validators.max, {
+            emitEvent: false
+          });
+        }
+        if (conf.validators.minLength) {
+          this.fs
+            .getFormControl({ name: 'home_control_minLength' })
+            .patchValue(conf.validators.minLength, {
+              emitEvent: false
+            });
+        }
+        if (conf.validators.maxLength) {
+          this.fs
+            .getFormControl({ name: 'home_control_maxLength' })
+            .patchValue(conf.validators.maxLength, {
+              emitEvent: false
+            });
+        }
       }
 
       if (conf.disabled) {
         this.fs
-        .getFormControl({ name: 'home_control_disabled' })
-        .patchValue(conf.disabled, {
-          emitEvent: false
-        });
+          .getFormControl({ name: 'home_control_disabled' })
+          .patchValue(conf.disabled, {
+            emitEvent: false
+          });
       }
       this.cd.detectChanges();
     });
 
     this.clearValue.subscribe(value => {
-      // console.log(value);
       if (value.value === 'Test') {
         this.fs.getFormControl({ name: value.name }).reset();
         this.fs
@@ -170,12 +196,8 @@ export class ControlpanelComponent implements OnInit {
 
     this.fieldchange.subscribe(value => {
       const actualField = this.fieldS.get();
-      // console.log(actualField);
-
       const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
-      // console.log(field);
-      const tmpConf = this.configS.getConfigByName(actualField);
-      // const control = this.fs.getFormControl(tmpConf);
+      const tmpConf = this.fs.getConfigByName(actualField);
       switch (value.type) {
         case 'home_control_disabled':
           tmpConf.disabled = value.value ? value.value : false;
@@ -184,7 +206,6 @@ export class ControlpanelComponent implements OnInit {
           if (value.value === true) {
             this.fs.getFormControl({ name: actualField }).disable();
           } else {
-            // console.log('hi');
             this.fs.getFormControl({ name: actualField }).enable();
           }
           break;
@@ -194,7 +215,6 @@ export class ControlpanelComponent implements OnInit {
           tmpConf.validators = tmpVali;
           field.required = value.value ? value.value : null;
           field.changeValidators(tmpVali);
-          // this.fs.updateConfig(tmpConf);
           break;
       }
     });
@@ -202,18 +222,16 @@ export class ControlpanelComponent implements OnInit {
     this.fs
       .getFormControl({ name: 'home_control_value' })
       .valueChanges.subscribe(val => {
-        if (val) {
-          this.fs.getFormControl({ name: this.fieldS.get() }).patchValue(val);
-        } else {
-          this.fs.getFormControl({ name: this.fieldS.get() }).patchValue('');
-        }
+        const config = this.fs.getConfigByName(this.fieldS.get());
+        config.value = val ? val : '';
+        this.fs
+          .getFormControl({ name: this.fieldS.get() })
+          .patchValue(config.value);
       });
 
     this.fs
       .getFormControl({ name: 'home_control_tooltip' })
       .valueChanges.subscribe(val => {
-        // console.log(val);
-
         this.ts.updateData({ [this.fieldS.get() + '#tooltip']: val });
       });
 
@@ -222,8 +240,6 @@ export class ControlpanelComponent implements OnInit {
         name: 'home_control_hintlabel'
       })
       .valueChanges.subscribe(val => {
-        // console.log(val);
-
         this.ts.updateData({ [this.fieldS.get() + '#hintlabel']: val });
       });
 
@@ -233,80 +249,75 @@ export class ControlpanelComponent implements OnInit {
         if (val) {
           this.ts.updateData({ [this.fieldS.get() + '#label']: val });
         }
-        // console.log(fs.hasChanges());
       });
 
     this.fs
       .getFormControl({ name: 'home_control_min' })
-      .valueChanges.subscribe(val => {
-        const field = this.fs.getFieldByName(
-          this.fieldS.get()
-        ) as FieldComponent;
+      .valueChanges.subscribe((val: number) => {
+        const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
         const tmpVali = field.getValidators();
+        const config = this.fs.getConfigByName(this.fieldS.get());
 
         if (val > 0) {
-          // field.min = val;
           tmpVali.min = val;
-          field.changeValidators(tmpVali);
         } else {
           tmpVali.min = 0;
-          field.changeValidators(tmpVali);
         }
+
+        config.validators = tmpVali;
+        field.changeValidators(tmpVali);
       });
     this.fs
       .getFormControl({ name: 'home_control_max' })
-      .valueChanges.subscribe(val => {
-        const field = this.fs.getFieldByName(
-          this.fieldS.get()
-        ) as FieldComponent;
+      .valueChanges.subscribe((val: number) => {
+        const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
         const tmpVali = field.getValidators();
-
+        const config = this.fs.getConfigByName(this.fieldS.get());
         if (val > 0) {
-          // field.min = val;
           tmpVali.max = val;
-          field.changeValidators(tmpVali);
         } else {
           tmpVali.max = 0;
-          field.changeValidators(tmpVali);
         }
+        config.validators = tmpVali;
+        field.changeValidators(tmpVali);
       });
     this.fs
       .getFormControl({
         name: 'home_control_minLength'
       })
-      .valueChanges.subscribe(val => {
-        const field = this.fs.getFieldByName(
-          this.fieldS.get()
-        ) as FieldComponent;
+      .valueChanges.subscribe((val: number) => {
+        const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
         const tmpVali = field.getValidators();
+        const config = this.fs.getConfigByName(this.fieldS.get());
+        // console.log(tmpVali);
+        // console.log(config);
 
         if (val > 0) {
-          // field.min = val;
           tmpVali.minLength = val;
-          field.changeValidators(tmpVali);
         } else {
           tmpVali.minLength = 0;
-          field.changeValidators(tmpVali);
         }
+
+        config.validators = tmpVali;
+        field.changeValidators(tmpVali);
       });
     this.fs
       .getFormControl({
         name: 'home_control_maxLength'
       })
-      .valueChanges.subscribe(val => {
-        const field = this.fs.getFieldByName(
-          this.fieldS.get()
-        ) as FieldComponent;
+      .valueChanges.subscribe((val: number) => {
+        const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
         const tmpVali = field.getValidators();
 
+        const config = this.fs.getConfigByName(this.fieldS.get());
+
         if (val > 0) {
-          // field.min = val;
           tmpVali.maxLength = val;
-          field.changeValidators(tmpVali);
         } else {
           tmpVali.maxLength = 0;
-          field.changeValidators(tmpVali);
         }
+        config.validators = tmpVali;
+        field.changeValidators(tmpVali);
       });
   }
 
@@ -336,7 +347,6 @@ export class ControlpanelComponent implements OnInit {
 
     let tmpConf = this.fs.getConfigByName(actualField);
     tmpConf.options = this.selectOptions;
-    // this.fs.updateConfig(tmpConf);
 
     const selectF = this.fs.getFieldByName(actualField) as FieldComponent;
     selectF.options = this.selectOptions;
@@ -344,7 +354,6 @@ export class ControlpanelComponent implements OnInit {
   }
 
   deleteSelectOption(options: any[]) {
-    // console.log(options);
     const actualField = this.fieldS.get();
     options.forEach(element => {
       const name = actualField + '_Opt_' + element.value;

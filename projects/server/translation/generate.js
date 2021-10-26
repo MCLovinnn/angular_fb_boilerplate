@@ -127,7 +127,7 @@ function writeConfigFile(path, lang, config, res) {
     }
 
     if (texts != {}) {
-      _.merge(config, texts);
+      // _.merge(config, texts);
     }
 
     writeFile(path + "config.json", JSON.stringify(config), {}, function(

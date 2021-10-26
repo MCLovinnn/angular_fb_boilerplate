@@ -7,7 +7,7 @@
   "home_test_select_Opt_blur": "Testoption 1",
   "home_test_select_Opt_blur#desc": "",
   "home_test_text#label": "Beispiel Text-Input",
-  "home_test_text#hintlabel": "",
+  "home_test_text#hintlabel": "Ein kleiner Untertext zur Erklärung ",
   "home_test_text#tooltip": "Hier ist ein etwas längerer Text als Hover Nachricht zu lesen",
   "home_test_date#label": "Datum",
   "home_test_date#hintlabel": "",

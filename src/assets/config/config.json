@@ -4,7 +4,7 @@
       "select": {
         "name": "home_test_select",
         "htmlType": "select",
-        "validators": { "required": false },
+        "validators": { "required": null },
         "value": "change",
         "options": [
           {
@@ -17,20 +17,20 @@
             "key": "home_test_select_Opt_blur",
             "description": "home_test_select_Opt_blur#desc"
           }
-        ]
+        ],
+        "disabled": false
       },
       "text": {
         "name": "home_test_text",
-        "htmlType": "text"
+        "htmlType": "text",
+        "value": "",
+        "validators": { "max": 0, "min": 0, "minLength": 0, "maxLength": 0 }
       },
-      "date": {
-        "name": "home_test_date",
-        "htmlType": "date"
-      },
-      "autocomplete": { "name": "home_test_autocomplete", "htmlType": "autocomplete",
-        "htmlAttribute": {
-          "autocomplete": "off"
-        },
+      "date": { "name": "home_test_date", "htmlType": "date", "value": "" },
+      "autocomplete": {
+        "name": "home_test_autocomplete",
+        "htmlType": "autocomplete",
+        "htmlAttribute": { "autocomplete": "off" },
         "options": [
           {
             "value": "change",
@@ -42,7 +42,8 @@
             "key": "home_test_select_Opt_blur",
             "description": "home_test_select_Opt_blur#desc"
           }
-        ] }
+        ]
+      }
     }
   }
 }

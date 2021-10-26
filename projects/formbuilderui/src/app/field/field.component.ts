@@ -25,7 +25,7 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
     public ts: TranslationService
   ) {
     super(fb, fs, ts);
-
+    this.placeholder = fieldS.get();
     if(this.type){
       this.type.subscribe((value) => {
         // console.log('hi');
@@ -45,7 +45,7 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
     // console.log(validators);
 
     // this.fs.updateConfig(tmpfield);
-    let control = this.fs.getFormControl({name: this.fieldS.get()});
+    let control = this.fs.getFormControl({name: 'home_ui_new'});
     control.setValidators(this.fs.buildValidators(tmpfield.validators));
     control.updateValueAndValidity();
   }

@@ -397,7 +397,10 @@ export class TreeComponent implements OnInit {
   }
 
   generateConfig() {
-    this.cs.doPost('config/', this.ts.lang, this.configS.configs).subscribe( val => console.log(val));
+    const newData = this.configS.getAppConfigs(this.fs.configs);
+    // console.log(newData);
+
+    this.cs.doPost('config/', this.ts.lang, newData).subscribe( val => console.log(val));
   }
 
   generateLang() {

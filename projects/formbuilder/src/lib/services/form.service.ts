@@ -295,9 +295,10 @@ export class FormService {
 
             if (field.updateOn) {
               options.updateOn = field.updateOn;
-
-              controL.push(options);
             }
+
+            controL.push(options);
+
             formArray[field.name] = controL;
           });
           newForm[form] = this.fb.group(formArray);
