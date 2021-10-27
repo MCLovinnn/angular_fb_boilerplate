@@ -16,6 +16,8 @@ export enum TableType {
 
 export interface ITableViewOptions {
 
+  type: TableType;
+
   searchable: boolean;
 
   showPaginator: boolean;

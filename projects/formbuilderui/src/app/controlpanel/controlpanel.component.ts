@@ -16,7 +16,8 @@ import {
   ITableHeader,
   ITableViewOptions,
   TableComponent,
-  ICodeEntry
+  ICodeEntry,
+  TableType
 } from '../../../../formbuilder/src/public-api';
 import { FieldService } from '../services/field.service';
 import { FieldComponent } from '../field/field.component';
@@ -57,6 +58,7 @@ export class ControlpanelComponent implements OnInit {
     }
   ];
   viewOptions: ITableViewOptions = {
+    type: TableType.GENERIC,
     searchable: false,
     showPaginator: false,
     showActions: true,

@@ -3,7 +3,8 @@ import {
   ITableViewOptions,
   ITableHeader,
   FormService,
-  ConfigService
+  ConfigService,
+  TableType
 } from '../../../../formbuilder/src/public-api';
 import { ConnectorService } from '../services/connector.service';
 
@@ -14,6 +15,7 @@ import { ConnectorService } from '../services/connector.service';
 })
 export class ListComponent implements OnInit {
   viewOptions: ITableViewOptions = {
+    type: TableType.GENERIC,
     searchable: true,
     showPaginator: true,
     showActions: true,
