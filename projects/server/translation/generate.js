@@ -217,7 +217,7 @@ function updateTxtKey(obj, res) {
 
 
 function deleteTxtKey(obj, name, res) {
-  console.log(obj);
+  // console.log(obj);
 
   var path = __dirname + "/../../../src/assets/locale/";
   const keys = name.split("_");
@@ -285,11 +285,42 @@ function deleteConfig(name, body, res) {
   });
 }
 
+function deleteOption(name, res) {
+  var path = __dirname + "/../../../src/assets/locale/";
+
+  readdir(path, (err, files) => {
+    if (err) {
+      console.log(err);
+    }
+
+    files.forEach(file => {
+      readFile(path + file, "utf8", (err, data) => {
+        if (err) {
+          console.error(err);
+        }
+        data = JSON.parse(data);
+        delete data[name];
+        delete data[name + "#desc"];
+
+        writeFile(path + file, JSON.stringify(data), {}, function(error) {
+          if (error) {
+            console.log(error);
+          }
+          
+        });
+      });
+    });
+    res.send({ done: true });
+  });
+}
+
+
 export {
   generateTxtFile,
   generateConfigFile,
   getConfigFile,
   updateTxtFile,
   deleteConfig,
-  updateTxtKey
+  updateTxtKey,
+  deleteOption
 };
