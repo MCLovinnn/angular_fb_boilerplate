@@ -369,6 +369,11 @@ export class ControlpanelComponent implements OnInit {
         (val: ICodeEntry) => val.value !== tmpObj.value
       );
 
+      this.cs.delete('lang/', name).subscribe(val => {
+        console.log(val);
+        
+      })
+      
       delete this.ts.data[tmpObj.key];
 
       if (tmpObj.description) {

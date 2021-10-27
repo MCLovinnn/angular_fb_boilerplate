@@ -9,7 +9,8 @@ import { generateTxtFile,
   getConfigFile,
   deleteConfig,
   updateTxtFile,
-  updateTxtKey} from './translation/generate.js';
+  updateTxtKey,
+  deleteOption} from './translation/generate.js';
 
 import { getTxtFile } from './translation/translate.js';
 app.use(bodyParser.json());
@@ -56,6 +57,10 @@ app.post('/lang/:name', function(req, res, next) {
 
   saveTxtFile(req.params.name, req.body, res);
 })
+
+app.delete('/lang/:name', (req, res, next) => {
+  deleteOption(req.params.name, res);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
