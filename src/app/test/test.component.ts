@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ITableViewOptions, ITableHeader, optionsConfig } from 'projects/formbuilder/src/public-api';
+import { ITableViewOptions, ITableHeader, optionsConfig, TableType } from 'projects/formbuilder/src/public-api';
 
 @Component({
   selector: 'app-test',
@@ -23,6 +23,7 @@ export class TestComponent implements OnInit {
   ];
 
   viewOptions: ITableViewOptions = {
+    type: TableType.GENERIC,
     searchable: true,
     showPaginator: true,
     showActions: true,
