@@ -15,6 +15,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FieldService } from '../services/field.service';
 import { FieldComponent } from '../field/field.component';
 import { ICodeEntry } from '../../../../formbuilder/src/lib/interfaces/ifield';
+import { FormGroup } from '@angular/forms';
 /**
  * Node for to-do item
  */
@@ -110,6 +111,7 @@ export class ChecklistDatabase {
   providers: [ChecklistDatabase]
 })
 export class TreeComponent implements OnInit {
+  langForm: FormGroup;
   langEmitter: EventEmitter<any> = new EventEmitter();
   @Input() data: any;
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */
@@ -188,6 +190,7 @@ export class TreeComponent implements OnInit {
       this.fs.getConfigByName('home_tree_lang').value = val.value;
       this.ts.setLang(val.value);
     });
+    this.langForm = this.fs.getForm('home_lang_lang');
   }
 
   getLevel = (node: TodoItemFlatNode) => node.level;
@@ -351,10 +354,8 @@ export class TreeComponent implements OnInit {
 
       this.ts.updateData(lngObj);
       this.cs.doPost('/updateKey/', '', lngObj).subscribe((res) => {
-        // console.log(res);
-
+        console.log(res);
       })
-      // this.updateTxtFile();
     });
 
     this.ts.onDataChange.emit({[key+'#label']: itemValue});
@@ -374,7 +375,6 @@ export class TreeComponent implements OnInit {
   }
 
   updateTxtFile() {
-    // console.log(this.ts.getUserData());
     this.cs
       .updateTxtFile(this.ts.lang, this.ts.getUserData())
       .subscribe(res => console.log(res));
@@ -384,12 +384,9 @@ export class TreeComponent implements OnInit {
     // console.log(node);
 
     let data = this.configS.getConfigByName(node.name);
-    // console.log(data);
-
 
     let field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
-    // data.name = 'home_ui_new';
     field.internalType = data.htmlType? data.htmlType : 'text';
 
     field.ngOnInit();
@@ -404,9 +401,7 @@ export class TreeComponent implements OnInit {
   }
 
   generateLang() {
-    // @TODO: integrate transformation
-    const form = this.fs.getForm('home_lang_lang');
-    const raw = form.getRawValue();
+    const raw = this.langForm.getRawValue();
     const actualField = 'home_tree_lang';
     const name =  'home_tree_lang_Opt_' + raw.home_lang_key.toLowerCase();
     const tmpObj: ICodeEntry = {
@@ -434,7 +429,7 @@ export class TreeComponent implements OnInit {
       this.updateTxtFile();
       const selectF = this.fs.getFieldByName(actualField) as FieldComponent;
       selectF.options.push(tmpObj);
-      form.reset();
+      this.langForm.reset();
 
     });
   }
