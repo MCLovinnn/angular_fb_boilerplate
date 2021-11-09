@@ -4,7 +4,8 @@ import {
   ITableHeader,
   FormService,
   ConfigService,
-  TableType
+  TableType,
+  TranslationService
 } from '../../../../formbuilder/src/public-api';
 import { ConnectorService } from '../services/connector.service';
 
@@ -30,6 +31,10 @@ export class ListComponent implements OnInit {
       collumnKey: 'config_table_name'
     },
     {
+      collumnName: 'key',
+      collumnKey: 'config_table_key'
+    },
+    {
       collumnName: 'form',
       collumnKey: 'config_table_form'
     },
@@ -50,10 +55,15 @@ export class ListComponent implements OnInit {
   constructor(
     private fs: FormService,
     private cs: ConnectorService,
-    private configS: ConfigService
+    private configS: ConfigService,
+    private ts : TranslationService
   ) {}
 
   ngOnInit(): void {
+    this.buildData();
+  }
+
+  buildData() {
     let config = this.configS.configs;
     let tmpData = [];
     for (const page in config) {
@@ -67,8 +77,13 @@ export class ListComponent implements OnInit {
                   config[page][formN][elemN].validators
                 );
                 config[page][formN][elemN].form = keys[1];
+                const tmpname = config[page][formN][elemN].name + '#label';
+                // console.log(tmpname);
+                // console.log(this.ts.data[tmpname]);
 
-                config[page][formN][elemN].brand = config[page][formN][elemN].brand_id;
+                config[page][formN][elemN].key = this.ts.data[tmpname];
+
+                // config[page][formN][elemN].brand = config[page][formN][elemN].brand_id;
                 tmpData.push(config[page][formN][elemN]);
               }
             }

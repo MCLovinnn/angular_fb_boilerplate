@@ -1,26 +1,9 @@
 <h1>Beispiel Anwendung</h1>
-<h2>Beispiel Formular</h2>
-<mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">
-  <mat-grid-tile colspan="4" rowpsan="1">
-    <app-select name="home_test_select"></app-select>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="4" rowpsan="1">
-    <app-text-input name="home_test_text"></app-text-input>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="4" rowpsan="1">
-    <app-date-input name="home_test_date"></app-date-input>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="4" rowpsan="1">
-    <app-autocomplete
-      [config]="autoCompleteConfig"
-      [options]="autocompleteOptions"
-      name="home_test_autocomplete"
-    ></app-autocomplete>
-  </mat-grid-tile>
-</mat-grid-list>
+  <app-formular></app-formular>
 <hr style="margin-top:30px;">
 <h2>Beispiel Tabelle</h2>
 <app-table
+  #table
     [viewOptions]="viewOptions"
     [displayedColumns]="displayedColumns"
     [data]="data">

@@ -7,6 +7,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { AngularCsv } from '../../classes/angular-csv';
 import { TranslatePipe } from '../../services/translation.pipe';
+import * as moment from 'moment';
+
 
 export enum TableType {
   USER = 'USER',
@@ -29,6 +31,8 @@ export interface ITableViewOptions {
   showCSVExport: boolean;
 
   showDeleteAllButton?: boolean;
+
+  dateStringToDateFilter?: boolean;
 }
 
 export interface ITableHeader {
@@ -112,6 +116,15 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    if (this.viewOptions.dateStringToDateFilter) {
+      this.dataSource.sortingDataAccessor = (item, property): string | number => {
+        switch (property) {
+          case 'fromDate': return moment(item.fromDate).unix();
+          default: return item[property];
+        }
+      };
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -168,7 +181,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       const row = {};
       // tslint:disable-next-line: prefer-for-of
       for (let y = 0; y < colums.length; y++) {
-        row[colums[y].collumnName] = this.data[i][colums[y].collumnName] ? this.data[i][colums[y].collumnName] : '';
+        row[colums[y].collumnName] = this.data[i][colums[y].collumnName] ? this.data[i][colums[y].collumnName] : ' ';
       }
       // console.log('row', row);
       result.push(row);

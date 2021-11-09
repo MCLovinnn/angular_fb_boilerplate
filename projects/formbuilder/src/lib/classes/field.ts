@@ -188,7 +188,7 @@ export class BaseFieldComponent implements IField, OnInit {
   }
 
   getValidators() {
-    return this.validators;
+    return this.validators? this.validators : {};
   }
 
   getFieldConfig() {

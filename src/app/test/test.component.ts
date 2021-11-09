@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ITableViewOptions, ITableHeader, optionsConfig, TableType } from 'projects/formbuilder/src/public-api';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ITableViewOptions, ITableHeader, TableType, FormService, TableComponent } from 'projects/formbuilder/src/public-api';
+import { FormularService } from '../services/formular.service';
+import { IFormular } from '../formular';
+
 
 @Component({
   selector: 'app-test',
@@ -7,21 +10,7 @@ import { ITableViewOptions, ITableHeader, optionsConfig, TableType } from 'proje
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
-  autoCompleteConfig: optionsConfig = {
-    groupBy: true
-  };
-
-  autocompleteOptions = [
-    {
-      name: 'Test',
-      children: [
-        {name: 'Option1'},
-        {name: 'Test'},
-        {name: 'aaaaaaa'}
-      ]
-    }
-  ];
-
+  @ViewChild('table') table : TableComponent;
   viewOptions: ITableViewOptions = {
     type: TableType.GENERIC,
     searchable: true,
@@ -29,29 +18,44 @@ export class TestComponent implements OnInit {
     showActions: true,
     showCSVExport: true,
     showCheckbox: true,
-    showDeleteAllButton: false
+    showDeleteAllButton: false,
+    dateStringToDateFilter: true
   };
 
   displayedColumns: ITableHeader[] = [
     {
-      collumnName: 'name',
-      collumnKey: 'test_table_name'
+      collumnName: 'home_test_date',
+      collumnKey: 'home_test_date#label'
     },
     {
-      collumnName: 'form',
-      collumnKey: 'test_table_form'
+      collumnName: 'home_test_select',
+      collumnKey: 'home_test_select#label'
+    },
+    {
+      collumnName: 'home_test_text',
+      collumnKey: 'home_test_text#label'
+    },
+    {
+      collumnName: 'home_test_autocomplete',
+      collumnKey: 'home_test_autocomplete#label'
     }
   ];
 
-  data: any[] = [
-    {name: 'TestName', form: 'TestForm'},
-    {name: 'TestName2', form: 'TestForm2'},
-    {name: 'TestName3', form: 'TestForm3'},
-  ];
+  data: any[] = [];
 
-  constructor() { }
+  constructor(private fs: FormService, private formS: FormularService) { }
 
   ngOnInit(): void {
-  }
+    this.formS.get().subscribe((data: IFormular[]) => {
+      // console.log(data);
+      // data.forEach((row: IFormular) => {
+      //   // console.log(row.home_test_date);
+      //   // console.log(row);
 
+      //   // row.home_test_date = moment(row.home_test_date).format('DD.MM.YYYY');
+      // });
+      this.data = data;
+      this.table.refresh();
+    });
+  }
 }

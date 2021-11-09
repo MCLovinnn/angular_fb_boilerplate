@@ -33,6 +33,7 @@ function generateTxtFile(lang, data, res) {
       }
     }
   }
+
   var path = __dirname + "/../../../src/assets/locale/";
   stat(path, (err, stat) => {
     if (err) {
@@ -92,8 +93,11 @@ function writeTxtFile(path, entries, res, language) {
   });
 }
 
-function generateConfigFile(lang, config, res) {
+function generateConfigFile(lang, config, res, fb = false) {
   var path = __dirname + "/../../../src/assets/config/";
+  if (fb) {
+    path = __dirname + "/../../../projects/formbuilderui/src/assets/config/";
+  }
   stat(path, (err, stat) => {
     if (err) {
       mkdir(path, function(err) {
@@ -156,8 +160,11 @@ function getConfigFile(res) {
   });
 }
 
-function updateTxtFile(lang, newData, res) {
+function updateTxtFile(lang, newData, res, fb = false) {
   var path = __dirname + "/../../../src/assets/locale/";
+  if (fb) {
+    path = __dirname + "/../../../projects/formbuilderui/src/assets/locale/";
+  }
   var texts = {};
   readFile(path + lang + ".json", "utf8", (err, data) => {
     if (err) {
@@ -306,7 +313,6 @@ function deleteOption(name, res) {
           if (error) {
             console.log(error);
           }
-          
         });
       });
     });

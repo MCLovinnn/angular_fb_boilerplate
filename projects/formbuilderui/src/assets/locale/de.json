@@ -146,5 +146,6 @@
   "genConfig": "Config Datei updaten",
   "updateText": "Textdatei Updaten",
   "genText": "Textdatei anhand von config ertellen",
-  "save": "Speichern"
+  "save": "Speichern",
+  "config_table_key": "Name"
 }

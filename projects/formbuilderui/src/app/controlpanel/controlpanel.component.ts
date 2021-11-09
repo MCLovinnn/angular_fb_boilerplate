@@ -199,6 +199,8 @@ export class ControlpanelComponent implements OnInit {
     this.fieldchange.subscribe(value => {
       const actualField = this.fieldS.get();
       const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
+      console.log(field);
+
       const tmpConf = this.fs.getConfigByName(actualField);
       switch (value.type) {
         case 'home_control_disabled':
@@ -371,9 +373,9 @@ export class ControlpanelComponent implements OnInit {
 
       this.cs.delete('lang/', name).subscribe(val => {
         console.log(val);
-        
+
       })
-      
+
       delete this.ts.data[tmpObj.key];
 
       if (tmpObj.description) {

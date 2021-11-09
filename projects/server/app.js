@@ -29,6 +29,11 @@ app.post('/update/:lang',function(req, res, next) {
   // console.log(req.body);
 })
 
+app.post('/fbupdate/:lang',function(req, res, next) {
+  updateTxtFile(req.params.lang, req.body, res, true);
+  // console.log(req.body);
+})
+
 app.post('/updateKey', function(req, res, next) {
   updateTxtKey(req.body, res);
 });
@@ -36,6 +41,10 @@ app.post('/updateKey', function(req, res, next) {
 
 app.post('/config/:lang', function(req, res, next) {
   generateConfigFile(req.params.lang, req.body, res);
+})
+
+app.post('/fbconfig/:lang', function(req, res, next) {
+  generateConfigFile(req.params.lang, req.body, res, true);
 })
 
 app.get('/config', function(req, res, next) {

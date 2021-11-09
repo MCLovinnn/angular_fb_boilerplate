@@ -42,6 +42,7 @@ import { ConnectorService } from './services/connector.service';
 
 // @ts-ignore
 import CONFIG from '../assets/config/config.json';
+import { FormularComponent } from './formular/formular.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -49,6 +50,7 @@ registerLocaleData(localeDe, 'de');
   declarations: [
     AppComponent,
     TestComponent,
+    FormularComponent,
   ],
   imports: [
     BrowserModule,

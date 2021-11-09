@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { DataFlattnerService } from './data-flattner.service';
 import { IField } from '../interfaces/ifield';
 import { AutoSearch } from '../interfaces/imenu';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { merge } from 'lodash';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -111,16 +112,35 @@ export class ConfigService {
   getAppConfigs(appData: any[]) {
     let data = {};
     Object.keys(appData).forEach(page => {
-      const newForm = {};
       const formObj = appData[page];
       if (formObj) {
         Object.keys(formObj).forEach(form => {
-          const formArray = {};
           const forM: any = formObj[form];
           Object.keys(forM).forEach(key => {
             const field: IField = forM[key];
 
             if(this.configs[page] && this.configs[page][form] && this.configs[page][form][key]) {
+              // data[page][form][key] = field;
+              merge(data, {[page]: {[form]: {[key]: field}}});
+            }
+          });
+        });
+      }
+    });
+    return data;
+  }
+
+  getFBConfig(appData: any[]) {
+    let data = {};
+    Object.keys(appData).forEach(page => {
+      const formObj = appData[page];
+      if (formObj) {
+        Object.keys(formObj).forEach(form => {
+          const forM: any = formObj[form];
+          Object.keys(forM).forEach(key => {
+            const field: IField = forM[key];
+
+            if(!this.configs[page] || !this.configs[page][form] || !this.configs[page][form][key]) {
               // data[page][form][key] = field;
               merge(data, {[page]: {[form]: {[key]: field}}});
             }

@@ -16,9 +16,6 @@ export class TranslationService {
 
   private _path = '';
   constructor(private http: HttpClient) {
-    this.onDataChange.subscribe(val => {
-      this.updateData(val);
-    });
     this.onLangChange.subscribe(val => {
       this.lang = val;
     });
@@ -66,7 +63,7 @@ export class TranslationService {
 
   updateData(data: any) {
     Object.assign(this.data, data);
-    // this.onDataChange.emit(this.data);
+    this.onDataChange.emit(this.data);
   }
 
   use(lang: string): Promise<{}> {
@@ -104,5 +101,17 @@ export class TranslationService {
       }
     }
     this.data = newdata;
+  }
+
+  getFBData() {
+    let txtFile = {};
+    for(const key in this.data) {
+      if(!this.userData[key]) {
+        Object.assign(txtFile, {
+          [key]: this.data[key]
+        });
+      }
+    }
+    return txtFile;
   }
 }

@@ -1,4 +1,10 @@
-import { Component, Input, Injectable, OnInit, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Injectable,
+  OnInit,
+  EventEmitter
+} from '@angular/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   MatTreeFlatDataSource,
@@ -169,7 +175,7 @@ export class TreeComponent implements OnInit {
     // console.log(fs.getForms());
   }
 
-  ngOnInit(){
+  ngOnInit() {
     // let newData = this.configS.buildFileTree(this.configS.configs, 0) as TodoItemNode[];
     //   this._database.dataChange.next(newData);
     this.cs.getTxtKeys(this.ts.lang).subscribe(val => {
@@ -177,13 +183,14 @@ export class TreeComponent implements OnInit {
       this.ts.userData = val;
       this.ts.updateData(val);
     });
+
     this.cs.get('config').subscribe(data => {
       // console.log(data);
 
       this.configS.configs = data;
       let newData = this.configS.buildFileTree(data, 0) as TodoItemNode[];
       this._database.dataChange.next(newData);
-    })
+    });
 
     this.langEmitter.subscribe(val => {
       // console.log(val);
@@ -321,17 +328,19 @@ export class TreeComponent implements OnInit {
    */
   /** Save the node to database */
   saveNode(node: TodoItemFlatNode, itemValue: string) {
-
     const nestedNode = this.flatNodeMap.get(node) as TodoItemNode;
-    const parent = this.getParentNode(this.nestedNodeMap.get(nestedNode) as TodoItemFlatNode) as TodoItemFlatNode;
+    const parent = this.getParentNode(this.nestedNodeMap.get(
+      nestedNode
+    ) as TodoItemFlatNode) as TodoItemFlatNode;
     const parentparent = this.getParentNode(parent) as TodoItemFlatNode;
 
-    let key = parentparent.name + '_' + parent.name + '_' + itemValue.toLowerCase();
+    let key =
+      parentparent.name + '_' + parent.name + '_' + itemValue.toLowerCase();
 
     let tmpConf = {
       [parentparent.name]: {
-        [parent.name] : {
-          [itemValue.toLowerCase()] : {
+        [parent.name]: {
+          [itemValue.toLowerCase()]: {
             name: key.toLocaleLowerCase(),
             htmlType: 'text'
           }
@@ -341,11 +350,11 @@ export class TreeComponent implements OnInit {
     const tmpObj: any = {
       label: key + '#label',
       hint: key + '#hintlabel',
-      tooltip: key + '#tooltip',
+      tooltip: key + '#tooltip'
     };
     // this.fs.addConfig(tmpConf);
     this.configS.configs.push(tmpConf);
-    this.cs.doPost('config/', 'de', this.configS.configs).subscribe( val => {
+    this.cs.doPost('config/', 'de', this.configS.configs).subscribe(val => {
       let lngObj = {
         [tmpObj.label]: itemValue,
         [tmpObj.hint]: '',
@@ -353,14 +362,14 @@ export class TreeComponent implements OnInit {
       };
 
       this.ts.updateData(lngObj);
-      this.cs.doPost('/updateKey/', '', lngObj).subscribe((res) => {
+      this.cs.doPost('/updateKey/', '', lngObj).subscribe(res => {
         console.log(res);
-      })
+      });
     });
 
-    this.ts.onDataChange.emit({[key+'#label']: itemValue});
+    this.ts.onDataChange.emit({ [key + '#label']: itemValue });
 
-    this._database.updateItem(nestedNode!, key+'#label');
+    this._database.updateItem(nestedNode!, key + '#label');
     this.ngOnInit();
   }
 
@@ -387,7 +396,7 @@ export class TreeComponent implements OnInit {
 
     let field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
-    field.internalType = data.htmlType? data.htmlType : 'text';
+    field.internalType = data.htmlType ? data.htmlType : 'text';
 
     field.ngOnInit();
     this.fieldS.set(data.name);
@@ -397,40 +406,56 @@ export class TreeComponent implements OnInit {
     const newData = this.configS.getAppConfigs(this.fs.configs);
     // console.log(newData);
 
-    this.cs.doPost('config/', this.ts.lang, newData).subscribe( val => console.log(val));
+    this.cs
+      .doPost('config/', this.ts.lang, newData)
+      .subscribe(val => console.log(val));
   }
 
   generateLang() {
     const raw = this.langForm.getRawValue();
     const actualField = 'home_tree_lang';
-    const name =  'home_tree_lang_Opt_' + raw.home_lang_key.toLowerCase();
+    const name = 'home_tree_lang_Opt_' + raw.home_lang_key.toLowerCase();
     const tmpObj: ICodeEntry = {
       key: name,
       value: raw.home_lang_key.toLowerCase(),
-      description: name + '#desc',
+      description: name + '#desc'
     };
     let tmpConf = this.fs.getConfigByName(actualField);
     if (!tmpConf.options) {
       tmpConf.options = [];
     }
     tmpConf.options.push(tmpObj);
+    // console.log(this.configS.getFBConfig(this.fs.configs));
+    // console.log(this.ts.getFBData());
 
-    this.cs.doPost('config/', raw.home_lang_key.toLowerCase(), this.configS.configs).subscribe( val => {
-      let lngObj = {
-        [tmpObj.key]: raw.home_lang_lang,
-      };
-      if (tmpObj.description) {
-        Object.assign(lngObj, {
-          [tmpObj.description]: raw.home_lang_code
-        });
-      }
+    this.cs
+      .doPost(
+        'fbconfig/',
+        raw.home_lang_key.toLowerCase(),
+        this.configS.getFBConfig(this.fs.configs)
+      )
+      .subscribe(val => {
+        let lngObj = {
+          [tmpObj.key]: raw.home_lang_lang
+        };
+        if (tmpObj.description) {
+          Object.assign(lngObj, {
+            [tmpObj.description]: raw.home_lang_code
+          });
+        }
 
-      this.ts.updateData(lngObj);
-      this.updateTxtFile();
-      const selectF = this.fs.getFieldByName(actualField) as FieldComponent;
-      selectF.options.push(tmpObj);
-      this.langForm.reset();
-
-    });
+        this.ts.updateData(lngObj);
+        this.cs
+          .doPost('fbupdate/', this.ts.lang, this.ts.getFBData())
+          .subscribe(res => {
+            // console.log(res);
+            const selectF = this.fs.getFieldByName(
+              actualField
+            ) as FieldComponent;
+            selectF.options.push(tmpObj);
+            this.langForm.reset();
+          });
+        // this.updateTxtFile();
+      });
   }
 }
