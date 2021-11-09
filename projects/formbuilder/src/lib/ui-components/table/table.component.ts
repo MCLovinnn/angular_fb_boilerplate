@@ -32,7 +32,7 @@ export interface ITableViewOptions {
 
   showDeleteAllButton?: boolean;
 
-  dateStringToDateFilter?: boolean;
+  dateStringToDateFilter?: string;
 }
 
 export interface ITableHeader {
@@ -120,7 +120,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.viewOptions.dateStringToDateFilter) {
       this.dataSource.sortingDataAccessor = (item, property): string | number => {
         switch (property) {
-          case 'fromDate': return moment(item.fromDate).unix();
+          case this.viewOptions.dateStringToDateFilter: {
+            return moment(item[property], 'L', 'de', true).unix();
+          };
           default: return item[property];
         }
       };

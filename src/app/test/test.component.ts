@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ITableViewOptions, ITableHeader, TableType, FormService, TableComponent } from 'projects/formbuilder/src/public-api';
 import { FormularService } from '../services/formular.service';
 import { IFormular } from '../formular';
+import { FormularComponent } from '../formular/formular.component';
+import * as moment from 'moment';
 
 
 @Component({
@@ -10,6 +12,7 @@ import { IFormular } from '../formular';
   styleUrls: ['./test.component.scss']
 })
 export class TestComponent implements OnInit {
+  @ViewChild('formular') formular: FormularComponent;
   @ViewChild('table') table : TableComponent;
   viewOptions: ITableViewOptions = {
     type: TableType.GENERIC,
@@ -19,7 +22,7 @@ export class TestComponent implements OnInit {
     showCSVExport: true,
     showCheckbox: true,
     showDeleteAllButton: false,
-    dateStringToDateFilter: true
+    dateStringToDateFilter: 'home_test_date'
   };
 
   displayedColumns: ITableHeader[] = [
@@ -58,4 +61,22 @@ export class TestComponent implements OnInit {
       this.table.refresh();
     });
   }
+
+  delete(row: IFormular) {
+      // console.log(val);
+      this.formS.delete(row);
+  }
+
+  deleteAll(data: IFormular[]) {
+    data.forEach((element: IFormular, index, array) => {
+      this.delete(element);
+    });
+  }
+
+  edit(row: IFormular) {
+    let tmpForm: any = Object.assign({}, row);
+    tmpForm.home_test_date = moment(tmpForm.home_test_date, 'L', 'de', true);
+    this.formular.setForm(tmpForm);
+  }
+
 }

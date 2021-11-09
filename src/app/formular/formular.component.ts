@@ -13,6 +13,8 @@ import { FormGroup } from '@angular/forms';
 export class FormularComponent implements OnInit {
   @Input() formular: IFormular;
   form: FormGroup
+  update = false;
+  backup: IFormular;
   autoCompleteConfig: optionsConfig = {
     groupBy: true
   };
@@ -42,6 +44,8 @@ export class FormularComponent implements OnInit {
   public setForm(formular: IFormular) {
     this.fs.getForm('home_test').patchValue(formular);
     this.formular = formular;
+    this.update = true;
+    this.backup = formular;
   }
 
   public save() {
@@ -53,7 +57,13 @@ export class FormularComponent implements OnInit {
     let tmpData: IFormular = this.fs.getForm('home_test').getRawValue();
     tmpData.home_test_date = date.value.format('L');
     // console.log(this.fs.getForm('home_test_text').getRawValue());
+    if (this.update) {
+      console.log('update');
+        console.log(tmpData);
 
-    this.formS.add(tmpData);
+      this.formS.update(this.backup, tmpData);
+    } else {
+      this.formS.add(tmpData);
+    }
   }
 }
