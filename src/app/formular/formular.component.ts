@@ -45,7 +45,7 @@ export class FormularComponent implements OnInit {
     this.fs.getForm('home_test').patchValue(formular);
     this.formular = formular;
     this.update = true;
-    this.backup = formular;
+    this.backup = Object.assign({}, formular);
   }
 
   public save() {
@@ -56,12 +56,12 @@ export class FormularComponent implements OnInit {
     }
     let tmpData: IFormular = this.fs.getForm('home_test').getRawValue();
     tmpData.home_test_date = date.value.format('L');
+    console.log(tmpData);
+    console.log(tmpData);
+
     // console.log(this.fs.getForm('home_test_text').getRawValue());
     if (this.update) {
-      console.log('update');
-        console.log(tmpData);
-
-      this.formS.update(this.backup, tmpData);
+      this.formS.update(tmpData);
     } else {
       this.formS.add(tmpData);
     }

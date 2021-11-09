@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { IFormular } from '../formular';
+import _ from "lodash";
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +25,11 @@ export class FormularService {
     return this.formChange;
   }
 
-  update(oldEntry: IFormular, entry: IFormular) {
+  update(entry: IFormular) {
     const newForms = this.forms;
-    let index = newForms.indexOf(oldEntry);
-
-    if (index >= 0) {
-      newForms[index] = entry;
-      this.formChange.emit(newForms);
-    }
+    _.merge(newForms,[entry]);
+    this.formChange.emit(newForms);
+    console.log(newForms);
   }
 
   delete(entry: IFormular) {
