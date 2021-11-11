@@ -23,6 +23,7 @@ import { FieldComponent } from '../field/field.component';
 import { ICodeEntry } from '../../../../formbuilder/src/lib/interfaces/ifield';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
+import { ISliderConfig } from '../../../../formbuilder/src/lib/interfaces/isliderconfig';
 
 /**
  * Node for to-do item
@@ -393,15 +394,13 @@ export class TreeComponent implements OnInit {
   }
 
   open(node: any) {
-    // console.log(node);
-
     const data = this.configS.getConfigByName(node.name);
 
     const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
     field.internalType = data.htmlType;
-    if(data.config) {
-      
+    if(data.config && data.htmlType === 'slider') {
+      field.sliderOptions = data.config as ISliderConfig;
     }
 
     field.ngOnInit();

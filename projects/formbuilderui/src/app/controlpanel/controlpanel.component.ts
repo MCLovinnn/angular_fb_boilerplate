@@ -212,7 +212,7 @@ export class ControlpanelComponent implements OnInit {
       const actualField = this.fieldS.get();
       const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
 
-      const tmpConf = this.fs.getConfigByName(actualField);
+      let tmpConf = this.fs.getConfigByName(actualField);
       switch (value.type) {
         case 'home_control_disabled':
           tmpConf.disabled = value.value ? value.value : false;
@@ -238,6 +238,8 @@ export class ControlpanelComponent implements OnInit {
           } else {
             field.sliderOptions.vertical = false;
           }
+          tmpConf.config = tmpConf.config as ISliderConfig;
+          tmpConf.config.vertical = field.sliderOptions.vertical;
           break;
         case 'home_slider_inverted':
           // console.log(value);
@@ -246,6 +248,8 @@ export class ControlpanelComponent implements OnInit {
           } else {
             field.sliderOptions.inverted = false;
           }
+          tmpConf.config = tmpConf.config as ISliderConfig;
+          tmpConf.config.inverted = field.sliderOptions.inverted;
           break;
         case 'home_slider_thumb':
           // console.log(value);
@@ -254,6 +258,8 @@ export class ControlpanelComponent implements OnInit {
           } else {
             field.sliderOptions.showThumb = false;
           }
+          tmpConf.config = tmpConf.config as ISliderConfig;
+          tmpConf.config.showThumb = field.sliderOptions.showThumb;
           break;
         case 'home_slider_ticks':
           // console.log(value);
@@ -262,6 +268,8 @@ export class ControlpanelComponent implements OnInit {
           } else {
             field.sliderOptions.showTicks = false;
           }
+          tmpConf.config = tmpConf.config as ISliderConfig;
+          tmpConf.config.showTicks = field.sliderOptions.showTicks;
           break;
       }
     });
@@ -372,29 +380,31 @@ export class ControlpanelComponent implements OnInit {
         name: 'home_slider_step'
       })
       .valueChanges.subscribe((val: number) => {
-        console.log(val);
-
+        // console.log(val);
         const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
-
+        const config = this.fs.getConfigByName(this.fieldS.get());
         if (val > 0) {
           field.sliderOptions.step = val;
         } else {
           field.sliderOptions.step = 1;
         }
+        config.config = field.sliderOptions;
       });
     this.fs
       .getFormControl({
         name: 'home_slider_interval'
       })
       .valueChanges.subscribe((val: number) => {
-        console.log(val);
+        // console.log(val);
         const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
+        const config = this.fs.getConfigByName(this.fieldS.get());
 
         if (val > 0) {
           field.sliderOptions.tickInterval = val;
         } else {
           field.sliderOptions.tickInterval = 0;
         }
+        config.config = field.sliderOptions;
       });
   }
 
