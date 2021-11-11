@@ -1,11 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormService } from 'projects/formbuilder/src/public-api';
+import { FormService, IAutoCompleteOptions } from 'projects/formbuilder/src/public-api';
 import { IFormular } from '../formular';
 import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';
 import { FormGroup } from '@angular/forms';
 import { ISliderConfig } from 'projects/formbuilder/src/lib/interfaces/isliderconfig';
-import { IAutoCompleteOptions } from 'projects/formbuilder/src/lib/interfaces/iautocompleteoption';
 
 @Component({
   selector: 'app-formular',

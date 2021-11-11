@@ -21,6 +21,10 @@ export class SliderComponent extends BaseFieldComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
+    if(!this.config && this.field.config) {
+      // console.log(this.field.config);
+      this.config = this.field.config as ISliderConfig;
+    }
   }
 
   getTickIntervall() {

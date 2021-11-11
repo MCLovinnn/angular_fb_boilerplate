@@ -232,6 +232,7 @@ export class ControlpanelComponent implements OnInit {
           field.changeValidators(tmpVali);
           break;
         case 'home_slider_vertical':
+          // console.log(value);
           if(value.value) {
             field.sliderOptions.vertical = value.value;
           } else {
@@ -239,6 +240,7 @@ export class ControlpanelComponent implements OnInit {
           }
           break;
         case 'home_slider_inverted':
+          // console.log(value);
           if(value.value) {
             field.sliderOptions.inverted = value.value;
           } else {
@@ -246,6 +248,7 @@ export class ControlpanelComponent implements OnInit {
           }
           break;
         case 'home_slider_thumb':
+          // console.log(value);
           if(value.value) {
             field.sliderOptions.showThumb = value.value;
           } else {
@@ -253,6 +256,7 @@ export class ControlpanelComponent implements OnInit {
           }
           break;
         case 'home_slider_ticks':
+          // console.log(value);
           if(value.value) {
             field.sliderOptions.showTicks = value.value;
           } else {
@@ -368,6 +372,8 @@ export class ControlpanelComponent implements OnInit {
         name: 'home_slider_step'
       })
       .valueChanges.subscribe((val: number) => {
+        console.log(val);
+
         const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
 
         if (val > 0) {
@@ -381,6 +387,7 @@ export class ControlpanelComponent implements OnInit {
         name: 'home_slider_interval'
       })
       .valueChanges.subscribe((val: number) => {
+        console.log(val);
         const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
 
         if (val > 0) {

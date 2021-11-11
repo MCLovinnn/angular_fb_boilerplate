@@ -48,7 +48,6 @@ export class BaseFieldComponent implements IField, OnInit {
   @Input() customValidation: ICustomValidation[];
   @Input() htmlAttribute: IHTMLAttributes;
   @Input() autocomplete = 'off';
-  @Input() config: ISliderConfig | ITableViewOptions | IAutoCompleteOptions;
 
 
   @Input() change: EventEmitter<any> = new EventEmitter();
@@ -153,9 +152,7 @@ export class BaseFieldComponent implements IField, OnInit {
     if (config.htmlAttribute && config.htmlAttribute.autocomplete) {
       this.autocomplete = config.htmlAttribute.autocomplete;
     }
-    if(config.config) {
-      this.config = config.config
-    }
+
     if(this.field.disabled && this.control) {
       this.control.disable();
     }
