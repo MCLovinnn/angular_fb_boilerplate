@@ -52,8 +52,8 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
   changeValidators(validators: IValidator) {
     let tmpfield = this.getFieldConfig();
     if (tmpfield.htmlType === 'slider') {
-      this.max = validators.max ? validators.max : 100;
-      this.min = validators.min ? validators.min : 0;
+      this.max = tmpfield.validators.max ? tmpfield.validators.max : 100;
+      this.min = tmpfield.validators.min ? tmpfield.validators.min : 0;
     } else {
       tmpfield.validators = validators;
       // console.log(validators);

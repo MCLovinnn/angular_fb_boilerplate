@@ -82,14 +82,19 @@ export class ControlpanelComponent implements OnInit {
   }
 
   reset() {
-    this.fs.resetForms();
+    const data = this.configS.getConfigByName('home_ui_new');
 
-    const field = this.fs.getFieldByName(this.fieldS.get()) as FieldComponent;
-    field.placeholder = 'home_ui_new';
-    field.internalType = 'text';
+    const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
+    field.placeholder = data.name;
+    field.internalType = data.htmlType;
+    
+    if(data.config && data.htmlType === 'slider') {
+      field.sliderOptions = data.config as ISliderConfig;
+    }
 
     field.ngOnInit();
-    this.fieldS.set('home_ui_new');
+    this.fieldS.set(data.name);
+    this.fs.resetForms();
   }
 
   ngOnInit() {
