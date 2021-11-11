@@ -1,5 +1,5 @@
 <h2>Beispiel Formular</h2>
-<mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">
+<mat-grid-list cols="12" rowHeight="70px" gutterSize="15px">
   <mat-grid-tile colspan="4" rowpsan="1">
     <app-select name="home_test_select"></app-select>
   </mat-grid-tile>
@@ -15,6 +15,11 @@
       [options]="autocompleteOptions"
       name="home_test_autocomplete"
     ></app-autocomplete>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowpsan="1">
+    <app-slider
+    name="home_test_slider">
+    </app-slider>
   </mat-grid-tile>
   <mat-grid-tile colspan="4" rowpsan="1">
       <button

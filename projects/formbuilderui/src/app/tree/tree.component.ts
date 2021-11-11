@@ -22,6 +22,8 @@ import { FieldService } from '../services/field.service';
 import { FieldComponent } from '../field/field.component';
 import { ICodeEntry } from '../../../../formbuilder/src/lib/interfaces/ifield';
 import { FormGroup } from '@angular/forms';
+import * as _ from 'lodash';
+
 /**
  * Node for to-do item
  */
@@ -188,7 +190,7 @@ export class TreeComponent implements OnInit {
       // console.log(data);
 
       this.configS.configs = data;
-      let newData = this.configS.buildFileTree(data, 0) as TodoItemNode[];
+      const newData = this.configS.buildFileTree(data, 0) as TodoItemNode[];
       this._database.dataChange.next(newData);
     });
 
@@ -334,10 +336,10 @@ export class TreeComponent implements OnInit {
     ) as TodoItemFlatNode) as TodoItemFlatNode;
     const parentparent = this.getParentNode(parent) as TodoItemFlatNode;
 
-    let key =
+    const key =
       parentparent.name + '_' + parent.name + '_' + itemValue.toLowerCase();
 
-    let tmpConf = {
+    const tmpConf = {
       [parentparent.name]: {
         [parent.name]: {
           [itemValue.toLowerCase()]: {
@@ -353,9 +355,10 @@ export class TreeComponent implements OnInit {
       tooltip: key + '#tooltip'
     };
     // this.fs.addConfig(tmpConf);
-    this.configS.configs.push(tmpConf);
+    _.merge(this.configS.configs, tmpConf)
+    // this.configS.configs.push(tmpConf);
     this.cs.doPost('config/', 'de', this.configS.configs).subscribe(val => {
-      let lngObj = {
+      const lngObj = {
         [tmpObj.label]: itemValue,
         [tmpObj.hint]: '',
         [tmpObj.tooltip]: ''
@@ -392,11 +395,14 @@ export class TreeComponent implements OnInit {
   open(node: any) {
     // console.log(node);
 
-    let data = this.configS.getConfigByName(node.name);
+    const data = this.configS.getConfigByName(node.name);
 
-    let field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
+    const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
-    field.internalType = data.htmlType ? data.htmlType : 'text';
+    field.internalType = data.htmlType;
+    if(data.config) {
+      
+    }
 
     field.ngOnInit();
     this.fieldS.set(data.name);
@@ -408,7 +414,10 @@ export class TreeComponent implements OnInit {
 
     this.cs
       .doPost('config/', this.ts.lang, newData)
-      .subscribe(val => console.log(val));
+      .subscribe(val => {
+        console.log(val);
+        location.reload();
+      });
   }
 
   generateLang() {
@@ -420,7 +429,7 @@ export class TreeComponent implements OnInit {
       value: raw.home_lang_key.toLowerCase(),
       description: name + '#desc'
     };
-    let tmpConf = this.fs.getConfigByName(actualField);
+    const tmpConf = this.fs.getConfigByName(actualField);
     if (!tmpConf.options) {
       tmpConf.options = [];
     }
@@ -435,7 +444,7 @@ export class TreeComponent implements OnInit {
         this.configS.getFBConfig(this.fs.configs)
       )
       .subscribe(val => {
-        let lngObj = {
+        const lngObj = {
           [tmpObj.key]: raw.home_lang_lang
         };
         if (tmpObj.description) {

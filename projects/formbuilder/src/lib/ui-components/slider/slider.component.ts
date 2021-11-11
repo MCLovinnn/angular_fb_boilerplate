@@ -21,7 +21,13 @@ export class SliderComponent extends BaseFieldComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    // console.log(this.options);
-    // console.log(this.form);
+  }
+
+  getTickIntervall() {
+    if (this.config.showTicks) {
+      return this.config.tickInterval > 0 ? this.config.tickInterval : 'auto';
+    }
+
+    return 0;
   }
 }

@@ -11,7 +11,6 @@ import { TranslationService } from '../../services/translation.service';
   styleUrls: ['./slideToggle.component.scss']
 })
 export class SlideToggleComponent extends BaseFieldComponent implements OnInit {
-  @Input() config: ISliderConfig;
   @Input() color: string;
 
   constructor(public fb: FormBuilder,

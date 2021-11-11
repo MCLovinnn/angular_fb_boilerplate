@@ -81,6 +81,7 @@
     [max]="max"
     [minLength]="minLength"
     [min]="min"
+    [config]="sliderOptions"
     [required]="required"
     [tooltip]="tooltip"
     [disabled]="disabled">
@@ -89,11 +90,6 @@
     *ngIf="internalType == 'slideToggle'"
     [name]="getName()"
     [hintlabel]="hintlabel"
-    [maxLength]="maxLength"
-    [max]="max"
-    [minLength]="minLength"
-    [min]="min"
-    [required]="required"
     [tooltip]="tooltip"
     [disabled]="disabled">
   </app-slidetoggle>

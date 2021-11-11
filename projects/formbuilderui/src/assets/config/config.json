@@ -265,6 +265,38 @@
         "validators": { "required": true }
       },
       "code": { "name": "home_lang_code", "htmlType": "text" }
+    },
+    "slider": {
+      "step": {
+        "name": "home_slider_step",
+        "htmlType": "text",
+        "validators": { "required": true }
+      },
+      "interval": {
+        "name": "home_slider_interval",
+        "htmlType": "text",
+        "validators": { "required": false }
+      },
+      "ticks": {
+        "name": "home_slider_ticks",
+        "htmlType": "checkbox",
+        "validators": { "required": false }
+      },
+      "thumb": {
+        "name": "home_slider_thumb",
+        "htmlType": "checkbox",
+        "validators": { "required": false }
+      },
+      "vertical": {
+        "name": "home_slider_vertical",
+        "htmlType": "checkbox",
+        "validators": { "required": false }
+      },
+      "inverted": {
+        "name": "home_slider_inverted",
+        "htmlType": "checkbox",
+        "validators": { "required": false }
+      }
     }
   }
 }

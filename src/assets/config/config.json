@@ -54,6 +54,23 @@
             "description": "home_test_select_Opt_blur#desc"
           }
         ]
+      },
+      "slider": {
+        "name": "home_test_slider",
+        "htmlType": "slider",
+        "value": 40,
+        "validators": {
+          "max": 80,
+          "min": 0
+        },
+        "config": {
+          "inverted": false,
+          "showThumb": true,
+          "showTicks": true,
+          "step": 5,
+          "tickInterval": 2,
+          "vertical": false
+        }
       }
     }
   }

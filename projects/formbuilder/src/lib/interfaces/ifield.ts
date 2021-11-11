@@ -2,6 +2,9 @@ import { IValidator } from './ivalidator';
 import { ICustomValidation } from './icustom-validation';
 import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
+import { ISliderConfig } from './isliderconfig';
+import { ITableViewOptions } from '../ui-components/table/table.component';
+import { IAutoCompleteOptions } from './iautocompleteoption';
 
 export interface IHTMLAttributes {
   src?: string;
@@ -32,6 +35,7 @@ export interface IField {
   change?: EventEmitter<any>;
   updateOn?: 'change' | 'blur' | 'submit';
   options?: ICodeEntry[];
+  config?: ISliderConfig | ITableViewOptions | IAutoCompleteOptions;
 }
 
 export interface IFormObj {

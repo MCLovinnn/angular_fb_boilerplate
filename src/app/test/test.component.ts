@@ -41,6 +41,10 @@ export class TestComponent implements OnInit {
     {
       collumnName: 'home_test_autocomplete',
       collumnKey: 'home_test_autocomplete#label'
+    },
+    {
+      collumnName: 'home_test_slider',
+      collumnKey: 'home_test_slider#label'
     }
   ];
 

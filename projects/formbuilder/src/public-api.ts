@@ -11,7 +11,7 @@ export { ConfigService} from './lib/services/config.service';
 export { DataFlattnerService } from './lib/services/data-flattner.service';
 export { DataConnectorService } from './lib/services/data-connector.service';
 export { BaseFieldComponent } from './lib/classes/field';
-export { optionsConfig } from './lib/interfaces/iautocompleteoption';
+export { IAutoCompleteOptions } from './lib/interfaces/iautocompleteoption';
 export { MenuNode } from './lib/interfaces/imenu';
 export { IField, ICodeEntry, IHTMLAttributes } from './lib/interfaces/ifield';
 export { IForm } from './lib/interfaces/iform';

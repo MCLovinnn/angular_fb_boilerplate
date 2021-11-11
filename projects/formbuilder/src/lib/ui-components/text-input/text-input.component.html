@@ -14,7 +14,7 @@
         matTooltipHideDelay="200"
         matTooltipPosition="above"
         matTooltipShowDelay="100"
-        [type]="htmlType"
+        [type]="internalType"
         (change)="change.emit({ type: name, value: $event.target.value })"
         [value]="value"
         [autocomplete]="autocomplete"/>

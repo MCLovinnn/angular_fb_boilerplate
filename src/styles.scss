@@ -1,13 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-app-select, app-text-input, app-autocomplete, app-date-input {
+mat-form-field, app-select, app-text-input, app-autocomplete, app-date-input{
   width: 100%;
-  // padding: 5px 10px;
 }
 
-mat-form-field {
+app-slider {
   width: 100%;
+  padding: 5px 10px;
 }
+
 .scrollable > .mat-grid-tile-content {
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.mat-slider-horizontal {
+  bottom: -15px;
 }

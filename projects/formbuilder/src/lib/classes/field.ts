@@ -5,6 +5,9 @@ import { EventEmitter, Input, OnInit, Component, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormService } from '../services/form.service';
 import { TranslationService } from '../services/translation.service';
+import { ISliderConfig } from '../interfaces/isliderconfig';
+import { ITableViewOptions } from '../ui-components/table/table.component';
+import { IAutoCompleteOptions } from '../interfaces/iautocompleteoption';
 
 @Component({
   selector: 'app-base-field',
@@ -45,6 +48,8 @@ export class BaseFieldComponent implements IField, OnInit {
   @Input() customValidation: ICustomValidation[];
   @Input() htmlAttribute: IHTMLAttributes;
   @Input() autocomplete = 'off';
+  @Input() config: ISliderConfig | ITableViewOptions | IAutoCompleteOptions;
+
 
   @Input() change: EventEmitter<any> = new EventEmitter();
   init = true;
@@ -88,6 +93,7 @@ export class BaseFieldComponent implements IField, OnInit {
     this.setUpConfig(this.field);
     this.form = this.fs.getForm(this.field.name);
     // console.log(this.field);
+    // console.log(this.name);
 
     this.control = this.fs.getFormControl(this.field);
     // console.log(this.control);
@@ -146,6 +152,9 @@ export class BaseFieldComponent implements IField, OnInit {
 
     if (config.htmlAttribute && config.htmlAttribute.autocomplete) {
       this.autocomplete = config.htmlAttribute.autocomplete;
+    }
+    if(config.config) {
+      this.config = config.config
     }
     if(this.field.disabled && this.control) {
       this.control.disable();

@@ -118,6 +118,47 @@
         <button (click)="generateConfig()" mat-button>{{'save' | translate}}</button>
       </div>
   </mat-step>
+  <mat-step *ngIf="internalType === 'slider'">
+    <ng-template matStepLabel>Optionen</ng-template>
+    <mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">
+      <mat-grid-tile colspan="4" rowspan="1">
+        <app-checkbox
+          [change]="fieldchange"
+          name="home_slider_thumb"
+        ></app-checkbox>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="4" rowspan="1">
+        <app-checkbox
+          [change]="fieldchange"
+          name="home_slider_inverted"
+        ></app-checkbox>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="4" rowspan="1">
+        <app-text-input number="true" name="home_slider_step"></app-text-input>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="4" rowspan="1">
+        <app-checkbox
+          [change]="fieldchange"
+          name="home_slider_vertical"
+        ></app-checkbox>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="4" rowspan="1">
+        <app-checkbox
+          #ticks
+          [change]="fieldchange"
+          name="home_slider_ticks"
+        ></app-checkbox>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="4" rowspan="1">
+        <app-text-input number="true" *ngIf="showInterval()" name="home_slider_interval"></app-text-input>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button (click)="reset(); stepper.reset()" mat-button>Reset</button>
+        <button (click)="generateConfig()" mat-button>{{'save' | translate}}</button>
+      </div>
+  </mat-step>
   <!--mat-step>
     <ng-template matStepLabel>Funktionen</ng-template>
     <mat-grid-list cols="12" rowHeight="65px" gutterSize="15px">

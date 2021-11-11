@@ -7,9 +7,9 @@ import {
   ViewChild,
   ChangeDetectorRef,
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {
-  optionsConfig,
+  IAutoCompleteOptions,
   FormService,
   ConfigService,
   TranslationService,
@@ -22,6 +22,7 @@ import {
 import { FieldService } from '../services/field.service';
 import { FieldComponent } from '../field/field.component';
 import { ConnectorService } from '../services/connector.service';
+import { ISliderConfig } from '../../../../formbuilder/src/lib/interfaces/isliderconfig';
 
 @Component({
   selector: 'app-controlpanel',
@@ -38,7 +39,7 @@ export class ControlpanelComponent implements OnInit {
   typeChange: EventEmitter<any> = new EventEmitter();
   options = [];
   selectOptions: ICodeEntry[] = [];
-  autoCompleteConfig: optionsConfig = {
+  autoCompleteConfig: IAutoCompleteOptions = {
     groupBy: true
   };
   optionForm: FormGroup;
@@ -94,7 +95,7 @@ export class ControlpanelComponent implements OnInit {
   ngOnInit() {
     this.fieldS.change().subscribe(val => {
       const conf = this.fs.getConfigByName(val);
-      const type = conf.htmlType ? conf.htmlType : 'text';
+      const type = conf.htmlType;
       this.internalType = type;
       this.selectOptions = conf.options ? conf.options : [];
       let field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
@@ -174,6 +175,17 @@ export class ControlpanelComponent implements OnInit {
             emitEvent: false
           });
       }
+      if(conf.htmlType === 'slider' && conf.config) {
+        const sliderConf = conf.config as ISliderConfig;
+        this.fs.getForm('home_slider').patchValue({
+          home_slider_interval: sliderConf.tickInterval,
+          home_slider_inverted: sliderConf.inverted,
+          home_slider_step: sliderConf.step,
+          home_slider_thumb: sliderConf.showThumb,
+          home_slider_ticks: sliderConf.showTicks,
+          home_slider_vertical: sliderConf.vertical
+        });
+      }
       this.cd.detectChanges();
     });
 
@@ -199,7 +211,6 @@ export class ControlpanelComponent implements OnInit {
     this.fieldchange.subscribe(value => {
       const actualField = this.fieldS.get();
       const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
-      console.log(field);
 
       const tmpConf = this.fs.getConfigByName(actualField);
       switch (value.type) {
@@ -219,6 +230,34 @@ export class ControlpanelComponent implements OnInit {
           tmpConf.validators = tmpVali;
           field.required = value.value ? value.value : null;
           field.changeValidators(tmpVali);
+          break;
+        case 'home_slider_vertical':
+          if(value.value) {
+            field.sliderOptions.vertical = value.value;
+          } else {
+            field.sliderOptions.vertical = false;
+          }
+          break;
+        case 'home_slider_inverted':
+          if(value.value) {
+            field.sliderOptions.inverted = value.value;
+          } else {
+            field.sliderOptions.inverted = false;
+          }
+          break;
+        case 'home_slider_thumb':
+          if(value.value) {
+            field.sliderOptions.showThumb = value.value;
+          } else {
+            field.sliderOptions.showThumb = false;
+          }
+          break;
+        case 'home_slider_ticks':
+          if(value.value) {
+            field.sliderOptions.showTicks = value.value;
+          } else {
+            field.sliderOptions.showTicks = false;
+          }
           break;
       }
     });
@@ -323,6 +362,33 @@ export class ControlpanelComponent implements OnInit {
         config.validators = tmpVali;
         field.changeValidators(tmpVali);
       });
+
+    this.fs
+      .getFormControl({
+        name: 'home_slider_step'
+      })
+      .valueChanges.subscribe((val: number) => {
+        const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
+
+        if (val > 0) {
+          field.sliderOptions.step = val;
+        } else {
+          field.sliderOptions.step = 1;
+        }
+      });
+    this.fs
+      .getFormControl({
+        name: 'home_slider_interval'
+      })
+      .valueChanges.subscribe((val: number) => {
+        const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
+
+        if (val > 0) {
+          field.sliderOptions.tickInterval = val;
+        } else {
+          field.sliderOptions.tickInterval = 0;
+        }
+      });
   }
 
   addSelectOption() {
@@ -398,5 +464,9 @@ export class ControlpanelComponent implements OnInit {
 
   isValid() {
     return this.optionForm.valid;
+  }
+
+  showInterval() {
+    return this.fs.getFormControl({name: 'home_slider_ticks'}).value;
   }
 }

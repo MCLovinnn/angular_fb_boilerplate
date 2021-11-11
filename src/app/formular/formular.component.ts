@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { optionsConfig, FormService } from 'projects/formbuilder/src/public-api';
+import { FormService } from 'projects/formbuilder/src/public-api';
 import { IFormular } from '../formular';
 import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';
 import { FormGroup } from '@angular/forms';
+import { ISliderConfig } from 'projects/formbuilder/src/lib/interfaces/isliderconfig';
+import { IAutoCompleteOptions } from 'projects/formbuilder/src/lib/interfaces/iautocompleteoption';
 
 @Component({
   selector: 'app-formular',
@@ -15,8 +17,18 @@ export class FormularComponent implements OnInit {
   form: FormGroup
   update = false;
   backup: IFormular;
-  autoCompleteConfig: optionsConfig = {
+
+  autoCompleteConfig: IAutoCompleteOptions = {
     groupBy: true
+  };
+
+  sliderOptions: ISliderConfig = {
+    inverted: false,
+    showThumb: true,
+    showTicks: true,
+    step: 5,
+    tickInterval: 1,
+    vertical: false
   };
 
   autocompleteOptions = [
@@ -56,7 +68,6 @@ export class FormularComponent implements OnInit {
     }
     let tmpData: IFormular = this.fs.getForm('home_test').getRawValue();
     tmpData.home_test_date = date.value.format('L');
-    console.log(tmpData);
     console.log(tmpData);
 
     // console.log(this.fs.getForm('home_test_text').getRawValue());

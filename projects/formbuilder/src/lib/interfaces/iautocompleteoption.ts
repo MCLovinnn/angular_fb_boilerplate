@@ -1,4 +1,4 @@
-export interface optionsConfig {
+export interface IAutoCompleteOptions {
     showAsObject?: {
         KeyToSave: string | null
     };

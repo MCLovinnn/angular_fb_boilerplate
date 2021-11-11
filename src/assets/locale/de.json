@@ -15,6 +15,9 @@
   "home_test_autocomplete#label": "Test Auto Vervollständigung",
   "home_test_autocomplete#hintlabel": "Einstellbar mit API und Auslösung nach X Buchstaben",
   "home_test_autocomplete#tooltip": "",
+  "home_test_slider#label": "Slider",
+  "home_test_slider#hintlabel": "",
+  "home_test_slider#tooltip": "Gut um Relation aufzuzeigen",
   "test_table_name": "TestSpaltenName",
   "test_table_form": "Beliebiger Spaltenname",
   "save": "Speichern"

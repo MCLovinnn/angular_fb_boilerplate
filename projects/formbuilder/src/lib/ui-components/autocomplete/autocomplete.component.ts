@@ -4,7 +4,7 @@ import { map, startWith } from 'rxjs/operators';
 import { FormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { AutoSearch } from '../../interfaces/imenu';
-import { optionsConfig } from '../../interfaces/iautocompleteoption';
+import { IAutoCompleteOptions } from '../../interfaces/iautocompleteoption';
 import { TranslationService } from '../../services/translation.service';
 
 export const _filter = (opt: any[], value: string, ts:TranslationService): string[] => {
@@ -42,7 +42,7 @@ export class AutocompleteComponent extends BaseFieldComponent
   implements OnInit {
   filteredStates: any;
   @Input() options: any[];
-  @Input() config: optionsConfig = {
+  @Input() config: IAutoCompleteOptions = {
     groupBy: true
   };
 
