@@ -87,7 +87,7 @@ export class ControlpanelComponent implements OnInit {
     const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
     field.internalType = data.htmlType;
-    
+
     if(data.config && data.htmlType === 'slider') {
       field.sliderOptions = data.config as ISliderConfig;
     }
@@ -479,9 +479,14 @@ export class ControlpanelComponent implements OnInit {
   }
 
   generateConfig() {
+    const newData = this.configS.getAppConfigs(this.fs.configs);
+
     this.cs
-      .doPost('config/', this.ts.lang, this.configS.configs)
-      .subscribe(val => console.log(val));
+      .doPost('config/', this.ts.lang, newData)
+      .subscribe(val => {
+        console.log(val);
+        location.reload();
+      });
   }
 
   isValid() {
