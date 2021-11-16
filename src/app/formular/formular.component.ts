@@ -66,7 +66,8 @@ export class FormularComponent implements OnInit {
       date.patchValue(moment(date.value, 'L', 'de', true));
     }
     let tmpData: any = this.fs.getForm('home_test').getRawValue();
-    // console.log(tmpData);
+    tmpData.home_test_date = date.value.format('L');
+    console.log(tmpData);
 
     if (this.update) {
       this.formS.update(tmpData);
