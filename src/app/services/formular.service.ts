@@ -60,27 +60,20 @@ export class FormularService {
   }
 
 
-  add(formular: IZugKopfFormular) {
-    if(this.selectedTeilnetz) {
+  add(formular: any) {
       const newForms = this.forms;
       newForms.push(formular);
-      this.addTeilNetz({
-        id: this.selectedTeilnetz,
-        config: {
-          tsi: false
-        },
-        zugkopf: this.zugkopfToObject(formular)
-      });
+      
       // console.log(newForms);
       this.formChange.emit(newForms);
-    }
+    
   }
 
   get() {
     return this.formChange;
   }
 
-  update(entry: IZugKopfFormular) {
+  update(entry: any) {
     const newForms = this.forms;
     _.merge(newForms, [entry]);
     this.formChange.emit(newForms);

@@ -53,13 +53,13 @@ export class TestComponent implements OnInit {
   constructor(private fs: FormService, private formS: FormularService) { }
 
   ngOnInit(): void {
-    this.formS.get().subscribe((data: IZugKopfFormular[]) => {
+    this.formS.get().subscribe((data: any[]) => {
       this.data = data;
       this.table.refresh();
     });
   }
 
-  delete(row: IZugKopfFormular) {
+  delete(row: any) {
       // console.log(val);
       this.formS.delete(row);
   }
@@ -70,7 +70,7 @@ export class TestComponent implements OnInit {
     });
   }
 
-  edit(row: IZugKopfFormular) {
+  edit(row: any) {
     let tmpForm: any = Object.assign({}, row);
     tmpForm.home_test_date = moment(tmpForm.home_test_date, 'L', 'de', true);
     this.formular.setForm(tmpForm);
