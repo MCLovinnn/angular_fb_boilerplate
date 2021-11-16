@@ -21,7 +21,7 @@ export class BaseFieldComponent implements IField, OnInit {
     max: param => `Maximum beträgt ${param.max}!`,
     min: param => `Minimum beträgt ${param.min}!`,
     pattern: param =>
-      `Das Pattern: <b>${param.pattern}</b> wurde nicht eingehalten!`,
+      `Das Pattern: ${param.requiredPattern} wurde nicht eingehalten!`,
     email: () => 'Keine valide Emailadresse',
     matDatepickerParse: () => 'Falsches Datumsformat'
   };

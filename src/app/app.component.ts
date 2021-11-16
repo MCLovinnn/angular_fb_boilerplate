@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { FormService, TranslationService, DataConnectorService } from '../../projects/formbuilder/src/public-api';
 import { ConnectorService } from './services/connector.service';
+import { AuthenticationService } from 'projects/formbuilder/src/public-api';
+import { FormularService } from './services/formular.service';
+// @ts-ignore
+import fst from '../assets/config/fst.json';
+// @ts-ignore
+import disa from '../assets/config/disa.json';
 
 
 export interface Tile {
@@ -23,7 +29,11 @@ export class AppComponent implements OnInit {
     public fb: FormBuilder,
     public fs: FormService,
     private cs: ConnectorService,
-    public ts: TranslationService) {
+    public ts: TranslationService,
+    public as: AuthenticationService,
+    private formS: FormularService) {
+
+      as.checkIfUserIsAlreadyLoggedIn();
 
     // cs.get('config').subscribe(val => console.log(val));
 
@@ -39,7 +49,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formS.addTeilNetz(fst);
+    this.formS.addTeilNetz(disa);
   }
 
+  logout() {
+    this.as.logout(true);
+  }
+
+  isLoggedIn() {
+    return this.as.isLoggedIn;
+  }
 }
 

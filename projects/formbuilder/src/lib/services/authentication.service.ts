@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 export class AuthenticationService {
 
   private _isLoggedIn = false;
-  bla = 'txtBooth-user';
+  bla = 'teilnetzkonfig-user';
 
   private currentUser: {
     id?: string;
@@ -74,11 +74,12 @@ export class AuthenticationService {
 
     return this.userService.login(usernameAndPassword).pipe(
       tap(resp => {
+        console.log(resp);
         // console.log('[authenticationService] - login successful', resp);
         this.isLoggedIn = true;
       }),
       tap(() => {
-        this.getUserProfile();
+        //this.getUserProfile();
       }),
       tap(() => {
         //this.getUserActions();
@@ -156,16 +157,16 @@ export class AuthenticationService {
   }
 
   loadUserProfile(): any {
-    let res = localStorage.getItem(this.bla);
-      return JSON.parse(res != null? res : '') as any;
+    let res = localStorage.getItem(this.bla);    
+      return res !== null ? JSON.parse(res) : '' as any;
   }
 
   saveUserProfile(userProfile: any): void {
     // console.log('saveUserProfile', userProfile);
     if (!!userProfile) {
-      localStorage.setItem('txtBooth-user', JSON.stringify(userProfile));
+      localStorage.setItem(this.bla, JSON.stringify(userProfile));
     } else {
-      localStorage.removeItem('txtBooth-user');
+      localStorage.removeItem(this.bla);
     }
   }
 /*

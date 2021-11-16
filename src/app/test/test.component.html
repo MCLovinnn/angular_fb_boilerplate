@@ -3,12 +3,12 @@
 <hr style="margin-top:30px;">
 <h2>Beispiel Tabelle</h2>
 <app-table
-  #table
+  #testtable
     [viewOptions]="viewOptions"
     [displayedColumns]="displayedColumns"
     [data]="data"
     (delete)="delete($event)"
-    (deleteBulk)="deleteAll(table.selection)"
+    (deleteBulk)="deleteAll(testtable.selection)"
     (edit)="edit($event)"
     >
 </app-table>

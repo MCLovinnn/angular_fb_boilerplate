@@ -39,10 +39,17 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { ConnectorService } from './services/connector.service';
 
-
 // @ts-ignore
 import CONFIG from '../assets/config/config.json';
+
+
 import { FormularComponent } from './formular/formular.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { ZugkopfComponent } from './zugkopf/zugkopf.component';
+import { FormularService } from './services/formular.service';
+import { TeilnetzComponent } from './teilnetz/teilnetz.component';
+import { TeilnetzListeComponent } from './teilnetz-liste/teilnetz-liste.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -51,6 +58,11 @@ registerLocaleData(localeDe, 'de');
     AppComponent,
     TestComponent,
     FormularComponent,
+    HomeComponent,
+    LoginComponent,
+    ZugkopfComponent,
+    TeilnetzComponent,
+    TeilnetzListeComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,13 +97,16 @@ registerLocaleData(localeDe, 'de');
   exports: [AppComponent]
 })
 export class AppModule {
-  constructor(public ts: TranslationService, private fs: FormService, private cs: ConnectorService) {
-    fs.addConfig(CONFIG);
-
-    ts.setPath('assets/locale/');
-    ts.use('de').then(res => {
-      // console.log(res);
-    });
-    // console.log(ts.data);
+  constructor(public ts: TranslationService,
+    private fs: FormService,
+    private cs: ConnectorService
+    ) {
+      fs.addConfig(CONFIG);
+      
+      ts.setPath('assets/locale/');
+      ts.use('de').then(res => {
+        // console.log(res);
+      });
+      // console.log(ts.data);
   }
 }

@@ -1,6 +1,6 @@
 import express from 'express';
 const app = express()
-const port = 3000
+const port = 4003
 
 import bodyParser from 'body-parser';
 
@@ -69,6 +69,14 @@ app.post('/lang/:name', function(req, res, next) {
 
 app.delete('/lang/:name', (req, res, next) => {
   deleteOption(req.params.name, res);
+});
+
+app.post('/login', function(req, res, next) {
+  res.send({done: true});
+});
+
+app.delete('/logout', function(req, res, next) {
+  res.send({done: true});
 });
 
 app.listen(port, () => {

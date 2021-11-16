@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormService, IAutoCompleteOptions } from 'projects/formbuilder/src/public-api';
-import { IFormular } from '../formular';
+import { IZugKopfFormular } from '../formular';
 import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';
 import { FormGroup } from '@angular/forms';
@@ -12,10 +12,10 @@ import { ISliderConfig } from 'projects/formbuilder/src/lib/interfaces/isliderco
   styleUrls: ['./formular.component.scss']
 })
 export class FormularComponent implements OnInit {
-  @Input() formular: IFormular;
+  @Input() formular: IZugKopfFormular;
   form: FormGroup
   update = false;
-  backup: IFormular;
+  backup: IZugKopfFormular;
 
   autoCompleteConfig: IAutoCompleteOptions = {
     groupBy: true
@@ -52,7 +52,7 @@ export class FormularComponent implements OnInit {
     return this.fs.getForm('home_test').valid;
   }
 
-  public setForm(formular: IFormular) {
+  public setForm(formular: IZugKopfFormular) {
     this.fs.getForm('home_test').patchValue(formular);
     this.formular = formular;
     this.update = true;
@@ -65,11 +65,9 @@ export class FormularComponent implements OnInit {
     if(!moment.isMoment(date.value)) {
       date.patchValue(moment(date.value, 'L', 'de', true));
     }
-    let tmpData: IFormular = this.fs.getForm('home_test').getRawValue();
-    tmpData.home_test_date = date.value.format('L');
+    let tmpData: IZugKopfFormular = this.fs.getForm('home_test').getRawValue();
     console.log(tmpData);
 
-    // console.log(this.fs.getForm('home_test_text').getRawValue());
     if (this.update) {
       this.formS.update(tmpData);
     } else {

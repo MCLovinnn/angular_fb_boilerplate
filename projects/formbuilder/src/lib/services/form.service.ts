@@ -390,6 +390,7 @@ export class FormService {
   resetForms() {
     if (this.forms) {
       this.forms.patchValue(this.changes);
+      this.forms.markAsUntouched();
     }
   }
 

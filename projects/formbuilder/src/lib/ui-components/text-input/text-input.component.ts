@@ -12,6 +12,7 @@ import { TranslationService } from '../../services/translation.service';
 export class TextInputComponent extends BaseFieldComponent implements OnInit {
   @Input() rows = 3;
   @Input() number = false;
+  @Input() password = false;
   internalType = 'text';
 
   constructor(public fb: FormBuilder,
@@ -24,6 +25,9 @@ export class TextInputComponent extends BaseFieldComponent implements OnInit {
     super.ngOnInit();
     if (this.number) {
       this.internalType = 'number';
+    }
+    if(this.password){
+      this.internalType = 'password';
     }
     // console.log(this.control);
   }

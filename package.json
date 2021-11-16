@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config ./proxy.conf.json",
     "startFB": "ng serve formbuilderui --proxy-config ./projects/formbuilderui/proxy.conf.json",
     "serverMacOS": "DEBUG=express:* node ./projects/server/app.js",
     "serverWindows": "set DEBUG=express:* & node ./projects/server/app.js",

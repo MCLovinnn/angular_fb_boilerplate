@@ -5,7 +5,6 @@
         [labelPosition]="position"
         [formControlName]="name"
         (change)="change.emit({ type: name, value: $event.checked })"
-        [disabled]="disabled"
         [matTooltip]="getName() + '#tooltip' | translate"
         matTooltipDisabled="false"
         matTooltipHideDelay="200"
