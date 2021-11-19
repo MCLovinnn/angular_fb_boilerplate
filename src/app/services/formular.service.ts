@@ -29,7 +29,7 @@ export class FormularService {
     const newForms = this.forms;
     _.merge(newForms,[entry]);
     this.formChange.emit(newForms);
-    console.log(newForms);
+    // console.log(newForms);
   }
 
   delete(entry: IFormular) {

@@ -67,9 +67,8 @@ export class FormularComponent implements OnInit {
     }
     let tmpData: IFormular = this.fs.getForm('home_test').getRawValue();
     tmpData.home_test_date = date.value.format('L');
-    console.log(tmpData);
+    // console.log(tmpData);
 
-    // console.log(this.fs.getForm('home_test_text').getRawValue());
     if (this.update) {
       this.formS.update(tmpData);
     } else {

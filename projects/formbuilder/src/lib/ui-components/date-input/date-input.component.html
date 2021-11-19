@@ -3,8 +3,8 @@
     <input matInput
            [placeholder]="getName()+'#label' | translate"
            [formControlName]="name"
-           [minlength]="validators.minLength"
-           [maxlength]="validators.maxLength"
+           [min]="validators.min"
+           [max]="validators.max"
            [matTooltip]="getName()+'#tooltip' | translate"
            [required]="required"
            matTooltipDisabled="false"

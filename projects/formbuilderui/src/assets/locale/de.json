@@ -165,5 +165,13 @@
   "updateText": "Textdatei Updaten",
   "genText": "Textdatei anhand von config ertellen",
   "save": "Speichern",
-  "config_table_key": "Name"
+  "config_table_key": "Name",
+  "required_error": "Das ist ein Pflichtfeld!",
+  "datepicker_error": "Falsches Datumsformat",
+  "email_error": "Keine valide Emailadresse",
+  "maxLength_error": "Maximale Länge ${param}!",
+  "minLength_error": "Mindestens ${param} Zeichen eingeben!",
+  "max_error": "Maximum beträgt ${param}!",
+  "min_error": "Minimum beträgt ${param}!",
+  "pattern_error": "Das Pattern: ${param} wurde nicht eingehalten!"
 }

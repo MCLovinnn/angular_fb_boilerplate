@@ -15,15 +15,14 @@ import { IAutoCompleteOptions } from '../interfaces/iautocompleteoption';
 })
 export class BaseFieldComponent implements IField, OnInit {
   private readonly MSGerrors = {
-    required: () => 'Das ist ein Pflichtfeld!',
-    maxlength: param => `Maximale Länge ${param.requiredLength}!`,
-    minlength: param => `Mindestens ${param.requiredLength} Zeichen eingeben!`,
-    max: param => `Maximum beträgt ${param.max}!`,
-    min: param => `Minimum beträgt ${param.min}!`,
-    pattern: param =>
-      `Das Pattern: <b>${param.pattern}</b> wurde nicht eingehalten!`,
-    email: () => 'Keine valide Emailadresse',
-    matDatepickerParse: () => 'Falsches Datumsformat'
+    required: () => this.ts.data.required_error,
+    maxlength: param => this.ts.data.minLength_error.replace('${param}', param.requiredLength),
+    minlength: param => this.ts.data.minLength_error.replace('${param}', param.requiredLength),
+    max: param => this.ts.data.max_error.replace('${param}', param.max),
+    min: param => this.ts.data.min_error.replace('${param}', param.min),
+    pattern: param => this.ts.data.pattern_error.replace('${param}', param.requiredPattern),
+    email: () => this.ts.data.email_error,
+    matDatepickerParse: () => this.ts.data.datepicker_error
   };
 
   @Input() name = 'home_ui_new';

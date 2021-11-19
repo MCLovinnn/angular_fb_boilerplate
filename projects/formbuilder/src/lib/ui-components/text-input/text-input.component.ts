@@ -11,8 +11,7 @@ import { TranslationService } from '../../services/translation.service';
 })
 export class TextInputComponent extends BaseFieldComponent implements OnInit {
   @Input() rows = 3;
-  @Input() number = false;
-  internalType = 'text';
+  @Input() internalType = 'text';
 
   constructor(public fb: FormBuilder,
               public fs: FormService,
@@ -22,10 +21,6 @@ export class TextInputComponent extends BaseFieldComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    if (this.number) {
-      this.internalType = 'number';
-    }
-    // console.log(this.control);
   }
 
 }
