@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 export class AuthenticationService {
 
   private _isLoggedIn = false;
-  bla = 'txtBooth-user';
+  bla = 'fbapp-user';
 
   private currentUser: {
     id?: string;
@@ -69,25 +69,25 @@ export class AuthenticationService {
     return false;
   }
 */
-  login(username: string, password: string): Observable<any> {
+  login(loginurl: string, username: string, password: string): Observable<any> {
     const usernameAndPassword = username + ':' + password;
 
-    return this.userService.login(usernameAndPassword).pipe(
+    return this.userService.login(usernameAndPassword, loginurl).pipe(
       tap(resp => {
         // console.log('[authenticationService] - login successful', resp);
         this.isLoggedIn = true;
       }),
       tap(() => {
-        this.getUserProfile();
+        // this.getUserProfile();
       }),
       tap(() => {
-        //this.getUserActions();
+        // this.getUserActions();
       })
     );
   }
 
-  getUserProfile() {
-    this.userService.getUserProfile().subscribe((profile:any) => {
+  getUserProfile(url: string) {
+    this.userService.getUserProfile(url).subscribe((profile:any) => {
       // console.log('[AuthenticationService] - getUserProfile', profile);
       this.dataStore.setCurrentUser(profile);
     }, (errObj) => {
@@ -108,12 +108,12 @@ export class AuthenticationService {
     });
   }
 */
-  public logout(navigateToLoginpage: boolean = true): void {
+  public logout(navigateToLoginpage: boolean = true, url: string): void {
     this.isLoggedIn = false;
     this.dataStore.setCurrentUser(null);
-    //this.dataStore.setAllowedActions(null);
+    // this.dataStore.setAllowedActions(null);
 
-    this.userService.logout().subscribe(null, null, () => {
+    this.userService.logout(url).subscribe(null, null, () => {
       if (navigateToLoginpage) {
         this.navigateToLoginPage();
       }
@@ -163,9 +163,9 @@ export class AuthenticationService {
   saveUserProfile(userProfile: any): void {
     // console.log('saveUserProfile', userProfile);
     if (!!userProfile) {
-      localStorage.setItem('txtBooth-user', JSON.stringify(userProfile));
+      localStorage.setItem(this.bla, JSON.stringify(userProfile));
     } else {
-      localStorage.removeItem('txtBooth-user');
+      localStorage.removeItem(this.bla);
     }
   }
 /*

@@ -1,13 +1,10 @@
 import { IField, IHTMLAttributes } from '../interfaces/ifield';
 import { ICustomValidation } from '../interfaces/icustom-validation';
 import { IValidator } from '../interfaces/ivalidator';
-import { EventEmitter, Input, OnInit, Component, Output } from '@angular/core';
+import { EventEmitter, Input, OnInit, Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { FormService } from '../services/form.service';
 import { TranslationService } from '../services/translation.service';
-import { ISliderConfig } from '../interfaces/isliderconfig';
-import { ITableViewOptions } from '../ui-components/table/table.component';
-import { IAutoCompleteOptions } from '../interfaces/iautocompleteoption';
 
 @Component({
   selector: 'app-base-field',
