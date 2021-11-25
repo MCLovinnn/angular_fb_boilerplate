@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseFieldComponent } from '../../classes/field';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { DateAdapter } from '@angular/material/core';
 import { TranslationService } from '../../services/translation.service';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-date-input',
@@ -26,4 +28,21 @@ export class DateInputComponent extends BaseFieldComponent implements OnInit {
     super.ngOnInit();
   }
 
+  isMoment(date: FormControl) {
+    if(!moment.isMoment(date.value)) {
+      date.patchValue(moment(date.value, 'L', 'de', true));
+    }
+  }
+
+  keyup(){
+    let date = this.fs.getFormControl({name: this.name});
+    this.isMoment(date);
+    date.patchValue(date.value.add(1, 'd'));
+  }
+
+  keydown(){
+    let date = this.fs.getFormControl({name: this.name});
+    this.isMoment(date);
+    date.patchValue(date.value.subtract(1, 'd'));
+  }
 }

@@ -12,6 +12,8 @@
            matTooltipPosition="above"
            matTooltipShowDelay="100"
            [value]="value"
+           (keyup.arrowup)="keyup()"
+           (keyup.arrowdown)="keydown()"
            [matDatepicker]="picker">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
