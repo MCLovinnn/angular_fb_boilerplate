@@ -19,7 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -31,7 +31,7 @@ import { AutocompleteComponent } from './ui-components/autocomplete/autocomplete
 import { CheckboxComponent } from './ui-components/checkbox/checkbox.component';
 import { RadiobuttonComponent } from './ui-components/radiobutton/radiobutton.component';
 import { SliderComponent } from './ui-components/slider/slider.component';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatMomentDateModule, MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { registerLocaleData, CommonModule } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { BaseFieldComponent } from './classes/field';
@@ -105,6 +105,8 @@ registerLocaleData(localeDe, 'de');
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'de' },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
     TranslatePipe
   ],
   bootstrap: [FormbuilderComponent],

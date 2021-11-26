@@ -35,14 +35,12 @@ export class DateInputComponent extends BaseFieldComponent implements OnInit {
   }
 
   keyup(){
-    let date = this.fs.getFormControl({name: this.name});
-    this.isMoment(date);
-    date.patchValue(date.value.add(1, 'd'));
+    this.isMoment(this.control);
+    this.control.patchValue(this.control.value.add(1, 'd'));
   }
 
   keydown(){
-    let date = this.fs.getFormControl({name: this.name});
-    this.isMoment(date);
-    date.patchValue(date.value.subtract(1, 'd'));
+    this.isMoment(this.control);
+    this.control.patchValue(this.control.value.subtract(1, 'd'));
   }
 }
