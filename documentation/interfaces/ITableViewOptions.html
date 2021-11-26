@@ -83,6 +83,13 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#dateStringToDateFilter" 
+>
+                                            dateStringToDateFilter
+                                        </a>
+                                </li>
+                                <li>
                                         <a href="#searchable" 
 >
                                             searchable
@@ -119,6 +126,12 @@
                                             showPaginator
                                         </a>
                                 </li>
+                                <li>
+                                        <a href="#type" 
+>
+                                            type
+                                        </a>
+                                </li>
                             </ul>
                         </td>
                     </tr>
@@ -130,6 +143,44 @@
 
             <section>
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="dateStringToDateFilter"></a>
+                                        <span class="name "><b>dateStringToDateFilter</b>
+                                            <a href="#dateStringToDateFilter">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>dateStringToDateFilter:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -333,6 +384,39 @@
 
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="type"></a>
+                                        <span class="name "><b>type</b>
+                                            <a href="#type">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>type:         <code><a href="../miscellaneous/enumerations.html#TableType" target="_self" >TableType</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#TableType" target="_self" >TableType</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
             </section>
     </div>
 
@@ -347,6 +431,8 @@ import { MatSort } from &#x27;@angular/material/sort&#x27;;
 import { MatPaginator } from &#x27;@angular/material/paginator&#x27;;
 import { AngularCsv } from &#x27;../../classes/angular-csv&#x27;;
 import { TranslatePipe } from &#x27;../../services/translation.pipe&#x27;;
+import * as moment from &#x27;moment&#x27;;
+
 
 export enum TableType {
   USER &#x3D; &#x27;USER&#x27;,
@@ -355,6 +441,8 @@ export enum TableType {
 }
 
 export interface ITableViewOptions {
+
+  type: TableType;
 
   searchable: boolean;
 
@@ -367,6 +455,8 @@ export interface ITableViewOptions {
   showCSVExport: boolean;
 
   showDeleteAllButton?: boolean;
+
+  dateStringToDateFilter?: string;
 }
 
 export interface ITableHeader {
@@ -450,6 +540,17 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator &#x3D; this.paginator;
     this.dataSource.sort &#x3D; this.sort;
+
+    if (this.viewOptions.dateStringToDateFilter) {
+      this.dataSource.sortingDataAccessor &#x3D; (item, property): string | number &#x3D;&gt; {
+        switch (property) {
+          case this.viewOptions.dateStringToDateFilter: {
+            return moment(item[property], &#x27;L&#x27;, &#x27;de&#x27;, true).unix();
+          };
+          default: return item[property];
+        }
+      };
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -506,7 +607,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       const row &#x3D; {};
       // tslint:disable-next-line: prefer-for-of
       for (let y &#x3D; 0; y &lt; colums.length; y++) {
-        row[colums[y].collumnName] &#x3D; this.data[i][colums[y].collumnName] ? this.data[i][colums[y].collumnName] : &#x27;&#x27;;
+        row[colums[y].collumnName] &#x3D; this.data[i][colums[y].collumnName] ? this.data[i][colums[y].collumnName] : &#x27; &#x27;;
       }
       // console.log(&#x27;row&#x27;, row);
       result.push(row);

@@ -236,6 +236,8 @@ import { MatSort } from &#x27;@angular/material/sort&#x27;;
 import { MatPaginator } from &#x27;@angular/material/paginator&#x27;;
 import { AngularCsv } from &#x27;../../classes/angular-csv&#x27;;
 import { TranslatePipe } from &#x27;../../services/translation.pipe&#x27;;
+import * as moment from &#x27;moment&#x27;;
+
 
 export enum TableType {
   USER &#x3D; &#x27;USER&#x27;,
@@ -244,6 +246,8 @@ export enum TableType {
 }
 
 export interface ITableViewOptions {
+
+  type: TableType;
 
   searchable: boolean;
 
@@ -256,6 +260,8 @@ export interface ITableViewOptions {
   showCSVExport: boolean;
 
   showDeleteAllButton?: boolean;
+
+  dateStringToDateFilter?: string;
 }
 
 export interface ITableHeader {
@@ -339,6 +345,17 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator &#x3D; this.paginator;
     this.dataSource.sort &#x3D; this.sort;
+
+    if (this.viewOptions.dateStringToDateFilter) {
+      this.dataSource.sortingDataAccessor &#x3D; (item, property): string | number &#x3D;&gt; {
+        switch (property) {
+          case this.viewOptions.dateStringToDateFilter: {
+            return moment(item[property], &#x27;L&#x27;, &#x27;de&#x27;, true).unix();
+          };
+          default: return item[property];
+        }
+      };
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -395,7 +412,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       const row &#x3D; {};
       // tslint:disable-next-line: prefer-for-of
       for (let y &#x3D; 0; y &lt; colums.length; y++) {
-        row[colums[y].collumnName] &#x3D; this.data[i][colums[y].collumnName] ? this.data[i][colums[y].collumnName] : &#x27;&#x27;;
+        row[colums[y].collumnName] &#x3D; this.data[i][colums[y].collumnName] ? this.data[i][colums[y].collumnName] : &#x27; &#x27;;
       }
       // console.log(&#x27;row&#x27;, row);
       result.push(row);

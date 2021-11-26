@@ -292,7 +292,7 @@ FIXME: An additional test for a valid cookie would be more useful.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getUserProfile()</code>
+<code>getUserProfile(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -309,8 +309,40 @@ FIXME: An additional test for a valid cookie would be more useful.</p>
                 <td class="col-md-4">
 
                     <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>url</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -408,7 +440,7 @@ and navigates to the loginpage.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>login(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>login(loginurl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -436,6 +468,18 @@ and navigates to the loginpage.</p>
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>loginurl</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>username</td>
                                     <td>
@@ -491,7 +535,7 @@ and navigates to the loginpage.</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>logout(navigateToLoginpage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                    <code>logout(navigateToLoginpage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -532,6 +576,20 @@ and navigates to the loginpage.</p>
 
                                     <td>
                                         <code>true</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
                                     </td>
 
                                 </tr>
@@ -809,7 +867,7 @@ and navigates to the loginpage.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;txtBooth-user&#x27;</code>
+                        <i>Default value : </i><code>&#x27;fbapp-user&#x27;</code>
                     </td>
                 </tr>
                     <tr>
@@ -941,7 +999,7 @@ import { UserService } from &#x27;./user.service&#x27;;
 export class AuthenticationService {
 
   private _isLoggedIn &#x3D; false;
-  bla &#x3D; &#x27;txtBooth-user&#x27;;
+  bla &#x3D; &#x27;fbapp-user&#x27;;
 
   private currentUser: {
     id?: string;
@@ -999,25 +1057,25 @@ export class AuthenticationService {
     return false;
   }
 */
-  login(username: string, password: string): Observable&lt;any&gt; {
+  login(loginurl: string, username: string, password: string): Observable&lt;any&gt; {
     const usernameAndPassword &#x3D; username + &#x27;:&#x27; + password;
 
-    return this.userService.login(usernameAndPassword).pipe(
+    return this.userService.login(usernameAndPassword, loginurl).pipe(
       tap(resp &#x3D;&gt; {
         // console.log(&#x27;[authenticationService] - login successful&#x27;, resp);
         this.isLoggedIn &#x3D; true;
       }),
       tap(() &#x3D;&gt; {
-        this.getUserProfile();
+        // this.getUserProfile();
       }),
       tap(() &#x3D;&gt; {
-        //this.getUserActions();
+        // this.getUserActions();
       })
     );
   }
 
-  getUserProfile() {
-    this.userService.getUserProfile().subscribe((profile:any) &#x3D;&gt; {
+  getUserProfile(url: string) {
+    this.userService.getUserProfile(url).subscribe((profile:any) &#x3D;&gt; {
       // console.log(&#x27;[AuthenticationService] - getUserProfile&#x27;, profile);
       this.dataStore.setCurrentUser(profile);
     }, (errObj) &#x3D;&gt; {
@@ -1038,12 +1096,12 @@ export class AuthenticationService {
     });
   }
 */
-  public logout(navigateToLoginpage: boolean &#x3D; true): void {
+  public logout(navigateToLoginpage: boolean &#x3D; true, url: string): void {
     this.isLoggedIn &#x3D; false;
     this.dataStore.setCurrentUser(null);
-    //this.dataStore.setAllowedActions(null);
+    // this.dataStore.setAllowedActions(null);
 
-    this.userService.logout().subscribe(null, null, () &#x3D;&gt; {
+    this.userService.logout(url).subscribe(null, null, () &#x3D;&gt; {
       if (navigateToLoginpage) {
         this.navigateToLoginPage();
       }
@@ -1093,9 +1151,9 @@ export class AuthenticationService {
   saveUserProfile(userProfile: any): void {
     // console.log(&#x27;saveUserProfile&#x27;, userProfile);
     if (!!userProfile) {
-      localStorage.setItem(&#x27;txtBooth-user&#x27;, JSON.stringify(userProfile));
+      localStorage.setItem(this.bla, JSON.stringify(userProfile));
     } else {
-      localStorage.removeItem(&#x27;txtBooth-user&#x27;);
+      localStorage.removeItem(this.bla);
     }
   }
 /*

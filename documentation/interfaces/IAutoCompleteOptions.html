@@ -46,7 +46,7 @@
   <li>Interfaces</li>
   <li
   >
-  ISliderConfig</li>
+  IAutoCompleteOptions</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,7 +64,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>projects/formbuilder/src/lib/interfaces/isliderconfig.ts</code>
+            <code>projects/formbuilder/src/lib/interfaces/iautocompleteoption.ts</code>
         </p>
 
 
@@ -83,39 +83,45 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#inverted" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#apiEndpoint" 
 >
-                                            inverted
+                                            apiEndpoint
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#showThumb" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#entriesPerPage" 
 >
-                                            showThumb
+                                            entriesPerPage
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#showTicks" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#groupBy" 
 >
-                                            showTicks
+                                            groupBy
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#step" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#loadAfterPercentscrolled" 
 >
-                                            step
+                                            loadAfterPercentscrolled
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#tickInterval" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#searchAfterNthCharacter" 
 >
-                                            tickInterval
+                                            searchAfterNthCharacter
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#vertical" 
+                                            <span class="modifier">Optional</span>
+                                        <a href="#showAsObject" 
 >
-                                            vertical
+                                            showAsObject
                                         </a>
                                 </li>
                             </ul>
@@ -133,9 +139,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="inverted"></a>
-                                        <span class="name "><b>inverted</b>
-                                            <a href="#inverted">
+                                        <a name="apiEndpoint"></a>
+                                        <span class="name "><b>apiEndpoint</b>
+                                            <a href="#apiEndpoint">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -143,7 +149,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>inverted:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                        <code>apiEndpoint:     <code>URL</code>
 </code>
                                     </td>
                                 </tr>
@@ -151,11 +157,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            <i>Type : </i>    <code>URL</code>
 
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -166,9 +177,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="showThumb"></a>
-                                        <span class="name "><b>showThumb</b>
-                                            <a href="#showThumb">
+                                        <a name="entriesPerPage"></a>
+                                        <span class="name "><b>entriesPerPage</b>
+                                            <a href="#entriesPerPage">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -176,73 +187,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>showThumb:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="showTicks"></a>
-                                        <span class="name "><b>showTicks</b>
-                                            <a href="#showTicks">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>showTicks:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="step"></a>
-                                        <span class="name "><b>step</b>
-                                            <a href="#step">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>step:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                        <code>entriesPerPage:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -255,52 +200,24 @@
                                         </td>
                                     </tr>
 
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="tickInterval"></a>
-                                        <span class="name "><b>tickInterval</b>
-                                            <a href="#tickInterval">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>tickInterval:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
+                                            <i>Optional</i>
                                         </td>
                                     </tr>
 
 
 
 
-
                         </tbody>
                     </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="vertical"></a>
-                                        <span class="name "><b>vertical</b>
-                                            <a href="#vertical">
+                                        <a name="groupBy"></a>
+                                        <span class="name "><b>groupBy</b>
+                                            <a href="#groupBy">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -308,7 +225,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>vertical:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                        <code>groupBy:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -321,6 +238,125 @@
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="loadAfterPercentscrolled"></a>
+                                        <span class="name "><b>loadAfterPercentscrolled</b>
+                                            <a href="#loadAfterPercentscrolled">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>loadAfterPercentscrolled:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="searchAfterNthCharacter"></a>
+                                        <span class="name "><b>searchAfterNthCharacter</b>
+                                            <a href="#searchAfterNthCharacter">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>searchAfterNthCharacter:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="showAsObject"></a>
+                                        <span class="name "><b>showAsObject</b>
+                                            <a href="#showAsObject">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>showAsObject:     <code>literal type</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>literal type</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -332,13 +368,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface ISliderConfig {
-    step: number;
-    showThumb: boolean;
-    vertical: boolean;
-    inverted: boolean;
-    showTicks: boolean;
-    tickInterval: number;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface IAutoCompleteOptions {
+    showAsObject?: {
+        KeyToSave: string | null
+    };
+    groupBy?: boolean;
+    apiEndpoint?: URL;
+    entriesPerPage?: number;
+    searchAfterNthCharacter?: number;
+    loadAfterPercentscrolled?: number;
 }
 </code></pre>
     </div>
@@ -367,7 +405,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'ISliderConfig.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'IAutoCompleteOptions.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -225,6 +225,9 @@
 import { ICustomValidation } from &#x27;./icustom-validation&#x27;;
 import { AsyncValidatorFn, ValidatorFn } from &#x27;@angular/forms&#x27;;
 import { EventEmitter } from &#x27;@angular/core&#x27;;
+import { ISliderConfig } from &#x27;./isliderconfig&#x27;;
+import { ITableViewOptions } from &#x27;../ui-components/table/table.component&#x27;;
+import { IAutoCompleteOptions } from &#x27;./iautocompleteoption&#x27;;
 
 export interface IHTMLAttributes {
   src?: string;
@@ -255,6 +258,7 @@ export interface IField {
   change?: EventEmitter&lt;any&gt;;
   updateOn?: &#x27;change&#x27; | &#x27;blur&#x27; | &#x27;submit&#x27;;
   options?: ICodeEntry[];
+  config?: ISliderConfig | ITableViewOptions | IAutoCompleteOptions;
 }
 
 export interface IFormObj {
