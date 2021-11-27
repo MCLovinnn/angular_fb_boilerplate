@@ -43,6 +43,11 @@ import { ConnectorService } from './services/connector.service';
 // @ts-ignore
 import CONFIG from '../assets/config/config.json';
 import { FormularComponent } from './formular/formular.component';
+import { RecepyComponent } from './recepy/recepy.component';
+import { RecepyListComponent } from './recepy-list/recepy-list.component';
+import { CommentComponent } from './comment/comment.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -51,6 +56,11 @@ registerLocaleData(localeDe, 'de');
     AppComponent,
     TestComponent,
     FormularComponent,
+    RecepyComponent,
+    RecepyListComponent,
+    CommentComponent,
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
