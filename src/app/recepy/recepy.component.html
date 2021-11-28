@@ -1,1 +1,39 @@
-<p>recepy works!</p>
+<h2>Neues Rezept</h2>
+<mat-grid-list cols="12" rowHeight="70px" gutterSize="15px">
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-text-input name="home_recepy_name"></app-text-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <button mat-raised-button color="primary">Foto aufnehmen</button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="2">
+    <app-text-input name="home_recepy_description"></app-text-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-text-input name="home_recepy_ingredients"></app-text-input>
+    <div class="spacer">-</div>
+    <app-text-input class="amount" name="home_recepy_ingredientsamount"></app-text-input>
+    <div class="spacer">-</div>
+    <app-select class="amounttype" name="home_recepy_ingredientstype"></app-select>
+    <!--button mat-raised-button color="primary">{{ "save" | translate }}</button-->
+  </mat-grid-tile>
+
+
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-select name="home_test_select"></app-select>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-text-input name="home_test_text"></app-text-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-date-input name="home_test_date"></app-date-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-slider name="home_test_slider"> </app-slider>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <button mat-raised-button color="primary">{{ "save" | translate }}</button>
+  </mat-grid-tile>
+</mat-grid-list>
+<!--[disabled]="!isValid()"
+      (click)="save()"-->

@@ -69,6 +69,220 @@
           "vertical": false
         }
       }
+    },
+    "recepy": {
+      "name": {
+        "name": "home_recepy_name",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "description": {
+        "name": "home_recepy_description",
+        "htmlType": "textarea",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "ingredients": {
+        "name": "home_recepy_ingredients",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "ingredientsamount": {
+        "name": "home_recepy_ingredientsamount",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 1,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "ingredientstype": {
+        "name": "home_recepy_ingredientstype",
+        "htmlType": "select",
+        "validators": { "required": true },
+        "value": "gramm",
+        "options": [
+          {
+            "value": "gramm",
+            "key": "home_recepy_ingredientstype_Opt_gramm",
+            "description": "home_test_select_Opt_gramm#desc"
+          },
+          {
+            "value": "liter",
+            "key": "home_recepy_ingredientstype_Opt_liter",
+            "description": "home_test_select_Opt_liter#desc"
+          }
+        ]
+      },
+      "image": {
+        "name": "home_recepy_image",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "position": {
+        "name": "home_recepy_position",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "id": {
+        "name": "home_recepy_id",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "commentText": {
+        "name": "home_recepy_commentText",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "commentFor": {
+        "name": "home_recepy_commentFor",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "commentKat": {
+        "name": "home_recepy_commentKat",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "commentUser": {
+        "name": "home_recepy_commentUser",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "commentId": {
+        "name": "home_recepy_commentId",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      }
+    },
+    "recepylist": {
+      "id": {
+        "name": "home_recepylist_id",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "name": {
+        "name": "home_recepylist_name",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "description": {
+        "name": "home_recepylist_description",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      },
+      "recepies": {
+        "name": "home_recepylist_recepies",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": null
+        }
+      }
     }
   }
 }
