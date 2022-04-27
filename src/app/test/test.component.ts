@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITableViewOptions, ITableHeader, TableType, FormService, TableComponent } from 'projects/formbuilder/src/public-api';
+import { ITableViewOptions, ITableHeader, TableType, FormService, TableComponent } from 'formbuilder';
 import { FormularService } from '../services/formular.service';
 import { IFormular } from '../formular';
 import { FormularComponent } from '../formular/formular.component';

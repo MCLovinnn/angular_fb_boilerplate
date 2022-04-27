@@ -1,1 +1,93 @@
-<router-outlet></router-outlet>
+<mat-drawer-container class="example-container" autosize hasBackdrop="true">
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <h3>Menu</h3>
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <button
+          mat-button
+          type="button"
+          routerLink="/home"
+          routerLinkActive="active"
+        >
+          Home
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button
+          mat-button
+          type="button"
+          routerLink="/"
+          routerLinkActive="active"
+        >
+          Test
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button
+          mat-button
+          type="button"
+          routerLink="/recepy"
+          routerLinkActive="active"
+        >
+          Recepy
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button
+          mat-button
+          type="button"
+          routerLink="/list"
+          routerLinkActive="active"
+        >
+          Recepy List
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button
+          *ngIf="!isLoggedIn()"
+          mat-button
+          type="button"
+          routerLink="/login"
+          routerLinkActive="active"
+        >
+          Login
+        </button>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <button
+          *ngIf="isLoggedIn()"
+          (click)="logout()"
+          mat-button
+          type="button"
+        >
+          Logout
+        </button>
+      </mat-list-item>
+    </mat-list>
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <mat-toolbar>
+      <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+              <mat-icon>menu</mat-icon>
+          </button>
+      <span>CookyApp</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+  </div>
+  <router-outlet></router-outlet>
+</mat-drawer-container>

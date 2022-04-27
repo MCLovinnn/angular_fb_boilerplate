@@ -18,8 +18,14 @@ mat-toolbar {
   height: 7vh;
 }
 
+.example-container {
+  height: 100%;
+}
 .example-spacer {
   display: flex;
   flex: 1 1 auto;
   justify-content: space-around;
+}
+router-outlet {
+  height: 100%;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormService, IAutoCompleteOptions } from 'projects/formbuilder/src/public-api';
+import { FormService, IAutoCompleteOptions } from 'formbuilder';
 import { IFormular } from '../formular';
 import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';

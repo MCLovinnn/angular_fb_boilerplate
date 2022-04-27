@@ -11,7 +11,9 @@ export class FormularService {
   selectedList: string;
   obj: any;
   activeRecepyListChange: EventEmitter<string> = new EventEmitter();
-  recepyChange: EventEmitter<IRecepy> = new EventEmitter();
+  recepyChange: EventEmitter<IRecepy[]> = new EventEmitter();
+  recepies: IRecepy[] = [];
+  selectedRecepy: number;
   constructor() {
     this.formChange.subscribe((form: IFormular[]) => {
       this.forms = form;
@@ -47,21 +49,42 @@ export class FormularService {
   }
 
   getRecepy(id: string): IRecepy[] {
-    return this.obj.filter((value: IRecepy, index) => {
+    return this.recepies.filter((value: IRecepy, index) => {
       return value.id === id;
     });
   }
 
-  addRecepy(obj: IRecepy) {
-    let data = this.getRecepy(obj.id)[0];
+  selectRecepy(id: number) {
+    this.selectedRecepy = id;
+  }
 
+  getSelectedRecepy() {
+    console.log(this.selectedRecepy);
+
+    if(this.selectedRecepy >= 0) {
+      return this.recepies[this.selectedRecepy];
+    }
+  }
+
+  addRecepy(obj: IRecepy) {
+    let data;
+    if(obj.id) {
+      console.log(obj);
+
+      data = this.getRecepy(obj.id)[0];
+
+    }
+    if(this.selectedRecepy >= 0) {
+      data = this.getSelectedRecepy();
+      this.selectedRecepy = null;
+    }
     if(data) {
       _.merge(data, obj);
     } else {
-      this.obj.push(obj);
+      this.recepies.push(obj);
     }
 
-    this.recepyChange.emit(this.obj);
+    this.recepyChange.emit(this.recepies);
   }
 
   setActualList(obj?: IRecepyList) {
@@ -87,8 +110,11 @@ export class FormularService {
   }
 
   getComments(recepy: IRecepyForm): IComment[] {
-    let data = this.getRecepy(recepy.home_recepy_id)[0];
-    return data.comments || [];
+    let data;
+    if (recepy.home_recepy_id) {
+      data = this.getRecepy(recepy.home_recepy_id)[0];
+    }
+    return data? data.comments || [] : [];
   }
 
   recepyToObject(recepy: IRecepyForm): IRecepy {

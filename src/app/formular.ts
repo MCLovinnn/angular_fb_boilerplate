@@ -11,6 +11,18 @@ export interface IUser {
   id: string;
 }
 
+export interface Iingredient {
+  name: string;
+  amount: number;
+  type: string;
+}
+
+export interface IingredientForm {
+  home_ingredient_ingredients: string;
+  home_ingredient_ingredientstype: string;
+  home_ingredient_ingredientsamount: number;
+}
+
 export interface IRecepyForm {
   home_recepy_name: string;
   home_recepy_description: string;

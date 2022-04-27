@@ -1,1 +1,8 @@
-<p>recepy-list works!</p>
+<mat-list role="list">
+    <mat-list-item
+      *ngFor="let ing of ingredients; let i = index"
+      role="listitem"
+      (click)="open(ing, i)">
+      {{ing.name}}
+      {{ing.description}}
+    </mat-list-item>

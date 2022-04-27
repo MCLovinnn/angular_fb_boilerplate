@@ -3,6 +3,10 @@ mat-form-field, app-select, app-text-input, app-autocomplete, app-date-input{
   width: 100%;
 }
 
+html, body {
+  height: 100%;
+}
+
 app-slider {
   width: 100%;
   padding: 5px 10px;

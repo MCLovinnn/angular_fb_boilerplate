@@ -80,7 +80,7 @@
           "min": 0,
           "minLength": 4,
           "maxLength": 0,
-          "required": null
+          "required": true
         }
       },
       "description": {
@@ -106,36 +106,6 @@
           "maxLength": 0,
           "required": null
         }
-      },
-      "ingredientsamount": {
-        "name": "home_recepy_ingredientsamount",
-        "htmlType": "text",
-        "value": "",
-        "validators": {
-          "max": 0,
-          "min": 0,
-          "minLength": 1,
-          "maxLength": 0,
-          "required": null
-        }
-      },
-      "ingredientstype": {
-        "name": "home_recepy_ingredientstype",
-        "htmlType": "select",
-        "validators": { "required": true },
-        "value": "gramm",
-        "options": [
-          {
-            "value": "gramm",
-            "key": "home_recepy_ingredientstype_Opt_gramm",
-            "description": "home_test_select_Opt_gramm#desc"
-          },
-          {
-            "value": "liter",
-            "key": "home_recepy_ingredientstype_Opt_liter",
-            "description": "home_test_select_Opt_liter#desc"
-          }
-        ]
       },
       "image": {
         "name": "home_recepy_image",
@@ -232,6 +202,38 @@
           "maxLength": 0,
           "required": null
         }
+      }
+    },
+    "ingredient": {
+      "ingredients": {
+        "name": "home_ingredient_ingredients",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 4,
+          "maxLength": 0,
+          "required": true
+        }
+      },
+      "ingredientsamount": {
+        "name": "home_ingredient_ingredientsamount",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "max": 0,
+          "min": 0,
+          "minLength": 1,
+          "maxLength": 0,
+          "required": true
+        }
+      },
+      "ingredientstype": {
+        "name": "home_ingredient_ingredientstype",
+        "htmlType": "text",
+        "validators": { "required": true },
+        "value": "Gramm"
       }
     },
     "recepylist": {

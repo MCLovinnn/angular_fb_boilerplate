@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TranslationService } from '../../../projects/formbuilder/src/public-api';
+import { TranslationService } from 'formbuilder';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConnectorService {
   url = '/api';
+  ocr = 'https://api.ocr.space/parse/image';
   constructor(public ts: TranslationService, private http: HttpClient) {}
 
   doPost(url: string, lang: string, data: any) {
@@ -49,5 +50,17 @@ export class ConnectorService {
         }
       );
     });
+  }
+
+  ocrReq(picture: string, lang = 'ger', options: any = {}) {
+    options.apikey = '6efc7233c388957';
+    options.base64Image = picture;
+    options.language = lang;
+    return this.http.post(
+      this.ocr,
+      options ,
+      { headers: { apikey : '6efc7233c388957',
+      'Content-Type': 'multipart/form-data' } }
+    );
   }
 }

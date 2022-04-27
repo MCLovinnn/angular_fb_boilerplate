@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { FormService, TranslationService, DataConnectorService } from '../../projects/formbuilder/src/public-api';
+import { FormService, TranslationService, DataConnectorService, AuthenticationService } from 'formbuilder';
 import { ConnectorService } from './services/connector.service';
 
 
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
     public fb: FormBuilder,
     public fs: FormService,
     private cs: ConnectorService,
+    public as: AuthenticationService,
     public ts: TranslationService) {
 
     // cs.get('config').subscribe(val => console.log(val));
@@ -41,5 +42,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+    this.as.logout(true, '/api/logout');
+  }
+
+  isLoggedIn() {
+    return this.as.isLoggedIn;
+  }
 }
 

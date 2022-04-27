@@ -27,17 +27,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { registerLocaleData, CommonModule } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
-import {
-  FormbuilderModule,
-  TranslationService,
-  FormService
-} from '../../projects/formbuilder/src/public-api';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { ConnectorService } from './services/connector.service';
+import { FormbuilderModule, TranslationService, FormService } from 'formbuilder';
 
 
 // @ts-ignore

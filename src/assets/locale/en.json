@@ -28,5 +28,6 @@
   "minLength_error": "Type at least ${param} characters!",
   "max_error": "Max value is ${param}!",
   "min_error": "Min value is ${param}!",
-  "pattern_error": "The string does't fit the pattern: ${param}!"
+  "pattern_error": "The string does't fit the pattern: ${param}!",
+  "add": "add"
 }
