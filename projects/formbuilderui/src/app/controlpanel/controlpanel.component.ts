@@ -7,7 +7,7 @@ import {
   ViewChild,
   ChangeDetectorRef,
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import {
   IAutoCompleteOptions,
   FormService,

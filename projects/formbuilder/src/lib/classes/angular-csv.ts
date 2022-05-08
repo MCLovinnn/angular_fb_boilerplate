@@ -52,6 +52,12 @@ export const ConfigDefaults: Options = {
   nullToEmptyString: CsvConfigConsts.DEFAULT_NULL_TO_EMPTY_STRING
 };
 
+declare global {
+  interface Navigator {
+      msSaveBlob?: (blob: any, defaultName?: string) => boolean
+  }
+}
+
 export class AngularCsv {
   public fileName: string;
   public labels: Array<string>;

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormBuilder, FormGroup, NG_VALIDATORS } from '@angular/forms';
+import { FormGroup, FormBuilder, NG_VALIDATORS } from '@angular/forms';
 import { ControlpanelComponent } from './controlpanel.component';
-import { FormService, ConfigService } from '../../../projects/formbuilder/src/public-api';
+import { FormService, ConfigService } from '../../../../formbuilder/src/public-api';
 
 describe('ControlpanelComponent', () => {
   let component: ControlpanelComponent;
@@ -22,7 +22,7 @@ describe('ControlpanelComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ControlpanelComponent],
       providers: [
-        {provide: FormBuilder, useValue: formBuilderStub},
+        {provide: FormGroup, useValue: formBuilderStub},
         {provide: FormService, useValue: formServiceStub},
         {provide: ConfigService, useValue: configServiceStub},
         {provide: NG_VALIDATORS},

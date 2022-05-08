@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-subtitle>AirRnD</mat-card-subtitle>
+  <app-text-input name="home_login_username"></app-text-input>
+  <app-text-input name="home_login_password" password="true"></app-text-input>
+  <mat-card-actions align="end">
+    <button [disabled]="!isValid()" (click)="login()" mat-button>Login</button>
+  </mat-card-actions>
+</mat-card>

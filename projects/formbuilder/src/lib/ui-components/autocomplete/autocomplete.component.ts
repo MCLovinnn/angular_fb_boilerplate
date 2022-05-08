@@ -54,12 +54,16 @@ export class AutocompleteComponent extends BaseFieldComponent
     super.ngOnInit();
     if (this.config.groupBy) {
       this.filteredStates = this.control.valueChanges.pipe(
+        // @ts-ignore
         startWith(''),
+        // @ts-ignore
         map(option => this._filterGroup(option))
       );
     } else {
       this.filteredStates = this.control.valueChanges.pipe(
+        // @ts-ignore
         startWith(''),
+        // @ts-ignore
         map(option => this._filterStates(option))
       );
     }

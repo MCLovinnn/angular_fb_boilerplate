@@ -27,6 +27,9 @@ export * from './lib/ui-components/file-input/file-input.component';
 export * from './lib/ui-components/select/select.component';
 export * from './lib/ui-components/radiobutton/radiobutton.component';
 export * from './lib/ui-components/slider/slider.component';
+export { ISliderConfig } from './lib/interfaces/isliderconfig';
+export { IValidator } from './lib/interfaces/ivalidator';
+export { ICustomValidation, IDialogConfig } from './lib/interfaces/icustom-validation';
 export * from './lib/ui-components/text-input/text-input.component';
 export * from './lib/ui-components/slideToggle/slideToggle.component';
 

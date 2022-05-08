@@ -6,5 +6,4 @@ export interface IForm {
   name: string;
 
   getForm(name: string): FormGroup;
-
 }

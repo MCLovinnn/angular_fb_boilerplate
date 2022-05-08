@@ -9,7 +9,6 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
-
   private _isLoggedIn = false;
   bla = 'fbapp-user';
 
@@ -17,31 +16,30 @@ export class AuthenticationService {
     id?: string;
     name?: string;
     email?: string;
-
   };
   private allowedActions: Object;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private userService: UserService,
     private dataStore: DataStoreService
   ) {
-
     this.registerCurrentUser();
     this.registerAllowedActions();
 
     const storedUserProfile = this.loadUserProfile();
-   //const storedAllowedActions = this.loadAllowedActions();
+    //const storedAllowedActions = this.loadAllowedActions();
 
     if (!!storedUserProfile) {
       this.dataStore.setCurrentUser(storedUserProfile);
     }
-/*
+    /*
     if (!!storedAllowedActions) {
       this.dataStore.setAllowedActions(storedAllowedActions);
     }
 */
   }
-/*
+  /*
   hasAvailableAction(systemResource: SystemResource, systemAction: SystemAction) {
     if (systemResource && systemAction && this.allowedActions && systemResource in this.allowedActions) {
       const roles: Object = this.allowedActions[systemResource];
@@ -87,14 +85,17 @@ export class AuthenticationService {
   }
 
   getUserProfile(url: string) {
-    this.userService.getUserProfile(url).subscribe((profile:any) => {
-      // console.log('[AuthenticationService] - getUserProfile', profile);
-      this.dataStore.setCurrentUser(profile);
-    }, (errObj) => {
-      throwError(errObj);
-    });
+    this.userService.getUserProfile(url).subscribe(
+      (profile: any) => {
+        // console.log('[AuthenticationService] - getUserProfile', profile);
+        this.dataStore.setCurrentUser(profile);
+      },
+      errObj => {
+        throwError(errObj);
+      }
+    );
   }
-/*
+  /*
   getUserActions() {
     this.userService.getUserRoles().subscribe((actionResp: Object) => {
       if (actionResp.hasOwnProperty('actions')) {
@@ -137,7 +138,7 @@ export class AuthenticationService {
    */
   checkIfUserIsAlreadyLoggedIn(): boolean {
     const storedUserProfile = this.loadUserProfile();
-    const storedAllowedActions = true ; //his.loadAllowedActions();
+    const storedAllowedActions = true; //his.loadAllowedActions();
 
     if (!!storedUserProfile && !!storedAllowedActions) {
       this.isLoggedIn = true;
@@ -157,7 +158,7 @@ export class AuthenticationService {
 
   loadUserProfile(): any {
     let res = localStorage.getItem(this.bla);
-      return JSON.parse(res != null? res : '') as any;
+    return res ? JSON.parse(res) : '' as any;
   }
 
   saveUserProfile(userProfile: any): void {
@@ -168,7 +169,7 @@ export class AuthenticationService {
       localStorage.removeItem(this.bla);
     }
   }
-/*
+  /*
   loadAllowedActions(): any {
     return JSON.parse(localStorage.getItem(this.USER_ALLOWED_ACTIONS));
   }
@@ -203,5 +204,4 @@ export class AuthenticationService {
       //this.saveAllowedActions(actions);
     });
   }
-
 }

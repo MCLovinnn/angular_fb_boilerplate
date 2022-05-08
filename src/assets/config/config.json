@@ -1,5 +1,25 @@
 {
   "home": {
+    "login": {
+      "username": {
+        "name": "home_login_username",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "minLength": 4,
+          "required": true
+        }
+      },
+      "password": {
+        "name": "home_login_password",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "minLength": 6,
+          "required": true
+        }
+      }
+    },
     "test": {
       "select": {
         "name": "home_test_select",
@@ -16,6 +36,11 @@
             "value": "blur",
             "key": "home_test_select_Opt_blur",
             "description": "home_test_select_Opt_blur#desc"
+          },
+          {
+            "key": "home_test_select_Opt_ausführliche option",
+            "value": "ausfuehrlich",
+            "description": "home_test_select_Opt_ausführliche option#desc"
           }
         ],
         "disabled": false

@@ -2,7 +2,7 @@ import { IField, IHTMLAttributes } from '../interfaces/ifield';
 import { ICustomValidation } from '../interfaces/icustom-validation';
 import { IValidator } from '../interfaces/ivalidator';
 import { EventEmitter, Input, OnInit, Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { FormService } from '../services/form.service';
 import { TranslationService } from '../services/translation.service';
 

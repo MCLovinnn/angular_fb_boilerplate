@@ -1,0 +1,129 @@
+<h2>Neues Rezept</h2>
+<mat-grid-list
+  [cols]="breakpoint"
+  rowHeight="70px"
+  gutterSize="15px"
+  (window:resize)="onResize($event)"
+>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-text-input name="home_recepy_name"></app-text-input>
+  </mat-grid-tile>
+  <!--mat-grid-tile colspan="4" rowspan="1">
+    <button mat-raised-button color="primary">Foto aufnehmen</button>
+  </mat-grid-tile-->
+  <mat-grid-tile colspan="4" rowspan="2">
+    <app-text-input name="home_recepy_description" rows="5"></app-text-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1" *ngIf="breakpoint > 4">
+    <app-text-input name="home_ingredient_ingredients"></app-text-input>
+    <div class="spacer">-</div>
+    <app-text-input
+      class="amount"
+      name="home_ingredient_ingredientsamount"
+    ></app-text-input>
+    <div class="spacer">-</div>
+    <app-select
+      class="amounttype"
+      name="home_ingredient_ingredientstype"
+    ></app-select>
+    <button mat-raised-button color="primary">{{ "add" | translate }}</button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1" *ngIf="breakpoint === 4">
+    <app-text-input name="home_ingredient_ingredients"></app-text-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1" *ngIf="breakpoint === 4">
+    <app-text-input
+      internalType="number"
+      name="home_ingredient_ingredientsamount"
+    ></app-text-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1" *ngIf="breakpoint === 4">
+    <app-text-input name="home_ingredient_ingredientstype"></app-text-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1" *ngIf="breakpoint === 4">
+    <button
+      mat-raised-button
+      *ngIf="actual_ingredient != null"
+      (click)="resetIng()"
+      color="primary"
+    >
+      {{ "reset" | translate }}
+    </button>
+    <button
+      mat-raised-button
+      [disabled]="!ingredientForm.valid"
+      (click)="addIngredient()"
+      color="primary"
+    >
+      {{ "add" | translate }}
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <mat-list role="list">
+      <mat-list-item
+        *ngFor="let ing of ingredients; let i = index"
+        role="listitem"
+        (click)="edit(ing, i)"
+      >
+        <span>{{ ing.name + " " + ing.amount + " " + ing.type }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
+
+  <!--mat-grid-tile colspan="4" rowspan="1">
+    <app-select name="home_test_select"></app-select>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-text-input name="home_test_text"></app-text-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-date-input name="home_test_date"></app-date-input>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowspan="1">
+    <app-slider name="home_test_slider"> </app-slider>
+  </mat-grid-tile-->
+  <mat-grid-tile colspan="4" rowspan="1">
+    <button mat-raised-button (click)="doIt()" color="primary">
+      {{ "save" | translate }}
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>
+<!--div class="video-container" *ngIf="!error">
+  <video
+    [class.show]="!isCaptured"
+    [class.hide]="isCaptured"
+    #video
+    id="video"
+    width="100%"
+    height="auto"
+    autoplay
+  ></video>
+  <canvas
+    [class.show]="isCaptured"
+    [class.hide]="!isCaptured"
+    #canvas
+    id="canvas"
+    [width]="WIDTH"
+    [height]="HEIGHT"
+  ></canvas>
+</div>
+
+<div class="snap-container">
+  <button class="btn btn-primary" *ngIf="!isCaptured" (click)="capture()">
+    Snap Photo
+  </button>
+  <button class="btn btn-danger" *ngIf="isCaptured" (click)="removeCurrent()">
+    Take Another
+  </button>
+
+  <div *ngIf="error" class="text-danger mt-4">
+    {{ error }}. Please click refresh on stackblitz
+    <div class="mt-5">
+      <img
+        src="https://trungk18.com/7e0976255739e721501803ee074f1f94/camera.gif"
+      />
+    </div>
+  </div>
+</div-->
+<!--[disabled]="!isValid()"
+      (click)="save()"-->
