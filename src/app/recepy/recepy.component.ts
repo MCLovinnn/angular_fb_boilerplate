@@ -6,9 +6,9 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { ConnectorService } from '../services/connector.service';
-import { FormService } from 'formbuilder';
 import { IingredientForm, Iingredient, IRecepyForm } from '../formular';
 import { FormularService } from '../services/formular.service';
+import { FormService } from 'projects/formbuilder/src/public-api';
 
 @Component({
   selector: 'app-recepy',

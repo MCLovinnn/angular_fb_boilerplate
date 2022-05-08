@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { FormService, TranslationService, DataConnectorService, AuthenticationService } from 'formbuilder';
 import { ConnectorService } from './services/connector.service';
+import { DataConnectorService, FormService, AuthenticationService, TranslationService } from 'projects/formbuilder/src/public-api';
 
 
 export interface Tile {

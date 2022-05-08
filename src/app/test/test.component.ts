@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ITableViewOptions, ITableHeader, TableType, FormService, TableComponent } from 'formbuilder';
 import { FormularService } from '../services/formular.service';
 import { IFormular } from '../formular';
 import { FormularComponent } from '../formular/formular.component';
 import * as moment from 'moment';
+import { TableComponent, ITableViewOptions, TableType, ITableHeader, FormService } from 'projects/formbuilder/src/public-api';
 
 
 @Component({

@@ -1,6 +1,6 @@
 {
   "name": "formbuilder",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "type": "module",
   "author": {
     "name" : "Christoph Kramer",
@@ -10,7 +10,7 @@
   "resolutions": {"webpack": "^5.0.0"},
   "repository": {
     "type": "git",
-    "git": "https://github.com/MCLovinnn/angular_fb_boilerplate.git",
+    "url": "https://github.com/MCLovinnn/angular_fb_boilerplate.git",
     "directory": "projects/formbuilder"
   },
   "license": "MIT",

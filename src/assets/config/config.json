@@ -1,5 +1,25 @@
 {
   "home": {
+    "login": {
+      "username": {
+        "name": "home_login_username",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "minLength": 4,
+          "required": true
+        }
+      },
+      "password": {
+        "name": "home_login_password",
+        "htmlType": "text",
+        "value": "",
+        "validators": {
+          "minLength": 6,
+          "required": true
+        }
+      }
+    },
     "test": {
       "select": {
         "name": "home_test_select",

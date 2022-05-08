@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TranslationService } from 'formbuilder';
+import { TranslationService } from 'projects/formbuilder/src/public-api';
 
 @Injectable({
   providedIn: 'root'

@@ -34,7 +34,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { ConnectorService } from './services/connector.service';
-import { FormbuilderModule, TranslationService, FormService } from 'formbuilder';
 
 
 // @ts-ignore
@@ -45,6 +44,7 @@ import { RecepyListComponent } from './recepy-list/recepy-list.component';
 import { CommentComponent } from './comment/comment.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { FormbuilderModule, TranslationService, FormService } from 'projects/formbuilder/src/public-api';
 
 registerLocaleData(localeDe, 'de');
 

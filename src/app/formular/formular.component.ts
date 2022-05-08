@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormService, IAutoCompleteOptions } from 'formbuilder';
 import { IFormular } from '../formular';
 import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';
 import { FormGroup } from '@angular/forms';
 import { ISliderConfig } from 'projects/formbuilder/src/lib/interfaces/isliderconfig';
+import { IAutoCompleteOptions, FormService } from 'projects/formbuilder/src/public-api';
 
 @Component({
   selector: 'app-formular',
@@ -13,7 +13,7 @@ import { ISliderConfig } from 'projects/formbuilder/src/lib/interfaces/isliderco
 })
 export class FormularComponent implements OnInit {
   @Input() formular: IFormular;
-  form: FormGroup
+  form: FormGroup;
   update = false;
   backup: IFormular;
 
@@ -33,17 +33,13 @@ export class FormularComponent implements OnInit {
   autocompleteOptions = [
     {
       name: 'Test',
-      children: [
-        {name: 'Option'},
-        {name: 'Test'},
-        {name: 'Kategory '}
-      ]
+      children: [{ name: 'Option' }, { name: 'Test' }, { name: 'Kategory ' }]
     }
   ];
-  constructor(private fs: FormService, private formS: FormularService) { }
+  constructor(private fs: FormService, private formS: FormularService) {}
 
   ngOnInit(): void {
-    if(this.formular) {
+    if (this.formular) {
       this.setForm(this.formular);
     }
   }
@@ -60,19 +56,22 @@ export class FormularComponent implements OnInit {
   }
 
   public save() {
-    let date = this.fs.getFormControl({name: 'home_test_date'});
+    const date = this.fs.getFormControl({ name: 'home_test_date' });
 
-    if(!moment.isMoment(date.value)) {
+    if (!moment.isMoment(date.value)) {
       date.patchValue(moment(date.value, 'L', 'de', true));
     }
-    let tmpData: IFormular = this.fs.getForm('home_test').getRawValue();
+    const tmpData: IFormular = this.fs.getForm('home_test').getRawValue();
     tmpData.home_test_date = date.value.format('L');
     // console.log(tmpData);
 
     if (this.update) {
       this.formS.update(tmpData);
+      this.update = false;
     } else {
       this.formS.add(tmpData);
     }
+    this.fs.resetForms();
+    this.fs.getForm('home_test').markAsUntouched();
   }
 }
