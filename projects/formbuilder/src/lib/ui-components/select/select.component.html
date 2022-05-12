@@ -13,7 +13,7 @@
                 [value]="value"
                 (selectionChange)="change.emit({type: name, value: $event.value})">
     <div *ngIf="options && options[0] && options[0].key">
-      <mat-option *ngIf="!required" matTooltip="Zurücksetzten" value="">Bitte Wählen...</mat-option>
+    <mat-option *ngIf="!required" [matTooltip]="'reset' | translate" value="">{{'please_choose' | translate}}</mat-option>
       <mat-option *ngFor="let item of options" [matTooltip]="item.description | translate" [value]="item.value">
         {{item.key | translate}}
       </mat-option>

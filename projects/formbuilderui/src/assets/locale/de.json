@@ -173,5 +173,7 @@
   "minLength_error": "Mindestens ${param} Zeichen eingeben!",
   "max_error": "Maximum beträgt ${param}!",
   "min_error": "Minimum beträgt ${param}!",
-  "pattern_error": "Das Pattern: ${param} wurde nicht eingehalten!"
+  "pattern_error": "Das Pattern: ${param} wurde nicht eingehalten!",
+  "please_choose": "Bitte Wählen...",
+  "reset": "Zurücksetzen"
 }
