@@ -67,6 +67,8 @@
         "name": "home_test_autocomplete",
         "htmlType": "autocomplete",
         "htmlAttribute": { "autocomplete": "off" },
+        "canAdd": false,
+        "multiple": true,
         "options": [
           {
             "value": "change",

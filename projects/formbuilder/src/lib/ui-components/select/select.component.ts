@@ -15,6 +15,7 @@ import { TranslationService } from '../../services/translation.service';
 })
 export class SelectComponent extends BaseFieldComponent implements OnInit {
   @Input() options?: ICodeEntry[];
+  @Input() multiple = false;
 
   constructor(public fb: FormBuilder,
               public fs: FormService,
@@ -25,6 +26,7 @@ export class SelectComponent extends BaseFieldComponent implements OnInit {
   ngOnInit() {
     super.ngOnInit();
     this.options = this.fs.getConfigByName(this.name).options? this.fs.getConfigByName(this.name).options : this.options;
+    this.multiple = this.fs.getConfigByName(this.name).multiple? this.fs.getConfigByName(this.name).multiple : this.multiple;
     // console.log(this.options);
     // console.log(this.form);
   }

@@ -1,0 +1,49 @@
+<ng-container *ngIf="form" [formGroup]="form">
+  <mat-form-field class="example-chip-list">
+    <mat-chip-list #chipList [multiple]="multiple">
+      <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+        {{ fruit }}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip>
+      <input
+        matInput
+        #fruitInput
+        [placeholder]="getName() + '#label' | translate"
+        [formControl]="fruitCtrl"
+        [matTooltip]="getName() + '#tooltip' | translate"
+        [required]="required"
+        matTooltipDisabled="false"
+        matTooltipHideDelay="200"
+        matTooltipPosition="above"
+        matTooltipShowDelay="100"
+        (change)="change.emit({ type: name, value: $event.value })"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selected($event)"
+    >
+    <ng-container *ngIf="config.groupBy">
+      <mat-optgroup
+        *ngFor="let group of filteredFruits | async"
+        [label]="group.name">
+        <mat-option *ngFor="let item of group | async" [matTooltip]="item.description | translate" [value]="item.key | translate">
+          {{item.key | translate}}
+        </mat-option>
+      </mat-optgroup>
+    </ng-container>
+    <ng-container *ngIf="!config.groupBy">
+        <mat-option *ngFor="let item of filteredFruits | async" [matTooltip]="item.description | translate" [value]="item.key | translate">
+          {{item.key | translate}}
+        </mat-option>
+    </ng-container>
+    </mat-autocomplete>
+    <input matInput hidden [formControlName]="name">
+  </mat-form-field>
+</ng-container>

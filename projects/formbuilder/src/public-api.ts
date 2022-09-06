@@ -32,5 +32,6 @@ export { IValidator } from './lib/interfaces/ivalidator';
 export { ICustomValidation, IDialogConfig } from './lib/interfaces/icustom-validation';
 export * from './lib/ui-components/text-input/text-input.component';
 export * from './lib/ui-components/slideToggle/slideToggle.component';
+export * from './lib/ui-components/chips-complete/chips-complete.component';
 
 

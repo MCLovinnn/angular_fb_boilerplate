@@ -22,7 +22,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SelectComponent } from './ui-components/select/select.component';
 import { TextInputComponent } from './ui-components/text-input/text-input.component';
 import { DateInputComponent } from './ui-components/date-input/date-input.component';
@@ -50,6 +50,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SlideToggleComponent } from './ui-components/slideToggle/slideToggle.component';
+import { CheckBoxGroupComponent } from './ui-components/check-box-group/check-box-group.component';
+import { ChipsCompleteComponent } from './ui-components/chips-complete/chips-complete.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 registerLocaleData(localeDe, 'de');
 
@@ -70,7 +73,9 @@ registerLocaleData(localeDe, 'de');
     ErrorDialogSimpleComponent,
     InfoDialogSimpleComponent,
     TableComponent,
-    SlideToggleComponent
+    SlideToggleComponent,
+    CheckBoxGroupComponent,
+    ChipsCompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +83,7 @@ registerLocaleData(localeDe, 'de');
     HttpClientModule,
     MatIconModule,
     ReactiveFormsModule,
+    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
@@ -101,7 +107,8 @@ registerLocaleData(localeDe, 'de');
     MatSortModule,
     MatPaginatorModule,
     MatSliderModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatChipsModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'de' },
@@ -122,7 +129,9 @@ registerLocaleData(localeDe, 'de');
     SliderComponent,
     TableComponent,
     SlideToggleComponent,
-    TranslatePipe
+    TranslatePipe,
+    CheckBoxGroupComponent,
+    ChipsCompleteComponent
   ]
 })
 

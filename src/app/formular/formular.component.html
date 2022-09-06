@@ -17,15 +17,23 @@
     ></app-autocomplete>
   </mat-grid-tile>
   <mat-grid-tile colspan="4" rowpsan="1">
-    <app-slider
-    name="home_test_slider">
-    </app-slider>
+    <app-slider name="home_test_slider"> </app-slider>
   </mat-grid-tile>
+  <mat-grid-tile colspan="4" rowpsan="3">
+
+  </mat-grid-tile>
+
   <mat-grid-tile colspan="4" rowpsan="1">
-      <button
+    <button
       mat-raised-button
       color="primary"
       [disabled]="!isValid()"
-      (click)="save()">{{'save' | translate}}</button>
+      (click)="save()"
+    >
+      {{ "save" | translate }}
+    </button>
   </mat-grid-tile>
 </mat-grid-list>
+
+<app-check-box-group name="home_test_select"> </app-check-box-group>
+<app-chips-complete name="home_test_autocomplete" ></app-chips-complete>

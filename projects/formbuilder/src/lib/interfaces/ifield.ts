@@ -36,6 +36,8 @@ export interface IField {
   updateOn?: 'change' | 'blur' | 'submit';
   options?: ICodeEntry[];
   config?: ISliderConfig | ITableViewOptions | IAutoCompleteOptions;
+  multiple?: boolean;
+  canAdd?: boolean;
 }
 
 export interface IFormObj {

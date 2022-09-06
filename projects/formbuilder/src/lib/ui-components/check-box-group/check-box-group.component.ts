@@ -11,15 +11,25 @@ export interface CheckboxGroup {
   color: ThemePalette;
   subtasks?: CheckboxGroup[];
 }
-
 @Component({
-  selector: 'app-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+  selector: 'app-check-box-group',
+  templateUrl: './check-box-group.component.html',
+  styleUrls: ['./check-box-group.component.css']
 })
-export class CheckboxComponent extends BaseFieldComponent implements OnInit {
+export class CheckBoxGroupComponent extends BaseFieldComponent implements OnInit {
   @Input() position = 'before';
-  @Input() options: CheckboxGroup;
+  // @Input() options: CheckboxGroup;
+
+  options: CheckboxGroup = {
+    name: 'Indeterminate',
+    completed: false,
+    color: 'primary',
+    subtasks: [
+      {name: 'Primary', completed: false, color: 'primary'},
+      {name: 'Accent', completed: false, color: 'accent'},
+      {name: 'Warn', completed: false, color: 'warn'},
+    ],
+  };
 
   allComplete: boolean = false;
 

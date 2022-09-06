@@ -21,6 +21,8 @@ export class RadiobuttonComponent extends BaseFieldComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
+    this.options = this.fs.getConfigByName(this.name).options? this.fs.getConfigByName(this.name).options : this.options;
+
     // console.log(this.options);
     // console.log(this.form);
   }

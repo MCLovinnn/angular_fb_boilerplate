@@ -26,7 +26,7 @@ export function checkKey(ts: TranslationService, item: string, value: string) {
   if(item.toLocaleLowerCase().indexOf(value) >= 0) {
     return true;
   }
-  if(ts.data[item+'#label'] && ts.data[item+'#label'].toLocaleLowerCase().indexOf(value) >= 0) {
+  if(ts.data[item] && ts.data[item].toLocaleLowerCase().indexOf(value) >= 0) {
     return true;
   }
   return false;

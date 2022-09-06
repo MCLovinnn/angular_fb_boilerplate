@@ -1,26 +1,23 @@
 <ng-container *ngIf="form" [formGroup]="form">
-  <mat-form-field [hintLabel]="getName()+'#hintlabel' | translate">
   <label>{{ getName()+'#label' | translate }}</label>
     <mat-radio-group
-                [formControlName]="name"
-                [matTooltip]="getName()+'#tooltip' | translate"
-                [required]="required"
-                matTooltipDisabled="false"
-                matTooltipHideDelay="200"
-                matTooltipPosition="above"
-                matTooltipShowDelay="100"
-                [value]="value"
-                (selectionChange)="change.emit({type: name, value: $event.value})"
-    >
-    <div *ngIf="options && options[0].key">
-      <mat-radio-button *ngFor="let item of options" [matTooltip]="item" [value]="item.value">
-        {{item.key}}
+      [formControlName]="name"
+      [matTooltip]="getName()+'#tooltip' | translate"
+      [required]="required"
+      matTooltipDisabled="false"
+      matTooltipHideDelay="200"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      [value]="value"
+      (selectionChange)="change.emit({type: name, value: $event.value})">
+    <div *ngIf="options && options[0].key" class="radio-group-row">
+      <mat-radio-button *ngFor="let item of options" [matTooltip]="item.description | translate" [value]="item.value">
+        {{item.key | translate}}
       </mat-radio-button>
     </div>
     </mat-radio-group>
-    <mat-hint *ngIf="hint" align="end">{{hint}}</mat-hint>
+    <mat-hint *ngIf="hint" align="end">{{getName()+'#hintlabel' | translate}}</mat-hint>
     <mat-error>
       {{ getErrorMeesage() }}
     </mat-error>
-  </mat-form-field>
 </ng-container>
