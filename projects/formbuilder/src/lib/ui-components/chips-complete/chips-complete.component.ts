@@ -2,7 +2,7 @@ import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import { Component, ElementRef, ViewChild, Input, OnInit } from "@angular/core";
 import { FormControl, FormBuilder } from "@angular/forms";
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { MatChipInputEvent } from "@angular/material/chips";
+import { MatChipInputEvent, MatChipList } from "@angular/material/chips";
 import { Observable, of } from "rxjs";
 import { map, startWith, filter } from "rxjs/operators";
 import { BaseFieldComponent } from "../../classes/field";
@@ -27,6 +27,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   canAdd = true;
   multiple = false;
   actualOptions = -1;
+  active = false;
   @Input() options: any[] = [];
   @Input() config: IAutoCompleteOptions = {
     groupBy: false
@@ -52,6 +53,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
     this.actualOptions = this.options.length >= 0 ? 0 : -1;
     this.canAdd = config.canAdd ? config.canAdd : false;
     this.multiple = config.multiple ? config.multiple : true;
+    this.active = config.selectable ? config.selectable : false;
     // console.log(this.options);
 
     if (config.value) {
@@ -115,7 +117,6 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   selected(event: MatAutocompleteSelectedEvent): void {
     if (this.fruits.indexOf(event.option.viewValue) === -1) {
       this.fruits.push(event.option.viewValue);
-      this.fruitInput.nativeElement.value = "";
       this.fruitCtrl.setValue(null);
       this.control.setValue(this.fruits.toString());
     }
@@ -124,7 +125,6 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   private _filterStates(value: string): any[] {
     this.actualOptions = -1;
 
-    // console.log('options', this.options.length);
     const filterValue = value ? value.toLowerCase() : "";
     let counter = 0;
     return this.options.filter(option => {

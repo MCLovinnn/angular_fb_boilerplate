@@ -5,11 +5,11 @@ import { FormService } from '../../services/form.service';
 import { TranslationService } from '../../services/translation.service';
 import { ThemePalette } from '@angular/material/core';
 
-export interface CheckboxGroup {
+export interface ICheckboxGroup {
   name: string;
   completed: boolean;
   color: ThemePalette;
-  subtasks?: CheckboxGroup[];
+  subtasks?: ICheckboxGroup[];
 }
 
 @Component({
@@ -19,7 +19,7 @@ export interface CheckboxGroup {
 })
 export class CheckboxComponent extends BaseFieldComponent implements OnInit {
   @Input() position = 'before';
-  @Input() options: CheckboxGroup;
+  @Input() options: ICheckboxGroup;
 
   allComplete: boolean = false;
 

@@ -1,7 +1,7 @@
 <ng-container *ngIf="form" [formGroup]="form">
   <mat-form-field class="example-chip-list">
     <mat-chip-list #chipList [multiple]="multiple">
-      <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+      <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)" [selectable]="active">
         {{ fruit }}
         <button matChipRemove>
           <mat-icon>cancel</mat-icon>

@@ -33,5 +33,6 @@ export { ICustomValidation, IDialogConfig } from './lib/interfaces/icustom-valid
 export * from './lib/ui-components/text-input/text-input.component';
 export * from './lib/ui-components/slideToggle/slideToggle.component';
 export * from './lib/ui-components/chips-complete/chips-complete.component';
+export * from './lib/ui-components/check-box-group/check-box-group.component';
 
 

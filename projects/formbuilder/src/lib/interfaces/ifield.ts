@@ -38,6 +38,7 @@ export interface IField {
   config?: ISliderConfig | ITableViewOptions | IAutoCompleteOptions;
   multiple?: boolean;
   canAdd?: boolean;
+  selectable?: boolean;
 }
 
 export interface IFormObj {
