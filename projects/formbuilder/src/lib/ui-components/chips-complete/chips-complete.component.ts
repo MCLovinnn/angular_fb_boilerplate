@@ -117,9 +117,9 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   selected(event: MatAutocompleteSelectedEvent): void {
     if (this.fruits.indexOf(event.option.viewValue) === -1) {
       this.fruits.push(event.option.viewValue);
-      this.fruitCtrl.setValue(null);
-      this.control.setValue(this.fruits.toString());
     }
+    this.fruitCtrl.setValue(null);
+    this.control.setValue(this.fruits.toString());
   }
 
   private _filterStates(value: string): any[] {

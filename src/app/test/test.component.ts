@@ -20,6 +20,7 @@ export class TestComponent implements OnInit {
     showPaginator: true,
     showActions: true,
     showCSVExport: true,
+    csvName: 'Test',
     showCheckbox: true,
     showDeleteAllButton: false,
     dateStringToDateFilter: 'home_test_date'

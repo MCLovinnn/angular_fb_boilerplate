@@ -30,6 +30,8 @@ export interface ITableViewOptions {
 
   showCSVExport: boolean;
 
+  csvName?: string;
+
   showDeleteAllButton?: boolean;
 
   dateStringToDateFilter?: string;
@@ -223,27 +225,23 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     columnNames = columnNames.filter((el) => {
       return el !== '' && el !== 'select' && el !== 'actions';
     });
-    // columns.
-    // console.log(columns);
     const tmpData = this.getDisplayData(columns);
-    // console.log(tmpData);
 
-    // const data = this.getFilteredDisplayData(columns);
-
+    const name = this.viewOptions.csvName ? this.viewOptions.csvName : 'Formbuilder';
     const options = {
       fieldSeparator: ';',
       quoteStrings: '"',
       decimalseparator: '.',
       showLabels: true,
       showTitle: false,
-      title: 'Formbuilder',
+      title: name,
       useBom: true,
       noDownload: false,
       headers: columnNames
     };
 
     // console.log(columns);
-    const file = new AngularCsv(tmpData, 'Formbuilder', options);
+    const file = new AngularCsv(tmpData, name, options);
     // console.log('csv', file);
   }
 }
