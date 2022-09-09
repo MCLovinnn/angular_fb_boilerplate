@@ -118,6 +118,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
     if (this.fruits.indexOf(event.option.viewValue) === -1) {
       this.fruits.push(event.option.viewValue);
     }
+    this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
     this.control.setValue(this.fruits.toString());
   }
