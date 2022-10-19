@@ -1,27 +1,29 @@
-import { COMMA, ENTER } from "@angular/cdk/keycodes";
-import { Component, ElementRef, ViewChild, Input, OnInit } from "@angular/core";
-import { FormControl, FormBuilder } from "@angular/forms";
-import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
-import { MatChipInputEvent, MatChipList } from "@angular/material/chips";
-import { Observable, of } from "rxjs";
-import { map, startWith, filter } from "rxjs/operators";
-import { BaseFieldComponent } from "../../classes/field";
-import { FormService } from "../../services/form.service";
-import { TranslationService } from "../../services/translation.service";
-import { ICodeEntry } from "../../interfaces/ifield";
-import { checkKey, _filter } from "../autocomplete/autocomplete.component";
-import { AutoSearch } from "../../interfaces/imenu";
-import { IAutoCompleteOptions } from "../../interfaces/iautocompleteoption";
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, ElementRef, ViewChild, Input, OnInit } from '@angular/core';
+import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
+import { Observable, of } from 'rxjs';
+import { map, startWith, filter } from 'rxjs/operators';
+import { BaseFieldComponent } from '../../classes/field';
+import { FormService } from '../../services/form.service';
+import { TranslationService } from '../../services/translation.service';
+import { ICodeEntry } from '../../interfaces/ifield';
+import { checkKey, _filter } from '../autocomplete/autocomplete.component';
+import { AutoSearch } from '../../interfaces/imenu';
+import { IAutoCompleteOptions } from '../../interfaces/iautocompleteoption';
+import { IValidator } from '../../interfaces/ivalidator';
+import { MatFormField } from '@angular/material/form-field';
 
 @Component({
-  selector: "app-chips-complete",
-  templateUrl: "./chips-complete.component.html",
-  styleUrls: ["./chips-complete.component.scss"]
+  selector: 'app-chips-complete',
+  templateUrl: './chips-complete.component.html',
+  styleUrls: ['./chips-complete.component.scss']
 })
 export class ChipsCompleteComponent extends BaseFieldComponent
   implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl("");
+  fruitCtrl = new FormControl('', [Validators.required]);
   filteredFruits: Observable<any[]> = of([]);
   fruits: string[] = [];
   canAdd = true;
@@ -33,7 +35,9 @@ export class ChipsCompleteComponent extends BaseFieldComponent
     groupBy: false
   };
 
-  @ViewChild("fruitInput") fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('chipField') chipField: MatFormField;
+  @ViewChild('error') error: ElementRef;
 
   constructor(
     public fb: FormBuilder,
@@ -57,28 +61,55 @@ export class ChipsCompleteComponent extends BaseFieldComponent
     // console.log(this.options);
 
     if (config.value) {
-      this.fruits = config.value.split(",");
+      this.fruits = config.value.split(',');
     }
     if (this.config.groupBy) {
       this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
         // @ts-ignore
-        startWith(""),
+        startWith(''),
         // @ts-ignore
         map(option => this._filterGroup(option))
       );
     } else {
       this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
         // @ts-ignore
-        startWith(""),
+        startWith(''),
         // @ts-ignore
         map(option => this._filterStates(option))
       );
     }
     // console.log(this.form);
+    this.synchtoFormbuilder();
+
+    this.control.valueChanges.subscribe((val) => {
+      this.focusEvent();
+    });
+  }
+
+  synchtoFormbuilder() {
+    const validators = this.fs.getFieldByName(this.name).validators as IValidator;
+    validators.required = this.required;
+    this.fruitCtrl.setValidators(this.fs.buildValidators(validators));
+    this.fruitCtrl.updateValueAndValidity();
+  }
+
+  focusEvent() {
+    if(this.fs.getFormControl({name:this.name}).value === null) {
+      this.fruitCtrl.setErrors({required: true});
+      // this.error.nativeElement
+    } else {
+      this.fruitCtrl.setErrors({required: false});
+    }
+
+    if(this.fs.getFormControl({name:this.name}).invalid) {
+      this.chipField._elementRef.nativeElement.classList.add('mat-form-field-invalid');
+    } else {
+      this.chipField._elementRef.nativeElement.classList.remove('mat-form-field-invalid');
+    }
   }
 
   add(event: MatChipInputEvent): void {
-    const value = (event.value || "").trim();
+    const value = (event.value || '').trim();
 
     // Add our fruit
     if (value) {
@@ -126,7 +157,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   private _filterStates(value: string): any[] {
     this.actualOptions = -1;
 
-    const filterValue = value ? value.toLowerCase() : "";
+    const filterValue = value ? value.toLowerCase() : '';
     let counter = 0;
     return this.options.filter(option => {
       if (this.ts.data[option.key]) {

@@ -69,6 +69,7 @@
         "htmlAttribute": { "autocomplete": "off" },
         "canAdd": false,
         "multiple": true,
+        "validators": { "required": true },
         "options": [
           {
             "value": "change",

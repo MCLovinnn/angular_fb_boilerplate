@@ -1,5 +1,5 @@
 <ng-container *ngIf="form" [formGroup]="form">
-  <mat-form-field class="example-chip-list">
+  <mat-form-field class="example-chip-list" #chipField>
     <mat-chip-list #chipList [multiple]="multiple">
       <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)" [selectable]="active">
         {{ fruit }}
@@ -13,12 +13,13 @@
         [placeholder]="getName() + '#label' | translate"
         [formControl]="fruitCtrl"
         [matTooltip]="getName() + '#tooltip' | translate"
-        [required]="required"
+        [required]="validators.required"
         matTooltipDisabled="false"
         matTooltipHideDelay="200"
         matTooltipPosition="above"
         matTooltipShowDelay="100"
         (change)="change.emit({ type: name, value: $event.value })"
+        (focusout)="focusEvent()"
         [matAutocomplete]="auto"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -44,6 +45,10 @@
         </mat-option>
     </ng-container>
     </mat-autocomplete>
+    <mat-hint *ngIf="fruitCtrl.untouched || fs.getFormControl({name:this.name}).valid">{{ (hintlabel | translate) }}</mat-hint>
+    <mat-hint class="error" *ngIf="fruitCtrl.touched && fs.getFormControl({name:this.name}).invalid">
+      {{ getMeesage('required', '') }}
+    </mat-hint>
     <input matInput hidden [formControlName]="name">
   </mat-form-field>
 </ng-container>
