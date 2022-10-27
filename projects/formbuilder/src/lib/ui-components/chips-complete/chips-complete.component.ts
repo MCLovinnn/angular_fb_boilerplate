@@ -96,9 +96,11 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   focusEvent() {
     if(this.fs.getFormControl({name:this.name}).value === null) {
       this.fruitCtrl.setErrors({required: true});
+      this.fruitCtrl.patchValue('');
       // this.error.nativeElement
     } else {
       this.fruitCtrl.setErrors({required: false});
+      this.fruitCtrl.patchValue(this.fs.getFormControl({name:this.name}).value);
     }
 
     if(this.fs.getFormControl({name:this.name}).invalid) {
