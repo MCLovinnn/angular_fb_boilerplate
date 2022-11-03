@@ -36,11 +36,6 @@ export class RecepyComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.breakpoint = window.innerWidth <= 600 ? 4 : 12;
-    let recepy = this.formS.getSelectedRecepy();
-    console.log(recepy);
-    if(recepy) {
-      this.fs.getForm('home_recepy').patchValue(this.formS.recepyToForm(recepy));
-    }
   }
 
   constructor(private cs: ConnectorService, private fs: FormService, private formS: FormularService) {}
@@ -100,7 +95,6 @@ export class RecepyComponent implements OnInit, AfterViewInit {
     if(this.picture) {
       this.cs.ocrReq(this.picture, 'ger').subscribe(res => console.log(res));
     }
-    this.formS.addRecepy(this.formS.recepyToObject(this.fs.getForm('home_recepy').getRawValue() as IRecepyForm));
     this.fs.resetForms();
   }
 

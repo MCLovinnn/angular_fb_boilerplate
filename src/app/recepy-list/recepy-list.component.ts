@@ -12,13 +12,10 @@ export class RecepyListComponent implements OnInit {
   constructor(private formS: FormularService) { }
 
   ngOnInit(): void {
-    this.ingredients = this.formS.recepies;
-    this.formS.getRecepyListChange().subscribe(val => this.ingredients = val);
   }
 
   open(recepy: IRecepy, index: number) {
     console.log('hi');
 
-    this.formS.selectRecepy(index);
   }
 }

@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
@@ -27,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { registerLocaleData, CommonModule } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -85,7 +87,9 @@ registerLocaleData(localeDe, 'de');
     MatSidenavModule,
     MatExpansionModule,
     MatRadioModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule,
+    MatMenuModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de' }],
   bootstrap: [AppComponent],

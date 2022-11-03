@@ -86,7 +86,15 @@
               <mat-icon>menu</mat-icon>
           </button>
       <span>AirRnD</span>
-      <span class="example-spacer"></span>
+      <span class="fill-remaining-space">
+        <mat-tab-group class="desktop_menu" #menubar>
+          <mat-tab *ngFor="let tab of tabs; let index = index">
+            <ng-template mat-tab-label>
+              <button (click)="scroll(index)" mat-button>{{ tab }}</button>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </span>
     </mat-toolbar>
   </div>
   <router-outlet></router-outlet>

@@ -21,7 +21,7 @@ export class TestComponent implements OnInit {
     showActions: true,
     showCSVExport: true,
     csvName: 'Test',
-    showCheckbox: true,
+    showCheckbox: false,
     showDeleteAllButton: false,
     dateStringToDateFilter: 'home_test_date'
   };
@@ -54,29 +54,29 @@ export class TestComponent implements OnInit {
   constructor(private fs: FormService, private formS: FormularService) { }
 
   ngOnInit(): void {
-    this.formS.get().subscribe((data: IFormular[]) => {
-      // console.log(data);
-      // data.forEach((row: IFormular) => {
-      //   // console.log(row.home_test_date);
-      //   // console.log(row);
+    // this.formS.get().subscribe((data: IFormular[]) => {
+    //   // console.log(data);
+    //   // data.forEach((row: IFormular) => {
+    //   //   // console.log(row.home_test_date);
+    //   //   // console.log(row);
 
-      //   // row.home_test_date = moment(row.home_test_date).format('DD.MM.YYYY');
-      // });
-      this.data = data;
-      this.table.refresh();
-    });
+    //   //   // row.home_test_date = moment(row.home_test_date).format('DD.MM.YYYY');
+    //   // });
+    //   this.data = data;
+    //   this.table.refresh();
+    // });
   }
 
-  delete(row: IFormular) {
-      // console.log(val);
-      this.formS.delete(row);
-  }
+  // delete(row: IFormular) {
+  //     // console.log(val);
+  //     this.formS.delete(row);
+  // }
 
-  deleteAll(data: IFormular[]) {
-    data.forEach((element: IFormular, index, array) => {
-      this.delete(element);
-    });
-  }
+  // deleteAll(data: IFormular[]) {
+  //   data.forEach((element: IFormular, index, array) => {
+  //     this.delete(element);
+  //   });
+  // }
 
   edit(row: IFormular) {
     let tmpForm: any = Object.assign({}, row);

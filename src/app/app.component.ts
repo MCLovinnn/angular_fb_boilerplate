@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConnectorService } from './services/connector.service';
 import { DataConnectorService, FormService, AuthenticationService, TranslationService } from 'projects/formbuilder/src/public-api';
+import { MatTabGroup } from '@angular/material/tabs';
 
 
 export interface Tile {
@@ -18,6 +19,8 @@ export interface Tile {
 })
 
 export class AppComponent implements OnInit {
+  tabs = ['Customer', 'Consultants']; // , 'Projekte'
+  @ViewChild('menubar', { static: false }) menu = {} as MatTabGroup;
 
   constructor(private ds: DataConnectorService,
     public fb: FormBuilder,
@@ -37,6 +40,12 @@ export class AppComponent implements OnInit {
     //     }
     //   });
 
+  }
+  scroll(index) {
+    // console.log(index);
+    // console.log(this.menu);
+
+    this.menu.selectedIndex = index;
   }
 
   ngOnInit() {

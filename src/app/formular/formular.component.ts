@@ -65,12 +65,7 @@ export class FormularComponent implements OnInit {
     tmpData.home_test_date = date.value.format('L');
     // console.log(tmpData);
 
-    if (this.update) {
-      this.formS.update(tmpData);
-      this.update = false;
-    } else {
-      this.formS.add(tmpData);
-    }
+
     this.fs.resetForms();
     this.fs.getForm('home_test').markAsUntouched();
   }

@@ -1,179 +1,264 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { IFormular, IRecepy, IRecepyList, IRecepyForm, IComment, IRecepyListForm, ICommentForm } from '../formular';
-import _ from "lodash";
+import { Injectable } from '@angular/core';
+import {
+  ICustomerContact,
+  ICustomerContactForm
+} from '../interfaces/icustomer';
+import {
+  IConsultantContact,
+  IConsultantContactForm,
+  ConsultantTable
+} from '../interfaces/iconsultant';
+import { FormService, TranslatePipe } from '../../../projects/formbuilder/src/public-api';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormularService {
-  forms: IFormular[] = [];
-  formChange: EventEmitter<IFormular[]> = new EventEmitter();
-  selectedList: string;
-  obj: any;
-  activeRecepyListChange: EventEmitter<string> = new EventEmitter();
-  recepyChange: EventEmitter<IRecepy[]> = new EventEmitter();
-  recepies: IRecepy[] = [];
-  selectedRecepy: number;
-  constructor() {
-    this.formChange.subscribe((form: IFormular[]) => {
-      this.forms = form;
+  constructor(private fs: FormService, private https: HttpClient, private ts: TranslatePipe) {}
+
+  customerToForm(customer: ICustomerContact): ICustomerContactForm {
+    let item: ICustomerContactForm = {
+      contact_personal_firstname: customer.firstname,
+      contact_personal_position: customer.position,
+      contact_personal_email: customer.email,
+      contact_personal_company: customer.company ? customer.company : '',
+      contact_personal_website: customer.website ? customer.website : '',
+      contact_personal_linkedIn: customer.linkedIn ? customer.linkedIn : '',
+      contact_personal_ownership: customer.ownership ? customer.ownership : '',
+      contact_personal_funding: customer.funding ? customer.funding : '',
+      contact_personal_employees: customer.employees ? customer.employees : '',
+      contact_personal_country: customer.country ? customer.country : '',
+      contact_personal_state: customer.state ? customer.state : '',
+      contact_personal_city: customer.city ? customer.city : '',
+      contact_development_api: customer.api ? customer.api : '',
+      contact_development_description: customer.description
+        ? customer.description
+        : '',
+      contact_development_productname: customer.productname
+        ? customer.productname
+        : '',
+      contact_development_treatment: customer.treatment
+        ? customer.treatment
+        : '',
+      contact_development_controlledsubstance: customer.controlledsubstance
+        ? customer.controlledsubstance
+        : '',
+      contact_development_dosage: customer.dosage ? customer.dosage : '',
+      contact_development_administrationroute: customer.administrationroute
+        ? customer.administrationroute
+        : '',
+      contact_development_administrationrouteOther: customer.administrationrouteOther
+        ? customer.administrationrouteOther
+        : '',
+      contact_development_indication: customer.indication
+        ? customer.indication
+        : '',
+      contact_development_species: customer.species ? customer.species : '',
+      contact_development_speciesOther: customer.speciesOther
+        ? customer.speciesOther
+        : '',
+      contact_development_regulatoryinteraction: customer.regulatoryinteraction
+        ? customer.regulatoryinteraction
+        : ''
+    };
+
+    return item;
+  }
+
+  CustomerToObject(): ICustomerContact {
+    let personal = this.fs.getForm('contact_personal').getRawValue();
+    let development = this.fs.getForm('contact_development').getRawValue();
+    let item: ICustomerContact = {
+      firstname: personal.contact_personal_firstname,
+      position: personal.contact_personal_position,
+      email: personal.contact_personal_email,
+      company: personal.contact_personal_company,
+      website: personal.contact_personal_website,
+      linkedIn: personal.contact_personal_linkedIn,
+      ownership: personal.contact_personal_ownership,
+      funding: personal.contact_personal_funding,
+      employees: personal.contact_personal_employees,
+      country: personal.contact_personal_country,
+      state: personal.contact_personal_state,
+      city: personal.contact_personal_city,
+      api: development.contact_development_api,
+      description: development.contact_development_description,
+      productname: development.contact_development_productname,
+      treatment: development.contact_development_treatment,
+      controlledsubstance: development.contact_development_controlledsubstance,
+      dosage: development.contact_development_dosage,
+      administrationroute: development.contact_development_administrationroute,
+      administrationrouteOther:
+        development.contact_development_administrationrouteOther,
+      indication: development.contact_development_indication,
+      species: development.contact_development_species,
+      speciesOther: development.contact_development_speciesOther,
+      regulatoryinteraction:
+        development.contact_development_regulatoryinteraction
+    };
+
+    return item;
+  }
+
+  consultantToForm(consultant: IConsultantContact): IConsultantContactForm {
+    console.log(consultant);
+
+    let item: IConsultantContactForm = {
+      contact_personal_firstname: consultant.firstname,
+      contact_personal_email: consultant.email,
+      contact_personal_company: consultant.company,
+      contact_application_availabilty: consultant.availabilty,
+      contact_application_availablehours: consultant.availabiltyhours,
+      contact_application_treatment: consultant.treatment,
+      contact_application_smallmolecule: consultant.smallmolecule,
+      contact_application_smallmoleculedev: consultant.smallmoleculedev,
+      contact_application_biologic: consultant.biologic,
+      contact_application_biologicdev: consultant.biologicdev,
+      contact_application_oligo: consultant.oligo,
+      contact_application_oligodev: consultant.oligodev,
+      contact_application_celltherapiedev: consultant.celltherapiedev,
+      contact_application_genetherapie: consultant.genetherapie,
+      contact_application_genetherapiedev: consultant.genetherapiedev,
+      contact_application_administrationroute: consultant.administrationroute,
+      contact_application_toxicology: consultant.toxicology,
+      contact_application_toxicqualification: consultant.toxicqualification,
+      contact_application_pathology: consultant.pathology,
+      contact_application_adme: consultant.adme,
+      contact_application_pharmacology: consultant.pharmacology,
+      contact_application_devplans: consultant.devplans,
+      contact_application_experience: consultant.experience,
+      contact_application_phases: consultant.phases,
+      contact_application_areas: consultant.areas,
+      contact_application_protocoldev: consultant.protocoldev,
+      contact_application_jurisdiction: consultant.jurisdiction,
+      contact_application_operations: consultant.operations,
+      contact_application_submissionexperience: consultant.submissionexperience,
+      contact_application_regulatorystrat: consultant.regulatorystrat,
+      contact_application_regulatorystratpathway:
+        consultant.regulatorystratpathway,
+      contact_application_safety: consultant.safety,
+      contact_application_network: consultant.network,
+      contact_application_networkeu: consultant.networkeu,
+      contact_application_networkasia: consultant.networkasia,
+      contact_application_bumgmt: consultant.bumgmt,
+      contact_application_budev: consultant.budev,
+      contact_application_commercestrat: consultant.commercestrat
+    };
+    return item;
+  }
+
+  consultantToObject(): IConsultantContact {
+    let personal = this.fs.getForm('contact_personal').getRawValue();
+    let application = this.fs.getForm('contact_application').getRawValue();
+    console.log(personal);
+    console.log(application);
+
+    let item: IConsultantContact = {
+      firstname: personal.contact_personal_firstname,
+      email: personal.contact_personal_email,
+      company: personal.contact_personal_company,
+      availabilty: application.contact_application_availabilty,
+      availabiltyhours: application.contact_application_availablehours,
+      treatment: application.contact_application_treatment,
+      smallmolecule: application.contact_application_smallmolecule,
+      smallmoleculedev: application.contact_application_smallmoleculedev,
+      biologic: application.contact_application_biologic,
+      biologicdev: application.contact_application_biologicdev,
+      oligo: application.contact_application_oligo,
+      oligodev: application.contact_application_oligodev,
+      celltherapiedev: application.contact_application_celltherapiedev,
+      genetherapie: application.contact_application_genetherapie,
+      genetherapiedev: application.contact_application_genetherapiedev,
+      administrationroute: application.contact_application_administrationroute,
+      toxicology: application.contact_application_toxicology,
+      toxicqualification: application.contact_application_toxicqualification,
+      pathology: application.contact_application_pathology,
+      adme: application.contact_application_adme,
+      pharmacology: application.contact_application_pharmacology,
+      devplans: application.contact_application_devplans,
+      experience: application.contact_application_experience,
+      phases: application.contact_application_phases,
+      areas: application.contact_application_areas,
+      protocoldev: application.contact_application_protocoldev,
+      jurisdiction: application.contact_application_jurisdiction,
+      operations: application.contact_application_operations,
+      submissionexperience:
+        application.contact_application_submissionexperience,
+      regulatorystrat: application.contact_application_regulatorystrat,
+      regulatorystratpathway:
+        application.contact_application_regulatorystratpathway,
+      safety: application.contact_application_safety,
+      network: application.contact_application_network,
+      networkeu: application.contact_application_networkeu,
+      networkasia: application.contact_application_networkasia,
+      bumgmt: application.contact_application_bumgmt,
+      budev: application.contact_application_budev,
+      commercestrat: application.contact_application_commercestrat
+    };
+
+    return item;
+  }
+
+  sendConsultant(consultant: IConsultantContact, file: Blob) {
+    let url = 'api/';
+
+    if (environment.production) {
+      url = 'https://mail.nifag349.mywhc.ca';
+    }
+
+    let data = JSON.stringify({
+      data: consultant,
+      role: 'consultant',
+      file: file
+    });
+
+    return this.https.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+       }
     });
   }
 
-  add(formular: IFormular) {
-    const newForms = this.forms;
-    newForms.push(formular);
-    // console.log(newForms);
-    this.formChange.emit(newForms);
-  }
+  sendCustomer(customer: ICustomerContact, file: Blob) {
+    let url = 'api/';
 
-  get(){
-    return this.formChange;
-  }
-
-  update(entry: IFormular) {
-    const newForms = this.forms;
-    _.merge(newForms,[entry]);
-    this.formChange.emit(newForms);
-    // console.log(newForms);
-  }
-
-  delete(entry: IFormular) {
-    const newForms = this.forms;
-    let index = newForms.indexOf(entry);
-
-    if (index >= 0) {
-      newForms.splice(index,1);
-      this.formChange.emit(newForms);
+    if (environment.production) {
+      url = 'https://mail.nifag349.mywhc.ca';
     }
-  }
 
-  getRecepy(id: string): IRecepy[] {
-    return this.recepies.filter((value: IRecepy, index) => {
-      return value.id === id;
+    let data = JSON.stringify({
+      data: customer,
+      role: 'customer',
+      file: file
+    });
+
+    return this.https.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+       }
     });
   }
 
-  selectRecepy(id: number) {
-    this.selectedRecepy = id;
-  }
-
-  getSelectedRecepy() {
-    console.log(this.selectedRecepy);
-
-    if(this.selectedRecepy >= 0) {
-      return this.recepies[this.selectedRecepy];
+  getFormattedConsultant(consultant: IConsultantContactForm) {
+    let tmp = {};
+    for (let row of ConsultantTable) {
+      if(this.ts.transform(row.collumnKey) !== '') {
+        tmp[this.ts.transform(row.collumnKey)] = consultant[row.collumnName];
+      }
     }
+    return tmp;
   }
-
-  addRecepy(obj: IRecepy) {
-    let data;
-    if(obj.id) {
-      console.log(obj);
-
-      data = this.getRecepy(obj.id)[0];
-
+  getFormattedCustomer(consultant: ICustomerContactForm) {
+    let tmp = {};
+    for (let row of ConsultantTable) {
+      if(this.ts.transform(row.collumnKey) !== '') {
+        tmp[this.ts.transform(row.collumnKey)] = consultant[row.collumnName];
+      }
     }
-    if(this.selectedRecepy >= 0) {
-      data = this.getSelectedRecepy();
-      this.selectedRecepy = null;
-    }
-    if(data) {
-      _.merge(data, obj);
-    } else {
-      this.recepies.push(obj);
-    }
-
-    this.recepyChange.emit(this.recepies);
-  }
-
-  setActualList(obj?: IRecepyList) {
-    if (obj) {
-      this.selectedList = obj.id;
-    } else {
-    this.selectedList = '';
-    }
-
-    this.activeRecepyListChange.emit(this.selectedList);
-  }
-
-  getActualRecepyListChange() {
-    return this.activeRecepyListChange;
-  }
-
-  getRecepyListChange() {
-    return this.recepyChange;
-  }
-
-  getActualRecepyList() {
-    return this.selectedList;
-  }
-
-  getComments(recepy: IRecepyForm): IComment[] {
-    let data;
-    if (recepy.home_recepy_id) {
-      data = this.getRecepy(recepy.home_recepy_id)[0];
-    }
-    return data? data.comments || [] : [];
-  }
-
-  recepyToObject(recepy: IRecepyForm): IRecepy {
-    return {
-      name: recepy.home_recepy_name,
-      description: recepy.home_recepy_description,
-      image: recepy.home_recepy_image,
-      position: recepy.home_recepy_position,
-      ingredients: recepy.home_recepy_ingredients,
-      comments: this.getComments(recepy)
-    }
-  }
-
-  recepyToForm(recepy: IRecepy): IRecepyForm {
-    return {
-      home_recepy_id: recepy.id,
-      home_recepy_description: recepy.description,
-      home_recepy_image: recepy.image,
-      home_recepy_ingredients: recepy.ingredients,
-      home_recepy_name: recepy.name,
-      home_recepy_position: recepy.position
-    }
-  }
-
-  listToObject(list: IRecepyListForm): IRecepyList {
-    return {
-      name: list.home_recepylist_name,
-      description: list.home_recepylist_description,
-      recepies: list.home_recepylist_recepies,
-      id: list.home_recepylist_id
-    }
-  }
-
-  listToForm(list: IRecepyList): IRecepyListForm {
-    return {
-      home_recepylist_id: list.id,
-      home_recepylist_name: list.name,
-      home_recepylist_description: list.description,
-      home_recepylist_recepies: list.recepies
-    }
-  }
-
-  commentToForm(comment: IComment): ICommentForm {
-    return {
-      home_recepy_commentText: comment.comment,
-      home_recepy_commentFor: comment.commentFor,
-      home_recepy_commentKat: comment.commentKat,
-      home_recepy_commentId: comment.id,
-      home_recepy_commentUser: comment.user
-    }
-  }
-
-  commentToObject(comment: ICommentForm): IComment {
-    return {
-      comment: comment.home_recepy_commentText,
-      commentFor: comment.home_recepy_commentFor,
-      commentKat: comment.home_recepy_commentKat,
-      id: comment.home_recepy_commentId,
-      user: comment.home_recepy_commentUser
-    }
+    return tmp;
   }
 }
