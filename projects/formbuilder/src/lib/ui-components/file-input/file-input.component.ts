@@ -1,20 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BaseFieldComponent } from '../../classes/field';
-import { FormBuilder } from '@angular/forms';
-import { FormService } from '../../services/form.service';
-import { TranslationService } from '../../services/translation.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { BaseFieldComponent } from "../../classes/field";
+import { FormBuilder } from "@angular/forms";
+import { FormService } from "../../services/form.service";
+import { TranslationService } from "../../services/translation.service";
 
 @Component({
-  selector: 'app-file-input',
-  templateUrl: './file-input.component.html',
-  styleUrls: ['./file-input.component.scss']
+  selector: "app-file-input",
+  templateUrl: "./file-input.component.html",
+  styleUrls: ["./file-input.component.scss"]
 })
 export class FileInputComponent extends BaseFieldComponent implements OnInit {
+  file: any = null;
+  fileFormatError = false;
 
   @Input() srcResult: any;
-  constructor(public fb: FormBuilder,
+
+  constructor(
+    public fb: FormBuilder,
     public fs: FormService,
-    public ts: TranslationService) {
+    public ts: TranslationService
+  ) {
     super(fb, fs, ts);
   }
 
@@ -26,19 +31,31 @@ export class FileInputComponent extends BaseFieldComponent implements OnInit {
   }
 
   onFileSelected() {
-    const inputNode: any = document.querySelector('#file');
-
-    if (typeof (FileReader) !== 'undefined' && typeof (inputNode.files[0]) !== 'undefined') {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        // console.log(e);
-
-        this.srcResult = e.target.result;
-      };
-
-      reader.readAsArrayBuffer(inputNode.files[0]);
-      // console.log(reader);
-
+    const inputNode: any = document.querySelector("#file");
+    // console.log(inputNode.files);
+    if (inputNode.files.length > 0) {
+      const regex = new RegExp(
+        ".*.(?<fileending>txt|pdf|zip|doc|docx|xlsx|xls|ppt|pptx)$"
+      );
+      // console.log(!regex.test(inputNode.files[0].name));
+      if (!regex.test(inputNode.files[0].name)) {
+        this.fileFormatError = true;
+      } else {
+        this.fileFormatError = false;
+      }
+      this.file = inputNode.files[0];
+      this.fs.getFormControl({ name: this.name }).patchValue(this.file);
+      // console.log(this.fileFormatError);
+    } else {
+      this.emptyFile();
     }
+  }
+
+  emptyFile() {
+    const inputNode: any = document.querySelector("#file");
+    inputNode.value = "";
+    this.file = null;
+    this.fs.getFormControl({ name: this.name }).patchValue("");
+    this.fileFormatError = false;
   }
 }

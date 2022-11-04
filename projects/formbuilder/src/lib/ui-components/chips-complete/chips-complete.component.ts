@@ -97,7 +97,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   }
 
   focusEvent() {
-    if(this.fs.getFormControl({name:this.name}).value === null) {
+    if(this.required && this.fs.getFormControl({name:this.name}).value === null) {
       this.fruitCtrl.setErrors({required: true});
       // this.error.nativeElement
     } else {

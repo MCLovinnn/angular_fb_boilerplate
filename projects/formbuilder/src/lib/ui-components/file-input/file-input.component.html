@@ -1,7 +1,22 @@
-<ng-container *ngIf="form" [formGroup]="form">
-  <button type="button" mat-raised-button (click)="fileInput.click()">
-    Choose File
-  </button>
-  <input class="mat-input" (change)="onFileSelected()" #fileInput type="file" id="file"
-    [formControlName]="name">
-</ng-container>
+<div [formGroup]="form" fxLayout="row" fxLayout.xs="column">
+  <div fxFlex>
+    <button style="margin-top: 15px; width: 150px;" type="button" mat-raised-button (click)="fileInput.click()">
+      Datei Hinzufügen
+    </button>
+  </div>
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <span [ngClass]="fileFormatError ? 'error' : ''" style="margin-left:10px; font-weight: bold;" *ngIf="file">{{file.name}}</span>
+      <button mat-icon-button matSuffix *ngIf="file" (click)="emptyFile()">
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <mat-error class="custom-error" *ngIf="fileFormatError">
+        Falscher Dateityp!<br>
+        Erlaubte: .txt, .pdf, .zip, .doc, .docx, .xlsx, .xls, .ppt, .pptx
+      </mat-error>
+    </div>
+    <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+  </div>
+</div>

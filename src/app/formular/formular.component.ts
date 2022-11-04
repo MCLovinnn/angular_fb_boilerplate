@@ -4,7 +4,8 @@ import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';
 import { FormGroup } from '@angular/forms';
 import { ISliderConfig } from 'projects/formbuilder/src/lib/interfaces/isliderconfig';
-import { IAutoCompleteOptions, FormService } from 'projects/formbuilder/src/public-api';
+import { IAutoCompleteOptions, FormService, ChipsCompleteComponent } from 'projects/formbuilder/src/public-api';
+import { FileInputComponent } from 'projects/formbuilder/src/public-api';
 
 @Component({
   selector: 'app-formular',
@@ -42,10 +43,12 @@ export class FormularComponent implements OnInit {
     if (this.formular) {
       this.setForm(this.formular);
     }
+
+    this.fs.getFormControl({name: 'home_test_file'}).valueChanges.subscribe(val => console.log(val));
   }
 
   isValid() {
-    return this.fs.getForm('home_test').valid;
+    return this.fs.getForm('home_test').valid && !(this.fs.getFieldByName('home_test_file') as FileInputComponent).fileFormatError;
   }
 
   public setForm(formular: IFormular) {

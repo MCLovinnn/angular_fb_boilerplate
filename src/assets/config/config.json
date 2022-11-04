@@ -96,6 +96,14 @@
           "tickInterval": 2,
           "vertical": false
         }
+      },
+      "file": {
+        "name": "home_test_file",
+        "htmlType": "file",
+        "validators": {
+          "required": true,
+          "pattern": ""
+        }
       }
     }
   }
