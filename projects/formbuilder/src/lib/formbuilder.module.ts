@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
@@ -108,7 +109,8 @@ registerLocaleData(localeDe, 'de');
     MatPaginatorModule,
     MatSliderModule,
     MatSlideToggleModule,
-    MatChipsModule
+    MatChipsModule,
+    FlexLayoutModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'de' },

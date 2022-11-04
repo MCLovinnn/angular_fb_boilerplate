@@ -28,6 +28,9 @@
   "home_test_slider#tooltip": "Gut um Relation aufzuzeigen",
   "test_table_name": "TestSpaltenName",
   "test_table_form": "Beliebiger Spaltenname",
+  "home_test_file#label": "Datei Hinzufügen",
+  "file_error": "Dateityp nicht erlaubt!\n Erlaubt: .txt, .pdf, .zip, .doc, .docx, .xlsx, .xls, .ppt, .pptx",
+
   "contact_personal_firstname#label": "Your Name",
   "contact_personal_firstname#hintlabel": "",
   "contact_personal_firstname#tooltip": "",
