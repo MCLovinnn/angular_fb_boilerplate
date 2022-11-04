@@ -7,14 +7,14 @@
 >
   <button
     fxFlex="150px"
-    style="margin-top: 15px; width: 150px;"
+    style="margin-top: 15px; width: 150px; max-height: 50px"
     type="button"
     mat-raised-button
     (click)="fileInput.click()"
   >
     {{ getName() + "#label" | translate }}
   </button>
-  <div fxFlex="300px">
+  <div fxFlex>
     <span
       [ngClass]="fileFormatError ? 'error' : ''"
       style="margin-left:10px; font-weight: bold;"
