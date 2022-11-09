@@ -5,21 +5,24 @@
   fxLayoutGap="20px"
   fxLayoutAlign="start"
 >
-  <button
-    fxFlex="150px"
-    style="margin-top: 15px; width: 150px; max-height: 50px"
-    type="button"
-    mat-raised-button
-    [disabled]="disabled"
-    (click)="fileInput.click()"
+  <div
     [matTooltip]="getName() + '#tooltip' | translate"
     matTooltipDisabled="false"
     matTooltipHideDelay="200"
     matTooltipPosition="above"
     matTooltipShowDelay="100"
   >
-    {{ getName() + "#label" | translate }}
-  </button>
+    <button
+      fxFlex="150px"
+      style="margin-top: 15px; width: 150px; max-height: 50px"
+      type="button"
+      mat-raised-button
+      [disabled]="disabled"
+      (click)="fileInput.click()"
+    >
+      {{ getName() + "#label" | translate }}
+    </button>
+  </div>
   <div *ngIf="file">
     <span
       [ngClass]="fileFormatError ? 'error' : ''"
