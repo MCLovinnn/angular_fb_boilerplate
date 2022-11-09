@@ -100,7 +100,7 @@
       "file": {
         "name": "home_test_file",
         "htmlType": "file",
-        "disabled": true,
+        "disabled": false,
         "validators": {
           "required": true,
           "pattern": ""
