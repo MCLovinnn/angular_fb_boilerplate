@@ -2,7 +2,11 @@
   color: red;
 }
 
-mat-error {
+mat-error, mat-hint {
   display: flex;
   align-items: center;
+}
+mat-form-field {
+  width: 100%;
+  max-width: auto;
 }

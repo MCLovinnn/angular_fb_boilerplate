@@ -29,6 +29,8 @@
   "test_table_name": "TestSpaltenName",
   "test_table_form": "Beliebiger Spaltenname",
   "home_test_file#label": "Datei Hinzufügen",
+  "home_test_file#hintlabel": "Beispiel hinweis",
+  "home_test_file#tooltip": "Test",
   "file_error": "Dateityp nicht erlaubt!\n Erlaubt: .txt, .pdf, .zip, .doc, .docx, .xlsx, .xls, .ppt, .pptx",
 
   "contact_personal_firstname#label": "Your Name",

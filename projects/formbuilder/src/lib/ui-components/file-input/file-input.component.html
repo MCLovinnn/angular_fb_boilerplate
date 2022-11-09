@@ -10,22 +10,30 @@
     style="margin-top: 15px; width: 150px; max-height: 50px"
     type="button"
     mat-raised-button
+    [disabled]="disabled"
     (click)="fileInput.click()"
+    [matTooltip]="getName() + '#tooltip' | translate"
+    matTooltipDisabled="false"
+    matTooltipHideDelay="200"
+    matTooltipPosition="above"
+    matTooltipShowDelay="100"
   >
     {{ getName() + "#label" | translate }}
   </button>
-  <div fxFlex>
+  <div *ngIf="file">
     <span
       [ngClass]="fileFormatError ? 'error' : ''"
       style="margin-left:10px; font-weight: bold;"
-      *ngIf="file"
       >{{ file.name }}</span
     >
     <button mat-icon-button matSuffix *ngIf="file" (click)="emptyFile()">
       <mat-icon>clear</mat-icon>
     </button>
   </div>
-  <mat-error fxFlex class="custom-error" *ngIf="fileFormatError">
+  <mat-hint class="mat-hint">{{
+    getName() + "#hintlabel" | translate
+  }}</mat-hint>
+  <mat-error class="custom-error" *ngIf="fileFormatError">
     {{ "file_error" | translate }}
   </mat-error>
   <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" />
