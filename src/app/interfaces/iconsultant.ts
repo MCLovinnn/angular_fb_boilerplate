@@ -39,6 +39,8 @@ export interface IConsultantContact {
   bumgmt: string;
   budev: string;
   commercestrat: string;
+  id?: string;
+  consultantid?: string;
 }
 
 export interface IConsultantContactForm {
@@ -80,9 +82,15 @@ export interface IConsultantContactForm {
   contact_application_bumgmt: string;
   contact_application_budev: string;
   contact_application_commercestrat: string;
+  contact_personal_id?: string;
+  contact_personal_consultantid?: string;
 }
 
 export const ConsultantTable: ITableHeader[] = [
+  {
+    collumnName: "contact_personal_consultantid",
+    collumnKey: "contact_personal_consultantid#label"
+  },
   {
     collumnName: "contact_personal_firstname",
     collumnKey: "contact_personal_firstname#label"
@@ -100,139 +108,7 @@ export const ConsultantTable: ITableHeader[] = [
     collumnKey: "contact_application_availabilty#label"
   },
   {
-    collumnName: "contact_application_availablehours",
-    collumnKey: "contact_application_availablehours#label"
-  },
-  {
     collumnName: "contact_application_treatment",
     collumnKey: "contact_application_treatment#label"
-  },
-  {
-    collumnName: "contact_application_smallmolecule",
-    collumnKey: "contact_application_smallmolecule#label"
-  },
-  {
-    collumnName: "contact_application_smallmoleculedev",
-    collumnKey: "contact_application_smallmoleculedev#label"
-  },
-  {
-    collumnName: "contact_application_biologic",
-    collumnKey: "contact_application_biologic#label"
-  },
-  {
-    collumnName: "contact_application_biologicdev",
-    collumnKey: "contact_application_biologicdev#label"
-  },
-  {
-    collumnName: "contact_application_oligo",
-    collumnKey: "contact_application_oligo#label"
-  },
-  {
-    collumnName: "contact_application_oligodev",
-    collumnKey: "contact_application_oligodev#label"
-  },
-  {
-    collumnName: "contact_application_celltherapiedev",
-    collumnKey: "contact_application_celltherapiedev#label"
-  },
-  {
-    collumnName: "contact_application_genetherapie",
-    collumnKey: "contact_application_genetherapie#label"
-  },
-  {
-    collumnName: "contact_application_genetherapiedev",
-    collumnKey: "contact_application_genetherapiedev#label"
-  },
-  {
-    collumnName: "contact_application_toxicqualification",
-    collumnKey: "contact_application_toxicqualification#label"
-  },
-  {
-    collumnName: "contact_application_administrationroute",
-    collumnKey: "contact_application_administrationroute#label"
-  },
-  {
-    collumnName: "contact_application_toxicology",
-    collumnKey: "contact_application_toxicology#label"
-  },
-  {
-    collumnName: "contact_application_pathology",
-    collumnKey: "contact_application_pathology#label"
-  },
-  {
-    collumnName: "contact_application_adme",
-    collumnKey: "contact_application_adme#label"
-  },
-  {
-    collumnName: "contact_application_pharmacology",
-    collumnKey: "contact_application_pharmacology#label"
-  },
-  {
-    collumnName: "contact_application_devplans",
-    collumnKey: "contact_application_devplans#label"
-  },
-  {
-    collumnName: "contact_application_experience",
-    collumnKey: "contact_application_experience#label"
-  },
-  {
-    collumnName: "contact_application_phases",
-    collumnKey: "contact_application_phases#label"
-  },
-  {
-    collumnName: "contact_application_areas",
-    collumnKey: "contact_application_areas#label"
-  },
-  {
-    collumnName: "contact_application_protocoldev",
-    collumnKey: "contact_application_protocoldev#label"
-  },
-  {
-    collumnName: "contact_application_jurisdiction",
-    collumnKey: "contact_application_jurisdiction#label"
-  },
-  {
-    collumnName: "contact_application_operations",
-    collumnKey: "contact_application_operations#label"
-  },
-  {
-    collumnName: "contact_application_submissionexperience",
-    collumnKey: "contact_application_submissionexperience#label"
-  },
-  {
-    collumnName: "contact_application_regulatorystrat",
-    collumnKey: "contact_application_regulatorystrat#label"
-  },
-  {
-    collumnName: "contact_application_regulatorystratpathway",
-    collumnKey: "contact_application_regulatorystratpathway#label"
-  },
-  {
-    collumnName: "contact_application_safety",
-    collumnKey: "contact_application_safety#label"
-  },
-  {
-    collumnName: "contact_application_network",
-    collumnKey: "contact_application_network#label"
-  },
-  {
-    collumnName: "contact_application_networkeu",
-    collumnKey: "contact_application_networkeu#label"
-  },
-  {
-    collumnName: "contact_application_networkasia",
-    collumnKey: "contact_application_networkasia#label"
-  },
-  {
-    collumnName: "contact_application_bumgmt",
-    collumnKey: "contact_application_bumgmt#label"
-  },
-  {
-    collumnName: "contact_application_budev",
-    collumnKey: "contact_application_budev#label"
-  },
-  {
-    collumnName: "contact_application_commercestrat",
-    collumnKey: "contact_application_commercestrat#label"
   }
 ];

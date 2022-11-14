@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ITableViewOptions, TableType } from 'projects/formbuilder/src/public-api';
 import { CustomerTable } from '../interfaces/icustomer';
 import { ConsultantTable } from '../interfaces/iconsultant';
+import { AuthenticationService } from '../services/auth.service';
+import { FormularService } from '../services/formular.service';
 
 @Component({
   selector: 'app-home',
@@ -24,9 +26,49 @@ export class HomeComponent implements OnInit {
   displayedColumnsConsultant = ConsultantTable;
   data = [];
   dataConsultant = [];
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private auth: AuthenticationService,
+    private formS: FormularService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.auth.callApi('customer').subscribe((result: any) => {
+       this.transformCustomerData(result.data);
+      // console.log(result);
+    });
+    this.auth.callApi('consultant').subscribe((result: any) => {
+      this.transformConsultantData(result.data);
+    //  console.log(result);
+   });
+  }
+
+  transformCustomerData(data: any[]) {
+    let newArr = [];
+    data.forEach((val, index, array) => {
+      val.customerid = val.idcustomer;
+      val.id = val.user_iduser;
+      val.firstname = val.name;
+      newArr.push(this.formS.customerToForm(val));
+    });
+    this.data = newArr;
+    // console.log(this.data);
+
+  }
+  transformConsultantData(data: any[]) {
+    let newArr = [];
+    data.forEach((val, index, array) => {
+      val.consultantid = val.idconsultant;
+      val.id = val.user_iduser;
+      val.firstname = val.name;
+      newArr.push(this.formS.consultantToForm(val));
+    });
+    this.dataConsultant = newArr;
+    // console.log(this.dataConsultant);
+
+  }
+
+  doIt() {
+    this.auth.callApi('consultant');
+  }
 }

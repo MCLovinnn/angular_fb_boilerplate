@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ConnectorService } from './services/connector.service';
-import { DataConnectorService, FormService, AuthenticationService, TranslationService } from 'projects/formbuilder/src/public-api';
+import { DataConnectorService, FormService, TranslationService } from 'projects/formbuilder/src/public-api';
 import { MatTabGroup } from '@angular/material/tabs';
+import { AuthService } from '@auth0/auth0-angular';
+import { AuthenticationService } from './services/auth.service';
 
 
 export interface Tile {
@@ -20,6 +22,7 @@ export interface Tile {
 
 export class AppComponent implements OnInit {
   tabs = ['Customer', 'Consultants']; // , 'Projekte'
+  profileJson: any;
   @ViewChild('menubar', { static: false }) menu = {} as MatTabGroup;
 
   constructor(private ds: DataConnectorService,
@@ -27,7 +30,8 @@ export class AppComponent implements OnInit {
     public fs: FormService,
     private cs: ConnectorService,
     public as: AuthenticationService,
-    public ts: TranslationService) {
+    public ts: TranslationService,
+    public auth: AuthService) {
 
     // cs.get('config').subscribe(val => console.log(val));
 
@@ -49,10 +53,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  doIt() {
+    this.as.callApi('customer');
   }
 
   logout() {
-    this.as.logout(true, '/api/logout');
+    this.auth.logout();
   }
 
   isLoggedIn() {

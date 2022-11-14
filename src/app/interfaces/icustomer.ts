@@ -25,6 +25,8 @@ export interface ICustomerContact {
     species?: string;
     speciesOther?: string;
     regulatoryinteraction?: string;
+    id?: string;
+    customerid?: string;
   }
 
   export interface ICustomerContactForm {
@@ -52,9 +54,15 @@ export interface ICustomerContact {
     contact_development_species: string;
     contact_development_speciesOther: string;
     contact_development_regulatoryinteraction: string;
+    contact_personal_id?: string;
+    contact_personal_customerid?: string;
   }
 
   export const CustomerTable: ITableHeader[] = [
+    {
+      collumnName: 'contact_personal_customerid',
+      collumnKey: 'contact_personal_customerid#label'
+    },
     {
       collumnName: 'contact_personal_firstname',
       collumnKey: 'contact_personal_firstname#label'
@@ -72,20 +80,8 @@ export interface ICustomerContact {
       collumnKey: 'contact_personal_company#label'
     },
     {
-      collumnName: 'contact_personal_website',
-      collumnKey: 'contact_personal_website#label'
-    },
-    {
-      collumnName: 'contact_personal_linkedIn',
-      collumnKey: 'contact_personal_linkedIn#label'
-    },
-    {
       collumnName: 'contact_personal_ownership',
       collumnKey: 'contact_personal_ownership#label'
-    },
-    {
-      collumnName: 'contact_personal_funding',
-      collumnKey: 'contact_personal_funding#label'
     },
     {
       collumnName: 'contact_personal_employees',
@@ -104,10 +100,6 @@ export interface ICustomerContact {
       collumnKey: 'contact_personal_city#label'
     },
     {
-      collumnName: 'contact_development_api',
-      collumnKey: 'contact_development_api#label'
-    },
-    {
       collumnName: 'contact_development_description',
       collumnKey: 'contact_development_description#label'
     },
@@ -118,37 +110,5 @@ export interface ICustomerContact {
     {
       collumnName: 'contact_development_treatment',
       collumnKey: 'contact_development_treatment#label'
-    },
-    {
-      collumnName: 'contact_development_controlledsubstance',
-      collumnKey: 'contact_development_controlledsubstance#label'
-    },
-    {
-      collumnName: 'contact_development_dosage',
-      collumnKey: 'contact_development_dosage#label'
-    },
-    {
-      collumnName: 'contact_development_administrationroute',
-      collumnKey: 'contact_development_administrationroute#label'
-    },
-    {
-      collumnName: 'contact_development_administrationrouteOther',
-      collumnKey: 'contact_development_administrationrouteOther#label'
-    },
-    {
-      collumnName: 'contact_development_indication',
-      collumnKey: 'contact_development_indication#label'
-    },
-    {
-      collumnName: 'contact_development_species',
-      collumnKey: 'contact_development_species#label'
-    },
-    {
-      collumnName: 'contact_development_speciesOther',
-      collumnKey: 'contact_development_speciesOther#label'
-    },
-    {
-      collumnName: 'contact_development_regulatoryinteraction',
-      collumnKey: 'contact_development_regulatoryinteraction#label'
     }
   ];

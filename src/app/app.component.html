@@ -22,6 +22,10 @@
           Test
         </button>
       </mat-list-item>
+      <mat-list-item>
+<button mat-button (click)="doIt()"> Test</button>
+
+      </mat-list-item>
       <!--mat-list-item role="listitem">
         <button
           mat-button
@@ -43,7 +47,7 @@
         </button>
       </mat-list-item-->
       <mat-list-item role="listitem"
-      *ngIf="!isLoggedIn()">
+      *ngIf="(auth.isAuthenticated$ | async) === false">
         <button
           mat-button
           type="button"
@@ -54,7 +58,7 @@
         </button>
       </mat-list-item>
       <mat-list-item role="listitem"
-      *ngIf="isLoggedIn()">
+      *ngIf="!(auth.isAuthenticated$ | async) === false">
         <button
           (click)="logout()"
           mat-button

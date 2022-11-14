@@ -1,75 +1,86 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import {
   ICustomerContact,
   ICustomerContactForm
-} from '../interfaces/icustomer';
+} from "../interfaces/icustomer";
 import {
   IConsultantContact,
   IConsultantContactForm,
   ConsultantTable
-} from '../interfaces/iconsultant';
-import { FormService, TranslatePipe } from '../../../projects/formbuilder/src/public-api';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+} from "../interfaces/iconsultant";
+import {
+  FormService,
+  TranslatePipe
+} from "../../../projects/formbuilder/src/public-api";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class FormularService {
-  constructor(private fs: FormService, private https: HttpClient, private ts: TranslatePipe) {}
+  constructor(
+    private fs: FormService,
+    private https: HttpClient,
+    private ts: TranslatePipe
+  ) {}
 
   customerToForm(customer: ICustomerContact): ICustomerContactForm {
     let item: ICustomerContactForm = {
       contact_personal_firstname: customer.firstname,
       contact_personal_position: customer.position,
       contact_personal_email: customer.email,
-      contact_personal_company: customer.company ? customer.company : '',
-      contact_personal_website: customer.website ? customer.website : '',
-      contact_personal_linkedIn: customer.linkedIn ? customer.linkedIn : '',
-      contact_personal_ownership: customer.ownership ? customer.ownership : '',
-      contact_personal_funding: customer.funding ? customer.funding : '',
-      contact_personal_employees: customer.employees ? customer.employees : '',
-      contact_personal_country: customer.country ? customer.country : '',
-      contact_personal_state: customer.state ? customer.state : '',
-      contact_personal_city: customer.city ? customer.city : '',
-      contact_development_api: customer.api ? customer.api : '',
+      contact_personal_company: customer.company ? customer.company : "",
+      contact_personal_website: customer.website ? customer.website : "",
+      contact_personal_linkedIn: customer.linkedIn ? customer.linkedIn : "",
+      contact_personal_ownership: customer.ownership ? customer.ownership : "",
+      contact_personal_funding: customer.funding ? customer.funding : "",
+      contact_personal_employees: customer.employees ? customer.employees : "",
+      contact_personal_country: customer.country ? customer.country : "",
+      contact_personal_state: customer.state ? customer.state : "",
+      contact_personal_city: customer.city ? customer.city : "",
+      contact_development_api: customer.api ? customer.api : "",
       contact_development_description: customer.description
         ? customer.description
-        : '',
+        : "",
       contact_development_productname: customer.productname
         ? customer.productname
-        : '',
+        : "",
       contact_development_treatment: customer.treatment
         ? customer.treatment
-        : '',
+        : "",
       contact_development_controlledsubstance: customer.controlledsubstance
         ? customer.controlledsubstance
-        : '',
-      contact_development_dosage: customer.dosage ? customer.dosage : '',
+        : "",
+      contact_development_dosage: customer.dosage ? customer.dosage : "",
       contact_development_administrationroute: customer.administrationroute
         ? customer.administrationroute
-        : '',
+        : "",
       contact_development_administrationrouteOther: customer.administrationrouteOther
         ? customer.administrationrouteOther
-        : '',
+        : "",
       contact_development_indication: customer.indication
         ? customer.indication
-        : '',
-      contact_development_species: customer.species ? customer.species : '',
+        : "",
+      contact_development_species: customer.species ? customer.species : "",
       contact_development_speciesOther: customer.speciesOther
         ? customer.speciesOther
-        : '',
+        : "",
       contact_development_regulatoryinteraction: customer.regulatoryinteraction
         ? customer.regulatoryinteraction
-        : ''
+        : "",
+      contact_personal_id: customer.id ? customer.id : "",
+      contact_personal_customerid: customer.customerid
+        ? customer.customerid
+        : ""
     };
 
     return item;
   }
 
   CustomerToObject(): ICustomerContact {
-    let personal = this.fs.getForm('contact_personal').getRawValue();
-    let development = this.fs.getForm('contact_development').getRawValue();
+    let personal = this.fs.getForm("contact_personal").getRawValue();
+    let development = this.fs.getForm("contact_development").getRawValue();
     let item: ICustomerContact = {
       firstname: personal.contact_personal_firstname,
       position: personal.contact_personal_position,
@@ -96,7 +107,9 @@ export class FormularService {
       species: development.contact_development_species,
       speciesOther: development.contact_development_speciesOther,
       regulatoryinteraction:
-        development.contact_development_regulatoryinteraction
+        development.contact_development_regulatoryinteraction,
+      id: personal.contact_personal_id,
+      customerid: personal.contact_personal_customerid
     };
 
     return item;
@@ -144,14 +157,16 @@ export class FormularService {
       contact_application_networkasia: consultant.networkasia,
       contact_application_bumgmt: consultant.bumgmt,
       contact_application_budev: consultant.budev,
-      contact_application_commercestrat: consultant.commercestrat
+      contact_application_commercestrat: consultant.commercestrat,
+      contact_personal_id: consultant.id,
+      contact_personal_consultantid: consultant.consultantid
     };
     return item;
   }
 
   consultantToObject(): IConsultantContact {
-    let personal = this.fs.getForm('contact_personal').getRawValue();
-    let application = this.fs.getForm('contact_application').getRawValue();
+    let personal = this.fs.getForm("contact_personal").getRawValue();
+    let application = this.fs.getForm("contact_application").getRawValue();
     console.log(personal);
     console.log(application);
 
@@ -195,58 +210,60 @@ export class FormularService {
       networkasia: application.contact_application_networkasia,
       bumgmt: application.contact_application_bumgmt,
       budev: application.contact_application_budev,
-      commercestrat: application.contact_application_commercestrat
+      commercestrat: application.contact_application_commercestrat,
+      id: personal.contact_personal_id,
+      consultantid: personal.contact_personal_consultantid
     };
 
     return item;
   }
 
   sendConsultant(consultant: IConsultantContact, file: Blob) {
-    let url = 'api/';
+    let url = "api/";
 
     if (environment.production) {
-      url = 'https://mail.nifag349.mywhc.ca';
+      url = "https://mail.nifag349.mywhc.ca";
     }
 
     let data = JSON.stringify({
       data: consultant,
-      role: 'consultant',
+      role: "consultant",
       file: file
     });
 
     return this.https.post(url, data, {
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-       }
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
     });
   }
 
   sendCustomer(customer: ICustomerContact, file: Blob) {
-    let url = 'api/';
+    let url = "api/";
 
     if (environment.production) {
-      url = 'https://mail.nifag349.mywhc.ca';
+      url = "https://mail.nifag349.mywhc.ca";
     }
 
     let data = JSON.stringify({
       data: customer,
-      role: 'customer',
+      role: "customer",
       file: file
     });
 
     return this.https.post(url, data, {
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-       }
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
     });
   }
 
   getFormattedConsultant(consultant: IConsultantContactForm) {
     let tmp = {};
     for (let row of ConsultantTable) {
-      if(this.ts.transform(row.collumnKey) !== '') {
+      if (this.ts.transform(row.collumnKey) !== "") {
         tmp[this.ts.transform(row.collumnKey)] = consultant[row.collumnName];
       }
     }
@@ -255,7 +272,7 @@ export class FormularService {
   getFormattedCustomer(consultant: ICustomerContactForm) {
     let tmp = {};
     for (let row of ConsultantTable) {
-      if(this.ts.transform(row.collumnKey) !== '') {
+      if (this.ts.transform(row.collumnKey) !== "") {
         tmp[this.ts.transform(row.collumnKey)] = consultant[row.collumnName];
       }
     }

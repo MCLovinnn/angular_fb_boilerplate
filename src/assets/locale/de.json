@@ -461,6 +461,8 @@
   "contact_personal_country#label": "Country",
   "contact_personal_state#label": "State",
   "contact_personal_city#label": "City",
+  "contact_personal_customerid#label": "ID",
+  "contact_personal_consultantid#label": "ID",
   "save": "Speichern",
   "required_error": "Das ist ein Pflichtfeld!",
   "datepicker_error": "Falsches Datumsformat",

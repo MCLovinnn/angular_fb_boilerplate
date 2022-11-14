@@ -1,9 +1,9 @@
 {
   "/api/*": {
-    "target": "http://localhost:3000/",
+    "target": "https://api.mail.nifag349.mywhc.ca/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true,
-    "pathRewrite": {"^/api" : ""}
+    "pathRewrite": { "^/api": "" }
   }
 }
