@@ -54,6 +54,7 @@ export class TestComponent implements OnInit {
   constructor(private fs: FormService, private formS: FormularService) { }
 
   ngOnInit(): void {
+    this.data = this.formS.forms;
     this.formS.get().subscribe((data: IFormular[]) => {
       // console.log(data);
       // data.forEach((row: IFormular) => {
