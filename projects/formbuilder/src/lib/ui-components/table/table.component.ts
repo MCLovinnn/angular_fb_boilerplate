@@ -63,6 +63,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() dataSource = new MatTableDataSource<any>();
   resultsLength = 0;
   filterControl = new FormControl('');
+  actionsAdded = false;
   @Input() displayedColumns: ITableHeader[] = [];
   @Input() viewOptions: ITableViewOptions;
   @Input() data = [];
@@ -76,6 +77,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private ts: TranslatePipe) {
+      this.actionsAdded = false;
+      this.displayedColumns.forEach((value: ITableHeader) => {
+        if(value.collumnName === 'actions') {
+          this.actionsAdded = true;
+        }
+      })
   }
 
   applyFilter(filterValue: string) {
@@ -107,7 +114,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       this.displayedColumns.unshift({collumnName: 'select'});
     }
     if (this.viewOptions.showActions) {
-      this.displayedColumns.push({collumnName: 'actions'});
+      console.log(this.displayedColumns.includes({collumnName: 'actions'}));
+
+        this.displayedColumns.push({collumnName: 'actions'});
     }
     this.collumnsToBeDisplayed = this.displayedColumns.map(header => header.collumnName);
     this.initialColumns = this.displayedColumns.filter((column) => column.collumnName !== '')

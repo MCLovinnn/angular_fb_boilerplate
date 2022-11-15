@@ -1,5 +1,5 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, ViewChild, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
@@ -34,7 +34,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   @Input() config: IAutoCompleteOptions = {
     groupBy: false
   };
-
+  @Output() optionChange: EventEmitter<ICodeEntry[]> = new EventEmitter<ICodeEntry[]>();
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('chipField') chipField: MatFormField;
   @ViewChild('error') error: ElementRef;
@@ -51,6 +51,10 @@ export class ChipsCompleteComponent extends BaseFieldComponent
     super.ngOnInit();
     // console.log(this.name);
 
+    this.setUp();
+  }
+
+  setUp() {
     let config = this.fs.getConfigByName(this.name);
     this.options = config.options ? config.options : this.options;
     this.filteredFruits = of(this.options);
@@ -125,7 +129,11 @@ export class ChipsCompleteComponent extends BaseFieldComponent
         if (this.actualOptions >= 0) {
           let option = this.options[this.actualOptions];
           if (this.fruits.indexOf(this.ts.data[option.key]) === -1) {
-            this.fruits.push(this.ts.data[option.key]);
+            if(this.config.technical) {
+              this.fruits.push(option.value);
+            } else {
+              this.fruits.push(this.ts.data[option.key]);
+            }
             this.control.setValue(this.fruits.toString());
           }
         }
@@ -150,7 +158,11 @@ export class ChipsCompleteComponent extends BaseFieldComponent
 
   selected(event: MatAutocompleteSelectedEvent): void {
     if (this.fruits.indexOf(event.option.viewValue) === -1) {
-      this.fruits.push(event.option.viewValue);
+      if(this.config.technical) {
+        this.fruits.push(event.option.value);
+      } else {
+        this.fruits.push(event.option.viewValue);
+      }
     }
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
