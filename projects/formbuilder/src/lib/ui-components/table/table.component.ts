@@ -1,5 +1,15 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,7 +19,6 @@ import { AngularCsv } from '../../classes/angular-csv';
 import { TranslatePipe } from '../../services/translation.pipe';
 import * as moment from 'moment';
 
-
 export enum TableType {
   USER = 'USER',
   FILE = 'FILE',
@@ -17,7 +26,6 @@ export enum TableType {
 }
 
 export interface ITableViewOptions {
-
   type: TableType;
 
   searchable: boolean;
@@ -45,6 +53,17 @@ export interface ITableHeader {
   widthInPercentage?: number;
 }
 
+export interface CSVOptions {
+  fieldSeparator: string;
+  quoteStrings: string;
+  decimalseparator: string;
+  showLabels: boolean;
+  showTitle: boolean;
+  title: string;
+  headers: {};
+  useBom?: boolean;
+  noDownload?: boolean;
+}
 
 // TODO: A structure that helps generation the table
 // TODO: Make the action buttons configurable. Eg.: disabled
@@ -55,7 +74,6 @@ export interface ITableHeader {
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-
 export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   selection = new SelectionModel<any>(true, []);
   collumnsToBeDisplayed: string[] = [];
@@ -67,6 +85,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() displayedColumns: ITableHeader[] = [];
   @Input() viewOptions: ITableViewOptions;
   @Input() data = [];
+  @Input() csvOptions: CSVOptions;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @Output() edit: EventEmitter<any> = new EventEmitter<any>();
@@ -74,15 +93,13 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteBulk: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(
-    private dialog: MatDialog,
-    private ts: TranslatePipe) {
-      this.actionsAdded = false;
-      this.displayedColumns.forEach((value: ITableHeader) => {
-        if(value.collumnName === 'actions') {
-          this.actionsAdded = true;
-        }
-      })
+  constructor(private dialog: MatDialog, private ts: TranslatePipe) {
+    this.actionsAdded = false;
+    this.displayedColumns.forEach((value: ITableHeader) => {
+      if (value.collumnName === 'actions') {
+        this.actionsAdded = true;
+      }
+    });
   }
 
   applyFilter(filterValue: string) {
@@ -99,9 +116,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.filteredData.forEach(row => this.selection.select(row));
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.filteredData.forEach(row => this.selection.select(row));
   }
 
   ngOnInit() {
@@ -111,15 +128,19 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       this.viewOptions.showDeleteAllButton = true;
     }
     if (this.viewOptions.showCheckbox) {
-      this.displayedColumns.unshift({collumnName: 'select'});
+      this.displayedColumns.unshift({ collumnName: 'select' });
     }
     if (this.viewOptions.showActions) {
-        this.displayedColumns.push({collumnName: 'actions'});
+      this.displayedColumns.push({ collumnName: 'actions' });
     }
-    this.collumnsToBeDisplayed = this.displayedColumns.map(header => header.collumnName);
-    this.initialColumns = this.displayedColumns.filter((column) => column.collumnName !== '')
-      .map((column) => column.collumnName);
-    this.dataSource.filterPredicate = (data: any, filter: string) => this.customFilterBasedOnDisplayColumns(data, filter);
+    this.collumnsToBeDisplayed = this.displayedColumns.map(
+      header => header.collumnName
+    );
+    this.initialColumns = this.displayedColumns
+      .filter(column => column.collumnName !== '')
+      .map(column => column.collumnName);
+    this.dataSource.filterPredicate = (data: any, filter: string) =>
+      this.customFilterBasedOnDisplayColumns(data, filter);
   }
 
   ngAfterViewInit() {
@@ -127,12 +148,16 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     this.dataSource.sort = this.sort;
 
     if (this.viewOptions.dateStringToDateFilter) {
-      this.dataSource.sortingDataAccessor = (item, property): string | number => {
+      this.dataSource.sortingDataAccessor = (
+        item,
+        property
+      ): string | number => {
         switch (property) {
           case this.viewOptions.dateStringToDateFilter: {
             return moment(item[property], 'L', 'de', true).unix();
-          };
-          default: return item[property];
+          }
+          default:
+            return item[property];
         }
       };
     }
@@ -156,7 +181,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     this.edit.emit(row);
   }
 
-
   onDownload(row: any) {
     this.download.emit(row);
   }
@@ -167,7 +191,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onDeleteSelectedRecords() {
-    const filteredDatasource = this.dataSource.filteredData.filter(item => this.selection.selected.indexOf(item) >= 0);
+    const filteredDatasource = this.dataSource.filteredData.filter(
+      item => this.selection.selected.indexOf(item) >= 0
+    );
     this.deleteBulk.emit(filteredDatasource);
     this.selection.clear();
   }
@@ -177,13 +203,19 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       // console.log(data);
       // console.log(columnName);
 
-      if (data[columnName] && data[columnName].toString().trim().toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
+      if (
+        data[columnName] &&
+        data[columnName]
+          .toString()
+          .trim()
+          .toLowerCase()
+          .indexOf(filter.toLowerCase()) >= 0
+      ) {
         return true;
       }
     }
     return false;
   }
-
 
   getDisplayData(colums) {
     const result = [];
@@ -192,7 +224,15 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       const row = {};
       // tslint:disable-next-line: prefer-for-of
       for (let y = 0; y < colums.length; y++) {
-        row[colums[y].collumnName] = this.data[i][colums[y].collumnName] ? this.data[i][colums[y].collumnName] : ' ';
+        if(this.csvOptions && this.csvOptions.fieldSeparator === ','){
+          row[colums[y].collumnName] = this.data[i][colums[y].collumnName]
+            ? this.data[i][colums[y].collumnName].split(',').join(';')
+            : ' ';
+        } else {
+          row[colums[y].collumnName] = this.data[i][colums[y].collumnName]
+            ? this.data[i][colums[y].collumnName]
+            : ' ';
+        }
       }
       // console.log('row', row);
       result.push(row);
@@ -208,7 +248,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       const row = {};
       // tslint:disable-next-line: prefer-for-of
       for (let y = 0; y < colums.length; y++) {
-        row[colums[y].collumnName] = this.dataSource.filteredData[i][colums[y].collumnName];
+        row[colums[y].collumnName] = this.dataSource.filteredData[i][
+          colums[y].collumnName
+        ];
       }
       // console.log('row', row);
       result.push(row);
@@ -222,30 +264,46 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   csvExport() {
-
     let columns = Object.assign([], this.displayedColumns);
-    let columnNames = Object.assign([], this.displayedColumns.map(header => header.collumnKey ?
-      this.ts.transform(header.collumnKey) : header.collumnName));
-    columns = columns.filter((el) => {
-      return el.collumnName !== '' && el.collumnName !== 'select' && el.collumnName !== 'actions';
+    let columnNames = Object.assign(
+      [],
+      this.displayedColumns.map(header =>
+        header.collumnKey
+          ? this.ts.transform(header.collumnKey)
+          : header.collumnName
+      )
+    );
+    columns = columns.filter(el => {
+      return (
+        el.collumnName !== '' &&
+        el.collumnName !== 'select' &&
+        el.collumnName !== 'actions'
+      );
     });
-    columnNames = columnNames.filter((el) => {
+    columnNames = columnNames.filter(el => {
       return el !== '' && el !== 'select' && el !== 'actions';
     });
     const tmpData = this.getDisplayData(columns);
 
-    const name = this.viewOptions.csvName ? this.viewOptions.csvName : 'Formbuilder';
-    const options = {
-      fieldSeparator: ';',
-      quoteStrings: '"',
-      decimalseparator: '.',
-      showLabels: true,
-      showTitle: false,
-      title: name,
-      useBom: true,
-      noDownload: false,
-      headers: columnNames
-    };
+    const name = this.viewOptions.csvName
+      ? this.viewOptions.csvName
+      : 'Formbuilder';
+    let options: CSVOptions;
+    if (this.csvOptions) {
+      options = this.csvOptions;
+    } else {
+      options = {
+        fieldSeparator: ';',
+        quoteStrings: '"',
+        decimalseparator: '.',
+        showLabels: true,
+        showTitle: false,
+        title: name,
+        useBom: true,
+        noDownload: false,
+        headers: columnNames
+      };
+    }
 
     // console.log(columns);
     const file = new AngularCsv(tmpData, name, options);
