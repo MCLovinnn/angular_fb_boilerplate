@@ -1,5 +1,13 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, ElementRef, ViewChild, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
@@ -14,6 +22,7 @@ import { AutoSearch } from '../../interfaces/imenu';
 import { IAutoCompleteOptions } from '../../interfaces/iautocompleteoption';
 import { IValidator } from '../../interfaces/ivalidator';
 import { MatFormField } from '@angular/material/form-field';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-chips-complete',
@@ -34,7 +43,9 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   @Input() config: IAutoCompleteOptions = {
     groupBy: false
   };
-  @Output() optionChange: EventEmitter<ICodeEntry[]> = new EventEmitter<ICodeEntry[]>();
+  @Output() optionChange: EventEmitter<ICodeEntry[]> = new EventEmitter<
+    ICodeEntry[]
+  >();
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('chipField') chipField: MatFormField;
   @ViewChild('error') error: ElementRef;
@@ -85,33 +96,41 @@ export class ChipsCompleteComponent extends BaseFieldComponent
     // console.log(this.form);
     this.synchtoFormbuilder();
 
-    this.control.valueChanges.subscribe((val) => {
+    this.control.valueChanges.subscribe(val => {
       this.focusEvent();
-      if(!val) {
+      if (!val) {
         this.fruitCtrl.reset();
       }
     });
   }
 
   synchtoFormbuilder() {
-    const validators = this.fs.getFieldByName(this.name).validators as IValidator;
+    const validators = this.fs.getFieldByName(this.name)
+      .validators as IValidator;
     validators.required = this.required;
     this.fruitCtrl.setValidators(this.fs.buildValidators(validators));
     this.fruitCtrl.updateValueAndValidity();
   }
 
   focusEvent() {
-    if(this.required && this.fs.getFormControl({name:this.name}).value === null) {
-      this.fruitCtrl.setErrors({required: true});
+    if (
+      this.required &&
+      this.fs.getFormControl({ name: this.name }).value === null
+    ) {
+      this.fruitCtrl.setErrors({ required: true });
       // this.error.nativeElement
     } else {
-      this.fruitCtrl.setErrors({required: false});
+      this.fruitCtrl.setErrors({ required: false });
     }
 
-    if(this.fs.getFormControl({name:this.name}).invalid) {
-      this.chipField._elementRef.nativeElement.classList.add('mat-form-field-invalid');
+    if (this.fs.getFormControl({ name: this.name }).invalid) {
+      this.chipField._elementRef.nativeElement.classList.add(
+        'mat-form-field-invalid'
+      );
     } else {
-      this.chipField._elementRef.nativeElement.classList.remove('mat-form-field-invalid');
+      this.chipField._elementRef.nativeElement.classList.remove(
+        'mat-form-field-invalid'
+      );
     }
   }
 
@@ -129,7 +148,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
         if (this.actualOptions >= 0) {
           let option = this.options[this.actualOptions];
           if (this.fruits.indexOf(this.ts.data[option.key]) === -1) {
-            if(this.config.technical) {
+            if (this.config.technical) {
               this.fruits.push(option.value);
             } else {
               this.fruits.push(this.ts.data[option.key]);
@@ -157,13 +176,10 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    if (this.fruits.indexOf(event.option.viewValue) === -1) {
-      if(this.config.technical) {
+    if (this.fruits.indexOf(event.option.value) === -1) {
         this.fruits.push(event.option.value);
-      } else {
-        this.fruits.push(event.option.viewValue);
-      }
     }
+
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
     this.control.setValue(this.fruits.toString());
@@ -212,5 +228,20 @@ export class ChipsCompleteComponent extends BaseFieldComponent
     }
     // console.log(this.options);
     return this.options;
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      this.control.setValue(this.fruits.toString());
+
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 }

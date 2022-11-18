@@ -54,6 +54,8 @@ import { SlideToggleComponent } from './ui-components/slideToggle/slideToggle.co
 import { CheckBoxGroupComponent } from './ui-components/check-box-group/check-box-group.component';
 import { ChipsCompleteComponent } from './ui-components/chips-complete/chips-complete.component';
 import { MatChipsModule } from '@angular/material/chips';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 registerLocaleData(localeDe, 'de');
 
@@ -110,7 +112,8 @@ registerLocaleData(localeDe, 'de');
     MatSliderModule,
     MatSlideToggleModule,
     MatChipsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    DragDropModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'de' },

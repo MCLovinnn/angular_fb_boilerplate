@@ -1,8 +1,18 @@
 <ng-container *ngIf="form" [formGroup]="form">
   <mat-form-field class="example-chip-list" #chipField>
-    <mat-chip-list #chipList [multiple]="multiple">
+    <mat-chip-list
+      #chipList
+      [multiple]="multiple"
+      cdkDropList
+      cdkDropListOrientation="horizontal"
+      [cdkDropListData]="fruits"
+      (cdkDropListDropped)="drop($event)"
+      class="example-list"
+    >
       <ng-container *ngIf="!config.technical">
         <mat-chip
+          cdkDrag
+          class="example-box"
           *ngFor="let fruit of fruits"
           (removed)="remove(fruit)"
           [selectable]="active"
@@ -15,6 +25,8 @@
       </ng-container>
       <ng-container *ngIf="config.technical">
         <mat-chip
+          cdkDrag
+          class="example-box"
           *ngFor="let fruit of fruits"
           (removed)="remove(fruit)"
           [selectable]="active"

@@ -114,8 +114,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       this.displayedColumns.unshift({collumnName: 'select'});
     }
     if (this.viewOptions.showActions) {
-      console.log(this.displayedColumns.includes({collumnName: 'actions'}));
-
         this.displayedColumns.push({collumnName: 'actions'});
     }
     this.collumnsToBeDisplayed = this.displayedColumns.map(header => header.collumnName);
