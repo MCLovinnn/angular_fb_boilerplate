@@ -4,18 +4,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  auth: {
-    domain: "dev-zud0vau8n0mr82bj.us.auth0.com",
-    clientId: "AZLzubWCAkwMYLIjck5Az0UHt6kVbvRp",
-    audience: "https://mail.nifag349.mywhc.ca",
-    apiUrl: "https://api.mail.nifag349.mywhc.ca",
-    organization: "org_rgwTUCY9YkKXwZ83",
-    redirectUri: window.location.origin
-  },
-  dev: {
-    apiUrl: "/api",
-  }
+  production: false
 };
 
 /*

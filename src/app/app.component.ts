@@ -3,8 +3,6 @@ import { FormBuilder } from '@angular/forms';
 import { ConnectorService } from './services/connector.service';
 import { DataConnectorService, FormService, TranslationService } from 'projects/formbuilder/src/public-api';
 import { MatTabGroup } from '@angular/material/tabs';
-import { AuthService } from '@auth0/auth0-angular';
-import { AuthenticationService } from './services/auth.service';
 
 
 export interface Tile {
@@ -29,9 +27,7 @@ export class AppComponent implements OnInit {
     public fb: FormBuilder,
     public fs: FormService,
     private cs: ConnectorService,
-    public as: AuthenticationService,
-    public ts: TranslationService,
-    public auth: AuthService) {
+    public ts: TranslationService,) {
 
     // cs.get('config').subscribe(val => console.log(val));
 
@@ -57,15 +53,12 @@ export class AppComponent implements OnInit {
   }
 
   doIt() {
-    this.as.callApi('customer');
   }
 
   logout() {
-    this.auth.logout();
   }
 
   isLoggedIn() {
-    return this.as.isLoggedIn;
   }
 }
 

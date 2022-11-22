@@ -74,6 +74,10 @@ function writeTxtFile(path, entries, res, language) {
       }
 
       if (texts != {}) {
+        const tmpTxts = Object.entries(texts).filter(([key, value]) => {
+          return key.split('_').length !== 2;
+        });
+        texts = Object.fromEntries(tmpTxts);
         Object.assign(entries, texts);
       }
       writeFile(
@@ -116,7 +120,9 @@ function writeConfigFile(path, lang, config, res) {
   var texts = {};
   readFile(path + "config.json", "utf8", (err, data) => {
     if (err) {
-      writeFile(path + "config.json", JSON.stringify(config), {}, function(error) {
+      writeFile(path + "config.json", JSON.stringify(config), {}, function(
+        error
+      ) {
         if (error) {
           console.log(error);
           res.send({ error: error });
@@ -210,7 +216,6 @@ function updateTxtKey(obj, res) {
         data = JSON.parse(data);
         _.merge(data, obj);
 
-
         writeFile(path + file, JSON.stringify(data), {}, function(error) {
           if (error) {
             console.log(error);
@@ -221,7 +226,6 @@ function updateTxtKey(obj, res) {
     res.send({ done: true });
   });
 }
-
 
 function deleteTxtKey(obj, name, res) {
   // console.log(obj);
@@ -249,7 +253,7 @@ function deleteTxtKey(obj, name, res) {
         if (obj.options) {
           obj.options.forEach(opt => {
             delete data[opt.key];
-            delete data[opt.key+'#desc'];
+            delete data[opt.key + "#desc"];
           });
         }
 
@@ -319,7 +323,6 @@ function deleteOption(name, res) {
     res.send({ done: true });
   });
 }
-
 
 export {
   generateTxtFile,

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormService } from 'projects/formbuilder/src/public-api';
-import { AuthenticationService } from '../services/auth.service';
-import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +11,8 @@ import { AuthService } from '@auth0/auth0-angular';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   constructor(
-    private as: AuthenticationService,
     private fs: FormService,
     private router: Router,
-    public auth: AuthService
   ) {
   }
 
@@ -28,7 +24,6 @@ export class LoginComponent implements OnInit {
     let username = this.fs.getFormControl({name: 'home_login_username'}).value;
     let password = this.fs.getFormControl({name: 'home_login_password'}).value;
 
-    this.as.login();
     // this.as.saveUserProfile({test: 'test'});
     // this.router.navigateByUrl('/');
 /*

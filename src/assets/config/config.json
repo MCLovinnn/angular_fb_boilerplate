@@ -5,19 +5,13 @@
         "name": "home_login_username",
         "htmlType": "text",
         "value": "",
-        "validators": {
-          "minLength": 4,
-          "required": true
-        }
+        "validators": { "minLength": 4, "required": true }
       },
       "password": {
         "name": "home_login_password",
         "htmlType": "text",
         "value": "",
-        "validators": {
-          "minLength": 6,
-          "required": true
-        }
+        "validators": { "minLength": 6, "required": true }
       }
     },
     "test": {
@@ -101,10 +95,7 @@
         "name": "home_test_file",
         "htmlType": "file",
         "disabled": false,
-        "validators": {
-          "required": true,
-          "pattern": ""
-        }
+        "validators": { "required": true, "pattern": "" }
       }
     }
   }

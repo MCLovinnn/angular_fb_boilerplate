@@ -74,4 +74,16 @@ export class ConnectorService {
       );
     });
   }
+
+  moveElementsToForm(entries: any[], newForm = '', newPage = '') {
+    console.log(entries);
+
+    entries.forEach(val => {
+      const keys = val.name.split('_');
+      const page = newPage !== '' ? newPage : keys[0];
+      const form = newForm !== '' ? newForm : keys[1];
+      const name = page+'_'+form+'_'+keys[2];
+      console.log(name);
+    });
+  }
 }

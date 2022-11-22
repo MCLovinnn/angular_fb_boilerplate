@@ -153,6 +153,8 @@
   "home_slider_inverted#label": "Invertiert",
   "home_slider_inverted#hintlabel": "",
   "home_slider_inverted#tooltip": "",
+  "home_ui_moveElementsPage#label": "Neuer Seitenname",
+  "home_ui_moveElementsForm#label": "Neuer Formname",
   "changeType": "Der Type verändert auch die bisherige Konfiguration",
   "changeName": "Der Name änder den Key",
   "config_table_name": "Schlüssel",
@@ -175,5 +177,6 @@
   "min_error": "Minimum beträgt ${param}!",
   "pattern_error": "Das Pattern: ${param} wurde nicht eingehalten!",
   "please_choose": "Bitte Wählen...",
-  "reset": "Zurücksetzen"
+  "reset": "Zurücksetzen",
+  "moveElements": "Verschieben"
 }

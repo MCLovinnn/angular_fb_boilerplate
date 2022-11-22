@@ -1,20 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, Input, Output, EventEmitter } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { Injectable, Input, Output, EventEmitter } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class TranslationService {
-// tslint:disable-next-line: no-output-on-prefix
+  // tslint:disable-next-line: no-output-on-prefix
   @Output() onLangChange: EventEmitter<string> = new EventEmitter();
-// tslint:disable-next-line: no-output-on-prefix
+  // tslint:disable-next-line: no-output-on-prefix
   @Output() onDataChange: EventEmitter<any> = new EventEmitter();
 
   data: any = {};
-  lang = 'de';
+  lang = "de";
   userData = {};
 
-  private _path = '';
+  private _path = "";
   constructor(private http: HttpClient) {
     this.onLangChange.subscribe(val => {
       this.lang = val;
@@ -27,7 +27,7 @@ export class TranslationService {
 
   addTxtFile(path: string) {
     return new Promise<{}>((resolve, reject) => {
-      const langPath = `${path}${this.lang || 'de'}.json`;
+      const langPath = `${path}${this.lang || "de"}.json`;
       // console.log(langPath);
       this.http.get<{}>(langPath).subscribe(
         translation => {
@@ -45,14 +45,34 @@ export class TranslationService {
 
   getUserData() {
     let txtFile = {};
-    for(const key in this.userData) {
-      if(this.userData) {
+    for (const key in this.userData) {
+      if (this.userData) {
         Object.assign(txtFile, {
           [key]: this.data[key]
         });
       }
     }
     return txtFile;
+  }
+
+  deleteUserTxts(data: any) {
+    for (const key in data) {
+      if (this.userData[key]) {
+        console.log('delete', key);
+
+        delete this.userData[key];
+      }
+    }
+  }
+
+  addUserTxt(data: any) {
+    for (const key in data) {
+      if (data[key]) {
+        console.log('add', key);
+
+        this.userData[key] = data[key];
+      }
+    }
   }
 
   setLang(lang: string) {
@@ -68,7 +88,7 @@ export class TranslationService {
 
   use(lang: string): Promise<{}> {
     return new Promise<{}>((resolve, reject) => {
-      const langPath = `${this._path}${lang || 'de'}.json`;
+      const langPath = `${this._path}${lang || "de"}.json`;
       // console.log(langPath);
       this.http.get<{}>(langPath).subscribe(
         translation => {
@@ -90,14 +110,16 @@ export class TranslationService {
     // this.data.
     let newdata = {};
     for (let [key, value] of Object.entries(this.data)) {
-      console.log(key + ':' + value);
+      console.log(key + ":" + value);
       let found = false;
       for (let [key2, value2] of Object.entries(data)) {
-        if(key !== key2) { found = true; }
+        if (key !== key2) {
+          found = true;
+        }
         // console.log(key + ':' + value);
       }
-      if(!found) {
-        Object.assign(newdata, {[key]: value});
+      if (!found) {
+        Object.assign(newdata, { [key]: value });
       }
     }
     this.data = newdata;
@@ -105,8 +127,8 @@ export class TranslationService {
 
   getFBData() {
     let txtFile = {};
-    for(const key in this.data) {
-      if(!this.userData[key]) {
+    for (const key in this.data) {
+      if (!this.userData[key]) {
         Object.assign(txtFile, {
           [key]: this.data[key]
         });

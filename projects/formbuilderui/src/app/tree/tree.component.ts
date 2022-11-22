@@ -24,6 +24,8 @@ import { ICodeEntry } from '../../../../formbuilder/src/lib/interfaces/ifield';
 import { FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { ISliderConfig } from '../../../../formbuilder/src/lib/interfaces/isliderconfig';
+import { MatDialog } from '@angular/material/dialog';
+import { MoveElementsComponent } from '../dialogs/move-elements/move-elements.component';
 
 /**
  * Node for to-do item
@@ -152,7 +154,8 @@ export class TreeComponent implements OnInit {
     public fs: FormService,
     private configS: ConfigService,
     private ts: TranslationService,
-    private fieldS: FieldService
+    private fieldS: FieldService,
+    public dialog: MatDialog
   ) {
     // fs.addConfig({home: {tree: homeTreeConfig}});
     this.treeFlattener = new MatTreeFlattener(
@@ -356,7 +359,7 @@ export class TreeComponent implements OnInit {
       tooltip: key + '#tooltip'
     };
     // this.fs.addConfig(tmpConf);
-    _.merge(this.configS.configs, tmpConf)
+    _.merge(this.configS.configs, tmpConf);
     // this.configS.configs.push(tmpConf);
     this.cs.doPost('config/', 'de', this.configS.configs).subscribe(val => {
       const lngObj = {
@@ -399,7 +402,7 @@ export class TreeComponent implements OnInit {
     const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
     field.internalType = data.htmlType;
-    if(data.config && data.htmlType === 'slider') {
+    if (data.config && data.htmlType === 'slider') {
       field.sliderOptions = data.config as ISliderConfig;
     }
 
@@ -408,15 +411,15 @@ export class TreeComponent implements OnInit {
   }
 
   generateConfig() {
-    const newData = this.configS.getAppConfigs(this.fs.configs);
-    // console.log(newData);
+    // console.log((this.fs.configs));
 
-    this.cs
-      .doPost('config/', this.ts.lang, newData)
-      .subscribe(val => {
-        console.log(val);
-        location.reload();
-      });
+    const newData = this.configS.configs;
+    console.log(newData);
+
+    // this.cs.doPost("config/", this.ts.lang, newData).subscribe(val => {
+    //   // console.log(val);
+    //   location.reload();
+    // });
   }
 
   generateLang() {
@@ -465,5 +468,88 @@ export class TreeComponent implements OnInit {
           });
         // this.updateTxtFile();
       });
+  }
+  moveElementsToForm() {
+    // console.log(this.checklistSelection);
+
+    const dialogRef = this.dialog.open(MoveElementsComponent, {
+      width: 'fit-content',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed');
+      const page = this.fs.getFormControl({ name: 'home_ui_moveElementsPage' })
+        .value;
+      const form = this.fs.getFormControl({ name: 'home_ui_moveElementsForm' })
+        .value;
+
+      if (page !== '' && form !== '') {
+        let confObj = this.configS.configs;
+        // console.log(confObj);
+        // console.log(page, form);
+
+        this.checklistSelection.selected.forEach(val => {
+          const keys = val.name.split('_');
+          if (keys.length === 3) {
+            let tmpConf = confObj[keys[0]][keys[1]][keys[2]];
+            // console.log(tmpConf);
+
+            const name = page + '_' + form + '_' + keys[2];
+            const oldName = tmpConf.name;
+
+            let txtsKeys = {
+              [oldName + '#label']: '',
+              [oldName + '#hintlabel']: '',
+              [oldName + '#tooltip']: ''
+            };
+            console.log(this.ts.data[oldName + '#label']);
+
+            let tmpTxts = {
+              [name + '#label']: this.ts.data[oldName + '#label'],
+              [name + '#hintlabel']: this.ts.data[oldName + '#hintlabel'],
+              [name + '#tooltip']: this.ts.data[oldName + '#tooltip']
+            };
+
+            this.ts.deleteUserTxts(txtsKeys);
+            this.ts.addUserTxt(tmpTxts);
+            console.log(this.ts.data['home_ui_slider#label']);
+
+            console.log(this.ts.getUserData());
+
+            this.cs
+              .updateTxtFile(this.ts.lang, this.ts.getUserData())
+              .subscribe(res => {
+                console.log(res);
+
+                tmpConf.name = name;
+                const merg = {
+                  [page]: {
+                    [form]: {
+                      [keys[2]]: tmpConf
+                    }
+                  }
+                };
+                // Object.assign(confObj, merg);
+                // console.log(confObj);
+                if (!confObj[page]) {
+                  confObj[page] = {};
+                }
+                if (!confObj[page][form]) {
+                  confObj[page][form] = {};
+                }
+                // console.log(confObj);
+
+                confObj[page][form][keys[2]] = tmpConf;
+                // this.configS.deepMergeConfigs([merg]);
+                delete confObj[keys[0]][keys[1]][keys[2]];
+                this.configS.configs = confObj;
+                console.log(this.configS.configs);
+                this.generateConfig();
+              });
+          }
+        });
+      }
+    });
   }
 }

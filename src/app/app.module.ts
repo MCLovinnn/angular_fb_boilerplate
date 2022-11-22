@@ -50,8 +50,6 @@ import {
 } from "projects/formbuilder/src/public-api";
 
 import { NgChartsModule } from "ng2-charts";
-import { AuthModule, AuthHttpInterceptor } from "@auth0/auth0-angular";
-import { environment as env } from "../environments/environment";
 
 registerLocaleData(localeDe, "de");
 
@@ -95,21 +93,10 @@ registerLocaleData(localeDe, "de");
     MatToolbarModule,
     MatTabsModule,
     MatMenuModule,
-    NgChartsModule,
-    AuthModule.forRoot({
-      ...env.auth,
-      httpInterceptor: {
-        allowedList: [`${env.dev.apiUrl}`]
-      }
-    })
+    NgChartsModule
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: "de" },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthHttpInterceptor,
-      multi: true
-    }
+    { provide: MAT_DATE_LOCALE, useValue: "de" }
   ],
   bootstrap: [AppComponent],
   exports: [AppComponent]

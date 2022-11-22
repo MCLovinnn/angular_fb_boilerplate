@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ITableViewOptions, TableType } from 'projects/formbuilder/src/public-api';
 import { CustomerTable } from '../interfaces/icustomer';
 import { ConsultantTable } from '../interfaces/iconsultant';
-import { AuthenticationService } from '../services/auth.service';
 import { FormularService } from '../services/formular.service';
 
 @Component({
@@ -27,20 +26,19 @@ export class HomeComponent implements OnInit {
   data = [];
   dataConsultant = [];
   constructor(
-    private auth: AuthenticationService,
     private formS: FormularService
   ) {
   }
 
   ngOnInit(): void {
-    this.auth.callApi('customer').subscribe((result: any) => {
-       this.transformCustomerData(result.data);
-      // console.log(result);
-    });
-    this.auth.callApi('consultant').subscribe((result: any) => {
-      this.transformConsultantData(result.data);
-    //  console.log(result);
-   });
+  //   this.auth.callApi('customer').subscribe((result: any) => {
+  //      this.transformCustomerData(result.data);
+  //     // console.log(result);
+  //   });
+  //   this.auth.callApi('consultant').subscribe((result: any) => {
+  //     this.transformConsultantData(result.data);
+  //   //  console.log(result);
+  //  });
   }
 
   transformCustomerData(data: any[]) {
@@ -69,6 +67,5 @@ export class HomeComponent implements OnInit {
   }
 
   doIt() {
-    this.auth.callApi('consultant');
   }
 }

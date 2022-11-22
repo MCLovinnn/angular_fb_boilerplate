@@ -150,4 +150,25 @@ export class ConfigService {
     });
     return data;
   }
+
+  deepMergeConfigs(newConfigs: any[]) {
+    let data = {};
+    Object.keys(newConfigs).forEach(page => {
+      const formObj = newConfigs[page];
+      if (formObj) {
+        Object.keys(formObj).forEach(form => {
+          const forM: any = formObj[form];
+          Object.keys(forM).forEach(key => {
+            const field: IField = forM[key];
+
+            if(!this.configs[page] || !this.configs[page][form] || !this.configs[page][form][key]) {
+              // data[page][form][key] = field;
+              merge(data, {[page]: {[form]: {[key]: field}}});
+            }
+          });
+        });
+      }
+    });
+    console.log(data);
+  }
 }

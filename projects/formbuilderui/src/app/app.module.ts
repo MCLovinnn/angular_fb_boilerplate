@@ -46,6 +46,7 @@ import FBCONFIG from '../assets/config/config.json';
 // @ts-ignore
 import CONFIG from '../../../../src/assets/config/config.json';
 import { ListComponent } from './list/list.component';
+import { MoveElementsComponent } from './dialogs/move-elements/move-elements.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -57,7 +58,8 @@ registerLocaleData(localeDe, 'de');
     FieldComponent,
     FormComponent,
     TranslationComponent,
-    ListComponent
+    ListComponent,
+    MoveElementsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Move Elements to new Form</h1>
+<div mat-dialog-content>
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <app-text-input name='home_ui_moveElementsPage'></app-text-input>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <app-text-input name='home_ui_moveElementsForm'></app-text-input>
+      </mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onNoClick()" [disabled]="!isValid()" cdkFocusInitial>Move</button>
+</div>

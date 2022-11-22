@@ -60,7 +60,7 @@ export interface CSVOptions {
   showLabels: boolean;
   showTitle: boolean;
   title: string;
-  headers: {};
+  headers?: {};
   useBom?: boolean;
   noDownload?: boolean;
 }
@@ -291,6 +291,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     let options: CSVOptions;
     if (this.csvOptions) {
       options = this.csvOptions;
+      options.headers = columnNames;
     } else {
       options = {
         fieldSeparator: ';',
