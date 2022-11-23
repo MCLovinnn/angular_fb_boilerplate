@@ -22,7 +22,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SelectComponent } from './ui-components/select/select.component';
 import { TextInputComponent } from './ui-components/text-input/text-input.component';
@@ -55,6 +55,9 @@ import { CheckBoxGroupComponent } from './ui-components/check-box-group/check-bo
 import { ChipsCompleteComponent } from './ui-components/chips-complete/chips-complete.component';
 import { MatChipsModule } from '@angular/material/chips';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { LoadingComponent } from './ui-components/loading/loading.component';
+import {LoadingService} from './services/loading.service';
+import {LoadingInterceptor} from './services/loading.interceptor';
 
 
 registerLocaleData(localeDe, 'de');
@@ -78,7 +81,8 @@ registerLocaleData(localeDe, 'de');
     TableComponent,
     SlideToggleComponent,
     CheckBoxGroupComponent,
-    ChipsCompleteComponent
+    ChipsCompleteComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -119,7 +123,13 @@ registerLocaleData(localeDe, 'de');
     { provide: MAT_DATE_LOCALE, useValue: 'de' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-    TranslatePipe
+    TranslatePipe,
+    LoadingService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [FormbuilderComponent],
   exports: [

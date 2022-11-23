@@ -19,6 +19,7 @@ export { TranslatePipe } from './lib/services/translation.pipe';
 export { AuthenticationService } from './lib/services/authentication.service';
 export { DialogService } from './lib/services/dialog.service';
 export { UserService } from './lib/services/user.service';
+export { LoadingService} from './lib/services/loading.service'
 export * from './lib/ui-components/table/table.component';
 export * from './lib/ui-components/autocomplete/autocomplete.component';
 export * from './lib/ui-components/checkbox/checkbox.component';
