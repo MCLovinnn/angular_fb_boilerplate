@@ -111,6 +111,7 @@ export class AppModule {
 
     ts.setPath("assets/locale/");
     ts.use("de").then(res => {
+      console.log(ts.getFormName('home_test'));
       // console.log(res);
     });
     // console.log(ts.data);

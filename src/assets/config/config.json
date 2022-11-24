@@ -77,6 +77,12 @@
           }
         ]
       },
+      "file": {
+        "name": "home_test_file",
+        "htmlType": "file",
+        "disabled": false,
+        "validators": { "required": true, "pattern": "" }
+      },
       "slider": {
         "name": "home_test_slider",
         "htmlType": "slider",
@@ -90,12 +96,6 @@
           "tickInterval": 2,
           "vertical": false
         }
-      },
-      "file": {
-        "name": "home_test_file",
-        "htmlType": "file",
-        "disabled": false,
-        "validators": { "required": true, "pattern": "" }
       }
     }
   }

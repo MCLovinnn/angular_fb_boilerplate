@@ -63,6 +63,7 @@ export interface CSVOptions {
   headers?: {};
   useBom?: boolean;
   noDownload?: boolean;
+  exportAll?: boolean;
 }
 
 // TODO: A structure that helps generation the table
@@ -217,14 +218,14 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     return false;
   }
 
-  getDisplayData(colums) {
+  getDisplayData(colums, csv = false) {
     const result = [];
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.data.length; i++) {
       const row = {};
       // tslint:disable-next-line: prefer-for-of
       for (let y = 0; y < colums.length; y++) {
-        if(this.csvOptions && this.csvOptions.fieldSeparator === ','){
+        if (csv && this.csvOptions && this.csvOptions.fieldSeparator === ',') {
           row[colums[y].collumnName] = this.data[i][colums[y].collumnName]
             ? this.data[i][colums[y].collumnName].split(',').join(';')
             : ' ';
@@ -241,16 +242,22 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     return result;
   }
 
-  getFilteredDisplayData(colums) {
+  getFilteredDisplayData(colums, csv = false) {
     const result = [];
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.dataSource.filteredData.length; i++) {
       const row = {};
       // tslint:disable-next-line: prefer-for-of
       for (let y = 0; y < colums.length; y++) {
-        row[colums[y].collumnName] = this.dataSource.filteredData[i][
-          colums[y].collumnName
-        ];
+        if (csv && this.csvOptions.fieldSeparator === ',') {
+          row[colums[y].collumnName] = this.data[i][colums[y].collumnName]
+            ? this.data[i][colums[y].collumnName].split(',').join(';')
+            : ' ';
+        } else {
+          row[colums[y].collumnName] = this.dataSource.filteredData[i][
+            colums[y].collumnName
+          ];
+        }
       }
       // console.log('row', row);
       result.push(row);
@@ -283,7 +290,14 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     columnNames = columnNames.filter(el => {
       return el !== '' && el !== 'select' && el !== 'actions';
     });
-    const tmpData = this.getDisplayData(columns);
+
+    let csvData = [];
+    if(this.csvOptions.exportAll) {
+      csvData = this.getDisplayData(columns, true);
+    } else {
+      csvData = this.getFilteredDisplayData(columns, true);
+    }
+    const tmpData = csvData;
 
     const name = this.viewOptions.csvName
       ? this.viewOptions.csvName

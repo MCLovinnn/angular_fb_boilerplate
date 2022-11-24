@@ -19,6 +19,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
@@ -117,6 +118,7 @@ registerLocaleData(localeDe, 'de');
     MatSlideToggleModule,
     MatChipsModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule,
     DragDropModule
   ],
   providers: [

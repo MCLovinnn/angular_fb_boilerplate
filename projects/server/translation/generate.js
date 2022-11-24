@@ -74,11 +74,17 @@ function writeTxtFile(path, entries, res, language) {
       }
 
       if (texts != {}) {
+        for (const [key, value] of Object.entries(entries)) {
+          if (texts[key]) {
+            entries[key] = texts[key];
+          }
+        }
+
         const tmpTxts = Object.entries(texts).filter(([key, value]) => {
-          return key.split('_').length !== 2;
+          return key.split('_').length < 3;
         });
-        texts = Object.fromEntries(tmpTxts);
-        Object.assign(entries, texts);
+        const newTexts = Object.fromEntries(tmpTxts);
+        Object.assign(entries, newTexts);
       }
       writeFile(
         path + language + ".json",

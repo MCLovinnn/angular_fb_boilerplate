@@ -416,10 +416,10 @@ export class TreeComponent implements OnInit {
     const newData = this.configS.configs;
     console.log(newData);
 
-    // this.cs.doPost("config/", this.ts.lang, newData).subscribe(val => {
-    //   // console.log(val);
-    //   location.reload();
-    // });
+    this.cs.doPost("config/", this.ts.lang, newData).subscribe(val => {
+      // console.log(val);
+      location.reload();
+    });
   }
 
   generateLang() {
@@ -503,35 +503,27 @@ export class TreeComponent implements OnInit {
               [oldName + '#hintlabel']: '',
               [oldName + '#tooltip']: ''
             };
-            console.log(this.ts.data[oldName + '#label']);
+            // console.log(this.ts.data[oldName + '#label']);
 
             let tmpTxts = {
-              [name + '#label']: this.ts.data[oldName + '#label'],
-              [name + '#hintlabel']: this.ts.data[oldName + '#hintlabel'],
-              [name + '#tooltip']: this.ts.data[oldName + '#tooltip']
+              [name + '#label']: this.ts.data[oldName + '#label'] ? this.ts.data[oldName + '#label'] : ' ',
+              [name + '#hintlabel']: this.ts.data[oldName + '#hintlabel'] ? this.ts.data[oldName + '#hintlabel'] : ' ',
+              [name + '#tooltip']: this.ts.data[oldName + '#tooltip'] ? this.ts.data[oldName + '#tooltip'] : ' '
             };
+            // console.log(tmpTxts);
 
             this.ts.deleteUserTxts(txtsKeys);
             this.ts.addUserTxt(tmpTxts);
-            console.log(this.ts.data['home_ui_slider#label']);
+            // console.log(this.ts.data['home_ui_slider#label']);
 
             console.log(this.ts.getUserData());
 
             this.cs
               .updateTxtFile(this.ts.lang, this.ts.getUserData())
               .subscribe(res => {
-                console.log(res);
+                // console.log(res);
 
                 tmpConf.name = name;
-                const merg = {
-                  [page]: {
-                    [form]: {
-                      [keys[2]]: tmpConf
-                    }
-                  }
-                };
-                // Object.assign(confObj, merg);
-                // console.log(confObj);
                 if (!confObj[page]) {
                   confObj[page] = {};
                 }
@@ -541,8 +533,15 @@ export class TreeComponent implements OnInit {
                 // console.log(confObj);
 
                 confObj[page][form][keys[2]] = tmpConf;
-                // this.configS.deepMergeConfigs([merg]);
                 delete confObj[keys[0]][keys[1]][keys[2]];
+                if(Object.keys(confObj[keys[0]][keys[1]]).length === 0) {
+                delete confObj[keys[0]][keys[1]]
+                }
+
+                if(Object.keys(confObj[keys[0]]).length === 0) {
+                  delete confObj[keys[0]];
+                }
+
                 this.configS.configs = confObj;
                 console.log(this.configS.configs);
                 this.generateConfig();

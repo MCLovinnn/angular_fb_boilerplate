@@ -3,9 +3,7 @@ import { IFormular } from '../formular';
 import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';
 import { FormGroup } from '@angular/forms';
-import { ISliderConfig } from 'projects/formbuilder/src/lib/interfaces/isliderconfig';
-import { IAutoCompleteOptions, FormService, ChipsCompleteComponent } from 'projects/formbuilder/src/public-api';
-import { FileInputComponent } from 'projects/formbuilder/src/public-api';
+import { IAutoCompleteOptions, FormService, ChipsCompleteComponent, TranslationService, FileInputComponent, ISliderConfig } from 'projects/formbuilder/src/public-api';
 
 @Component({
   selector: 'app-formular',
@@ -37,7 +35,7 @@ export class FormularComponent implements OnInit {
       children: [{ name: 'Option' }, { name: 'Test' }, { name: 'Kategory ' }]
     }
   ];
-  constructor(private fs: FormService, private formS: FormularService) {}
+  constructor(private fs: FormService, private formS: FormularService, public ts: TranslationService) {}
 
   ngOnInit(): void {
     if (this.formular) {

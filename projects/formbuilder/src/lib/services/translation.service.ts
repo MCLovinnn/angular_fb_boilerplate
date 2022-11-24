@@ -61,6 +61,7 @@ export class TranslationService {
         console.log('delete', key);
 
         delete this.userData[key];
+        delete this.data[key];
       }
     }
   }
@@ -68,11 +69,13 @@ export class TranslationService {
   addUserTxt(data: any) {
     for (const key in data) {
       if (data[key]) {
-        console.log('add', key);
+        // console.log('add', key);
+        // console.log('value', data[key]);
 
         this.userData[key] = data[key];
       }
     }
+    this.updateData(data);
   }
 
   setLang(lang: string) {
@@ -135,5 +138,17 @@ export class TranslationService {
       }
     }
     return txtFile;
+  }
+
+  getFormName(name: string) {
+    const keys = name.split('_');
+
+    if(keys.length >=2) {
+      const page = keys[0];
+      const form = keys[1];
+      const tmpKey = page+'_'+form+'#formname';
+      const translate = this.data[tmpKey];
+      return translate? translate: form;
+    }
   }
 }
