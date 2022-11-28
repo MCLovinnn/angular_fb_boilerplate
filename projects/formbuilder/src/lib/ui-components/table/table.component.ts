@@ -43,6 +43,11 @@ export interface ITableViewOptions {
   showDeleteAllButton?: boolean;
 
   dateStringToDateFilter?: string;
+
+  paginatorOptions: {
+    steps?: number[];
+    step?: number;
+  }
 }
 
 export interface ITableHeader {
@@ -123,6 +128,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit() {
+    if(!this.viewOptions.paginatorOptions.steps){
+      this.viewOptions.paginatorOptions.steps = [5, 25, 50];
+    }
+    if(!this.viewOptions.paginatorOptions.step){
+      this.viewOptions.paginatorOptions.step = 5;
+    }
     this.dataSource.data = this.data || [];
 
     if (this.viewOptions.showDeleteAllButton !== false) {

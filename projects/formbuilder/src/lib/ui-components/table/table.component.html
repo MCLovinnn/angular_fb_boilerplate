@@ -21,9 +21,9 @@
   </button>
   <mat-paginator
     *ngIf="viewOptions.showPaginator"
-    [pageSizeOptions]="[5, 25, 50]"
+    [pageSizeOptions]="viewOptions.paginatorOptions.steps"
     [length]="resultsLength"
-    [pageSize]="5"
+    [pageSize]="viewOptions.paginatorOptions.step"
     showFirstLastButtons>
   </mat-paginator>
 </div>
