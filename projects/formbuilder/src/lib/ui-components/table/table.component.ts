@@ -128,6 +128,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit() {
+    if(!this.viewOptions.paginatorOptions) {
+      this.viewOptions.paginatorOptions = {};
+    }
     if(!this.viewOptions.paginatorOptions.steps){
       this.viewOptions.paginatorOptions.steps = [5, 25, 50];
     }
