@@ -148,7 +148,8 @@ registerLocaleData(localeDe, 'de');
     SlideToggleComponent,
     TranslatePipe,
     CheckBoxGroupComponent,
-    ChipsCompleteComponent
+    ChipsCompleteComponent,
+    TableComponent
   ]
 })
 

@@ -44,10 +44,10 @@ export interface ITableViewOptions {
 
   dateStringToDateFilter?: string;
 
-  paginatorOptions: {
+  paginatorOptions?: {
     steps?: number[];
     step?: number;
-  }
+  };
 }
 
 export interface ITableHeader {
@@ -56,6 +56,11 @@ export interface ITableHeader {
   collumnKey?: string;
 
   widthInPercentage?: number;
+}
+export enum ExportType {
+  ALL = 'all',
+  FILTERED = 'filter',
+  SELECTED = 'selected'
 }
 
 export interface CSVOptions {
@@ -68,7 +73,7 @@ export interface CSVOptions {
   headers?: {};
   useBom?: boolean;
   noDownload?: boolean;
-  exportAll?: boolean;
+  exportAll?: ExportType;
 }
 
 // TODO: A structure that helps generation the table
@@ -98,6 +103,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() download: EventEmitter<any> = new EventEmitter<any>();
   @Output() delete: EventEmitter<any> = new EventEmitter<any>();
   @Output() deleteBulk: EventEmitter<any> = new EventEmitter<any>();
+  @Output() selectionChange: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private dialog: MatDialog, private ts: TranslatePipe) {
     this.actionsAdded = false;
@@ -128,13 +134,13 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit() {
-    if(!this.viewOptions.paginatorOptions) {
+    if (!this.viewOptions.paginatorOptions) {
       this.viewOptions.paginatorOptions = {};
     }
-    if(!this.viewOptions.paginatorOptions.steps){
+    if (!this.viewOptions.paginatorOptions.steps) {
       this.viewOptions.paginatorOptions.steps = [5, 25, 50];
     }
-    if(!this.viewOptions.paginatorOptions.step){
+    if (!this.viewOptions.paginatorOptions.step) {
       this.viewOptions.paginatorOptions.step = 5;
     }
     this.dataSource.data = this.data || [];
@@ -156,6 +162,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       .map(column => column.collumnName);
     this.dataSource.filterPredicate = (data: any, filter: string) =>
       this.customFilterBasedOnDisplayColumns(data, filter);
+    this.selection.changed.subscribe(vale => {
+      this.selectionChange.emit(vale);
+    });
   }
 
   ngAfterViewInit() {
@@ -280,6 +289,30 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     return result;
   }
 
+  getSelectedDisplayData(colums, csv = false) {
+    const result = [];
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.selection.selected.length; i++) {
+      const row = {};
+      // tslint:disable-next-line: prefer-for-of
+      for (let y = 0; y < colums.length; y++) {
+        if (csv && this.csvOptions.fieldSeparator === ',') {
+          row[colums[y].collumnName] = this.data[i][colums[y].collumnName]
+            ? this.data[i][colums[y].collumnName].split(',').join(';')
+            : ' ';
+        } else {
+          row[colums[y].collumnName] = this.dataSource.filteredData[i][
+            colums[y].collumnName
+          ];
+        }
+      }
+      // console.log('row', row);
+      result.push(row);
+    }
+    // console.log('result', result);
+    return result;
+  }
+
   refresh() {
     this.dataSource.data = this.data;
   }
@@ -306,10 +339,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     });
 
     let csvData = [];
-    if(this.csvOptions.exportAll) {
-      csvData = this.getDisplayData(columns, true);
-    } else {
+    if (this.csvOptions.exportAll === ExportType.SELECTED) {
+      csvData = this.getSelectedDisplayData(columns, true);
+    } else if (this.csvOptions.exportAll === ExportType.FILTERED) {
       csvData = this.getFilteredDisplayData(columns, true);
+    } else {
+      csvData = this.getDisplayData(columns, true);
     }
     const tmpData = csvData;
 

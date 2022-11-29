@@ -100,6 +100,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
       this.focusEvent();
       if (!val) {
         this.fruitCtrl.reset();
+        this.fruits = [];
       }
     });
   }
