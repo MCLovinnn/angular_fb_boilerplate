@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IFormular } from '../formular';
 import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { IAutoCompleteOptions, FormService, ChipsCompleteComponent, TranslationService, FileInputComponent, ISliderConfig } from 'projects/formbuilder/src/public-api';
 
 @Component({
@@ -12,7 +12,7 @@ import { IAutoCompleteOptions, FormService, ChipsCompleteComponent, TranslationS
 })
 export class FormularComponent implements OnInit {
   @Input() formular: IFormular;
-  form: FormGroup;
+  form: UntypedFormGroup;
   update = false;
   backup: IFormular;
 

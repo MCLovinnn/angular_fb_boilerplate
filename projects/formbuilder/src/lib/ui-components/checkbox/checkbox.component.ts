@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BaseFieldComponent } from '../../classes/field';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { TranslationService } from '../../services/translation.service';
 import { ThemePalette } from '@angular/material/core';
@@ -42,7 +42,7 @@ export class CheckboxComponent extends BaseFieldComponent implements OnInit {
     this.options.subtasks.forEach(t => (t.completed = completed));
   }
 
-  constructor(public fb: FormBuilder,
+  constructor(public fb: UntypedFormBuilder,
               public fs: FormService,
               public ts: TranslationService
   ) {

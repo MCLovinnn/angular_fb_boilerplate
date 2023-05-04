@@ -8,7 +8,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { Observable, of } from 'rxjs';
@@ -32,7 +32,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class ChipsCompleteComponent extends BaseFieldComponent
   implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new FormControl('', [Validators.required]);
+  fruitCtrl = new UntypedFormControl('', [Validators.required]);
   filteredFruits: Observable<any[]> = of([]);
   fruits: string[] = [];
   canAdd = true;
@@ -51,7 +51,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
   @ViewChild('error') error: ElementRef;
 
   constructor(
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     public fs: FormService,
     public ts: TranslationService
   ) {

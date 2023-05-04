@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseFieldComponent } from '../../classes/field';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { DateAdapter } from '@angular/material/core';
 import { TranslationService } from '../../services/translation.service';
@@ -14,7 +14,7 @@ import * as moment from 'moment';
 })
 export class DateInputComponent extends BaseFieldComponent implements OnInit {
 
-  constructor(public fb: FormBuilder,
+  constructor(public fb: UntypedFormBuilder,
     public fs: FormService,
     private dateAdapter: DateAdapter<any>,
     public ts: TranslationService) {
@@ -28,7 +28,7 @@ export class DateInputComponent extends BaseFieldComponent implements OnInit {
     super.ngOnInit();
   }
 
-  isMoment(date: FormControl) {
+  isMoment(date: UntypedFormControl) {
     if(!moment.isMoment(date.value)) {
       date.patchValue(moment(date.value, 'L', 'de', true));
     }

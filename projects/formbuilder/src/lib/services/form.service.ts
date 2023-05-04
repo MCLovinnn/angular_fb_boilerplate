@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
-  FormGroup,
-  FormControl,
+  UntypedFormGroup,
+  UntypedFormControl,
   ValidatorFn,
   Validators,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms';
 import { IField } from '../interfaces/ifield';
 import { IValidator } from '../interfaces/ivalidator';
@@ -32,7 +32,7 @@ export function difference(newObj: any, origObj: any) {
   providedIn: 'root'
 })
 export class FormService {
-  forms = new FormGroup({});
+  forms = new UntypedFormGroup({});
   configs: any;
   changes: any;
   configChange: BehaviorSubject<any[]> = new BehaviorSubject([]);
@@ -44,7 +44,7 @@ export class FormService {
     name: 'home_ui_new'
   };
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
     private ds: DialogService,
     private tp: TranslatePipe) {
     this.fieldchange.subscribe(val => {
@@ -72,10 +72,10 @@ export class FormService {
    * @param name : FormName
    * @description adds form to Service of creates one
    */
-  addForm(form: FormGroup, pageName: string) {
+  addForm(form: UntypedFormGroup, pageName: string) {
     if (this.forms !== undefined && this.forms !== null) {
       if (this.forms.get(pageName)) {
-        let tmpForm = this.forms.get(pageName) as FormGroup;
+        let tmpForm = this.forms.get(pageName) as UntypedFormGroup;
         Object.assign(tmpForm, form);
         this.forms.removeControl(pageName);
         this.forms.addControl(pageName, tmpForm);
@@ -171,22 +171,22 @@ export class FormService {
    * @param field : IField
    * @returns FormControl
    */
-  getFormControl(field: IField): FormControl {
+  getFormControl(field: IField): UntypedFormControl {
     const keys = field.name.split('_');
     const page = keys[0];
     const form = keys[1];
     const key = keys[2];
 
     if (
-      ((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(
+      ((this.forms.get(page) as UntypedFormGroup).get(form) as UntypedFormGroup).get(
         field.name
       )
     ) {
-      return ((this.forms.get(page) as FormGroup).get(form) as FormGroup).get(
+      return ((this.forms.get(page) as UntypedFormGroup).get(form) as UntypedFormGroup).get(
         field.name
-      ) as FormControl;
+      ) as UntypedFormControl;
     } else {
-      return new FormControl('', this.buildValidators(field.validators));
+      return new UntypedFormControl('', this.buildValidators(field.validators));
     }
   }
 
@@ -199,12 +199,12 @@ export class FormService {
     const page = keys[0];
     const form = keys[1];
     if (this.forms.get([page, form])) {
-      return (this.forms.get(page) as FormGroup).get(form) as FormGroup;
+      return (this.forms.get(page) as UntypedFormGroup).get(form) as UntypedFormGroup;
     } else {
       if (this.forms.get(page)) {
-        return this.forms.get(page) as FormGroup;
+        return this.forms.get(page) as UntypedFormGroup;
       } else {
-        return new FormGroup({});
+        return new UntypedFormGroup({});
       }
     }
   }
@@ -214,8 +214,8 @@ export class FormService {
    * @returns Formgroup with forms of Page
    */
   getPage(name: string) {
-    if (this.forms.get(name) as FormGroup) {
-      return this.forms.get(name) as FormGroup;
+    if (this.forms.get(name) as UntypedFormGroup) {
+      return this.forms.get(name) as UntypedFormGroup;
     } else {
       return null;
     }
@@ -323,7 +323,7 @@ export class FormService {
             if (field.customValidation) {
               Object.keys(field.customValidation).forEach(validation => {
                 // console.log(field.customValidation[validation]);
-                let fieldToCheck: FormControl | null = null;
+                let fieldToCheck: UntypedFormControl | null = null;
                 const validationObj: ICustomValidation = field.customValidation[validation];
                 const fieldD = this.getFormControl(field);
                 // console.log(validationObj.dialog.msg);

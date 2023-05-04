@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormGroup, FormBuilder, NG_VALIDATORS } from '@angular/forms';
+import { UntypedFormGroup, FormBuilder, NG_VALIDATORS } from '@angular/forms';
 import { ControlpanelComponent } from './controlpanel.component';
 import { FormService, ConfigService } from '../../../../formbuilder/src/public-api';
 
@@ -22,11 +22,11 @@ describe('ControlpanelComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ControlpanelComponent],
       providers: [
-        {provide: FormGroup, useValue: formBuilderStub},
+        {provide: UntypedFormGroup, useValue: formBuilderStub},
         {provide: FormService, useValue: formServiceStub},
         {provide: ConfigService, useValue: configServiceStub},
         {provide: NG_VALIDATORS},
-        {provide: FormGroup}
+        {provide: UntypedFormGroup}
       ]
     });
     fixture = TestBed.createComponent(ControlpanelComponent);

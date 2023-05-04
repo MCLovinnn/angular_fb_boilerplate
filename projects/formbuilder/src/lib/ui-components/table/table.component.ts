@@ -10,7 +10,7 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
@@ -91,7 +91,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   initialColumns: string[] = [];
   @Output() dataSource = new MatTableDataSource<any>();
   resultsLength = 0;
-  filterControl = new FormControl('');
+  filterControl = new UntypedFormControl('');
   actionsAdded = false;
   @Input() displayedColumns: ITableHeader[] = [];
   @Input() viewOptions: ITableViewOptions;

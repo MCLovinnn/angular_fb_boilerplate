@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BaseFieldComponent } from '../../classes/field';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { TranslationService } from '../../services/translation.service';
 
@@ -13,7 +13,7 @@ export class TextInputComponent extends BaseFieldComponent implements OnInit {
   @Input() rows = 3;
   @Input() internalType = 'text';
 
-  constructor(public fb: FormBuilder,
+  constructor(public fb: UntypedFormBuilder,
               public fs: FormService,
               public ts: TranslationService) {
     super(fb, fs, ts);

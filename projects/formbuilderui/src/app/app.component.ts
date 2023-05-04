@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { FormService, TranslationService, DataConnectorService } from '../../../formbuilder/src/public-api';
 import { FieldService } from './services/field.service';
 import { ConnectorService } from './services/connector.service';
@@ -21,7 +21,7 @@ export interface Tile {
 export class AppComponent implements OnInit {
 
   constructor(private ds: DataConnectorService,
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     public fs: FormService,
     private cs: ConnectorService,
     public ts: TranslationService,

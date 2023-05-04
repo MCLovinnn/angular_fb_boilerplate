@@ -7,7 +7,7 @@ import {
   ViewChild,
   ChangeDetectorRef,
 } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import {
   IAutoCompleteOptions,
   FormService,
@@ -31,7 +31,7 @@ import { ISliderConfig } from '../../../../formbuilder/src/lib/interfaces/islide
 })
 export class ControlpanelComponent implements OnInit {
   @Output() fieldchange: EventEmitter<any> = new EventEmitter();
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
   @Input() disabledEmitter: EventEmitter<boolean> = new EventEmitter();
   @Input() requiredEmitter: EventEmitter<string> = new EventEmitter();
   @Input() clearValue: EventEmitter<any> = new EventEmitter();
@@ -42,7 +42,7 @@ export class ControlpanelComponent implements OnInit {
   autoCompleteConfig: IAutoCompleteOptions = {
     groupBy: true
   };
-  optionForm: FormGroup;
+  optionForm: UntypedFormGroup;
   internalType = 'text';
 
   allControlls: any;
@@ -69,7 +69,7 @@ export class ControlpanelComponent implements OnInit {
   };
 
   constructor(
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     public fs: FormService,
     private configS: ConfigService,
     private fieldS: FieldService,

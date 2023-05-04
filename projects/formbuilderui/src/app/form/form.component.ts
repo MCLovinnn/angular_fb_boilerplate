@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TranslationService, ConfigService, FormService, DataConnectorService, IField, MenuNode } from '../../../../formbuilder/src/public-api';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, FormGroup } from '@angular/forms';
 import { FieldService } from '../services/field.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class FormComponent implements OnInit {
   required = false;
 
   constructor(private ds: DataConnectorService,
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     public fs: FormService,
     private fieldS: FieldService,
     private configS: ConfigService,

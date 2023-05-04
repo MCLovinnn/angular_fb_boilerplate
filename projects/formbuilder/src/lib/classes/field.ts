@@ -2,7 +2,7 @@ import { IField, IHTMLAttributes } from '../interfaces/ifield';
 import { ICustomValidation } from '../interfaces/icustom-validation';
 import { IValidator } from '../interfaces/ivalidator';
 import { EventEmitter, Input, OnInit, Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
 import { FormService } from '../services/form.service';
 import { TranslationService } from '../services/translation.service';
 
@@ -32,8 +32,8 @@ export class BaseFieldComponent implements IField, OnInit {
   @Input() min: number;
   @Input() max: number;
   @Input() required: boolean;
-  @Input() form: FormGroup;
-  @Input() control: FormControl;
+  @Input() form: UntypedFormGroup;
+  @Input() control: UntypedFormControl;
   @Input() hintlabel = '';
   @Input() hint = '';
   @Input() tooltip = '';
@@ -51,7 +51,7 @@ export class BaseFieldComponent implements IField, OnInit {
   field: IField;
 
   constructor(
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     public fs: FormService,
     public ts: TranslationService
   ) {}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormService } from 'projects/formbuilder/src/public-api';
 
@@ -9,7 +9,7 @@ import { FormService } from 'projects/formbuilder/src/public-api';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
   constructor(
     private fs: FormService,
     private router: Router,

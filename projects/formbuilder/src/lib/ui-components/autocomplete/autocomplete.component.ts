@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BaseFieldComponent } from '../../classes/field';
 import { map, startWith } from 'rxjs/operators';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { AutoSearch } from '../../interfaces/imenu';
 import { IAutoCompleteOptions } from '../../interfaces/iautocompleteoption';
@@ -46,7 +46,7 @@ export class AutocompleteComponent extends BaseFieldComponent
     groupBy: true
   };
 
-  constructor(public fb: FormBuilder, public fs: FormService, public ts: TranslationService) {
+  constructor(public fb: UntypedFormBuilder, public fs: FormService, public ts: TranslationService) {
     super(fb, fs, ts);
   }
 

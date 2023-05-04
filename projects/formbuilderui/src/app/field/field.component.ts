@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { BaseFieldComponent, FormService, TranslationService } from '../../../../formbuilder/src/public-api';
 import { IValidator } from '../../../../formbuilder/src/lib/interfaces/ivalidator';
 import { FieldService } from '../services/field.service';
@@ -29,7 +29,7 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
   internalTooltip = '';
 
   constructor(
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     public fs: FormService,
     private fieldS: FieldService,
     public ts: TranslationService

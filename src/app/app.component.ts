@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { ConnectorService } from './services/connector.service';
 import { DataConnectorService, FormService, TranslationService } from 'projects/formbuilder/src/public-api';
 import { MatTabGroup } from '@angular/material/tabs';
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   @ViewChild('menubar', { static: false }) menu = {} as MatTabGroup;
 
   constructor(private ds: DataConnectorService,
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     public fs: FormService,
     private cs: ConnectorService,
     public ts: TranslationService,) {

@@ -21,7 +21,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FieldService } from '../services/field.service';
 import { FieldComponent } from '../field/field.component';
 import { ICodeEntry } from '../../../../formbuilder/src/lib/interfaces/ifield';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { ISliderConfig } from '../../../../formbuilder/src/lib/interfaces/isliderconfig';
 import { MatDialog } from '@angular/material/dialog';
@@ -122,7 +122,7 @@ export class ChecklistDatabase {
   providers: [ChecklistDatabase]
 })
 export class TreeComponent implements OnInit {
-  langForm: FormGroup;
+  langForm: UntypedFormGroup;
   langEmitter: EventEmitter<any> = new EventEmitter();
   @Input() data: any;
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */

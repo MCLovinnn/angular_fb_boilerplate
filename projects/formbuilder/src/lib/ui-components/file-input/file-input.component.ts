@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { BaseFieldComponent } from "../../classes/field";
-import { FormBuilder } from "@angular/forms";
+import { UntypedFormBuilder } from "@angular/forms";
 import { FormService } from "../../services/form.service";
 import { TranslationService } from "../../services/translation.service";
 
@@ -16,7 +16,7 @@ export class FileInputComponent extends BaseFieldComponent implements OnInit {
   @Input() srcResult: any;
 
   constructor(
-    public fb: FormBuilder,
+    public fb: UntypedFormBuilder,
     public fs: FormService,
     public ts: TranslationService
   ) {
