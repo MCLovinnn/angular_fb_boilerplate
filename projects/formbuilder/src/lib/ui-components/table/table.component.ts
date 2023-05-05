@@ -10,14 +10,14 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
 import { AngularCsv } from '../../classes/angular-csv';
 import { TranslatePipe } from '../../services/translation.pipe';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 export enum TableType {
   USER = 'USER',
@@ -89,9 +89,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   selection = new SelectionModel<any>(true, []);
   collumnsToBeDisplayed: string[] = [];
   initialColumns: string[] = [];
-  @Output() dataSource = new MatTableDataSource<any>();
+  @Output() dataSource: MatTableDataSource<any[]> = new MatTableDataSource<any[]>([]);
   resultsLength = 0;
-  filterControl = new UntypedFormControl('');
+  filterControl = new FormControl('');
   actionsAdded = false;
   @Input() displayedColumns: ITableHeader[] = [];
   @Input() viewOptions: ITableViewOptions;

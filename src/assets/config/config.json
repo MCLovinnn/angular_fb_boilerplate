@@ -81,7 +81,7 @@
         "name": "home_test_file",
         "htmlType": "file",
         "disabled": false,
-        "validators": { "required": true, "pattern": "" }
+        "validators": { "required": false, "pattern": "" }
       },
       "slider": {
         "name": "home_test_slider",

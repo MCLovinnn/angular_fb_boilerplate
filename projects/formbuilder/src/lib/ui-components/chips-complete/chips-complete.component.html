@@ -1,6 +1,6 @@
 <ng-container *ngIf="form" [formGroup]="form">
   <mat-form-field class="example-chip-list" #chipField>
-    <mat-chip-list
+    <mat-chip-grid
       #chipList
       [multiple]="multiple"
       cdkDropList
@@ -10,7 +10,7 @@
       class="example-list"
     >
       <ng-container *ngIf="!config.technical">
-        <mat-chip
+        <mat-chip-row
           cdkDrag
           class="example-box"
           *ngFor="let fruit of fruits"
@@ -21,7 +21,7 @@
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
-        </mat-chip>
+        </mat-chip-row>
       </ng-container>
       <ng-container *ngIf="config.technical">
         <mat-chip
@@ -55,7 +55,7 @@
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
         (matChipInputTokenEnd)="add($event)"
       />
-    </mat-chip-list>
+    </mat-chip-grid>
     <mat-autocomplete
       #auto="matAutocomplete"
       (optionSelected)="selected($event)"

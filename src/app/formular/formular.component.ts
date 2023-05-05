@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { IFormular } from '../formular';
 import { FormularService } from '../services/formular.service';
 import * as moment from 'moment';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { IAutoCompleteOptions, FormService, ChipsCompleteComponent, TranslationService, FileInputComponent, ISliderConfig } from 'projects/formbuilder/src/public-api';
 
 @Component({
@@ -12,9 +12,11 @@ import { IAutoCompleteOptions, FormService, ChipsCompleteComponent, TranslationS
 })
 export class FormularComponent implements OnInit {
   @Input() formular: IFormular;
-  form: UntypedFormGroup;
+  @Input() data: IFormular[];
+  form: FormGroup;
   update = false;
   backup: IFormular;
+  fileInput: FileInputComponent;
 
   autoCompleteConfig: IAutoCompleteOptions = {
     groupBy: true
@@ -41,12 +43,15 @@ export class FormularComponent implements OnInit {
     if (this.formular) {
       this.setForm(this.formular);
     }
-
+this.form = this.fs.getForm('home_test');
     this.fs.getFormControl({name: 'home_test_file'}).valueChanges.subscribe(val => console.log(val));
+    console.log(this.form);
+
+
   }
 
   isValid() {
-    return this.fs.getForm('home_test').valid && !(this.fs.getFieldByName('home_test_file') as FileInputComponent).fileFormatError;
+    return this.fs.getForm('home_test').valid;
   }
 
   public setForm(formular: IFormular) {
@@ -66,8 +71,14 @@ export class FormularComponent implements OnInit {
     tmpData.home_test_date = date.value.format('L');
     // console.log(tmpData);
 
+    this.data.push(tmpData);
+    console.log(this.data);
 
     this.fs.resetForms();
     this.fs.getForm('home_test').markAsUntouched();
+  }
+  click() {
+    console.log(this.form);
+
   }
 }

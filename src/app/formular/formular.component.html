@@ -1,29 +1,29 @@
 <h2>Beispiel Formular</h2>
 <mat-grid-list cols="12" rowHeight="70px" gutterSize="15px">
-  <mat-grid-tile colspan="4" rowpsan="1">
+  <mat-grid-tile colspan="4" rowspan="1">
     <app-select name="home_test_select"></app-select>
   </mat-grid-tile>
-  <mat-grid-tile colspan="4" rowpsan="1">
+  <mat-grid-tile colspan="4" rowspan="1">
     <app-text-input name="home_test_text"></app-text-input>
   </mat-grid-tile>
-  <mat-grid-tile colspan="4" rowpsan="1">
+  <mat-grid-tile colspan="4" rowspan="1">
     <app-date-input name="home_test_date"></app-date-input>
   </mat-grid-tile>
-  <mat-grid-tile colspan="4" rowpsan="1">
+  <mat-grid-tile colspan="4" rowspan="1">
     <app-autocomplete
       [config]="autoCompleteConfig"
       [options]="autocompleteOptions"
       name="home_test_autocomplete"
     ></app-autocomplete>
   </mat-grid-tile>
-  <mat-grid-tile colspan="4" rowpsan="1">
+  <mat-grid-tile colspan="4" rowspan="2">
     <app-slider name="home_test_slider"> </app-slider>
   </mat-grid-tile>
-  <mat-grid-tile colspan="4" rowpsan="3">
+  <mat-grid-tile colspan="4" rowspan="3">
 
   </mat-grid-tile>
 
-  <mat-grid-tile colspan="4" rowpsan="1">
+  <mat-grid-tile colspan="4" rowspan="1">
     <button
       mat-raised-button
       color="primary"
@@ -33,6 +33,8 @@
       {{ "save" | translate }}
     </button>
     {{ts.getFormName('home_login')}}
+    <button
+    (click)="click()">Klick!</button>
   </mat-grid-tile>
 </mat-grid-list>
 

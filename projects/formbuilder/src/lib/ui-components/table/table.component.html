@@ -20,7 +20,6 @@
     <mat-icon>vertical_align_bottom</mat-icon>
   </button>
   <mat-paginator
-    *ngIf="viewOptions.showPaginator"
     [pageSizeOptions]="viewOptions.paginatorOptions.steps"
     [length]="resultsLength"
     [pageSize]="viewOptions.paginatorOptions.step"

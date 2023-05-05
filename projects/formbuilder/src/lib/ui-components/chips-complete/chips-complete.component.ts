@@ -8,9 +8,9 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { UntypedFormControl, UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormControl, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, of } from 'rxjs';
 import { map, startWith, filter } from 'rxjs/operators';
 import { BaseFieldComponent } from '../../classes/field';
@@ -21,8 +21,12 @@ import { checkKey, _filter } from '../autocomplete/autocomplete.component';
 import { AutoSearch } from '../../interfaces/imenu';
 import { IAutoCompleteOptions } from '../../interfaces/iautocompleteoption';
 import { IValidator } from '../../interfaces/ivalidator';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop';
 import { MatFormField } from '@angular/material/form-field';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-chips-complete',
@@ -32,7 +36,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class ChipsCompleteComponent extends BaseFieldComponent
   implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  fruitCtrl = new UntypedFormControl('', [Validators.required]);
+  fruitCtrl = new FormControl('', [Validators.required]);
   filteredFruits: Observable<any[]> = of([]);
   fruits: string[] = [];
   canAdd = true;
@@ -178,7 +182,7 @@ export class ChipsCompleteComponent extends BaseFieldComponent
 
   selected(event: MatAutocompleteSelectedEvent): void {
     if (this.fruits.indexOf(event.option.value) === -1) {
-        this.fruits.push(event.option.value);
+      this.fruits.push(event.option.value);
     }
 
     this.fruitInput.nativeElement.value = '';
@@ -233,15 +237,18 @@ export class ChipsCompleteComponent extends BaseFieldComponent
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
       this.control.setValue(this.fruits.toString());
-
     } else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
+        event.currentIndex
       );
     }
   }

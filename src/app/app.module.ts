@@ -4,25 +4,14 @@ import { NgModule } from "@angular/core";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatListModule } from "@angular/material/list";
-import { MatSelectModule } from "@angular/material/select";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatStepperModule } from "@angular/material/stepper";
-import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
-import { MatButtonModule } from "@angular/material/button";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatGridListModule } from "@angular/material/grid-list";
-import { MatRadioModule } from "@angular/material/radio";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatTabsModule } from "@angular/material/tabs";
 
 import { MAT_DATE_LOCALE } from "@angular/material/core";
-import { MatCardModule } from "@angular/material/card";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
@@ -50,6 +39,17 @@ import {
 } from "projects/formbuilder/src/public-api";
 
 import { NgChartsModule } from "ng2-charts";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatListModule } from "@angular/material/list";
+import { MatCardModule } from "@angular/material/card";
+import { MatSelectModule } from "@angular/material/select";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatButtonModule } from "@angular/material/button";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatTabsModule } from "@angular/material/tabs";
 
 registerLocaleData(localeDe, "de");
 
@@ -95,9 +95,7 @@ registerLocaleData(localeDe, "de");
     MatMenuModule,
     NgChartsModule
   ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: "de" }
-  ],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: "de" }],
   bootstrap: [AppComponent],
   exports: [AppComponent]
 })
@@ -111,7 +109,7 @@ export class AppModule {
 
     ts.setPath("assets/locale/");
     ts.use("de").then(res => {
-      console.log(ts.getFormName('home_test'));
+      console.log(ts.getFormName("home_test"));
       // console.log(res);
     });
     // console.log(ts.data);

@@ -1,9 +1,8 @@
-import { FormControl, UntypedFormGroup } from '@angular/forms';
-import { IField, IFormObj } from './ifield';
+import { FormGroup } from '@angular/forms';
 
 export interface IForm {
-  form: UntypedFormGroup;
+  form: FormGroup;
   name: string;
 
-  getForm(name: string): UntypedFormGroup;
+  getForm(name: string): FormGroup;
 }

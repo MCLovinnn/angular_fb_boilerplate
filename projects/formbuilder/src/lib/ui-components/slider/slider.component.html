@@ -1,19 +1,18 @@
 <ng-container [formGroup]="form">
+<label>{{getName()+'#label' | translate}}</label>
+
     <mat-slider
       [disabled]="disabled"
-      [invert]="config.inverted"
       [max]="max"
       [min]="min"
       [step]="config.step"
-      [thumbLabel]="config.showThumb"
-      [tickInterval]="getTickIntervall()"
-      [formControlName]="name"
-      [vertical]="config.vertical"
+      [discrete]="config.showThumb"
+      [showTickMarks]="config.showTicks"
       [matTooltip]="getName() + '#tooltip' | translate"
       matTooltipDisabled="false"
       matTooltipHideDelay="200"
       matTooltipPosition="above"
       matTooltipShowDelay="100">
+      <input matSliderThumb [formControlName]="name">
     </mat-slider>
-    <mat-hint>{{name+'#label' | translate}}</mat-hint>
 </ng-container>

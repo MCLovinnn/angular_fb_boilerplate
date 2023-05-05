@@ -27,7 +27,7 @@
   "home_test_file#hintlabel": "Beispiel hinweis",
   "home_test_file#tooltip": "Test",
   "home_test_slider#label": "Slider",
-  "home_test_slider#hintlabel": "",
+  "home_test_slider#hintlabel": "Test",
   "home_test_slider#tooltip": "",
   "home_test#formname": "Testform Name",
   "file_error": "Dateityp nicht erlaubt!\n Erlaubt: .txt, .pdf, .zip, .doc, .docx, .xlsx, .xls, .ppt, .pptx",
