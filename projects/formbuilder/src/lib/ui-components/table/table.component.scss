@@ -1,13 +1,26 @@
-table {
+mat-table {
   width: 100%;
-}
-.row {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+}
+mat-row, mat-header-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
   margin-bottom: 5px;
 }
 
+mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+  padding-left: 0!important;
+}
 
+mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-type {
+ padding: 0!important;
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  padding: 0 5px 0 5px!important;
+}
 .long-filter {
   float: left;
   width: calc(100% - 520px) !important;
@@ -24,10 +37,10 @@ table {
 }
 
 .mat-column-actions {
-  width: 104px !important;
+  max-width: 104px !important;
   white-space: unset !important;
 }
 
 .mat-column-select {
-  width: 50px !important;
+  max-width: 40px !important;
 }

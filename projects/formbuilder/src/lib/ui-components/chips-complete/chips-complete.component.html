@@ -2,7 +2,6 @@
   <mat-form-field class="example-chip-list" #chipField>
     <mat-chip-grid
       #chipList
-      [multiple]="multiple"
       cdkDropList
       cdkDropListOrientation="horizontal"
       [cdkDropListData]="fruits"
@@ -15,7 +14,6 @@
           class="example-box"
           *ngFor="let fruit of fruits"
           (removed)="remove(fruit)"
-          [selectable]="active"
         >
           {{ fruit }}
           <button matChipRemove>
@@ -24,38 +22,37 @@
         </mat-chip-row>
       </ng-container>
       <ng-container *ngIf="config.technical">
-        <mat-chip
+        <mat-chip-row
           cdkDrag
           class="example-box"
           *ngFor="let fruit of fruits"
           (removed)="remove(fruit)"
-          [selectable]="active"
         >
-          {{ fruit + "#label" | translate }}
+          {{ fruit + '#label' | translate }}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
-        </mat-chip>
+        </mat-chip-row>
       </ng-container>
-      <input
-        matInput
-        #fruitInput
-        [placeholder]="getName() + '#label' | translate"
-        [formControl]="fruitCtrl"
-        [matTooltip]="getName() + '#tooltip' | translate"
-        [required]="validators.required"
-        matTooltipDisabled="false"
-        matTooltipHideDelay="200"
-        matTooltipPosition="above"
-        matTooltipShowDelay="100"
-        (change)="change.emit({ type: name, value: $event.value })"
-        (focusout)="focusEvent()"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)"
-      />
     </mat-chip-grid>
+    <input
+      matInput
+      #fruitInput
+      [placeholder]="getName() + '#label' | translate"
+      [formControl]="fruitCtrl"
+      [matTooltip]="getName() + '#tooltip' | translate"
+      [required]="validators.required"
+      matTooltipDisabled="false"
+      matTooltipHideDelay="200"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      (change)="change.emit({ type: name, value: $event.value })"
+      (focusout)="focusEvent()"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)"
+    />
     <mat-autocomplete
       #auto="matAutocomplete"
       (optionSelected)="selected($event)"
@@ -107,7 +104,7 @@
         fruitCtrl.touched && fs.getFormControl({ name: this.name }).invalid
       "
     >
-      {{ getMeesage("required", "") }}
+      {{ getMeesage('required', '') }}
     </mat-hint>
     <input matInput hidden [formControlName]="name" />
   </mat-form-field>

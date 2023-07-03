@@ -26,7 +26,7 @@
     showFirstLastButtons>
   </mat-paginator>
 </div>
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <ng-container *ngFor="let collumn of displayedColumns">
     <ng-container
       *ngIf="
@@ -35,43 +35,50 @@
         displayedColumns"
       [matColumnDef]="collumn.collumnName"
       >
-      <th
-        mat-header-cell
+      <mat-header-cell
         *matHeaderCellDef
         mat-sort-header
+        [ngClass]="collumn.collumnName"
         [ngStyle]="{
-          'width.%': collumn.widthInPercentage
+          'max-width.px': collumn.widthInPercentage
             ? collumn.widthInPercentage
             : 'auto'
         }">
         {{ collumn.collumnKey? (collumn.collumnKey | translate) : collumn.collumnName }}
-      </th>
-      <td mat-cell *matCellDef="let element">
+      </mat-header-cell>
+      <mat-cell
+      [ngClass]="collumn.collumnName"
+      [ngStyle]="{
+        'max-width.px': collumn.widthInPercentage
+          ? collumn.widthInPercentage
+          : 'auto'
+      }"
+       *matCellDef="let element">
         {{ element[collumn.collumnName] }}
-      </td>
+      </mat-cell>
     </ng-container>
   </ng-container>
 
   <ng-container *ngIf="viewOptions.showCheckbox" matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
+    <mat-header-cell *matHeaderCellDef>
       <mat-checkbox
         (change)="$event ? masterToggle() : null"
         [checked]="selection.hasValue() && isAllSelected()"
         [indeterminate]="selection.hasValue() && !isAllSelected()">
       </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
       <mat-checkbox
         (click)="$event.stopPropagation()"
         (change)="$event ? selection.toggle(row) : null"
         [checked]="selection.isSelected(row)">
       </mat-checkbox>
-    </td>
+    </mat-cell>
   </ng-container>
 
   <ng-container *ngIf="viewOptions.showActions" matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let row" (click)="$event.stopPropagation()">
       <button
         mat-icon-button
         (click)="onDeleteRecord(row)"
@@ -92,17 +99,16 @@
         style="float: right;">
         <mat-icon>get_app</mat-icon>
       </button>
-    </td>
+    </mat-cell>
   </ng-container>
 
-  <tr
-    mat-header-row
-    *matHeaderRowDef="collumnsToBeDisplayed; sticky: true"></tr>
-  <tr
+  <mat-header-row
+    *matHeaderRowDef="collumnsToBeDisplayed; sticky: true"></mat-header-row>
+  <mat-row
     mat-row
     *matRowDef="let row; columns: collumnsToBeDisplayed"
-    (click)="selection.toggle(row)"></tr>
-</table>
+    (click)="selection.toggle(row)"></mat-row>
+</mat-table>
 
 <div class="flex flex-end table-action" *ngIf="viewOptions.showCheckbox">
   <button

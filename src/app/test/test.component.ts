@@ -21,7 +21,7 @@ export class TestComponent implements OnInit {
     showActions: true,
     showCSVExport: true,
     csvName: 'Test',
-    showCheckbox: false,
+    showCheckbox: true,
     showDeleteAllButton: false,
     dateStringToDateFilter: 'home_test_date'
   };
@@ -29,7 +29,8 @@ export class TestComponent implements OnInit {
   displayedColumns: ITableHeader[] = [
     {
       collumnName: 'home_test_date',
-      collumnKey: 'home_test_date#label'
+      collumnKey: 'home_test_date#label',
+      widthInPercentage: 100
     },
     {
       collumnName: 'home_test_select',
