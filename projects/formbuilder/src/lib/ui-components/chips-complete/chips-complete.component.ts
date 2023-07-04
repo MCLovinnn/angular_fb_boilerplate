@@ -105,6 +105,8 @@ export class ChipsCompleteComponent extends BaseFieldComponent
       if (!val) {
         this.fruitCtrl.reset();
         this.fruits = [];
+      } else {
+        this.fruits = val.split(',');
       }
     });
   }
