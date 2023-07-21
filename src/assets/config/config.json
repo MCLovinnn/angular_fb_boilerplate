@@ -63,19 +63,7 @@
         "htmlAttribute": { "autocomplete": "off" },
         "canAdd": false,
         "multiple": true,
-        "validators": { "required": true },
-        "options": [
-          {
-            "value": "change",
-            "key": "home_test_select_Opt_change",
-            "description": "home_test_select_Opt_change#desc"
-          },
-          {
-            "value": "blur",
-            "key": "home_test_select_Opt_blur",
-            "description": "home_test_select_Opt_blur#desc"
-          }
-        ]
+        "validators": { "required": true }
       },
       "file": {
         "name": "home_test_file",

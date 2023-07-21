@@ -13,10 +13,10 @@ import * as moment from 'moment';
 })
 export class DateInputComponent extends BaseFieldComponent implements OnInit {
   constructor(
-    public fb: UntypedFormBuilder,
-    public fs: FormService,
+    public override fb: UntypedFormBuilder,
+    public override fs: FormService,
     private dateAdapter: DateAdapter<any>,
-    public ts: TranslationService
+    public override ts: TranslationService
   ) {
     super(fb, fs, ts);
     dateAdapter.setLocale(ts.lang);
@@ -24,7 +24,7 @@ export class DateInputComponent extends BaseFieldComponent implements OnInit {
     ts.onLangChange.subscribe(lang => dateAdapter.setLocale(lang));
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
   }
 

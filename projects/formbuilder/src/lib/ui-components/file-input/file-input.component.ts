@@ -16,14 +16,14 @@ export class FileInputComponent extends BaseFieldComponent implements OnInit {
   @Input() srcResult: any;
 
   constructor(
-    public fb: UntypedFormBuilder,
-    public fs: FormService,
-    public ts: TranslationService
+    public override fb: UntypedFormBuilder,
+    public override fs: FormService,
+    public override ts: TranslationService
   ) {
     super(fb, fs, ts);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     // console.log(this.name);
     // console.log(this.control);

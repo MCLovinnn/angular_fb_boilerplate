@@ -29,10 +29,10 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
   internalTooltip = '';
 
   constructor(
-    public fb: UntypedFormBuilder,
-    public fs: FormService,
+    public override fb: UntypedFormBuilder,
+    public override fs: FormService,
     private fieldS: FieldService,
-    public ts: TranslationService
+    public override ts: TranslationService
   ) {
     super(fb, fs, ts);
     this.placeholder = fieldS.get();
@@ -45,7 +45,7 @@ export class FieldComponent extends BaseFieldComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     super.ngOnInit();
   }
 

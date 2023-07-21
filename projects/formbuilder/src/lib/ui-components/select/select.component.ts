@@ -17,13 +17,13 @@ export class SelectComponent extends BaseFieldComponent implements OnInit {
   @Input() options?: ICodeEntry[];
   @Input() multiple = false;
 
-  constructor(public fb: UntypedFormBuilder,
-              public fs: FormService,
-              public ts: TranslationService) {
+  constructor(public override fb: UntypedFormBuilder,
+              public override fs: FormService,
+              public override ts: TranslationService) {
     super(fb, fs, ts);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     this.options = this.fs.getConfigByName(this.name).options? this.fs.getConfigByName(this.name).options : this.options;
     this.multiple = this.fs.getConfigByName(this.name).multiple? this.fs.getConfigByName(this.name).multiple : this.multiple;

@@ -4,8 +4,11 @@ export interface IAutoCompleteOptions {
     };
     groupBy?: boolean;
     technical?: boolean;
+    translate?: boolean;
+    useMask?: boolean;
     apiEndpoint?: URL;
     entriesPerPage?: number;
     searchAfterNthCharacter?: number;
     loadAfterPercentscrolled?: number;
 }
+

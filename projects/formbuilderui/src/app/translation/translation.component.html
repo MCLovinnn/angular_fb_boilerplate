@@ -20,7 +20,7 @@
             <mat-form-field>
               <mat-label>{{ folder.key }}</mat-label>
               <input style="width:100%;" matInput type="text"
-                (change)="changeTxt(folder.key, $event)" [value]="folder.value"/>
+                (change)="changeTxt(folder.key.toString(), $event)" [value]="folder.value"/>
               <button
                 *ngIf="folder.value"
                 matSuffix

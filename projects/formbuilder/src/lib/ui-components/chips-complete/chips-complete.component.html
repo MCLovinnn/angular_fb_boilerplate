@@ -1,5 +1,6 @@
 <ng-container *ngIf="form" [formGroup]="form">
   <mat-form-field class="example-chip-list" #chipField>
+    <mat-label>{{getName() + '#label' | translate}}</mat-label>
     <mat-chip-grid
       #chipList
       cdkDropList
@@ -9,6 +10,8 @@
       class="example-list"
     >
       <ng-container *ngIf="!config.technical">
+      <ng-container *ngIf="!config.useMask">
+
         <mat-chip-row
           cdkDrag
           class="example-box"
@@ -21,6 +24,21 @@
           </button>
         </mat-chip-row>
       </ng-container>
+      <ng-container *ngIf="config.useMask">
+
+        <mat-chip-row
+          cdkDrag
+          class="example-box"
+          *ngFor="let fruit of objs"
+          (removed)="removeObj(fruit)"
+        >
+          {{ fruit.key }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </ng-container>
+      </ng-container>
       <ng-container *ngIf="config.technical">
         <mat-chip-row
           cdkDrag
@@ -28,7 +46,7 @@
           *ngFor="let fruit of fruits"
           (removed)="remove(fruit)"
         >
-          {{ fruit + '#label' | translate }}
+          {{ fruit + "#label" | translate }}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
@@ -64,7 +82,7 @@
         >
           <mat-option
             *ngFor="let item of group | async"
-            [matTooltip]="item.key+'#desc' | translate"
+            [matTooltip]="item.key + '#desc' | translate"
             [value]="item.key | translate"
           >
             {{ item.key | translate }}
@@ -73,22 +91,55 @@
       </ng-container>
       <ng-container *ngIf="!config.groupBy">
         <ng-container *ngIf="!config.technical">
-          <mat-option
-            *ngFor="let item of filteredFruits | async"
-            [matTooltip]="item.key+'#desc' | translate"
-            [value]="item.key | translate"
-          >
-            {{ item.key | translate }}
-          </mat-option>
-        </ng-container>
-        <ng-container *ngIf="config.technical">
-          <mat-option
-            *ngFor="let item of filteredFruits | async"
-            [matTooltip]="item.key+'#desc' | translate"
-            [value]="item.value"
-          >
-            {{ item.key | translate }}
-          </mat-option>
+          <ng-container *ngIf="!config.translate">
+            <ng-container *ngIf="config.useMask">
+            <mat-option
+              *ngFor="let item of filteredObjs | async"
+              [matTooltip]="item.key + '#desc' | translate"
+              [value]="item"
+            >
+              {{ item.key }}
+            </mat-option>
+          </ng-container>
+            <ng-container *ngIf="!config.translate">
+              <mat-option
+                *ngFor="let item of filteredFruits | async"
+                [matTooltip]="item.key + '#desc' | translate"
+                [value]="item.value"
+              >
+                {{ item.key }}
+              </mat-option>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="config.translate">
+            <mat-option
+              *ngFor="let item of filteredFruits | async"
+              [matTooltip]="item.key + '#desc' | translate"
+              [value]="item.key | translate"
+            >
+              {{ item.key | translate }}
+            </mat-option>
+          </ng-container>
+          <ng-container *ngIf="config.technical">
+            <ng-container *ngIf="config.translate">
+              <mat-option
+                *ngFor="let item of filteredFruits | async"
+                [matTooltip]="item.key + '#desc' | translate"
+                [value]="item.key | translate"
+              >
+                {{ item.key | translate }}
+              </mat-option>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="!config.translate">
+            <mat-option
+              *ngFor="let item of filteredFruits | async"
+              [matTooltip]="item.key + '#desc' | translate"
+              [value]="item.key"
+            >
+              {{ item.key }}
+            </mat-option>
+          </ng-container>
         </ng-container>
       </ng-container>
     </mat-autocomplete>
@@ -104,7 +155,7 @@
         fruitCtrl.touched && fs.getFormControl({ name: this.name }).invalid
       "
     >
-      {{ getMeesage('required', '') }}
+      {{ getMeesage("required", "") }}
     </mat-hint>
     <input matInput hidden [formControlName]="name" />
   </mat-form-field>

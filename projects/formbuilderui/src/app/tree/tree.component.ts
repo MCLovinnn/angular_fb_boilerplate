@@ -3,18 +3,18 @@ import {
   Input,
   Injectable,
   OnInit,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   MatTreeFlatDataSource,
-  MatTreeFlattener
+  MatTreeFlattener,
 } from '@angular/material/tree';
 import { ConnectorService } from '../services/connector.service';
 import {
   FormService,
   ConfigService,
-  TranslationService
+  TranslationService,
 } from '../../../../formbuilder/src/public-api';
 import { SelectionModel } from '@angular/cdk/collections';
 import { BehaviorSubject } from 'rxjs';
@@ -119,10 +119,10 @@ export class ChecklistDatabase {
   selector: 'app-tree',
   templateUrl: 'tree.component.html',
   styleUrls: ['tree.component.scss'],
-  providers: [ChecklistDatabase]
+  providers: [ChecklistDatabase],
 })
 export class TreeComponent implements OnInit {
-  langForm: FormGroup;
+  langForm: FormGroup = new FormGroup('');
   langEmitter: EventEmitter<any> = new EventEmitter();
   @Input() data: any;
   /** Map from flat node to nested node. This helps us finding the nested node to be modified */
@@ -174,7 +174,7 @@ export class TreeComponent implements OnInit {
     );
 
     // this.db = new ChecklistDatabase(configs);
-    _database.dataChange.subscribe(data => {
+    _database.dataChange.subscribe((data) => {
       this.dataSource.data = data;
     });
 
@@ -184,13 +184,13 @@ export class TreeComponent implements OnInit {
   ngOnInit() {
     // let newData = this.configS.buildFileTree(this.configS.configs, 0) as TodoItemNode[];
     //   this._database.dataChange.next(newData);
-    this.cs.getTxtKeys(this.ts.lang).subscribe(val => {
+    this.cs.getTxtKeys(this.ts.lang).subscribe((val) => {
       // console.log(val);
       this.ts.userData = val;
       this.ts.updateData(val);
     });
 
-    this.cs.get('config').subscribe(data => {
+    this.cs.get('config').subscribe((data) => {
       // console.log(data);
 
       this.configS.configs = data;
@@ -198,7 +198,7 @@ export class TreeComponent implements OnInit {
       this._database.dataChange.next(newData);
     });
 
-    this.langEmitter.subscribe(val => {
+    this.langEmitter.subscribe((val) => {
       // console.log(val);
       this.fs.getConfigByName('home_tree_lang').value = val.value;
       this.ts.setLang(val.value);
@@ -239,7 +239,7 @@ export class TreeComponent implements OnInit {
     const descendants = this.treeControl.getDescendants(node);
     const descAllSelected =
       descendants.length > 0 &&
-      descendants.every(child => {
+      descendants.every((child) => {
         return this.checklistSelection.isSelected(child);
       });
     return descAllSelected;
@@ -248,7 +248,7 @@ export class TreeComponent implements OnInit {
   /** Whether part of the descendants are selected */
   descendantsPartiallySelected(node: TodoItemFlatNode): boolean {
     const descendants = this.treeControl.getDescendants(node);
-    const result = descendants.some(child =>
+    const result = descendants.some((child) =>
       this.checklistSelection.isSelected(child)
     );
     return result && !this.descendantsAllSelected(node);
@@ -263,7 +263,7 @@ export class TreeComponent implements OnInit {
       : this.checklistSelection.deselect(...descendants);
 
     // Force update for the parent
-    descendants.forEach(child => this.checklistSelection.isSelected(child));
+    descendants.forEach((child) => this.checklistSelection.isSelected(child));
     this.checkAllParentsSelection(node);
   }
 
@@ -288,7 +288,7 @@ export class TreeComponent implements OnInit {
     const descendants = this.treeControl.getDescendants(node);
     const descAllSelected =
       descendants.length > 0 &&
-      descendants.every(child => {
+      descendants.every((child) => {
         return this.checklistSelection.isSelected(child);
       });
     if (nodeSelected && !descAllSelected) {
@@ -335,9 +335,9 @@ export class TreeComponent implements OnInit {
   /** Save the node to database */
   saveNode(node: TodoItemFlatNode, itemValue: string) {
     const nestedNode = this.flatNodeMap.get(node) as TodoItemNode;
-    const parent = this.getParentNode(this.nestedNodeMap.get(
-      nestedNode
-    ) as TodoItemFlatNode) as TodoItemFlatNode;
+    const parent = this.getParentNode(
+      this.nestedNodeMap.get(nestedNode) as TodoItemFlatNode
+    ) as TodoItemFlatNode;
     const parentparent = this.getParentNode(parent) as TodoItemFlatNode;
 
     const key =
@@ -348,28 +348,28 @@ export class TreeComponent implements OnInit {
         [parent.name]: {
           [itemValue.toLowerCase()]: {
             name: key.toLocaleLowerCase(),
-            htmlType: 'text'
-          }
-        }
-      }
+            htmlType: 'text',
+          },
+        },
+      },
     };
     const tmpObj: any = {
       label: key + '#label',
       hint: key + '#hintlabel',
-      tooltip: key + '#tooltip'
+      tooltip: key + '#tooltip',
     };
     // this.fs.addConfig(tmpConf);
     _.merge(this.configS.configs, tmpConf);
     // this.configS.configs.push(tmpConf);
-    this.cs.doPost('config/', 'de', this.configS.configs).subscribe(val => {
+    this.cs.doPost('config/', 'de', this.configS.configs).subscribe((val) => {
       const lngObj = {
         [tmpObj.label]: itemValue,
         [tmpObj.hint]: '',
-        [tmpObj.tooltip]: ''
+        [tmpObj.tooltip]: '',
       };
 
       this.ts.updateData(lngObj);
-      this.cs.doPost('/updateKey/', '', lngObj).subscribe(res => {
+      this.cs.doPost('/updateKey/', '', lngObj).subscribe((res) => {
         console.log(res);
       });
     });
@@ -387,13 +387,13 @@ export class TreeComponent implements OnInit {
   generateTextFile() {
     this.cs
       .generateTextFile(this.ts.lang, this.configS.configs)
-      .subscribe(res => console.log(res));
+      .subscribe((res) => console.log(res));
   }
 
   updateTxtFile() {
     this.cs
       .updateTxtFile(this.ts.lang, this.ts.getUserData())
-      .subscribe(res => console.log(res));
+      .subscribe((res) => console.log(res));
   }
 
   open(node: any) {
@@ -401,7 +401,7 @@ export class TreeComponent implements OnInit {
 
     const field = this.fs.getFieldByName('home_ui_new') as FieldComponent;
     field.placeholder = data.name;
-    field.internalType = data.htmlType;
+    field.internalType = data.htmlType ? data.htmlType : 'text';
     if (data.config && data.htmlType === 'slider') {
       field.sliderOptions = data.config as ISliderConfig;
     }
@@ -416,7 +416,7 @@ export class TreeComponent implements OnInit {
     const newData = this.configS.configs;
     console.log(newData);
 
-    this.cs.doPost("config/", this.ts.lang, newData).subscribe(val => {
+    this.cs.doPost('config/', this.ts.lang, newData).subscribe((val) => {
       // console.log(val);
       location.reload();
     });
@@ -429,7 +429,7 @@ export class TreeComponent implements OnInit {
     const tmpObj: ICodeEntry = {
       key: name,
       value: raw.home_lang_key.toLowerCase(),
-      description: name + '#desc'
+      description: name + '#desc',
     };
     const tmpConf = this.fs.getConfigByName(actualField);
     if (!tmpConf.options) {
@@ -445,20 +445,20 @@ export class TreeComponent implements OnInit {
         raw.home_lang_key.toLowerCase(),
         this.configS.getFBConfig(this.fs.configs)
       )
-      .subscribe(val => {
+      .subscribe((val) => {
         const lngObj = {
-          [tmpObj.key]: raw.home_lang_lang
+          [tmpObj.key]: raw.home_lang_lang,
         };
         if (tmpObj.description) {
           Object.assign(lngObj, {
-            [tmpObj.description]: raw.home_lang_code
+            [tmpObj.description]: raw.home_lang_code,
           });
         }
 
         this.ts.updateData(lngObj);
         this.cs
           .doPost('fbupdate/', this.ts.lang, this.ts.getFBData())
-          .subscribe(res => {
+          .subscribe((res) => {
             // console.log(res);
             const selectF = this.fs.getFieldByName(
               actualField
@@ -474,22 +474,24 @@ export class TreeComponent implements OnInit {
 
     const dialogRef = this.dialog.open(MoveElementsComponent, {
       width: 'fit-content',
-      data: {}
+      data: {},
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       // console.log('The dialog was closed');
-      const page = this.fs.getFormControl({ name: 'home_ui_moveElementsPage' })
-        .value;
-      const form = this.fs.getFormControl({ name: 'home_ui_moveElementsForm' })
-        .value;
+      const page = this.fs.getFormControl({
+        name: 'home_ui_moveElementsPage',
+      }).value;
+      const form = this.fs.getFormControl({
+        name: 'home_ui_moveElementsForm',
+      }).value;
 
       if (page !== '' && form !== '') {
         let confObj = this.configS.configs;
         // console.log(confObj);
         // console.log(page, form);
 
-        this.checklistSelection.selected.forEach(val => {
+        this.checklistSelection.selected.forEach((val) => {
           const keys = val.name.split('_');
           if (keys.length === 3) {
             let tmpConf = confObj[keys[0]][keys[1]][keys[2]];
@@ -501,14 +503,20 @@ export class TreeComponent implements OnInit {
             let txtsKeys = {
               [oldName + '#label']: '',
               [oldName + '#hintlabel']: '',
-              [oldName + '#tooltip']: ''
+              [oldName + '#tooltip']: '',
             };
             // console.log(this.ts.data[oldName + '#label']);
 
             let tmpTxts = {
-              [name + '#label']: this.ts.data[oldName + '#label'] ? this.ts.data[oldName + '#label'] : ' ',
-              [name + '#hintlabel']: this.ts.data[oldName + '#hintlabel'] ? this.ts.data[oldName + '#hintlabel'] : ' ',
-              [name + '#tooltip']: this.ts.data[oldName + '#tooltip'] ? this.ts.data[oldName + '#tooltip'] : ' '
+              [name + '#label']: this.ts.data[oldName + '#label']
+                ? this.ts.data[oldName + '#label']
+                : ' ',
+              [name + '#hintlabel']: this.ts.data[oldName + '#hintlabel']
+                ? this.ts.data[oldName + '#hintlabel']
+                : ' ',
+              [name + '#tooltip']: this.ts.data[oldName + '#tooltip']
+                ? this.ts.data[oldName + '#tooltip']
+                : ' ',
             };
             // console.log(tmpTxts);
 
@@ -520,7 +528,7 @@ export class TreeComponent implements OnInit {
 
             this.cs
               .updateTxtFile(this.ts.lang, this.ts.getUserData())
-              .subscribe(res => {
+              .subscribe((res) => {
                 // console.log(res);
 
                 tmpConf.name = name;
@@ -534,11 +542,11 @@ export class TreeComponent implements OnInit {
 
                 confObj[page][form][keys[2]] = tmpConf;
                 delete confObj[keys[0]][keys[1]][keys[2]];
-                if(Object.keys(confObj[keys[0]][keys[1]]).length === 0) {
-                delete confObj[keys[0]][keys[1]]
+                if (Object.keys(confObj[keys[0]][keys[1]]).length === 0) {
+                  delete confObj[keys[0]][keys[1]];
                 }
 
-                if(Object.keys(confObj[keys[0]]).length === 0) {
+                if (Object.keys(confObj[keys[0]]).length === 0) {
                   delete confObj[keys[0]];
                 }
 

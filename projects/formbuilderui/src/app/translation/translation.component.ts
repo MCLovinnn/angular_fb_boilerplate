@@ -28,7 +28,7 @@ export class TranslationComponent implements OnInit {
 
   ngOnInit(): void {
     this.cs.getTxtKeys(this.ts.lang).subscribe(val => {
-      // console.log(val);
+      console.log(val);
       this.configs = val;
     });
     // this.configs = Array.from(this.ts.data);

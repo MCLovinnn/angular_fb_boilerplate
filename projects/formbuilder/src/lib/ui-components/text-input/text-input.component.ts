@@ -13,13 +13,13 @@ export class TextInputComponent extends BaseFieldComponent implements OnInit {
   @Input() rows = 3;
   @Input() internalType = 'text';
 
-  constructor(public fb: UntypedFormBuilder,
-              public fs: FormService,
-              public ts: TranslationService) {
+  constructor(public override fb: UntypedFormBuilder,
+              public override fs: FormService,
+              public override ts: TranslationService) {
     super(fb, fs, ts);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
   }
 

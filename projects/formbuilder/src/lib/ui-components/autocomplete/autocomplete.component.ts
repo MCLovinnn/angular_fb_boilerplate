@@ -14,7 +14,7 @@ export const _filter = (opt: any[], value: string, ts:TranslationService): strin
       return opt.filter(item => checkKey(ts, item, filterValue));
     } else {
       return opt.filter(
-        item => checkKey(ts, item.name, filterValue)
+        item => checkKey(ts, item.name ? item.name : item.key, filterValue)
       );
     }
   } else {
@@ -46,11 +46,11 @@ export class AutocompleteComponent extends BaseFieldComponent
     groupBy: true
   };
 
-  constructor(public fb: UntypedFormBuilder, public fs: FormService, public ts: TranslationService) {
+  constructor(public override fb: UntypedFormBuilder, public override fs: FormService, public override ts: TranslationService) {
     super(fb, fs, ts);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     if (this.config.groupBy) {
       this.filteredStates = this.control.valueChanges.pipe(
@@ -72,13 +72,14 @@ export class AutocompleteComponent extends BaseFieldComponent
   }
 
   private _filterStates(value: string): any[] {
-    // console.log('options', this.options);
-    // console.log('options', this.options.length);
+    if(this.options && value) {
     const filterValue = value.toLowerCase();
-
     return this.options.filter(
       option => option.toLowerCase().indexOf(filterValue) > -1
     );
+    } else {
+      return [];
+    }
   }
 
   private _filterGroup(value: string): any[] {

@@ -1,5 +1,6 @@
 <ng-container *ngIf="form" [formGroup]="form">
   <mat-form-field [hintLabel]="getName()+'#hintlabel' | translate">
+  <mat-label>{{ getName() + '#label' | translate }}</mat-label>
     <input matInput
            [placeholder]="getName()+'#label' | translate"
            [formControlName]="name"
@@ -22,4 +23,17 @@
       {{ getErrorMeesage() }}
     </mat-error>
   </mat-form-field>
+  <!--mat-form-field *ngIf="false" [hintLabel]="getName()+'#hintlabel' | translate" class="example-form-field" appearance="fill">
+  <mat-label>{{ getName()+'#label' | translate }}</mat-label>
+    <mat-date-range-input
+      [formGroup]="campaignOne"
+      [rangePicker]="campaignOnePicker"
+      [comparisonStart]="campaignTwo.value.start"
+      [comparisonEnd]="campaignTwo.value.end">
+      <input matStartDate placeholder="Start date" formControlName="start">
+      <input matEndDate placeholder="End date" formControlName="end">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+    <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+  </mat-form-field-->
 </ng-container>

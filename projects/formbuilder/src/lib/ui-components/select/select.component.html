@@ -1,5 +1,6 @@
 <ng-container *ngIf="form" [formGroup]="form">
   <mat-form-field [hintLabel]="getName()+'#hintlabel' | translate">
+  <mat-label>{{ getName() + '#label' | translate }}</mat-label>
     <mat-select [placeholder]="getName()+'#label' | translate"
                 [formControlName]="name"
                 [minlength]="validators.minLength"

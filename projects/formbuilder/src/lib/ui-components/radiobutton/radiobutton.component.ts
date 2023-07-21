@@ -13,13 +13,13 @@ import { TranslationService } from '../../services/translation.service';
 export class RadiobuttonComponent extends BaseFieldComponent implements OnInit {
   @Input() options: ICodeEntry[];
 
-  constructor(public fb: UntypedFormBuilder,
-              public fs: FormService,
-              public ts: TranslationService) {
+  constructor(public override fb: UntypedFormBuilder,
+              public override fs: FormService,
+              public override ts: TranslationService) {
     super(fb, fs, ts);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     this.options = this.fs.getConfigByName(this.name).options? this.fs.getConfigByName(this.name).options : this.options;
 

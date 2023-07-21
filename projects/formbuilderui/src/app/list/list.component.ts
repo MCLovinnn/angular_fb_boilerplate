@@ -103,8 +103,8 @@ export class ListComponent implements OnInit {
     });
   }
 
-  deleteAll(data) {
-    data.forEach((element, index, array) => {
+  deleteAll(data: any[]) {
+    data.forEach((element: any, index: number, array: any[]) => {
     // console.log(element);
     // console.log(index);
     // console.log(array);

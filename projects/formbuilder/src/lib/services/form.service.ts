@@ -20,6 +20,7 @@ export function difference(newObj: any, origObj: any) {
   return transform(newObj, (result, value, key) => {
     if (!isEqual(value, origObj[key])) {
       let resultKey = typeof (origObj === 'array')  ? arrayIndexCounter++ : key;
+      /* @ts-ignore */
       result[resultKey] =
         isObject(value) && isObject(origObj[key])
           ? difference(value, origObj[key])
@@ -35,8 +36,9 @@ export class FormService {
   forms = new FormGroup({});
   configs: any;
   changes: any;
+  /* @ts-ignore */
   configChange: BehaviorSubject<any[]> = new BehaviorSubject([]);
-
+/* @ts-ignore */
   fieldchange: BehaviorSubject<any[]> = new BehaviorSubject([]);
   fields = [];
 
@@ -48,6 +50,7 @@ export class FormService {
     private ds: DialogService,
     private tp: TranslatePipe) {
     this.fieldchange.subscribe(val => {
+      /* @ts-ignore */
       this.fields.push(val);
     });
     this.configChange.subscribe((newVal)=> {
@@ -60,6 +63,7 @@ export class FormService {
   }
 
   getFieldByName(name: string): BaseFieldComponent {
+    /* @ts-ignore */
     return this.fields.find(field => field.name === name);
   }
 
@@ -94,9 +98,12 @@ export class FormService {
   addConfig(config: any) {
     if (this.configs !== undefined && this.configs !== null) {
       for (const [pageName, page] of Object.entries(config)) {
+        /* @ts-ignore */
         for (const [formName, form] of Object.entries(page)) {
           let controls = {};
+          /* @ts-ignore */
           for (const [fieldName, field] of Object.entries(form)) {
+            /* @ts-ignore */
             controls[fieldName] = field;
           }
           if (this.configs[pageName][formName]) {
@@ -128,6 +135,7 @@ export class FormService {
   }
 
   updateControl(field: IField) {
+    /* @ts-ignore */
     const validatorS = this.buildValidators(field.validators);
     const controL = [];
     controL.push(field.value ? field.value : '');
@@ -138,6 +146,7 @@ export class FormService {
     };
 
     if (validatorS) {
+      /* @ts-ignore */
       options.validators = validatorS;
     }
 
@@ -186,6 +195,7 @@ export class FormService {
         field.name
       ) as FormControl;
     } else {
+      /* @ts-ignore */
       return new FormControl('', this.buildValidators(field.validators));
     }
   }
@@ -277,7 +287,8 @@ export class FormService {
           const forM: any = formObj[form];
           Object.keys(forM).forEach(key => {
             const field: IField = forM[key];
-            const validatorS = this.buildValidators(field.validators);
+
+              const validatorS = this.buildValidators(field.validators!);
             const controL = [];
 
             controL.push({
@@ -291,6 +302,7 @@ export class FormService {
             };
 
             if (validatorS) {
+              /* @ts-ignore */
               options.validators = validatorS;
             }
 
@@ -299,9 +311,10 @@ export class FormService {
             }
 
             controL.push(options);
-
+            /* @ts-ignore */
             formArray[field.name] = controL;
           });
+          /* @ts-ignore */
           newForm[form] = this.fb.group(formArray);
           this.addForm(this.fb.group(newForm), page);
         });
@@ -324,7 +337,8 @@ export class FormService {
               Object.keys(field.customValidation).forEach(validation => {
                 // console.log(field.customValidation[validation]);
                 let fieldToCheck: FormControl | null = null;
-                const validationObj: ICustomValidation = field.customValidation[validation];
+                /* @ts-ignore */
+                const validationObj: ICustomValidation = field!.customValidation![validation];
                 const fieldD = this.getFormControl(field);
                 // console.log(validationObj.dialog.msg);
 
@@ -350,7 +364,7 @@ export class FormService {
                       if(this.getControlChange(field.name) !== val) {
                         // console.log('controlchange');
 
-                        this.ds.confirm(validationObj.dialog.msg,() => {
+                        this.ds.confirm(validationObj!.dialog!.msg,() => {
                           this.applieChanges();
                         }, () => {
                           // console.log('reset '+ field.name);
@@ -362,7 +376,7 @@ export class FormService {
                       if(fieldToCheck && fieldToCheck.value !== val) {
                         // console.log('valuechange');
 
-                        this.ds.confirm(validationObj.dialog.msg,() => {}, () => {
+                        this.ds.confirm(validationObj!.dialog!.msg,() => {}, () => {
                           this.resetControl(field.name);
                         });
                       }
@@ -401,7 +415,7 @@ export class FormService {
     if (this.changes[page][form][name] ||
       typeof this.changes[page][form][name] === 'string')
       {
-        this.forms.get(page).get(form).get(name).patchValue(this.changes[page][form][name]);
+        this.forms!.get(page)!.get(form)!.get(name)!.patchValue(this.changes[page][form][name]);
       // this.resetForm();
       this.getFormControl({name}).markAsUntouched();
       // this.getFormControl({name}).patchValue(this.changes[page][form][control]);

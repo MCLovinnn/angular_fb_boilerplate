@@ -1,30 +1,36 @@
 <ng-container *ngIf="form" [formGroup]="form">
-  <mat-form-field *ngIf="htmlType === 'text'" [hintLabel]="getName() + '#hintlabel' | translate">
-      <input
-        matInput
-        [matTooltip]="getName() + '#tooltip' | translate"
-        [formControlName]="name"
-        [minlength]="validators.minLength"
-        [maxlength]="validators.maxLength"
-        [max]="validators.max"
-        [min]="validators.min"
-        [placeholder]="getName() + '#label' | translate"
-        [required]="required"
-        matTooltipDisabled="false"
-        matTooltipHideDelay="200"
-        matTooltipPosition="above"
-        matTooltipShowDelay="100"
-        [type]="internalType"
-        (change)="change.emit({ type: name, value: $event.target.value })"
-        [value]="value"
-        [autocomplete]="autocomplete"/>
-      <button
-        (click)="iconAct()"
-        *ngIf="iconBtn && value"
-        mat-icon-button
-        matSuffix>
-        <mat-icon>{{ iconBtn }}</mat-icon>
-      </button>
+  <mat-form-field
+    *ngIf="htmlType === 'text'"
+    [hintLabel]="getName() + '#hintlabel' | translate"
+  >
+  <mat-label>{{ getName() + '#label' | translate }}</mat-label>
+    <input
+      matInput
+      [matTooltip]="getName() + '#tooltip' | translate"
+      [formControlName]="name"
+      [minlength]="validators.minLength"
+      [maxlength]="validators.maxLength"
+      [max]="validators.max"
+      [min]="validators.min"
+      [placeholder]="getName() + '#label' | translate"
+      [required]="required"
+      matTooltipDisabled="false"
+      matTooltipHideDelay="200"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      [type]="internalType"
+      (change)="change.emit({ type: name, value: $event.target.value })"
+      [value]="value"
+      [autocomplete]="autocomplete"
+    />
+    <button
+      (click)="iconAct()"
+      *ngIf="iconBtn && value"
+      mat-icon-button
+      matSuffix
+    >
+      <mat-icon>{{ iconBtn }}</mat-icon>
+    </button>
     <!-- <button (click)="value=''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>
       <mat-icon>{{iconBtn}}</mat-icon>
     </button> -->
@@ -33,27 +39,31 @@
       {{ getErrorMeesage() }}
     </mat-error>
   </mat-form-field>
-  <mat-form-field *ngIf="htmlType === 'textarea'" [hintLabel]="getName() + '#hintlabel' | translate">
+  <mat-form-field
+    *ngIf="htmlType === 'textarea'"
+    [hintLabel]="getName() + '#hintlabel' | translate"
+  >
     <textarea
-        matInput
-        [rows]="rows"
-        [matTooltip]="getName() + '#tooltip' | translate"
-        [formControlName]="name"
-        [minlength]="validators.minLength"
-        [maxlength]="validators.maxLength"
-        [placeholder]="getName() + '#label' | translate"
-        [required]="required"
-        matTooltipDisabled="false"
-        matTooltipHideDelay="200"
-        matTooltipPosition="above"
-        matTooltipShowDelay="100"
-        [type]="htmlType"
-        (change)="change.emit({ type: name, value: $event.target.value })"
-        [value]="value">
-      </textarea>
-  <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
-  <mat-error>
-    {{ getErrorMeesage() }}
-  </mat-error>
-</mat-form-field>
+      matInput
+      [rows]="rows"
+      [matTooltip]="getName() + '#tooltip' | translate"
+      [formControlName]="name"
+      [minlength]="validators.minLength"
+      [maxlength]="validators.maxLength"
+      [placeholder]="getName() + '#label' | translate"
+      [required]="required"
+      matTooltipDisabled="false"
+      matTooltipHideDelay="200"
+      matTooltipPosition="above"
+      matTooltipShowDelay="100"
+      [type]="htmlType"
+      (change)="change.emit({ type: name, value: $event.target.value })"
+      [value]="value"
+    >
+    </textarea>
+    <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+    <mat-error>
+      {{ getErrorMeesage() }}
+    </mat-error>
+  </mat-form-field>
 </ng-container>

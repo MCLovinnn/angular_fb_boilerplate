@@ -13,13 +13,13 @@ import { TranslationService } from '../../services/translation.service';
 export class SlideToggleComponent extends BaseFieldComponent implements OnInit {
   @Input() color: string;
 
-  constructor(public fb: UntypedFormBuilder,
-    public fs: FormService,
-    public ts: TranslationService) {
+  constructor(public override fb: UntypedFormBuilder,
+    public override fs: FormService,
+    public override ts: TranslationService) {
     super(fb, fs, ts);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     // console.log(this.options);
     // console.log(this.form);

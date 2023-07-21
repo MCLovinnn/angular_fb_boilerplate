@@ -6,7 +6,7 @@ mat-table {
 mat-row, mat-header-row {
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: 5px;
 }
 
@@ -19,7 +19,7 @@ mat-cell:first-of-type, mat-header-cell:first-of-type, mat-footer-cell:first-of-
 }
 
 .mdc-data-table__cell, .mdc-data-table__header-cell {
-  padding: 0 5px 0 5px!important;
+  padding: 0 5px 0 5px;
 }
 .long-filter {
   float: left;

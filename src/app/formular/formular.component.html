@@ -12,7 +12,6 @@
   <mat-grid-tile colspan="4" rowspan="1">
     <app-autocomplete
       [config]="autoCompleteConfig"
-      [options]="autocompleteOptions"
       name="home_test_autocomplete"
     ></app-autocomplete>
   </mat-grid-tile>
@@ -39,5 +38,7 @@
 </mat-grid-list>
 
 <app-check-box-group name="home_test_select"> </app-check-box-group>
-<app-chips-complete name="home_test_autocomplete" ></app-chips-complete>
+<app-chips-complete name="home_test_autocomplete"
+[options]="testOpt"
+[config]="autoCompleteConfig"></app-chips-complete>
 <app-file-input name="home_test_file" ></app-file-input>

@@ -41,6 +41,8 @@ export class AppComponent implements OnInit {
     //   });
 
   }
+
+  
   scroll(index) {
     // console.log(index);
     // console.log(this.menu);

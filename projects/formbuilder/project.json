@@ -1,0 +1,37 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "formbuilder",
+  "projectType": "library",
+  "sourceRoot": "projects/formbuilder/src",
+  "prefix": "lib",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "options": {
+        "project": "projects/formbuilder/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "projects/formbuilder/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "projects/formbuilder/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": [
+        "{workspaceRoot}/dist/formbuilder"
+      ]
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "tsConfig": "projects/formbuilder/tsconfig.spec.json",
+        "polyfills": [
+          "zone.js",
+          "zone.js/testing"
+        ]
+      }
+    }
+  }
+}

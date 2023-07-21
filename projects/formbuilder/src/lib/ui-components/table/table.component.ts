@@ -176,12 +176,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
         item,
         property
       ): string | number => {
-        switch (property) {
-          case this.viewOptions.dateStringToDateFilter: {
-            return moment(item[property], 'L', 'de', true).unix();
-          }
-          default:
-            return item[property];
+        if(this.viewOptions.dateStringToDateFilter.indexOf(property) > -1) {
+          return moment(item[property], 'L', 'de', true).unix();
+        } else {
+          return item[property];
         }
       };
     }
@@ -190,7 +188,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     this.selection.clear();
     if (changes['data']) {
-      this.data = changes.data.currentValue || [];
+      this.data = changes['data'].currentValue || [];
       this.dataSource.data = this.data;
       this.resultsLength = this.data.length;
       this.dataSource.filter = '';

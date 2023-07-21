@@ -13,13 +13,13 @@ import { TranslationService } from '../../services/translation.service';
 export class SliderComponent extends BaseFieldComponent implements OnInit {
   @Input() config: ISliderConfig;
 
-  constructor(public fb: UntypedFormBuilder,
-    public fs: FormService,
-    public ts: TranslationService) {
+  constructor(public override fb: UntypedFormBuilder,
+    public override fs: FormService,
+    public override ts: TranslationService) {
     super(fb, fs, ts);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     super.ngOnInit();
     if(!this.config && this.field.config) {
       // console.log(this.field.config);
